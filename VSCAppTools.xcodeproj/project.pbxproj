@@ -16,6 +16,7 @@
 		54EDB3921EC84F6000BB5061 /* UIControl+Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB38E1EC84F6000BB5061 /* UIControl+Blocks.swift */; };
 		54EDB3951EC84F9B00BB5061 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3931EC84F9B00BB5061 /* AppState.swift */; };
 		54EDB3961EC84F9B00BB5061 /* Array+ObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3941EC84F9B00BB5061 /* Array+ObjectOrNil.swift */; };
+		54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		54EDB38E1EC84F6000BB5061 /* UIControl+Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Blocks.swift"; sourceTree = "<group>"; };
 		54EDB3931EC84F9B00BB5061 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		54EDB3941EC84F9B00BB5061 /* Array+ObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ObjectOrNil.swift"; sourceTree = "<group>"; };
+		54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseManager.swift; path = "App Tools/Purchases/PurchaseManager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		54EDB31B1EC848E800BB5061 = {
 			isa = PBXGroup;
 			children = (
+				54EDB39D1EC8583600BB5061 /* Purchases */,
 				54EDB3761EC84ED900BB5061 /* Tools */,
 				54EDB3711EC84E6C00BB5061 /* User Settings */,
 				54EDB3651EC84CA100BB5061 /* Views */,
@@ -99,6 +102,14 @@
 			);
 			name = Tools;
 			path = "../dozzzer-4/Dozzzer/Vendor";
+			sourceTree = "<group>";
+		};
+		54EDB39D1EC8583600BB5061 /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */,
+			);
+			name = Purchases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54EDB3851EC84F3900BB5061 /* ScrollingStackView.swift in Sources */,
+				54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */,
 				54EDB3921EC84F6000BB5061 /* UIControl+Blocks.swift in Sources */,
 				54EDB3951EC84F9B00BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
