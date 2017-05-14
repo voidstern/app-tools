@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54EDB32A1EC848E900BB5061 /* VSCAppTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3281EC848E900BB5061 /* VSCAppTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54EDB3521EC84A5F00BB5061 /* App Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3501EC84A5F00BB5061 /* App Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54EDB3571EC84A7A00BB5061 /* ScrollingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3561EC84A7A00BB5061 /* ScrollingStackView.swift */; };
+		54EDB3581EC84ACD00BB5061 /* ScrollingStackView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3561EC84A7A00BB5061 /* ScrollingStackView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		54EDB36C1EC84CB900BB5061 /* XIbLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB36B1EC84CB900BB5061 /* XIbLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		54EDB3251EC848E900BB5061 /* VSCAppTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VSCAppTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		54EDB3281EC848E900BB5061 /* VSCAppTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCAppTools.h; sourceTree = "<group>"; };
-		54EDB3291EC848E900BB5061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54EDB34E1EC84A5F00BB5061 /* AppTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54EDB3501EC84A5F00BB5061 /* App Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Tools.h"; sourceTree = "<group>"; };
+		54EDB3511EC84A5F00BB5061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54EDB3561EC84A7A00BB5061 /* ScrollingStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollingStackView.swift; path = "App Tools/ScrollingStackView.swift"; sourceTree = "<group>"; };
+		54EDB36B1EC84CB900BB5061 /* XIbLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XIbLoadable.swift; path = "App Tools/XIbLoadable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		54EDB3211EC848E900BB5061 /* Frameworks */ = {
+		54EDB34A1EC84A5F00BB5061 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -30,7 +35,8 @@
 		54EDB31B1EC848E800BB5061 = {
 			isa = PBXGroup;
 			children = (
-				54EDB3271EC848E900BB5061 /* VSCAppTools */,
+				54EDB3651EC84CA100BB5061 /* Views */,
+				54EDB34F1EC84A5F00BB5061 /* App Tools */,
 				54EDB3261EC848E900BB5061 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -38,50 +44,60 @@
 		54EDB3261EC848E900BB5061 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54EDB3251EC848E900BB5061 /* VSCAppTools.framework */,
+				54EDB34E1EC84A5F00BB5061 /* AppTools.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		54EDB3271EC848E900BB5061 /* VSCAppTools */ = {
+		54EDB34F1EC84A5F00BB5061 /* App Tools */ = {
 			isa = PBXGroup;
 			children = (
-				54EDB3281EC848E900BB5061 /* VSCAppTools.h */,
-				54EDB3291EC848E900BB5061 /* Info.plist */,
+				54EDB3501EC84A5F00BB5061 /* App Tools.h */,
+				54EDB3511EC84A5F00BB5061 /* Info.plist */,
 			);
-			path = VSCAppTools;
+			path = "App Tools";
+			sourceTree = "<group>";
+		};
+		54EDB3651EC84CA100BB5061 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				54EDB36B1EC84CB900BB5061 /* XIbLoadable.swift */,
+				54EDB3561EC84A7A00BB5061 /* ScrollingStackView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		54EDB3221EC848E900BB5061 /* Headers */ = {
+		54EDB34B1EC84A5F00BB5061 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54EDB32A1EC848E900BB5061 /* VSCAppTools.h in Headers */,
+				54EDB3521EC84A5F00BB5061 /* App Tools.h in Headers */,
+				54EDB3581EC84ACD00BB5061 /* ScrollingStackView.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		54EDB3241EC848E900BB5061 /* VSCAppTools */ = {
+		54EDB34D1EC84A5F00BB5061 /* AppTools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54EDB32D1EC848E900BB5061 /* Build configuration list for PBXNativeTarget "VSCAppTools" */;
+			buildConfigurationList = 54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppTools" */;
 			buildPhases = (
-				54EDB3201EC848E900BB5061 /* Sources */,
-				54EDB3211EC848E900BB5061 /* Frameworks */,
-				54EDB3221EC848E900BB5061 /* Headers */,
-				54EDB3231EC848E900BB5061 /* Resources */,
+				54EDB3491EC84A5F00BB5061 /* Sources */,
+				54EDB34A1EC84A5F00BB5061 /* Frameworks */,
+				54EDB34B1EC84A5F00BB5061 /* Headers */,
+				54EDB34C1EC84A5F00BB5061 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = VSCAppTools;
-			productName = VSCAppTools;
-			productReference = 54EDB3251EC848E900BB5061 /* VSCAppTools.framework */;
+			name = AppTools;
+			productName = "App Tools";
+			productReference = 54EDB34E1EC84A5F00BB5061 /* AppTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -93,9 +109,10 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Lukas;
 				TargetAttributes = {
-					54EDB3241EC848E900BB5061 = {
+					54EDB34D1EC84A5F00BB5061 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 2BRYXER7S6;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -112,13 +129,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				54EDB3241EC848E900BB5061 /* VSCAppTools */,
+				54EDB34D1EC84A5F00BB5061 /* AppTools */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		54EDB3231EC848E900BB5061 /* Resources */ = {
+		54EDB34C1EC84A5F00BB5061 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,10 +145,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		54EDB3201EC848E900BB5061 /* Sources */ = {
+		54EDB3491EC84A5F00BB5061 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54EDB3571EC84A7A00BB5061 /* ScrollingStackView.swift in Sources */,
+				54EDB36C1EC84CB900BB5061 /* XIbLoadable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,38 +258,43 @@
 			};
 			name = Release;
 		};
-		54EDB32E1EC848E900BB5061 /* Debug */ = {
+		54EDB3531EC84A5F00BB5061 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2BRYXER7S6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VSCAppTools/Info.plist;
+				INFOPLIST_FILE = "App Tools/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.voidstern.VSCAppTools;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		54EDB32F1EC848E900BB5061 /* Release */ = {
+		54EDB3541EC84A5F00BB5061 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2BRYXER7S6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VSCAppTools/Info.plist;
+				INFOPLIST_FILE = "App Tools/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.voidstern.VSCAppTools;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -289,13 +313,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54EDB32D1EC848E900BB5061 /* Build configuration list for PBXNativeTarget "VSCAppTools" */ = {
+		54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				54EDB32E1EC848E900BB5061 /* Debug */,
-				54EDB32F1EC848E900BB5061 /* Release */,
+				54EDB3531EC84A5F00BB5061 /* Debug */,
+				54EDB3541EC84A5F00BB5061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
