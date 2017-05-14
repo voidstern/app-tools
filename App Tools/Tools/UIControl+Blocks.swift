@@ -8,13 +8,14 @@
 
 import Foundation
 import ObjectiveC
+import UIKit
 
 var actionBlockKey: UInt8 = 0
 
 // a type for our action block closure
-typealias BlockButtonActionBlock = (_ sender: UISwitch) -> Void
+public typealias BlockButtonActionBlock = (_ sender: UISwitch) -> Void
 
-class ActionBlockWrapper: NSObject {
+public class ActionBlockWrapper: NSObject {
     var block: BlockButtonActionBlock
     init(block: @escaping BlockButtonActionBlock) {
         self.block = block
@@ -22,7 +23,7 @@ class ActionBlockWrapper: NSObject {
 }
 
 extension UISwitch {
-    func block_setAction(block: @escaping BlockButtonActionBlock) {
+    public func block_setAction(block: @escaping BlockButtonActionBlock) {
         objc_setAssociatedObject(self, &actionBlockKey, ActionBlockWrapper(block: block), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         addTarget(self, action: #selector(UISwitch.block_handleAction(_: )), for: .touchUpInside)
     }

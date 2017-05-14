@@ -16,7 +16,7 @@ public protocol EventLoggerImplementation {
 
 public class EventLogger {
 	static public let shared = EventLogger()
-    private var loggers:[EventLoggerImplementation] = []
+    private var loggers: [EventLoggerImplementation] = []
 
     open class Event {
         public let eventName: String

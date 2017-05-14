@@ -21,7 +21,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
             self.identifier = identifier
         }
 
-        public static func ==(lhs: Product, rhs: Product) -> Bool {
+        public static func == (lhs: Product, rhs: Product) -> Bool {
             return lhs.identifier == rhs.identifier
         }
     }

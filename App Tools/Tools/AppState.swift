@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AppStateManager {
+public final class AppStateManager {
 
     static public private(set) var shared = AppStateManager()
     private var activeCount: Int = 0

@@ -52,9 +52,7 @@ public final class SupportMailController: MFMailComposeViewController, MFMailCom
         return supportMailController
     }
 
-
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true, completion: nil)
     }
 }
-
