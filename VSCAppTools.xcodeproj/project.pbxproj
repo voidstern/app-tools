@@ -12,13 +12,13 @@
 		54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3841EC84F3900BB5061 /* XIbLoadable.swift */; };
 		54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3871EC84F4300BB5061 /* SettingsStorage.swift */; };
 		54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3881EC84F4300BB5061 /* UserSettings.swift */; };
-		54EDB3911EC84F6000BB5061 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB38D1EC84F6000BB5061 /* Limit.swift */; };
-		54EDB3921EC84F6000BB5061 /* UIControl+Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB38E1EC84F6000BB5061 /* UIControl+Blocks.swift */; };
-		54EDB3951EC84F9B00BB5061 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3931EC84F9B00BB5061 /* AppState.swift */; };
-		54EDB3961EC84F9B00BB5061 /* Array+ObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3941EC84F9B00BB5061 /* Array+ObjectOrNil.swift */; };
 		54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */; };
 		54EDB3A51EC869EE00BB5061 /* EventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3A41EC869EE00BB5061 /* EventLogger.swift */; };
 		54EDB3A81EC86B9B00BB5061 /* SupportMailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */; };
+		54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B31EC8B29200BB5061 /* AppState.swift */; };
+		54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */; };
+		54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B51EC8B29200BB5061 /* Limit.swift */; };
+		54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,13 +29,13 @@
 		54EDB3841EC84F3900BB5061 /* XIbLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XIbLoadable.swift; path = "App Tools/Views/XIbLoadable.swift"; sourceTree = "<group>"; };
 		54EDB3871EC84F4300BB5061 /* SettingsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsStorage.swift; path = "App Tools/User Settings/SettingsStorage.swift"; sourceTree = "<group>"; };
 		54EDB3881EC84F4300BB5061 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettings.swift; path = "App Tools/User Settings/UserSettings.swift"; sourceTree = "<group>"; };
-		54EDB38D1EC84F6000BB5061 /* Limit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Limit.swift; sourceTree = "<group>"; };
-		54EDB38E1EC84F6000BB5061 /* UIControl+Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Blocks.swift"; sourceTree = "<group>"; };
-		54EDB3931EC84F9B00BB5061 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		54EDB3941EC84F9B00BB5061 /* Array+ObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ObjectOrNil.swift"; sourceTree = "<group>"; };
 		54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseManager.swift; path = "App Tools/Purchases/PurchaseManager.swift"; sourceTree = "<group>"; };
 		54EDB3A41EC869EE00BB5061 /* EventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLogger.swift; sourceTree = "<group>"; };
 		54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMailController.swift; path = "App Tools/Views/SupportMailController.swift"; sourceTree = "<group>"; };
+		54EDB3B31EC8B29200BB5061 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = "App Tools/Tools/AppState.swift"; sourceTree = SOURCE_ROOT; };
+		54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+ObjectOrNil.swift"; path = "App Tools/Tools/Array+ObjectOrNil.swift"; sourceTree = SOURCE_ROOT; };
+		54EDB3B51EC8B29200BB5061 /* Limit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Limit.swift; path = "App Tools/Tools/Limit.swift"; sourceTree = SOURCE_ROOT; };
+		54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIControl+Blocks.swift"; path = "App Tools/Tools/UIControl+Blocks.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +101,10 @@
 		54EDB3761EC84ED900BB5061 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				54EDB3931EC84F9B00BB5061 /* AppState.swift */,
-				54EDB3941EC84F9B00BB5061 /* Array+ObjectOrNil.swift */,
-				54EDB38D1EC84F6000BB5061 /* Limit.swift */,
-				54EDB38E1EC84F6000BB5061 /* UIControl+Blocks.swift */,
+				54EDB3B31EC8B29200BB5061 /* AppState.swift */,
+				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
+				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
+				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
 			);
 			name = Tools;
 			path = "../dozzzer-4/Dozzzer/Vendor";
@@ -210,14 +210,14 @@
 				54EDB3851EC84F3900BB5061 /* ScrollingStackView.swift in Sources */,
 				54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */,
 				54EDB3A51EC869EE00BB5061 /* EventLogger.swift in Sources */,
-				54EDB3921EC84F6000BB5061 /* UIControl+Blocks.swift in Sources */,
-				54EDB3951EC84F9B00BB5061 /* AppState.swift in Sources */,
+				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
+				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
 				54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */,
 				54EDB3A81EC86B9B00BB5061 /* SupportMailController.swift in Sources */,
-				54EDB3911EC84F6000BB5061 /* Limit.swift in Sources */,
+				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
-				54EDB3961EC84F9B00BB5061 /* Array+ObjectOrNil.swift in Sources */,
+				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

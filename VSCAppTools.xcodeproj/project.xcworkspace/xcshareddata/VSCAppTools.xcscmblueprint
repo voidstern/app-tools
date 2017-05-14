@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D6A60EF123792FF67B391DA7F7592B213E0EF854",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8701F19AF3CC7CD0B082E8302C918496F6679BFA" : 9223372036854775807,
+    "D6A60EF123792FF67B391DA7F7592B213E0EF854" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5DCCBB21-39AB-4677-BAFE-E7A7A7CB996A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8701F19AF3CC7CD0B082E8302C918496F6679BFA" : "dozzzer-4\/",
+    "D6A60EF123792FF67B391DA7F7592B213E0EF854" : "VSCAppTools\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "VSCAppTools",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "VSCAppTools.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/hades.local\/volume1\/git\/dozzzer-4.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8701F19AF3CC7CD0B082E8302C918496F6679BFA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/hades.local\/volume1\/git\/app-tools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D6A60EF123792FF67B391DA7F7592B213E0EF854"
+    }
+  ]
+}
