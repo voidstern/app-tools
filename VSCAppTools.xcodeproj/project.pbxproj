@@ -104,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				54EDB3B31EC8B29200BB5061 /* AppState.swift */,
-				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
 				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
 				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
+				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
 				54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */,
 			);
 			name = Tools;

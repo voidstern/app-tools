@@ -8,79 +8,73 @@
 
 import Foundation
 
-public enum UserSettingKeys: String {
-    case purchasedPro = "has_bought_ad_free"
-    case adRequests = "ad_requests"
-    
-    case shuffle = "shuffle"
-    case repeating = "repeat"
-    case shortFade = "shortFade"
-    
-    case selectedMode = "selectedMode"
-    case selectedSongs = "selectedSongs"
-    
-    case dismissedMusicNoteView = "dismissedMusicNoteView"
-    case dismissedSoundscapeNoteView = "dismissedSoundscapeNoteView"
-
-    case selectedSoundscape = "selectedSoundscape"
-}
-
 public class UserSettings {
+
+    open class Setting: Equatable {
+        public let identifier: String
+        public init(identifier: String) {
+            self.identifier = identifier
+        }
+
+        public static func == (lhs: Setting, rhs: Setting) -> Bool {
+            return lhs.identifier == rhs.identifier
+        }
+    }
 
     static public let shared = UserSettings()
 	private var userDefaults = SettingsStorage.sharedInstance
 
-    public func bool(key: UserSettingKeys) -> Bool {
-        if let value = userDefaults.bool(forKey: key.rawValue) {
+    public func bool(key: Setting) -> Bool {
+        if let value = userDefaults.bool(forKey: key.identifier) {
             return value
         }
 		return false
     }
 
-    public func set(value: Bool, key: UserSettingKeys) {
-        userDefaults.set(value, forKey: key.rawValue)
+    public func set(value: Bool, key: Setting) {
+        userDefaults.set(value, forKey: key.identifier)
     }
 
-    public func toggle(_ key: UserSettingKeys) {
-        if let value = userDefaults.bool(forKey: key.rawValue) {
-            userDefaults.set(!value, forKey: key.rawValue)
+    public func toggle(_ key: Setting) {
+        if let value = userDefaults.bool(forKey: key.identifier) {
+            userDefaults.set(!value, forKey: key.identifier)
         } else {
-            userDefaults.set(true, forKey: key.rawValue)
+            userDefaults.set(true, forKey: key.identifier)
         }
     }
 
-    public func integer(key: UserSettingKeys) -> Int {
-        guard let value = userDefaults.integer(forKey: key.rawValue) else {
+    public func integer(key: Setting) -> Int {
+        guard let value = userDefaults.integer(forKey: key.identifier) else {
             return 0
         }
         
         return value
     }
 
-    public func set(value: Int, key: UserSettingKeys) {
-        userDefaults.set(value, forKey: key.rawValue)
+    public func set(value: Int, key: Setting) {
+        userDefaults.set(value, forKey: key.identifier)
     }
     
-    public func string(key: UserSettingKeys) -> String {
-        if let value = userDefaults.string(forKey: key.rawValue) {
+    public func string(key: Setting) -> String {
+        if let value = userDefaults.string(forKey: key.identifier) {
             return value
         }
         return ""
     }
     
-    public func set(value: String, key: UserSettingKeys) {
-        userDefaults.set(value, forKey: key.rawValue)
+    public func set(value: String, key: Setting) {
+        userDefaults.set(value, forKey: key.identifier)
     }
     
-    public func strings(key: UserSettingKeys) -> [String]? {
-        guard let value = userDefaults.strings(forKey: key.rawValue) else {
+    public func strings(key: Setting) -> [String]? {
+        guard let value = userDefaults.strings(forKey: key.identifier) else {
             return []
         }
         
         return value
     }
     
-    public func set(strings: [String], key: UserSettingKeys) {
-        userDefaults.set(strings, forKey: key.rawValue)
+    public func set(strings: [String], key: Setting) {
+        userDefaults.set(strings, forKey: key.identifier)
     }
 }
