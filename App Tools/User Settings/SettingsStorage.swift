@@ -8,12 +8,12 @@
 
 import Foundation
 
-class SettingsStorage {
+public class SettingsStorage {
     
-    static let sharedInstance = SettingsStorage()
-    let saveFilePath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json"
-    lazy var saveFileURL: URL = SettingsStorage.sharedInstance.getSaveFileURL()
-    var settings: [String: Any] = [:]
+    public static let sharedInstance = SettingsStorage()
+    private let saveFilePath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json"
+    private lazy var saveFileURL: URL = SettingsStorage.sharedInstance.getSaveFileURL()
+    private var settings: [String: Any] = [:]
 
     func getSaveFileURL() -> URL {
         let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.voidstern.multiTimers")
@@ -23,7 +23,7 @@ class SettingsStorage {
         return URL(fileURLWithPath: saveFilePath)
     }
     
-    func saveToDisk() {
+    private func saveToDisk() {
         do {
             try JSONSerialization.data(withJSONObject: settings, options: JSONSerialization.WritingOptions(rawValue: 0)).write(to: saveFileURL, options: [])
         } catch {
@@ -31,25 +31,20 @@ class SettingsStorage {
         }
     }
     
-    func loadFromDisk() {
-        do {
-            guard let data = try? Data(contentsOf: saveFileURL) else {
-                return
-            }
-            
-            if let settingsDict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String : Any] {
-                settings = settingsDict
-            }
-        } catch {
-            // Fuck swift
+    private func loadFromDisk() {
+
+        guard let data = try? Data(contentsOf: saveFileURL) else {
+            return
+        }
+
+        if let settingsDict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String : Any] ?? [:] {
+            settings = settingsDict
         }
     }
-}
 
-// Mark: Accessors
-extension SettingsStorage {
+    // Mark: Accessors
 
-    func set(_ value: Bool, forKey: String) {
+    public func set(_ value: Bool, forKey: String) {
         if value {
             settings[forKey] = "YES"
         } else {
@@ -58,7 +53,7 @@ extension SettingsStorage {
         saveToDisk()
     }
 
-    func bool(forKey: String) -> Bool? {
+    public func bool(forKey: String) -> Bool? {
         loadFromDisk()
         if let bool = settings[forKey] as? String {
             return bool == "YES"
@@ -66,12 +61,12 @@ extension SettingsStorage {
         return nil
     }
 
-    func set(_ value: String, forKey: String) {
+    public func set(_ value: String, forKey: String) {
         settings[forKey] = value
         saveToDisk()
     }
 
-    func string(forKey: String) -> String? {
+    public func string(forKey: String) -> String? {
         loadFromDisk()
         if let value = settings[forKey] as? String {
             return value
@@ -79,12 +74,12 @@ extension SettingsStorage {
         return nil
     }
     
-    func set(_ value: [String], forKey: String) {
+    public func set(_ value: [String], forKey: String) {
         settings[forKey] = value
         saveToDisk()
     }
     
-    func strings(forKey: String) -> [String]? {
+    public func strings(forKey: String) -> [String]? {
         loadFromDisk()
         if let value = settings[forKey] as? [String] {
             return value
@@ -92,12 +87,12 @@ extension SettingsStorage {
         return nil
     }
 
-    func set(_ value: Int, forKey: String) {
+    public func set(_ value: Int, forKey: String) {
         settings[forKey] = String(value);
         saveToDisk()
     }
 
-    func integer(forKey: String) -> Int? {
+    public func integer(forKey: String) -> Int? {
         loadFromDisk()
         if let setting = settings[forKey] as? String {
             if let int : Int = Int(setting) {
