@@ -19,6 +19,7 @@
 		54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */; };
 		54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B51EC8B29200BB5061 /* Limit.swift */; };
 		54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */; };
+		54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+ObjectOrNil.swift"; path = "App Tools/Tools/Array+ObjectOrNil.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB3B51EC8B29200BB5061 /* Limit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Limit.swift; path = "App Tools/Tools/Limit.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIControl+Blocks.swift"; path = "App Tools/Tools/UIControl+Blocks.swift"; sourceTree = SOURCE_ROOT; };
+		54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+OnMainQueue.swift"; path = "App Tools/Tools/DispatchQueue+OnMainQueue.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
 				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
 				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
+				54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */,
 			);
 			name = Tools;
 			path = "../dozzzer-4/Dozzzer/Vendor";
@@ -216,6 +219,7 @@
 				54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */,
 				54EDB3A81EC86B9B00BB5061 /* SupportMailController.swift in Sources */,
 				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
+				54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
 			);
