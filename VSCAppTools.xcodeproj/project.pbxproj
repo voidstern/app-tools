@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */; };
+		54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */; };
 		54EDB3521EC84A5F00BB5061 /* App Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3501EC84A5F00BB5061 /* App Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54EDB3851EC84F3900BB5061 /* ScrollingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3831EC84F3900BB5061 /* ScrollingStackView.swift */; };
 		54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3841EC84F3900BB5061 /* XIbLoadable.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+deselectRow.swift"; sourceTree = "<group>"; };
+		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Transition.swift"; sourceTree = "<group>"; };
 		54EDB34E1EC84A5F00BB5061 /* AppTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EDB3501EC84A5F00BB5061 /* App Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Tools.h"; sourceTree = "<group>"; };
 		54EDB3511EC84A5F00BB5061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,9 +151,11 @@
 			isa = PBXGroup;
 			children = (
 				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
+				54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */,
 				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
 				54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */,
 				54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */,
+				54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				54EDB4661ECA197400BB5061 /* FileMonitor.swift in Sources */,
 				54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */,
 				54EDB3A51EC869EE00BB5061 /* EventLogger.swift in Sources */,
+				54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */,
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
@@ -250,6 +257,7 @@
 				54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
+				54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
