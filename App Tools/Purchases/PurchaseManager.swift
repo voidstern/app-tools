@@ -34,7 +34,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
         testMode = true
     }
 
-    public static let defaultManager = PurchaseManager()
+    public static let shared = PurchaseManager()
 
     override init() {
         super.init()
