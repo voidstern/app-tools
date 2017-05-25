@@ -13,7 +13,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
     public static let loadedPurchasesNotificationName = Notification.Name("loadedPurchasesNotification")
     public static let purchasedProductNotificationName = Notification.Name("purchasedProductNotificationName")
     public static let purchaseProductFailedNotificationName = Notification.Name("purchaseProductFailedNotificationName")
-    public static let restoringPurchasesFinished = Notification.Name("restoringPurchasesFinished")
+    public static let restoringPurchasesFinishedNotificationName = Notification.Name("restoringPurchasesFinished")
 
     open class Product: Equatable {
         public let identifier: String
@@ -27,7 +27,12 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
     }
 
     private let userDefaultsKey = "purchases"
-    private let testMode: Bool = false
+    private var testMode: Bool = false
+
+    public func enablePurchaseManagerTestMode() {
+        print("    ---- WARNING ----\nPurchase Manager Test Mode active!\n    ---- WARNING ----")
+        testMode = true
+    }
 
     public static let defaultManager = PurchaseManager()
 
@@ -46,6 +51,24 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
     public func localizedPrice(for product: Product) -> String? {
         if let product = products.filter({ $0.productIdentifier == product.identifier}).first {
             return price(for: product)
+        }
+
+        loadProducts([product])
+        return nil
+    }
+
+    public func title(for product: Product) -> String? {
+        if let product = products.filter({ $0.productIdentifier == product.identifier}).first {
+            return product.localizedTitle
+        }
+
+        loadProducts([product])
+        return nil
+    }
+
+    public func description(for product: Product) -> String? {
+        if let product = products.filter({ $0.productIdentifier == product.identifier}).first {
+            return product.description
         }
 
         loadProducts([product])
@@ -116,7 +139,8 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
     private var activeRequest: SKProductsRequest? = nil
 
     public func loadProducts(_ products: [Product]) {
-        activeRequest = SKProductsRequest(productIdentifiers: Set(products.map({ $0.identifier })))
+        let identifiers = Set(products.map({ $0.identifier }))
+        activeRequest = SKProductsRequest(productIdentifiers: identifiers)
         activeRequest?.delegate = self
         activeRequest?.start()
     }
@@ -169,10 +193,10 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     @objc public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         print("Restoring Transactions Failed: \(String(describing: error.localizedDescription))")
-        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinished, object: self)
+        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinishedNotificationName, object: self)
     }
 
     @objc public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinished, object: self)
+        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinishedNotificationName, object: self)
     }
 }
