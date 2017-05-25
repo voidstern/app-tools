@@ -19,23 +19,23 @@ public enum FileMonitorChangeType {
 }
 
 public protocol FileMonitorDelegate {
-    func fileMonitorDidSeeChange(_ fileMonitor : FileMonitor, change : FileMonitorChangeType)
+    func fileMonitorDidSeeChange(_ fileMonitor: FileMonitor, change: FileMonitorChangeType)
 }
 
 public class FileMonitor {
-    var delegate : FileMonitorDelegate?
+    var delegate: FileMonitorDelegate?
 
-    fileprivate var fileURL : URL?
-    fileprivate var source : DispatchSource?
-    fileprivate var fileDescriptor : CInt = 0
-    fileprivate var keepMonitoring : Bool = false
+    fileprivate var fileURL: URL?
+    fileprivate var source: DispatchSource?
+    fileprivate var fileDescriptor: CInt = 0
+    fileprivate var keepMonitoring: Bool = false
 
-    public init(url : URL) {
+    public init(url: URL) {
         fileURL = url
         self.beginMonitoringFile()
     }
 
-    public init(url : URL, delegate : FileMonitorDelegate) {
+    public init(url: URL, delegate: FileMonitorDelegate) {
         self.fileURL = url
         self.delegate = delegate
         self.beginMonitoringFile()
@@ -59,7 +59,7 @@ public class FileMonitor {
             return false
         }
 
-        let defaultQueue = DispatchQueue.global(qos:DispatchQoS.background.qosClass)
+        let defaultQueue = DispatchQueue.global(qos: DispatchQoS.background.qosClass)
 
         let mask = DispatchSource.FileSystemEvent.attrib.rawValue | DispatchSource.FileSystemEvent.delete.rawValue | DispatchSource.FileSystemEvent.extend.rawValue | DispatchSource.FileSystemEvent.link.rawValue | DispatchSource.FileSystemEvent.rename.rawValue | DispatchSource.FileSystemEvent.revoke.rawValue | DispatchSource.FileSystemEvent.write.rawValue
 
@@ -108,7 +108,7 @@ public class FileMonitor {
         source!.cancel()
     }
 
-    func alertDelegateOfEvents(_ eventTypes : UInt) {
+    func alertDelegateOfEvents(_ eventTypes: UInt) {
         DispatchQueue.main.async { () -> Void in
             var recreateDispatchSource = false
 
