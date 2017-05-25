@@ -22,7 +22,7 @@ public class UserSettings {
     }
 
     static public let shared = UserSettings()
-	private var userDefaults = SettingsStorage.sharedInstance
+	private var userDefaults = SettingsStorage.shared
 
     public func bool(key: Setting) -> Bool {
         if let value = userDefaults.bool(forKey: key.identifier) {

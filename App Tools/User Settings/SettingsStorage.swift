@@ -10,9 +10,9 @@ import Foundation
 
 public class SettingsStorage {
     
-    public static let sharedInstance = SettingsStorage()
+    public static let shared = SettingsStorage()
     private let saveFilePath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json"
-    private lazy var saveFileURL: URL = SettingsStorage.sharedInstance.getSaveFileURL()
+    private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
     private var settings: [String: Any] = [:]
 
     func getSaveFileURL() -> URL {
