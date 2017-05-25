@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     public static func animateWithDefaults(_ animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
-        animateWithDefaults(animations: animations)
+        animateWithDefaults(animations: animations, completion: completion)
     }
     
     public static func animateWithDefaults(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
