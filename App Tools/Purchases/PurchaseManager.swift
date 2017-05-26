@@ -174,7 +174,8 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     @objc public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            if transaction.transactionState == SKPaymentTransactionState.purchased || transaction.transactionState == SKPaymentTransactionState.restored {
+
+            if transaction.transactionState == SKPaymentTransactionState.purchased {
                 
                 let product = Product(identifier: transaction.payment.productIdentifier)
                 purchasedProducts.append(product)
@@ -182,6 +183,20 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
                 NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
                 SKPaymentQueue.default().finishTransaction(transaction)
+
+                EventLogger.shared.log(event: .purchasedProduct, parameters: ["product": product.identifier])
+            }
+
+            if transaction.transactionState == SKPaymentTransactionState.restored {
+
+                let product = Product(identifier: transaction.payment.productIdentifier)
+                purchasedProducts.append(product)
+                savePurchases()
+
+                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                SKPaymentQueue.default().finishTransaction(transaction)
+
+                EventLogger.shared.log(event: .restoredProduct, parameters: ["product": product.identifier])
             }
 
             if transaction.transactionState == SKPaymentTransactionState.failed  {

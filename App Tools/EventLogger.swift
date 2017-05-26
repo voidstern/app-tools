@@ -23,6 +23,14 @@ public class EventLogger {
         public init(eventName: String) {
             self.eventName = eventName
         }
+
+        static var purchasedProduct: EventLogger.Event {
+            return EventLogger.Event(eventName: "purchased")
+        }
+
+        static var restoredProduct: EventLogger.Event {
+            return EventLogger.Event(eventName: "restored")
+        }
     }
 
     open class UserProperty {
