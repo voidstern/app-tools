@@ -29,9 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		543B24D61ED72E7600AD99AE /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
-		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+deselectRow.swift"; sourceTree = "<group>"; };
-		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Transition.swift"; sourceTree = "<group>"; };
+		543B24D61ED72E7600AD99AE /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "App Tools/UIView+Animations.swift"; sourceTree = "<group>"; };
+		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+deselectRow.swift"; path = "App Tools/UITableView+deselectRow.swift"; sourceTree = "<group>"; };
+		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Transition.swift"; path = "App Tools/UIView+Transition.swift"; sourceTree = "<group>"; };
 		54EDB34E1EC84A5F00BB5061 /* AppTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EDB3501EC84A5F00BB5061 /* App Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Tools.h"; sourceTree = "<group>"; };
 		54EDB3511EC84A5F00BB5061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,16 +40,16 @@
 		54EDB3871EC84F4300BB5061 /* SettingsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsStorage.swift; path = "App Tools/User Settings/SettingsStorage.swift"; sourceTree = "<group>"; };
 		54EDB3881EC84F4300BB5061 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettings.swift; path = "App Tools/User Settings/UserSettings.swift"; sourceTree = "<group>"; };
 		54EDB39B1EC8583200BB5061 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseManager.swift; path = "App Tools/Purchases/PurchaseManager.swift"; sourceTree = "<group>"; };
-		54EDB3A41EC869EE00BB5061 /* EventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLogger.swift; sourceTree = "<group>"; };
+		54EDB3A41EC869EE00BB5061 /* EventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventLogger.swift; path = "App Tools/EventLogger.swift"; sourceTree = "<group>"; };
 		54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMailController.swift; path = "App Tools/Views/SupportMailController.swift"; sourceTree = "<group>"; };
 		54EDB3B31EC8B29200BB5061 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = "App Tools/Tools/AppState.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+ObjectOrNil.swift"; path = "App Tools/Tools/Array+ObjectOrNil.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB3B51EC8B29200BB5061 /* Limit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Limit.swift; path = "App Tools/Tools/Limit.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIControl+Blocks.swift"; path = "App Tools/Tools/UIControl+Blocks.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+OnMainQueue.swift"; path = "App Tools/Tools/DispatchQueue+OnMainQueue.swift"; sourceTree = SOURCE_ROOT; };
-		54EDB4611ECA194100BB5061 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		54EDB4611ECA194100BB5061 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = "App Tools/UIColorExtension.swift"; sourceTree = "<group>"; };
 		54EDB4651ECA197400BB5061 /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMonitor.swift; path = "App Tools/Tools/FileMonitor.swift"; sourceTree = SOURCE_ROOT; };
-		54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+QueryDictionary.swift"; sourceTree = "<group>"; };
+		54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+QueryDictionary.swift"; path = "App Tools/URL+QueryDictionary.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
