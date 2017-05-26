@@ -16,7 +16,8 @@ class FirebaseLogger: EventLoggerImplementation {
     }
 
     func log(event: EventLogger.Event, parameters: [String: String]) {
-        Analytics.logEvent(event.eventName, parameters: parameters as [String: NSObject]?)
+        let eventName = event.eventName + eventParametersToString(parameters)
+        Analytics.logEvent(eventName, parameters: parameters as [String: NSObject]?)
     }
 
     func set(userProperty: String, name: EventLogger.UserProperty) {

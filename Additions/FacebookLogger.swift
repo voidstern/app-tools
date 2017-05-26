@@ -16,7 +16,8 @@ class FacebookLogger: EventLoggerImplementation {
     }
 
     func log(event: EventLogger.Event, parameters: [String: String]) {
-        FBSDKAppEvents.logEvent(event.eventName, parameters: parameters)
+        let eventName = event.eventName + eventParametersToString(parameters)
+        FBSDKAppEvents.logEvent(eventName, parameters: parameters)
     }
 
     func set(userProperty: String, name: EventLogger.UserProperty) {

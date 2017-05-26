@@ -14,6 +14,14 @@ public protocol EventLoggerImplementation {
     func startUp()
 }
 
+public func eventParametersToString(_ parameters: [String: String]) -> String {
+    var parameterString = ""
+    for key in parameters.keys {
+        parameterString += "__\(key)_\(parameters[key] ?? "nil")"
+    }
+    return parameterString.replacingOccurrences(of: "-", with: "_").replacingOccurrences(of: " ", with: "_")
+}
+
 public class EventLogger {
 	static public let shared = EventLogger()
     private var loggers: [EventLoggerImplementation] = []
