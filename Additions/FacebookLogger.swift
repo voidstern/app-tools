@@ -13,6 +13,14 @@ import FBSDKCoreKit
 class FacebookLogger: EventLoggerImplementation {
 
     func startUp() {
+        FBSDKAppEvents.activateApp()
+
+        if FBSDKAppEvents.userID() == nil {
+            FBSDKAppEvents.setUserID(UUID().uuidString)
+        }
+
+        let userID = FBSDKAppEvents.userID()
+        print(userID ?? "")
     }
 
     func log(event: EventLogger.Event, parameters: [String: String]) {
@@ -21,6 +29,6 @@ class FacebookLogger: EventLoggerImplementation {
     }
 
     func set(userProperty: String, name: EventLogger.UserProperty) {
-        // FBSDKAppEvents.updateUserProperties(<#T##properties: [AnyHashable : Any]!##[AnyHashable : Any]!#>, handler: <#T##FBSDKGraphRequestHandler!##FBSDKGraphRequestHandler!##(FBSDKGraphRequestConnection?, Any?, Error?) -> Void#>)
+        FBSDKAppEvents.updateUserProperties([name.propertyName: userProperty], handler: nil)
     }
 }
