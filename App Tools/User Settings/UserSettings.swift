@@ -54,6 +54,18 @@ public class UserSettings {
     public func set(value: Int, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
     }
+
+    public func double(key: Setting) -> Double {
+        guard let value = userDefaults.double(forKey: key.identifier) else {
+            return 0.0
+        }
+
+        return value
+    }
+
+    public func set(value: Double, key: Setting) {
+        userDefaults.set(value, forKey: key.identifier)
+    }
     
     public func string(key: Setting) -> String {
         if let value = userDefaults.string(forKey: key.identifier) {
