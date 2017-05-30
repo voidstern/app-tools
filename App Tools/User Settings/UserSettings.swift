@@ -10,6 +10,8 @@ import Foundation
 
 public class UserSettings {
 
+    public static let userSettingsChangedNotificationName = NSNotification.Name(rawValue: "net.voidstern.usersettings.changed")
+
     open class Setting: Equatable {
         public let identifier: String
         public init(identifier: String) {
@@ -33,6 +35,7 @@ public class UserSettings {
 
     public func set(value: Bool, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 
     public func toggle(_ key: Setting) {
@@ -41,6 +44,8 @@ public class UserSettings {
         } else {
             userDefaults.set(true, forKey: key.identifier)
         }
+
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 
     public func integer(key: Setting) -> Int {
@@ -53,6 +58,7 @@ public class UserSettings {
 
     public func set(value: Int, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 
     public func double(key: Setting) -> Double {
@@ -65,6 +71,7 @@ public class UserSettings {
 
     public func set(value: Double, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
     
     public func string(key: Setting) -> String {
@@ -76,6 +83,7 @@ public class UserSettings {
     
     public func set(value: String, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
     
     public func strings(key: Setting) -> [String]? {
@@ -88,5 +96,6 @@ public class UserSettings {
     
     public func set(strings: [String], key: Setting) {
         userDefaults.set(strings, forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 }
