@@ -35,11 +35,14 @@ public class UserSettings {
         userDefaults.set(value, forKey: key.identifier)
     }
 
-    public func toggle(_ key: Setting) {
+    @discardableResult
+    public func toggle(_ key: Setting) -> Bool {
         if let value = userDefaults.bool(forKey: key.identifier) {
             userDefaults.set(!value, forKey: key.identifier)
+            return (!value)
         } else {
             userDefaults.set(true, forKey: key.identifier)
+            return true
         }
     }
 
