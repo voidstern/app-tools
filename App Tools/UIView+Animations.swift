@@ -15,6 +15,6 @@ extension UIView {
     }
     
     public static func animateWithDefaults(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.35, options: [.beginFromCurrentState, .allowAnimatedContent, .allowUserInteraction], animations: animations, completion: completion)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.35, options: [.allowAnimatedContent, .allowUserInteraction], animations: animations, completion: completion)
     }
 }
