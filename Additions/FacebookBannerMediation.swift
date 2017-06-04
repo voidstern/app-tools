@@ -23,6 +23,8 @@ class FacebookBanner: NSObject, GADCustomEventBanner, FBAdViewDelegate  {
 
     func requestAd(_ adSize: GADAdSize, parameter serverParameter: String?, label serverLabel: String?, request: GADCustomEventRequest) {
         facebookAd = FBAdView(placementID: serverParameter ?? "1683092301985920_1683109445317539", adSize: kFBAdSizeHeight50Banner, rootViewController: rootViewController)
+        facebookAd?.frame = CGRect(x: 0, y: (adSize.size.height - 50) / 2, width: adSize.size.width, height: 50)
+        facebookAd?.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleWidth]
         facebookAd?.delegate = self
         facebookAd?.loadAd()
     }

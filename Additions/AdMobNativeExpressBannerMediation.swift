@@ -27,7 +27,7 @@ class VSCAdmobNativeExpressBanner: NSObject, GADCustomEventBanner, GADNativeExpr
         expressView?.rootViewController = rootViewController
 
         let request = GADRequest()
-        request.testDevices = ["19626bafc3ae9b22fa2d8775c9e3b075"]
+        request.testDevices = ["19626bafc3ae9b22fa2d8775c9e3b075", "a522a1632e6226271c31cbd1fd4a9a50", kGADSimulatorID]
         expressView?.load(request)
     }
 

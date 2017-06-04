@@ -102,4 +102,20 @@ public class SettingsStorage {
         
         return nil
     }
+
+    public func set(_ value: Double, forKey: String) {
+        settings[forKey] = String(value);
+        saveToDisk()
+    }
+
+    public func double(forKey: String) -> Double? {
+        loadFromDisk()
+        if let setting = settings[forKey] as? String {
+            if let double: Double = Double(setting) {
+                return double
+            }
+        }
+
+        return nil
+    }
 }
