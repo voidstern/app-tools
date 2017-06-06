@@ -42,13 +42,13 @@ public class UserSettings {
     public func toggle(_ key: Setting) -> Bool {
         if let value = userDefaults.bool(forKey: key.identifier) {
             userDefaults.set(!value, forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
             return (!value)
         } else {
             userDefaults.set(true, forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
             return true
         }
-
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 
     public func integer(key: Setting) -> Int {
