@@ -23,6 +23,10 @@ final public class ColorManager {
         public var uiColor: UIColor {
             return UIColor(rgba: ColorManager.shared.hexString(for: self))
         }
+
+        public static func == (lhs: Color, rhs: Color) -> Bool {
+            return lhs.name == rhs.name
+        }
     }
 
     public typealias ColorDef = [String: String]
