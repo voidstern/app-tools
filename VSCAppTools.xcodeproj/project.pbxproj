@@ -126,7 +126,7 @@
 				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
 			);
 			name = Tools;
-			path = "../dozzzer-4/Dozzzer/Vendor";
+			path = "App Tools/Tools";
 			sourceTree = "<group>";
 		};
 		54EDB39D1EC8583600BB5061 /* Purchases */ = {

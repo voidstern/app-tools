@@ -81,9 +81,14 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     public func purchase(_ product: Product) {
         guard testMode == false else {
-            purchasedProducts.append(product)
-            savePurchases()
-            NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                self.purchasedProducts.append(product)
+                self.savePurchases()
+
+                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+            })
+            
             return
         }
 
