@@ -11,16 +11,23 @@ import Foundation
 public class SettingsStorage {
     
     public static let shared = SettingsStorage()
-    private let saveFilePath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json"
-    private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
     private var settings: [String: Any] = [:]
 
-    func getSaveFileURL() -> URL {
-        let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.voidstern.multiTimers")
-        if (containerURL != nil) {
-            return containerURL!.appendingPathComponent("settings.json")
+    private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
+    public var appGroupIdentifier: String? {
+        didSet {
+            saveFileURL = getSaveFileURL()
+            loadFromDisk()
         }
-        return URL(fileURLWithPath: saveFilePath)
+    }
+
+    func getSaveFileURL() -> URL {
+        guard let appGroupIdentifier = appGroupIdentifier, let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
+            print("WARNING: appGroupIdentifier not set on SettingsStorage")
+            return URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json")
+        }
+
+        return containerURL.appendingPathComponent("settings.json")
     }
     
     private func saveToDisk() {
