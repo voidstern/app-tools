@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="R1U-3u-lwh" customClass="ButtonCell" customModule="iTranslateAccountsUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R1U-3u-lwh" id="Kbm-1L-kRc">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39h-cp-Dvs">
+                        <rect key="frame" x="161" y="12" width="54" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cca-Cg-fJg">
+                        <rect key="frame" x="177" y="11" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cca-Cg-fJg" firstAttribute="centerY" secondItem="Kbm-1L-kRc" secondAttribute="centerY" id="2z5-sd-LEv"/>
+                    <constraint firstItem="cca-Cg-fJg" firstAttribute="centerX" secondItem="Kbm-1L-kRc" secondAttribute="centerX" id="INe-fC-Wo7"/>
+                    <constraint firstItem="39h-cp-Dvs" firstAttribute="centerX" secondItem="Kbm-1L-kRc" secondAttribute="centerX" id="ce8-hg-ZMU"/>
+                    <constraint firstItem="39h-cp-Dvs" firstAttribute="centerY" secondItem="Kbm-1L-kRc" secondAttribute="centerY" id="fKt-3D-N3L"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="cca-Cg-fJg" id="rbD-q5-set"/>
+                <outlet property="buttonLabel" destination="39h-cp-Dvs" id="f6M-Fy-dJb"/>
+            </connections>
+            <point key="canvasLocation" x="-297" y="-95"/>
+        </tableViewCell>
+    </objects>
+</document>

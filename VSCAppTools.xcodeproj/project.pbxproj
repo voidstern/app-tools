@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61A1F448C87008C998B /* ButtonCell.swift */; };
+		5435F6201F448FA5008C998B /* StaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6181F448C87008C998B /* StaticCell.swift */; };
+		5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61B1F448C87008C998B /* SwitchCell.swift */; };
+		5435F6221F448FA5008C998B /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61C1F448C87008C998B /* TextFieldCell.swift */; };
+		5435F6231F448FAE008C998B /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F6191F448C87008C998B /* ButtonCell.xib */; };
+		5435F6241F448FAE008C998B /* StaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F61E1F448C88008C998B /* StaticCell.xib */; };
+		5435F6251F448FAE008C998B /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F61D1F448C88008C998B /* SwitchCell.xib */; };
+		5435F6261F448FAE008C998B /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F6171F448C87008C998B /* TextFieldCell.xib */; };
+		5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6271F448FC4008C998B /* UITableView+Register.swift */; };
+		5435F62A1F44905D008C998B /* UIViewController+KeyboardObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */; };
 		543B24D71ED72E7600AD99AE /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B24D61ED72E7600AD99AE /* UIView+Animations.swift */; };
 		543B24DB1ED77A7A00AD99AE /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */; };
 		543E2B371EE4770200F36A35 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543E2B361EE4770200F36A35 /* ColorManager.swift */; };
@@ -31,6 +41,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5435F6171F448C87008C998B /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		5435F6181F448C87008C998B /* StaticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCell.swift; sourceTree = "<group>"; };
+		5435F6191F448C87008C998B /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		5435F61A1F448C87008C998B /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		5435F61B1F448C87008C998B /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		5435F61C1F448C87008C998B /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		5435F61D1F448C88008C998B /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		5435F61E1F448C88008C998B /* StaticCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticCell.xib; sourceTree = "<group>"; };
+		5435F6271F448FC4008C998B /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
+		5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardObservation.swift"; sourceTree = "<group>"; };
 		543B24D61ED72E7600AD99AE /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "App Tools/UIView+Animations.swift"; sourceTree = "<group>"; };
 		543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+RemoveObject.swift"; path = "App Tools/Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		543E2B361EE4770200F36A35 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = "App Tools/ColorManager.swift"; sourceTree = "<group>"; };
@@ -67,9 +87,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5435F6161F448C67008C998B /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5435F61A1F448C87008C998B /* ButtonCell.swift */,
+				5435F6191F448C87008C998B /* ButtonCell.xib */,
+				5435F6181F448C87008C998B /* StaticCell.swift */,
+				5435F61E1F448C88008C998B /* StaticCell.xib */,
+				5435F61B1F448C87008C998B /* SwitchCell.swift */,
+				5435F61D1F448C88008C998B /* SwitchCell.xib */,
+				5435F61C1F448C87008C998B /* TextFieldCell.swift */,
+				5435F6171F448C87008C998B /* TextFieldCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		54EDB31B1EC848E800BB5061 = {
 			isa = PBXGroup;
 			children = (
+				5435F6161F448C67008C998B /* TableViewCells */,
 				54EDB46F1ECA1E9E00BB5061 /* Extensions */,
 				54EDB4641ECA195300BB5061 /* Colors */,
 				54EDB3A31EC869DF00BB5061 /* Events */,
@@ -157,6 +193,8 @@
 		54EDB46F1ECA1E9E00BB5061 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5435F6271F448FC4008C998B /* UITableView+Register.swift */,
+				5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */,
 				543B24D61ED72E7600AD99AE /* UIView+Animations.swift */,
 				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
 				54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */,
@@ -240,6 +278,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5435F6231F448FAE008C998B /* ButtonCell.xib in Resources */,
+				5435F6241F448FAE008C998B /* StaticCell.xib in Resources */,
+				5435F6251F448FAE008C998B /* SwitchCell.xib in Resources */,
+				5435F6261F448FAE008C998B /* TextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,16 +302,22 @@
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
+				5435F62A1F44905D008C998B /* UIViewController+KeyboardObservation.swift in Sources */,
 				54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */,
 				543E2B371EE4770200F36A35 /* ColorManager.swift in Sources */,
 				54EDB3A81EC86B9B00BB5061 /* SupportMailController.swift in Sources */,
 				543B24D71ED72E7600AD99AE /* UIView+Animations.swift in Sources */,
 				54EDB4711ECA1EAE00BB5061 /* URL+QueryDictionary.swift in Sources */,
+				5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */,
 				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
 				54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
+				5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
+				5435F6201F448FA5008C998B /* StaticCell.swift in Sources */,
 				54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */,
+				5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */,
+				5435F6221F448FA5008C998B /* TextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
