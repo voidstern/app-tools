@@ -70,7 +70,7 @@ public final class TextFieldCell: UITableViewCell, Cell {
         }
     }
 
-    func sendTextChanged() {
+    @objc func sendTextChanged() {
         delegate?.textFieldTextDidChange(self)
     }
 }

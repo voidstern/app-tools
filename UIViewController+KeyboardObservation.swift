@@ -25,7 +25,7 @@ extension UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
-    func keyboardWillBeShown(notification: NSNotification) {
+    @objc func keyboardWillBeShown(notification: NSNotification) {
         //get the end position keyboard frame
         guard let keyInfo = notification.userInfo else {
             return
@@ -61,7 +61,7 @@ extension UIViewController {
         }
     }
 
-    func keyboardWillBeHidden(notification: NSNotification) {
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
 
         guard let keyboardObserver = self as? KeyboardOverlapObserver else {
             return
