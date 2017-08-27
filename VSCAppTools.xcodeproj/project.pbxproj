@@ -38,6 +38,8 @@
 		54EDB4631ECA194100BB5061 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4611ECA194100BB5061 /* UIColorExtension.swift */; };
 		54EDB4661ECA197400BB5061 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4651ECA197400BB5061 /* FileMonitor.swift */; };
 		54EDB4711ECA1EAE00BB5061 /* URL+QueryDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */; };
+		54F49C511F4CD10E008EB1F5 /* String+isEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */; };
+		54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		54EDB4611ECA194100BB5061 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = "App Tools/UIColorExtension.swift"; sourceTree = "<group>"; };
 		54EDB4651ECA197400BB5061 /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMonitor.swift; path = "App Tools/Tools/FileMonitor.swift"; sourceTree = SOURCE_ROOT; };
 		54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+QueryDictionary.swift"; path = "App Tools/URL+QueryDictionary.swift"; sourceTree = "<group>"; };
+		54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isEmail.swift"; sourceTree = "<group>"; };
+		54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+hexString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 				54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */,
 				54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */,
 				543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */,
+				54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */,
+				54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */,
 				543B24DB1ED77A7A00AD99AE /* Array+RemoveObject.swift in Sources */,
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
+				54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
 				5435F62A1F44905D008C998B /* UIViewController+KeyboardObservation.swift in Sources */,
@@ -311,6 +318,7 @@
 				5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */,
 				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
 				54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */,
+				54F49C511F4CD10E008EB1F5 /* String+isEmail.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
 				5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
