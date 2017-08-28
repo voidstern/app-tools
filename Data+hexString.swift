@@ -12,4 +12,8 @@ extension Data {
     public var hexString: String {
         return map { String(format: "%02hhx", $0) }.joined()
     }
+
+    public var utf8String: String? {
+        return String(data: self, encoding: String.Encoding.utf8)
+    }
 }
