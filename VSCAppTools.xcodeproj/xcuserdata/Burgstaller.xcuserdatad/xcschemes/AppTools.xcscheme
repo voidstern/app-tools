@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "54EDB33B1EC849D900BB5061"
-               BuildableName = "libVSCAppTools.a"
-               BlueprintName = "VSCAppTools"
+               BlueprintIdentifier = "54211CFC1F54BD4600E8371C"
+               BuildableName = "AppToolsWatch.framework"
+               BlueprintName = "AppToolsWatch"
                ReferencedContainer = "container:VSCAppTools.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "54EDB33B1EC849D900BB5061"
-            BuildableName = "libVSCAppTools.a"
-            BlueprintName = "VSCAppTools"
+            BlueprintIdentifier = "54211CFC1F54BD4600E8371C"
+            BuildableName = "AppToolsWatch.framework"
+            BlueprintName = "AppToolsWatch"
             ReferencedContainer = "container:VSCAppTools.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "54EDB33B1EC849D900BB5061"
-            BuildableName = "libVSCAppTools.a"
-            BlueprintName = "VSCAppTools"
+            BlueprintIdentifier = "54211CFC1F54BD4600E8371C"
+            BuildableName = "AppToolsWatch.framework"
+            BlueprintName = "AppToolsWatch"
             ReferencedContainer = "container:VSCAppTools.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

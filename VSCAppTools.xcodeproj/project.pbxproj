@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54211CFF1F54BD4600E8371C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4611ECA194100BB5061 /* UIColorExtension.swift */; };
+		54211D001F54BD4600E8371C /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4651ECA197400BB5061 /* FileMonitor.swift */; };
+		54211D021F54BD4600E8371C /* EventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3A41EC869EE00BB5061 /* EventLogger.swift */; };
+		54211D041F54BD4600E8371C /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */; };
+		54211D061F54BD4600E8371C /* Data+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */; };
+		54211D081F54BD4600E8371C /* SettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3871EC84F4300BB5061 /* SettingsStorage.swift */; };
+		54211D0B1F54BD4600E8371C /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543E2B361EE4770200F36A35 /* ColorManager.swift */; };
+		54211D0E1F54BD4600E8371C /* URL+QueryDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */; };
+		54211D101F54BD4600E8371C /* Array+ObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */; };
+		54211D111F54BD4600E8371C /* DispatchQueue+OnMainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */; };
+		54211D121F54BD4600E8371C /* String+isEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */; };
+		54211D131F54BD4600E8371C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3881EC84F4300BB5061 /* UserSettings.swift */; };
+		54211D151F54BD4600E8371C /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B51EC8B29200BB5061 /* Limit.swift */; };
+		54211D1C1F54BD4600E8371C /* App Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3501EC84A5F00BB5061 /* App Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61A1F448C87008C998B /* ButtonCell.swift */; };
 		5435F6201F448FA5008C998B /* StaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6181F448C87008C998B /* StaticCell.swift */; };
 		5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61B1F448C87008C998B /* SwitchCell.swift */; };
@@ -43,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54211D251F54BD4600E8371C /* AppToolsWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppToolsWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54211D261F54BD4600E8371C /* AppTools-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AppTools-iOS copy-Info.plist"; path = "/Users/Burgstaller/Development/tidur/App Tools/AppTools-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		5435F6171F448C87008C998B /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		5435F6181F448C87008C998B /* StaticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCell.swift; sourceTree = "<group>"; };
 		5435F6191F448C87008C998B /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -58,7 +74,7 @@
 		543E2B361EE4770200F36A35 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = "App Tools/ColorManager.swift"; sourceTree = "<group>"; };
 		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+deselectRow.swift"; path = "App Tools/UITableView+deselectRow.swift"; sourceTree = "<group>"; };
 		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Transition.swift"; path = "App Tools/UIView+Transition.swift"; sourceTree = "<group>"; };
-		54EDB34E1EC84A5F00BB5061 /* AppTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54EDB34E1EC84A5F00BB5061 /* AppToolsMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppToolsMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EDB3501EC84A5F00BB5061 /* App Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Tools.h"; sourceTree = "<group>"; };
 		54EDB3511EC84A5F00BB5061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54EDB3831EC84F3900BB5061 /* ScrollingStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollingStackView.swift; path = "App Tools/Views/ScrollingStackView.swift"; sourceTree = "<group>"; };
@@ -81,6 +97,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		54211D1A1F54BD4600E8371C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54EDB34A1EC84A5F00BB5061 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,13 +142,15 @@
 				54EDB3651EC84CA100BB5061 /* Views */,
 				54EDB34F1EC84A5F00BB5061 /* App Tools */,
 				54EDB3261EC848E900BB5061 /* Products */,
+				54211D261F54BD4600E8371C /* AppTools-iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		54EDB3261EC848E900BB5061 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54EDB34E1EC84A5F00BB5061 /* AppTools.framework */,
+				54EDB34E1EC84A5F00BB5061 /* AppToolsMobile.framework */,
+				54211D251F54BD4600E8371C /* AppToolsWatch.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,6 +241,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		54211D1B1F54BD4600E8371C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54211D1C1F54BD4600E8371C /* App Tools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54EDB34B1EC84A5F00BB5061 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,9 +260,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		54EDB34D1EC84A5F00BB5061 /* AppTools */ = {
+		54211CFC1F54BD4600E8371C /* AppToolsWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppTools" */;
+			buildConfigurationList = 54211D221F54BD4600E8371C /* Build configuration list for PBXNativeTarget "AppToolsWatch" */;
+			buildPhases = (
+				54211CFD1F54BD4600E8371C /* Sources */,
+				54211D1A1F54BD4600E8371C /* Frameworks */,
+				54211D1B1F54BD4600E8371C /* Headers */,
+				54211D1D1F54BD4600E8371C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppToolsWatch;
+			productName = "App Tools";
+			productReference = 54211D251F54BD4600E8371C /* AppToolsWatch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		54EDB34D1EC84A5F00BB5061 /* AppToolsMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppToolsMobile" */;
 			buildPhases = (
 				54EDB3491EC84A5F00BB5061 /* Sources */,
 				54EDB34A1EC84A5F00BB5061 /* Frameworks */,
@@ -240,9 +291,9 @@
 			);
 			dependencies = (
 			);
-			name = AppTools;
+			name = AppToolsMobile;
 			productName = "App Tools";
-			productReference = 54EDB34E1EC84A5F00BB5061 /* AppTools.framework */;
+			productReference = 54EDB34E1EC84A5F00BB5061 /* AppToolsMobile.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -254,6 +305,9 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Lukas;
 				TargetAttributes = {
+					54211CFC1F54BD4600E8371C = {
+						DevelopmentTeam = 2BRYXER7S6;
+					};
 					54EDB34D1EC84A5F00BB5061 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 2BRYXER7S6;
@@ -274,12 +328,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				54EDB34D1EC84A5F00BB5061 /* AppTools */,
+				54EDB34D1EC84A5F00BB5061 /* AppToolsMobile */,
+				54211CFC1F54BD4600E8371C /* AppToolsWatch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		54211D1D1F54BD4600E8371C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54EDB34C1EC84A5F00BB5061 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +356,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		54211CFD1F54BD4600E8371C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54211CFF1F54BD4600E8371C /* UIColorExtension.swift in Sources */,
+				54211D001F54BD4600E8371C /* FileMonitor.swift in Sources */,
+				54211D021F54BD4600E8371C /* EventLogger.swift in Sources */,
+				54211D041F54BD4600E8371C /* Array+RemoveObject.swift in Sources */,
+				54211D061F54BD4600E8371C /* Data+hexString.swift in Sources */,
+				54211D081F54BD4600E8371C /* SettingsStorage.swift in Sources */,
+				54211D0B1F54BD4600E8371C /* ColorManager.swift in Sources */,
+				54211D0E1F54BD4600E8371C /* URL+QueryDictionary.swift in Sources */,
+				54211D101F54BD4600E8371C /* Array+ObjectOrNil.swift in Sources */,
+				54211D111F54BD4600E8371C /* DispatchQueue+OnMainQueue.swift in Sources */,
+				54211D121F54BD4600E8371C /* String+isEmail.swift in Sources */,
+				54211D131F54BD4600E8371C /* UserSettings.swift in Sources */,
+				54211D151F54BD4600E8371C /* Limit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54EDB3491EC84A5F00BB5061 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +414,57 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		54211D231F54BD4600E8371C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2BRYXER7S6;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "AppTools-iOS copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		54211D241F54BD4600E8371C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2BRYXER7S6;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "AppTools-iOS copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
 		54EDB32B1EC848E900BB5061 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -464,7 +597,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -487,7 +620,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -495,6 +628,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		54211D221F54BD4600E8371C /* Build configuration list for PBXNativeTarget "AppToolsWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54211D231F54BD4600E8371C /* Debug */,
+				54211D241F54BD4600E8371C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		54EDB31F1EC848E800BB5061 /* Build configuration list for PBXProject "VSCAppTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -504,7 +646,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppTools" */ = {
+		54EDB3551EC84A5F00BB5061 /* Build configuration list for PBXNativeTarget "AppToolsMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54EDB3531EC84A5F00BB5061 /* Debug */,

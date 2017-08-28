@@ -39,7 +39,6 @@ public class SettingsStorage {
     }
     
     private func loadFromDisk() {
-
         guard let data = try? Data(contentsOf: saveFileURL) else {
             return
         }
