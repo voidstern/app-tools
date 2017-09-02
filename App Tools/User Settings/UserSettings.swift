@@ -51,6 +51,28 @@ public class UserSettings {
         }
     }
 
+    @discardableResult
+    public func increment(_ key: Setting) -> Double {
+        if let value = userDefaults.double(forKey: key.identifier) {
+            userDefaults.set((value + 1), forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return (value + 1)
+        }
+
+        return 0.0
+    }
+
+    @discardableResult
+    public func increment(_ key: Setting) -> Int {
+        if let value = userDefaults.integer(forKey: key.identifier) {
+            userDefaults.set((value + 1), forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return (value + 1)
+        }
+
+        return 0
+    }
+
     public func integer(key: Setting) -> Int {
         guard let value = userDefaults.integer(forKey: key.identifier) else {
             return 0
