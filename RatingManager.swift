@@ -15,10 +15,6 @@ extension UserSettings.Setting {
         return UserSettings.Setting(identifier: "rating_events")
     }
 
-    public static var ratingDays: UserSettings.Setting {
-        return UserSettings.Setting(identifier: "rating_days")
-    }
-
     public static var lastRatedDate: UserSettings.Setting {
         return UserSettings.Setting(identifier: "last_rated_date")
     }

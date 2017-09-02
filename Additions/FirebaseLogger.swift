@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AppTools
+import AppToolsMobile
 import Firebase
 
 class FirebaseLogger: EventLoggerImplementation {
