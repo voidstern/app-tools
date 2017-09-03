@@ -24,7 +24,7 @@ protocol InterstitialManagerDelegate: class {
 public class InterstitialManager: NSObject {
     let requiredDays: Int
     let viewController: UIViewController
-    let intervall: TimeInterval = 30 //  6 * 24 * 60 * 60
+    let interval: TimeInterval
 
     var interstitial: GADInterstitial?
     var triggered: Bool = false
@@ -35,9 +35,10 @@ public class InterstitialManager: NSObject {
         }
     }
 
-    public init(requiredDays: Int, viewController: UIViewController) {
+    public init(requiredDays: Int, interval: TimeInterval, viewController: UIViewController) {
         self.requiredDays = requiredDays
         self.viewController = viewController
+        self.interval = interval
 
         super.init()
 
@@ -50,7 +51,7 @@ public class InterstitialManager: NSObject {
         let lastInterstitial = UserSettings.shared.double(key: .lastInterstitialDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastInterstitial
 
-        if days > requiredDays && timePassed > intervall  {
+        if days > requiredDays && timePassed > interval  {
             showInterstitialDialog()
         }
     }
