@@ -18,6 +18,7 @@ extension UserSettings.Setting {
 protocol InterstitialManagerDelegate: class {
     func shouldDisplayDialog(interstitialManager: InterstitialManager) -> Bool
     func upgradeButtonHit(interstitialManager: InterstitialManager)
+    func shouldDisplayAds(interstitialManager: InterstitialManager) -> Bool
 }
 
 public class InterstitialManager: NSObject {
@@ -25,10 +26,14 @@ public class InterstitialManager: NSObject {
     let viewController: UIViewController
     let intervall: TimeInterval = 30 //  6 * 24 * 60 * 60
 
-    weak var delegate: InterstitialManagerDelegate?
     var interstitial: GADInterstitial?
     var triggered: Bool = false
 
+    weak var delegate: InterstitialManagerDelegate? {
+        didSet {
+            loadInterstitial()
+        }
+    }
 
     public init(requiredDays: Int, viewController: UIViewController) {
         self.requiredDays = requiredDays
@@ -51,6 +56,14 @@ public class InterstitialManager: NSObject {
     }
 
     private func loadInterstitial() {
+        guard delegate?.shouldDisplayAds(interstitialManager: self) ?? false else {
+            return
+        }
+
+        if let interstitial = interstitial, interstitial.isReady {
+            return
+        }
+        
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-8521069083698731/4573539917")
         interstitial?.delegate = self
 
@@ -60,10 +73,16 @@ public class InterstitialManager: NSObject {
     }
 
     private func showInterstitialDialog() {
+        guard delegate?.shouldDisplayAds(interstitialManager: self) ?? false else {
+            return
+        }
+
         guard interstitial?.isReady ?? false else {
             triggered = true
             return
         }
+
+        triggered = false
 
         let alert = UIAlertController(title: "Upgrade", message: "Ads help to provide a free version of this app.", preferredStyle: .alert)
 
@@ -79,6 +98,10 @@ public class InterstitialManager: NSObject {
     }
 
     private func showInterstitial() {
+        guard delegate?.shouldDisplayAds(interstitialManager: self) ?? false else {
+            return
+        }
+
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastInterstitialDate)
         interstitial?.present(fromRootViewController: viewController)
     }

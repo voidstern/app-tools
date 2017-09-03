@@ -17,8 +17,6 @@ class FacebookInterstitial: NSObject, GADCustomEventInterstitial, FBInterstitial
     var facebookAd: FBInterstitialAd?
 
     func requestAd(withParameter serverParameter: String?, label serverLabel: String?, request: GADCustomEventRequest) {
-        FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
-
         facebookAd = FBInterstitialAd(placementID: serverParameter ?? "216834628835716_261798537672658")
         facebookAd?.delegate = self
         facebookAd?.load()
