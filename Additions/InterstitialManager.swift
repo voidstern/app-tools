@@ -18,6 +18,7 @@ extension UserSettings.Setting {
 protocol InterstitialManagerDelegate: class {
     func shouldDisplayDialog(interstitialManager: InterstitialManager) -> Bool
     func upgradeButtonHit(interstitialManager: InterstitialManager)
+    func didShowInterstitial(interstitialManager: InterstitialManager)
     func shouldDisplayAds(interstitialManager: InterstitialManager) -> Bool
 }
 
@@ -92,6 +93,7 @@ public class InterstitialManager: NSObject {
         }))
 
         alert.addAction(UIAlertAction(title: "Not now", style: .default, handler: { (_) in
+            self.delegate?.didShowInterstitial(interstitialManager: self)
             self.showInterstitial()
         }))
 
