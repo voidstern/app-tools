@@ -38,14 +38,39 @@ public class UserSettings {
         NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
     }
 
-    public func toggle(_ key: Setting) {
+    @discardableResult
+    public func toggle(_ key: Setting) -> Bool {
         if let value = userDefaults.bool(forKey: key.identifier) {
             userDefaults.set(!value, forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return (!value)
         } else {
             userDefaults.set(true, forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return true
+        }
+    }
+
+    @discardableResult
+    public func increment(_ key: Setting) -> Double {
+        if let value = userDefaults.double(forKey: key.identifier) {
+            userDefaults.set((value + 1), forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return (value + 1)
         }
 
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        return 0.0
+    }
+
+    @discardableResult
+    public func increment(_ key: Setting) -> Int {
+        if let value = userDefaults.integer(forKey: key.identifier) {
+            userDefaults.set((value + 1), forKey: key.identifier)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            return (value + 1)
+        }
+
+        return 0
     }
 
     public func integer(key: Setting) -> Int {

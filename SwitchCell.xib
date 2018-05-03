@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" id="4HD-Kj-Vf7" customClass="SwitchCell" customModule="iTranslateAccountsUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HD-Kj-Vf7" id="BxR-N5-6qN">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7p3-cR-guV">
+                        <rect key="frame" x="62" y="11" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnX-Mr-pbR">
+                        <rect key="frame" x="316" y="6" width="51" height="31"/>
+                        <connections>
+                            <action selector="sendChangedNotification" destination="4HD-Kj-Vf7" eventType="valueChanged" id="3cI-Dq-Cgh"/>
+                        </connections>
+                    </switch>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zLu-WG-ZGz">
+                        <rect key="frame" x="18" y="6" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="BxG-qC-ncr"/>
+                            <constraint firstAttribute="width" secondItem="zLu-WG-ZGz" secondAttribute="height" multiplier="1:1" id="GGh-pd-7aa"/>
+                            <constraint firstAttribute="width" constant="32" id="Rb7-us-CKV"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OnX-Mr-pbR" firstAttribute="centerY" secondItem="BxR-N5-6qN" secondAttribute="centerY" id="FbT-gM-JzV"/>
+                    <constraint firstItem="zLu-WG-ZGz" firstAttribute="centerY" secondItem="BxR-N5-6qN" secondAttribute="centerY" id="RoM-KC-4f5"/>
+                    <constraint firstAttribute="trailing" secondItem="OnX-Mr-pbR" secondAttribute="trailing" constant="10" id="Uwa-lX-uYT"/>
+                    <constraint firstItem="7p3-cR-guV" firstAttribute="leading" secondItem="zLu-WG-ZGz" secondAttribute="trailing" constant="12" id="hZC-P4-sdg"/>
+                    <constraint firstItem="zLu-WG-ZGz" firstAttribute="leading" secondItem="BxR-N5-6qN" secondAttribute="leadingMargin" constant="10" id="iPh-Jz-yrV"/>
+                    <constraint firstItem="OnX-Mr-pbR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7p3-cR-guV" secondAttribute="trailing" constant="5" id="wru-Bu-V4n"/>
+                    <constraint firstItem="7p3-cR-guV" firstAttribute="centerY" secondItem="BxR-N5-6qN" secondAttribute="centerY" id="zih-uY-keU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconView" destination="zLu-WG-ZGz" id="bpW-7n-USX"/>
+                <outlet property="label" destination="7p3-cR-guV" id="02R-RU-rCS"/>
+                <outlet property="switchControl" destination="OnX-Mr-pbR" id="WtF-NE-Pmq"/>
+            </connections>
+            <point key="canvasLocation" x="21.5" y="-471"/>
+        </tableViewCell>
+    </objects>
+</document>

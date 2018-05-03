@@ -11,7 +11,7 @@ import UIKit
 
 public class ScrollingStackView: UIScrollView {
 
-    public private(set) var arrangedViews: [UIView] = [] {
+    public var arrangedViews: [UIView] = [] {
         didSet { layoutSubviews() }
     }
 
@@ -39,7 +39,7 @@ public class ScrollingStackView: UIScrollView {
         colums[view] = column
         addSubview(view)
     }
-
+    
     public func removeArrangedSubview(view: UIView) {
         view.removeFromSuperview()
         arrangedViews.remove(view)
@@ -78,7 +78,7 @@ public class ScrollingStackView: UIScrollView {
             neededHeight += (spacing * CGFloat(arrangedViews.count - 1))
         }
 
-        return neededHeight
+        return neededHeight + stackInset.top + stackInset.bottom
     }
 
     // Layout Views

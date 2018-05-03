@@ -8,19 +8,20 @@
 
 import Foundation
 import AppToolsMobile
-import Firebase
+import Crashlytics
+import Fabric
 
-class FirebaseLogger: EventLoggerImplementation {
+class FabricLogger: EventLoggerImplementation {
     func startUp() {
-        FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
     }
 
     func log(event: EventLogger.Event, parameters: [String: String]) {
         let eventName = event.eventName + eventParametersToString(parameters)
-        Analytics.logEvent(eventName, parameters: parameters as [String: NSObject]?)
+        Answers.logCustomEvent(withName: eventName, customAttributes: parameters as [String: NSObject]?)
     }
 
     func set(userProperty: String, name: EventLogger.UserProperty) {
-        Analytics.setUserProperty(userProperty, forName: name.propertyName)
+        // Not supported
     }
 }

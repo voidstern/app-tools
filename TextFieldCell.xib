@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VCJ-WO-bM1" customClass="TextFieldCell" customModule="iTranslateAccountsUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VCJ-WO-bM1" id="iGO-64-FBC">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="flg-Xp-tr0">
+                        <rect key="frame" x="18" y="10" width="341" height="23.5"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="flg-Xp-tr0" firstAttribute="leading" secondItem="iGO-64-FBC" secondAttribute="leadingMargin" constant="10" id="Qju-xi-e0R"/>
+                    <constraint firstItem="flg-Xp-tr0" firstAttribute="top" secondItem="iGO-64-FBC" secondAttribute="topMargin" constant="2" id="SDh-T0-hiX"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="flg-Xp-tr0" secondAttribute="bottom" constant="2" id="WR4-pg-wmn"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="flg-Xp-tr0" secondAttribute="trailing" constant="8" id="nsr-bz-1tl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="textField" destination="flg-Xp-tr0" id="Xco-SP-OMb"/>
+            </connections>
+            <point key="canvasLocation" x="39" y="-32"/>
+        </tableViewCell>
+    </objects>
+</document>
