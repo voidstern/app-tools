@@ -126,7 +126,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
             return
         }
 
-        let loadedProducts = UserDefaults.standard.stringArray(forKey: userDefaultsKey)?.flatMap({ (string) -> Product? in
+        let loadedProducts = UserDefaults.standard.stringArray(forKey: userDefaultsKey)?.compactMap({ (string) -> Product? in
             return Product(identifier: string)
         })
 

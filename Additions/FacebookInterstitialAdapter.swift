@@ -46,6 +46,3 @@ class FacebookInterstitial: NSObject, GADCustomEventInterstitial, FBInterstitial
         delegate?.customEventInterstitial(self, didFailAd: error)
     }
 }
-
-
-
