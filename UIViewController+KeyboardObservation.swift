@@ -16,13 +16,13 @@ protocol KeyboardOverlapObserver {
 extension UIViewController {
 
     func setupKeyboardObservation() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func tearDownKeyboardObservation() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
@@ -31,7 +31,7 @@ extension UIViewController {
             return
         }
 
-        guard let keyboardFrame: CGRect = (keyInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+        guard let keyboardFrame: CGRect = (keyInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
 
@@ -52,7 +52,7 @@ extension UIViewController {
         let intersect = offsetKeyboardFrame.intersection(view.bounds)
 
         if !intersect.isNull {
-            let duration: TimeInterval = (keyInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let duration: TimeInterval = (keyInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
             //change the table insets to match - animated to the same duration of the keyboard appearance
 
             UIView.animate(withDuration: duration, animations: {
@@ -68,7 +68,7 @@ extension UIViewController {
         }
 
         let keyInfo = notification.userInfo
-        let duration: TimeInterval = (keyInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        let duration: TimeInterval = (keyInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
 
         UIView.animate(withDuration: duration) {
             keyboardObserver.keyboardOverlapChanged(size: CGSize(width: self.view.frame.width, height: 0))

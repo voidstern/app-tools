@@ -16,11 +16,11 @@ public final class AppStateManager {
 
     public func startReceivingEvents() {
         if activeCount == 0 {
-            notificationCenter.addObserver(self, selector: #selector(enterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-            notificationCenter.addObserver(self, selector: #selector(exitForeground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(exitForeground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
-            notificationCenter.addObserver(self, selector: #selector(enterForeground), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-            notificationCenter.addObserver(self, selector: #selector(exitForeground), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(enterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(exitForeground), name: UIApplication.willResignActiveNotification, object: nil)
         }
         activeCount += 1
     }

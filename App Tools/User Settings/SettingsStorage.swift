@@ -23,7 +23,7 @@ public class SettingsStorage {
 
     func getSaveFileURL() -> URL {
         guard let appGroupIdentifier = appGroupIdentifier, let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
-            print("WARNING: appGroupIdentifier not set on SettingsStorage")
+            print("WARN: appGroupIdentifier not set on SettingsStorage")
             return URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json")
         }
 
