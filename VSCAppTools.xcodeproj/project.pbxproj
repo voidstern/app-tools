@@ -37,6 +37,7 @@
 		5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F71F5ACE8D00118D70 /* RatingManager.swift */; };
 		5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
 		5470B7FB1F5AD09500118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
+		54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */; };
 		54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */; };
 		54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */; };
 		54EDB3521EC84A5F00BB5061 /* App Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3501EC84A5F00BB5061 /* App Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,6 +78,7 @@
 		543E2B361EE4770200F36A35 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = "App Tools/ColorManager.swift"; sourceTree = "<group>"; };
 		5470B7F71F5ACE8D00118D70 /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		5470B7F91F5ACEC600118D70 /* InstallAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallAge.swift; sourceTree = "<group>"; };
+		54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+deselectRow.swift"; path = "App Tools/UITableView+deselectRow.swift"; sourceTree = "<group>"; };
 		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Transition.swift"; path = "App Tools/UIView+Transition.swift"; sourceTree = "<group>"; };
 		54EDB34E1EC84A5F00BB5061 /* AppToolsMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppToolsMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 		54EDB31B1EC848E800BB5061 = {
 			isa = PBXGroup;
 			children = (
+				54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */,
 				546EB3041F5ADE9D00E980A1 /* Ratings */,
 				5435F6161F448C67008C998B /* TableViewCells */,
 				54EDB46F1ECA1E9E00BB5061 /* Extensions */,
@@ -404,6 +407,7 @@
 				543B24DB1ED77A7A00AD99AE /* Array+RemoveObject.swift in Sources */,
 				5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */,
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
+				54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */,
 				54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
