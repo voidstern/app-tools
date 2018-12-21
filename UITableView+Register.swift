@@ -14,11 +14,11 @@ public protocol Cell: class {
 }
 
 public extension UITableView {
-    public func register<T: Cell>(type: T.Type) {
+    public func register<T: Cell> (type: T.Type) {
         register(UINib(nibName: T.xibName, bundle: Bundle(for: T.self)), forCellReuseIdentifier: T.identifier)
     }
 
-    public func dequeueReusableCell<T: Cell>(for indexPath: IndexPath) -> T? {
+    public func dequeueReusableCell<T: Cell> (for indexPath: IndexPath) -> T? {
         return dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T
     }
 }
