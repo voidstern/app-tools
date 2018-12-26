@@ -10,17 +10,12 @@ import Foundation
 import UIKit
 
 extension UIView {
-    public func animateTransition(_ type: String, duration: TimeInterval = 0.25) {
+    public func animateTransition(_ type: CATransitionType, duration: TimeInterval = 0.25) {
         let transition = CATransition()
         transition.duration = duration
-        transition.type = convertToCATransitionType(type)
+        transition.type = type
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         transition.fillMode = CAMediaTimingFillMode.both
         layer.add(transition, forKey: kCATransition)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCATransitionType(_ input: String) -> CATransitionType {
-	return CATransitionType(rawValue: input)
 }
