@@ -71,7 +71,7 @@ public class CloudKitHelper {
         return fetchedRecords
     }
     
-    // MARK: Saving
+    // MARK: Records
     
     @discardableResult
     public func save(record: CKRecord) -> CKRecord? {
@@ -91,6 +91,27 @@ public class CloudKitHelper {
         semaphore.wait()
         return fetchedRecord
     }
+    
+    @discardableResult
+    public func delete(record: CKRecord) -> Bool {
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        var success = true
+        
+        database.delete(withRecordID: record.recordID) { (recordID, error) in
+            if let error = error {
+                self.delegate?.cloudKitHelper(self, didEncounter: error)
+                success = false
+            }
+            
+            semaphore.signal()
+        }
+        
+        semaphore.wait()
+        return success
+    }
+    
+    // MARK: Record Zones
     
     @discardableResult
     public func save(recordZone: CKRecordZone) -> CKRecordZone? {
