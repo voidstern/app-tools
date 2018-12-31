@@ -28,6 +28,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     private let userDefaultsKey = "purchases"
     private var testMode: Bool = false
+    private var purchasePositons: [SKPayment: String] = [:]
 
     public func enablePurchaseManagerTestMode() {
         print("    ---- WARNING ----\nPurchase Manager Test Mode active!\n    ---- WARNING ----")
@@ -79,7 +80,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
         return purchasedProducts.contains(product)
     }
 
-    public func purchase(_ product: Product) {
+    public func purchase(_ product: Product, from purchasePosition: String? = nil) {
         guard testMode == false else {
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
@@ -98,7 +99,7 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
         }
 
         if let storeProduct = products.filter({ return $0.productIdentifier == product.identifier }).first {
-            purchaseProduct(storeProduct)
+            purchaseProduct(storeProduct, from: purchasePosition)
         } else {
             productsForPurchase.append(product)
             loadProducts([product])
@@ -167,8 +168,10 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     // MARK: Payments
 
-    private func purchaseProduct(_ product: SKProduct) {
+    private func purchaseProduct(_ product: SKProduct, from purchasePosition: String? = nil) {
         let payment = SKPayment(product: product)
+        purchasePositons[payment] = purchasePosition
+        
         SKPaymentQueue.default().add(payment)
         SKPaymentQueue.default().add(self)
     }
@@ -189,7 +192,13 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
                 NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
                 SKPaymentQueue.default().finishTransaction(transaction)
 
-                EventLogger.shared.log(event: .purchasedProduct, parameters: ["product": product.identifier])
+                var parameters: [String: String] = ["product": product.identifier]
+                
+                if let position = purchasePositons[transaction.payment] {
+                    parameters["postition"] = position
+                }
+                
+                EventLogger.shared.log(event: .purchasedProduct, parameters: parameters)
             }
 
             if transaction.transactionState == SKPaymentTransactionState.restored {

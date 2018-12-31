@@ -39,6 +39,10 @@ public class EventLogger {
         static var restoredProduct: EventLogger.Event {
             return EventLogger.Event(eventName: "restored")
         }
+        
+        public static var ratingDialogPresented: EventLogger.Event {
+            return EventLogger.Event(eventName: "presented_dialog")
+        }
     }
 
     open class UserProperty {
@@ -53,8 +57,8 @@ public class EventLogger {
         logger.startUp()
     }
 
-    public func log(event: Event, parameters: [String: String]) {
-        loggers.forEach({ $0.log(event: event, parameters: parameters) })
+    public func log(event: Event, parameters: [String: String]? = nil) {
+        loggers.forEach({ $0.log(event: event, parameters: parameters ?? [:]) })
     }
 
     public func set(userProperty: String, name: UserProperty) {

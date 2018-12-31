@@ -50,39 +50,8 @@ public class RatingManager {
     private func showRatingDialog(on controller: UIViewController) {
         if #available(iOSApplicationExtension 10.3, *) {
             SKStoreReviewController.requestReview()
+            EventLogger.shared.log(event: .ratingDialogPresented)
         }
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
     }
-
-//    private func showAlert(on controller: UIViewController) {
-//        let alert = UIAlertController(title: "Do you like \(appName)", message: "", preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: "Love It", style: .default, handler: { (_) in
-//            self.showRatingDialog(on: controller)
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Could be better", style: .default, handler: { (_) in
-//            self.showFeedbackDialog(on: controller)
-//        }))
-//
-//        controller.present(alert, animated: true, completion: nil)
-//    }
-//
-//    private func showFeedbackDialog(on controller: UIViewController) {
-//        guard let supportMailController = SupportMailController.create(mailAdress: "support@cocoacake.net") else {
-//            return
-//        }
-//
-//        let alert = UIAlertController(title: "Would you mind telling us how to improve \(appName)", message: "", preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: "Email Us", style: .default, handler: { (_) in
-//            let navigationController = UINavigationController(rootViewController: supportMailController)
-//            controller.present(navigationController, animated: true, completion: nil)
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Later", style: .default, handler: { (_) in
-//        }))
-//
-//        controller.present(alert, animated: true, completion: nil)
-//    }
 }
