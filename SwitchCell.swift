@@ -16,11 +16,11 @@ public final class SwitchCell: UITableViewCell, Cell {
     static public let identifier = "SwitchCell"
     static public let xibName = "SwitchCell"
 
-    weak var delegate: SwitchCellDelegate?
+    public weak var delegate: SwitchCellDelegate?
 
-    @IBOutlet weak var iconView: UIImageView?
-    @IBOutlet weak var switchControl: UISwitch?
-    @IBOutlet weak var label: UILabel?
+    @IBOutlet public weak var iconView: UIImageView?
+    @IBOutlet public weak var switchControl: UISwitch?
+    @IBOutlet public weak var label: UILabel?
 
     override public func awakeFromNib() {
         super.awakeFromNib()

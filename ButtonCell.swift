@@ -9,11 +9,12 @@
 import UIKit
 
 public final class ButtonCell: UITableViewCell, Cell {
+    static public let identifier = "ButtonCell"
+    static public let xibName = "ButtonCell"
+    
     @IBOutlet weak var buttonLabel: UILabel?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    static public let identifier = "ButtonCell"
-    static public let xibName = "ButtonCell"
 
     public var title: String? {
         didSet { buttonLabel?.text = title }
