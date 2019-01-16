@@ -32,16 +32,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="t09-fZ-CvV">
+                        <rect key="frame" x="339" y="12" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vZN-Vj-5CF" firstAttribute="leading" secondItem="YtD-UF-H6o" secondAttribute="leadingMargin" id="32O-Aq-wbV"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="UHQ-LV-jcr" secondAttribute="trailing" id="Iew-UT-tGb"/>
                     <constraint firstItem="UHQ-LV-jcr" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="MBe-sa-PNU"/>
+                    <constraint firstItem="t09-fZ-CvV" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="jvp-nd-Dgd"/>
+                    <constraint firstItem="t09-fZ-CvV" firstAttribute="trailing" secondItem="YtD-UF-H6o" secondAttribute="trailingMargin" id="tmr-z5-BNl"/>
                     <constraint firstItem="UHQ-LV-jcr" firstAttribute="leading" secondItem="vZN-Vj-5CF" secondAttribute="trailing" constant="8" id="w6E-0m-9bu"/>
                     <constraint firstItem="vZN-Vj-5CF" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="ws9-CW-qEQ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activityIndicator" destination="t09-fZ-CvV" id="B4Z-1c-3Na"/>
                 <outlet property="iconView" destination="vZN-Vj-5CF" id="nDD-ze-s8m"/>
                 <outlet property="label" destination="UHQ-LV-jcr" id="FoO-oF-qQ6"/>
             </connections>

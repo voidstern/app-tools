@@ -14,6 +14,7 @@ public final class IconCell: UITableViewCell, Cell {
     
     @IBOutlet public weak var iconView: UIImageView!
     @IBOutlet public weak var label: UILabel!
+    @IBOutlet public weak var activityIndicator: UIActivityIndicatorView!
     
     override public func prepareForReuse() {
         super.prepareForReuse()
