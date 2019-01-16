@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5402E68821EF1EB200917445 /* StaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5402E68621EF1EB100917445 /* StaticCell.xib */; };
+		5402E68921EF1EB200917445 /* StaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402E68721EF1EB200917445 /* StaticCell.swift */; };
 		54211CFF1F54BD4600E8371C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4611ECA194100BB5061 /* UIColorExtension.swift */; };
 		54211D001F54BD4600E8371C /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4651ECA197400BB5061 /* FileMonitor.swift */; };
 		54211D021F54BD4600E8371C /* EventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3A41EC869EE00BB5061 /* EventLogger.swift */; };
@@ -22,11 +24,11 @@
 		54211D151F54BD4600E8371C /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB3B51EC8B29200BB5061 /* Limit.swift */; };
 		54211D1C1F54BD4600E8371C /* App Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EDB3501EC84A5F00BB5061 /* App Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61A1F448C87008C998B /* ButtonCell.swift */; };
-		5435F6201F448FA5008C998B /* StaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6181F448C87008C998B /* StaticCell.swift */; };
+		5435F6201F448FA5008C998B /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6181F448C87008C998B /* IconCell.swift */; };
 		5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61B1F448C87008C998B /* SwitchCell.swift */; };
 		5435F6221F448FA5008C998B /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F61C1F448C87008C998B /* TextFieldCell.swift */; };
 		5435F6231F448FAE008C998B /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F6191F448C87008C998B /* ButtonCell.xib */; };
-		5435F6241F448FAE008C998B /* StaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F61E1F448C88008C998B /* StaticCell.xib */; };
+		5435F6241F448FAE008C998B /* IconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F61E1F448C88008C998B /* IconCell.xib */; };
 		5435F6251F448FAE008C998B /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F61D1F448C88008C998B /* SwitchCell.xib */; };
 		5435F6261F448FAE008C998B /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5435F6171F448C87008C998B /* TextFieldCell.xib */; };
 		5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F6271F448FC4008C998B /* UITableView+Register.swift */; };
@@ -63,16 +65,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5402E68621EF1EB100917445 /* StaticCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StaticCell.xib; sourceTree = "<group>"; };
+		5402E68721EF1EB200917445 /* StaticCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticCell.swift; sourceTree = "<group>"; };
 		54211D251F54BD4600E8371C /* AppToolsWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppToolsWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54211D261F54BD4600E8371C /* AppTools-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AppTools-iOS copy-Info.plist"; path = "/Users/Burgstaller/Development/tidur/App Tools/AppTools-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		5435F6171F448C87008C998B /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
-		5435F6181F448C87008C998B /* StaticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCell.swift; sourceTree = "<group>"; };
+		5435F6181F448C87008C998B /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		5435F6191F448C87008C998B /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		5435F61A1F448C87008C998B /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		5435F61B1F448C87008C998B /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		5435F61C1F448C87008C998B /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		5435F61D1F448C88008C998B /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
-		5435F61E1F448C88008C998B /* StaticCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticCell.xib; sourceTree = "<group>"; };
+		5435F61E1F448C88008C998B /* IconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconCell.xib; sourceTree = "<group>"; };
 		5435F6271F448FC4008C998B /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardObservation.swift"; sourceTree = "<group>"; };
 		543B24D61ED72E7600AD99AE /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "App Tools/UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -129,8 +133,10 @@
 			children = (
 				5435F61A1F448C87008C998B /* ButtonCell.swift */,
 				5435F6191F448C87008C998B /* ButtonCell.xib */,
-				5435F6181F448C87008C998B /* StaticCell.swift */,
-				5435F61E1F448C88008C998B /* StaticCell.xib */,
+				5435F6181F448C87008C998B /* IconCell.swift */,
+				5435F61E1F448C88008C998B /* IconCell.xib */,
+				5402E68721EF1EB200917445 /* StaticCell.swift */,
+				5402E68621EF1EB100917445 /* StaticCell.xib */,
 				5435F61B1F448C87008C998B /* SwitchCell.swift */,
 				5435F61D1F448C88008C998B /* SwitchCell.xib */,
 				5435F61C1F448C87008C998B /* TextFieldCell.swift */,
@@ -379,9 +385,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5435F6231F448FAE008C998B /* ButtonCell.xib in Resources */,
-				5435F6241F448FAE008C998B /* StaticCell.xib in Resources */,
+				5435F6241F448FAE008C998B /* IconCell.xib in Resources */,
 				5435F6251F448FAE008C998B /* SwitchCell.xib in Resources */,
 				5435F6261F448FAE008C998B /* TextFieldCell.xib in Resources */,
+				5402E68821EF1EB200917445 /* StaticCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +429,7 @@
 				54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */,
 				543B24DB1ED77A7A00AD99AE /* Array+RemoveObject.swift in Sources */,
 				5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */,
+				5402E68921EF1EB200917445 /* StaticCell.swift in Sources */,
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
 				54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */,
 				54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */,
@@ -441,7 +449,7 @@
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
 				5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
-				5435F6201F448FA5008C998B /* StaticCell.swift in Sources */,
+				5435F6201F448FA5008C998B /* IconCell.swift in Sources */,
 				5449B69521D2BB6E00212372 /* CloudKitHelper.swift in Sources */,
 				54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */,
 				5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */,
