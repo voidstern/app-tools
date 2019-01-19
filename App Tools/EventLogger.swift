@@ -50,6 +50,10 @@ public class EventLogger {
         public init(propertyName: String) {
             self.propertyName = propertyName
         }
+        
+        public static var installAge: EventLogger.UserProperty {
+            return EventLogger.UserProperty(propertyName: "install_age")
+        }
     }
 
     public func addLogger(logger: EventLoggerImplementation) {
@@ -63,5 +67,11 @@ public class EventLogger {
 
     public func set(userProperty: String, name: UserProperty) {
         loggers.forEach({ $0.set(userProperty: userProperty, name: name) })
+    }
+}
+
+extension EventLogger {
+    public func updateInstallAge() {
+        set(userProperty: String(UserSettings.shared.installAge), name: .installAge)
     }
 }
