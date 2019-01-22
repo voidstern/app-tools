@@ -38,7 +38,6 @@ public class RatingManager {
         let events: Int = UserSettings.shared.increment(.ratingEvents)
         let days = UserSettings.shared.installAge
 
-
         let lastRating = UserSettings.shared.double(key: .lastRatedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 

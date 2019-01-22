@@ -41,7 +41,7 @@ public class EventLogger {
         }
         
         public static var ratingDialogPresented: EventLogger.Event {
-            return EventLogger.Event(eventName: "presented_dialog")
+            return EventLogger.Event(eventName: "presented_rating_dialog")
         }
     }
 
