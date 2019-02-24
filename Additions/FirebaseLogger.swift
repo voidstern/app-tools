@@ -8,7 +8,8 @@
 
 import Foundation
 import AppToolsMobile
-import Firebase
+import FirebaseCore
+import FirebaseAnalytics
 
 class FirebaseLogger: EventLoggerImplementation {
     func startUp() {

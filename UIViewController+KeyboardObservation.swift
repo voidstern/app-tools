@@ -16,8 +16,8 @@ protocol KeyboardOverlapObserver {
 extension UIViewController {
 
     func setupKeyboardObservation() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func tearDownKeyboardObservation() {
