@@ -16,3 +16,9 @@ extension Array {
         return nil
     }
 }
+
+public extension Collection {
+    public subscript(safe index: Index) -> Element? {
+        return startIndex <= index && index < endIndex ? self[index] : nil
+    }
+}

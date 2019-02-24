@@ -41,6 +41,7 @@
 		5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F71F5ACE8D00118D70 /* RatingManager.swift */; };
 		5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
 		5470B7FB1F5AD09500118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
+		54A24B192222C336007DF337 /* NumericTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A24B182222C336007DF337 /* NumericTypes.swift */; };
 		54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */; };
 		54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */; };
 		54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */; };
@@ -85,6 +86,7 @@
 		5449B69421D2BB6E00212372 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		5470B7F71F5ACE8D00118D70 /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		5470B7F91F5ACEC600118D70 /* InstallAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallAge.swift; sourceTree = "<group>"; };
+		54A24B182222C336007DF337 /* NumericTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTypes.swift; sourceTree = "<group>"; };
 		54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+deselectRow.swift"; path = "App Tools/UITableView+deselectRow.swift"; sourceTree = "<group>"; };
 		54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Transition.swift"; path = "App Tools/UIView+Transition.swift"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				5435F6271F448FC4008C998B /* UITableView+Register.swift */,
+				54A24B182222C336007DF337 /* NumericTypes.swift */,
 				5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */,
 				543B24D61ED72E7600AD99AE /* UIView+Animations.swift */,
 				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
@@ -426,6 +429,7 @@
 				54EDB4661ECA197400BB5061 /* FileMonitor.swift in Sources */,
 				54EDB39C1EC8583200BB5061 /* PurchaseManager.swift in Sources */,
 				54EDB3A51EC869EE00BB5061 /* EventLogger.swift in Sources */,
+				54A24B192222C336007DF337 /* NumericTypes.swift in Sources */,
 				54DA499F1ED019DE007A82C4 /* UITableView+deselectRow.swift in Sources */,
 				543B24DB1ED77A7A00AD99AE /* Array+RemoveObject.swift in Sources */,
 				5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */,
