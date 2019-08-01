@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol XibLoadable {
     associatedtype Loadable
@@ -15,6 +16,11 @@ public protocol XibLoadable {
 }
 
 public extension XibLoadable {
+    static func nib() -> UINib {
+        let bundle: Bundle = Bundle.main
+        return UINib(nibName: xibName, bundle: bundle)
+    }
+    
     static func loadFromXib() -> Self {
         let bundle: Bundle = Bundle.main
 
