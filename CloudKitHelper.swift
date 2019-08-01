@@ -152,21 +152,21 @@ public class CloudKitHelper {
 }
 
 public extension CKRecord {
-    public func removeAllFields() {
+    func removeAllFields() {
         let keys = allKeys()
         for key in keys {
             setObject(nil, forKey: key)
         }
     }
     
-    public func setValues(_ dictionary: [String: Any]) {
+    func setValues(_ dictionary: [String: Any]) {
         removeAllFields()
         for key in dictionary.keys {
             setObject(dictionary[key] as? CKRecordValue, forKey: CKRecord.FieldKey(key))
         }
     }
     
-    public var values: [String: Any] {
+    var values: [String: Any] {
         var values: [String: Any] = [:]
         
         for key in allKeys() {

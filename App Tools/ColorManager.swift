@@ -39,7 +39,7 @@ final public class ColorManager {
     }
 
     public func loadColors(json jsonURL: URL?) {
-        if let jsonURL = jsonURL, let data = try? Data(contentsOf: jsonURL), let colorsDict = try? JSONSerialization.jsonObject(with: data, options: []) as? ColorDef, let colors = colorsDict {
+        if let jsonURL = jsonURL, let data = try? Data(contentsOf: jsonURL), let colorsDict = ((try? JSONSerialization.jsonObject(with: data, options: []) as? ColorDef) as ColorManager.ColorDef??), let colors = colorsDict {
             self.colors = colors
             NotificationCenter.default.post(name: ColorManager.colorsChangedNotificationName, object: self)
         } else {

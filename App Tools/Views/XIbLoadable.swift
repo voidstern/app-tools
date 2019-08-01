@@ -15,7 +15,7 @@ public protocol XibLoadable {
 }
 
 public extension XibLoadable {
-    public static func loadFromXib() -> Self {
+    static func loadFromXib() -> Self {
         let bundle: Bundle = Bundle.main
 
         guard let nib = bundle.loadNibNamed(xibName, owner: nil, options: nil) else {

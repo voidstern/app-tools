@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UITableView {
-    public func deselectRows(animated: Bool = true) {
+    func deselectRows(animated: Bool = true) {
         for row in indexPathsForVisibleRows ?? [] {
             deselectRow(at: row, animated: animated)
         }
