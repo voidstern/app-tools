@@ -105,6 +105,10 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
             loadProducts([product])
         }
     }
+    
+    public func unlock(_ product: Product) {
+        self.purchasedProducts.append(product)
+    }
 
     public func restorePurchases() {
         SKPaymentQueue.default().restoreCompletedTransactions()
