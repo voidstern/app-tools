@@ -116,6 +116,27 @@ public class CloudKitHelper {
         return newChangeToken
     }
     
+    // MARK: Subscription
+    
+    @discardableResult
+    public func save(subscription: CKSubscription) -> Bool {
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        var success = true
+        
+        database.save(subscription) { (subscription, error) in
+            if let error = error {
+                self.delegate?.cloudKitHelper(self, didEncounter: error)
+                success = false
+            }
+            
+            semaphore.signal()
+        }
+        
+        semaphore.wait()
+        return success
+    }
+    
     // MARK: Records
     
     @discardableResult
