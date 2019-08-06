@@ -76,8 +76,8 @@ public class CloudKitHelper {
     public func fetchChanges(in zoneID: CKRecordZone.ID, changeToken: CKServerChangeToken?, recordChanged: @escaping (CKRecord) -> Void, recordDeleted: @escaping (CKRecord.ID, CKRecord.RecordType) -> Void) -> CKServerChangeToken? {
         let zoneConfiguration = CKFetchRecordZoneChangesOperation.ZoneConfiguration(previousServerChangeToken: changeToken, resultsLimit: nil, desiredKeys: nil)
         let operationConfiguration = CKFetchRecordZoneChangesOperation.Configuration()
-        operationConfiguration.timeoutIntervalForRequest = 30
-        operationConfiguration.timeoutIntervalForResource = 30
+        operationConfiguration.timeoutIntervalForRequest = 10
+        operationConfiguration.timeoutIntervalForResource = 10
         operationConfiguration.isLongLived = false
         
         let fetchOperation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: [zoneID: zoneConfiguration])
@@ -119,31 +119,22 @@ public class CloudKitHelper {
     // MARK: Records
     
     @discardableResult
-    public func save(record: CKRecord) -> CKRecord? {
-        
-        let semaphore = DispatchSemaphore(value: 0)
-        var fetchedRecord: CKRecord?
-        
-        database.save(record) { (record, error) in
-            if let error = error {
-                self.delegate?.cloudKitHelper(self, didEncounter: error)
-            }
-            
-            fetchedRecord = record
-            semaphore.signal()
-        }
-        
-        semaphore.wait()
-        return fetchedRecord
-    }
-    
-    @discardableResult
-    public func delete(with recordID: CKRecord.ID) -> Bool {
+    public func save(records: [CKRecord]?, delete recordIDs: [CKRecord.ID]?) -> Bool {
         
         let semaphore = DispatchSemaphore(value: 0)
         var success = true
         
-        database.delete(withRecordID: recordID) { (recordID, error) in
+        let operationConfiguration = CKModifyRecordsOperation.Configuration()
+        operationConfiguration.timeoutIntervalForRequest = 10
+        operationConfiguration.timeoutIntervalForResource = 10
+        operationConfiguration.isLongLived = false
+        
+        let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: recordIDs)
+        operation.configuration = operationConfiguration
+        operation.savePolicy = .allKeys
+        
+        
+        operation.modifyRecordsCompletionBlock = { (records, deleted, error) in
             if let error = error {
                 self.delegate?.cloudKitHelper(self, didEncounter: error)
                 success = false
@@ -152,8 +143,20 @@ public class CloudKitHelper {
             semaphore.signal()
         }
         
+        database.add(operation)
         semaphore.wait()
+        
         return success
+    }
+    
+    @discardableResult
+    public func save(record: CKRecord) -> Bool {
+        return save(records: [record], delete: nil)
+    }
+    
+    @discardableResult
+    public func delete(with recordID: CKRecord.ID) -> Bool {
+        return save(records: nil, delete: [recordID])
     }
     
     // MARK: Record Zones
@@ -207,7 +210,11 @@ public extension CKRecord {
     func setValues(_ dictionary: [String: Any]) {
         removeAllFields()
         for key in dictionary.keys {
-            setObject(dictionary[key] as? CKRecordValue, forKey: CKRecord.FieldKey(key))
+            if let value = dictionary[key] as? CKRecordValue {
+                setObject(value, forKey: CKRecord.FieldKey(key))
+            } else {
+                print("Could not save \(dictionary[key] ?? "nil") for \(key)")
+            }
         }
     }
     
