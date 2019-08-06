@@ -71,6 +71,51 @@ public class CloudKitHelper {
         return fetchedRecords
     }
     
+    @available(iOSApplicationExtension 12.0, *)
+    @available(watchOSApplicationExtension 5.0, *)
+    public func fetchChanges(in zoneID: CKRecordZone.ID, changeToken: CKServerChangeToken?, recordChanged: @escaping (CKRecord) -> Void, recordDeleted: @escaping (CKRecord.ID, CKRecord.RecordType) -> Void) -> CKServerChangeToken? {
+        let zoneConfiguration = CKFetchRecordZoneChangesOperation.ZoneConfiguration(previousServerChangeToken: changeToken, resultsLimit: nil, desiredKeys: nil)
+        let operationConfiguration = CKFetchRecordZoneChangesOperation.Configuration()
+        operationConfiguration.timeoutIntervalForRequest = 30
+        operationConfiguration.timeoutIntervalForResource = 30
+        operationConfiguration.isLongLived = false
+        
+        let fetchOperation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: [zoneID: zoneConfiguration])
+        fetchOperation.configuration = operationConfiguration
+        fetchOperation.fetchAllChanges = true
+        
+        var newChangeToken: CKServerChangeToken?
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        fetchOperation.recordChangedBlock = { (record) in
+            recordChanged(record)
+        }
+        
+        fetchOperation.recordWithIDWasDeletedBlock = { (recordID, recordType) in
+            recordDeleted(recordID, recordType)
+        }
+        
+        fetchOperation.recordZoneChangeTokensUpdatedBlock = { (zoneID, changeToken, clientChangeToken) in
+            newChangeToken = changeToken
+        }
+        
+        fetchOperation.recordZoneFetchCompletionBlock = { (zoneID, changeToken, clientChangeToken, moreComing, error) in
+            newChangeToken = changeToken
+        }
+        
+        fetchOperation.fetchRecordZoneChangesCompletionBlock = { (error) in
+            if let error = error {
+                self.delegate?.cloudKitHelper(self, didEncounter: error)
+            }
+            
+            semaphore.signal()
+        }
+        
+        database.add(fetchOperation)
+        semaphore.wait()
+        return newChangeToken
+    }
+    
     // MARK: Records
     
     @discardableResult
@@ -93,12 +138,12 @@ public class CloudKitHelper {
     }
     
     @discardableResult
-    public func delete(record: CKRecord) -> Bool {
+    public func delete(with recordID: CKRecord.ID) -> Bool {
         
         let semaphore = DispatchSemaphore(value: 0)
         var success = true
         
-        database.delete(withRecordID: record.recordID) { (recordID, error) in
+        database.delete(withRecordID: recordID) { (recordID, error) in
             if let error = error {
                 self.delegate?.cloudKitHelper(self, didEncounter: error)
                 success = false
@@ -133,12 +178,12 @@ public class CloudKitHelper {
     }
     
     @discardableResult
-    public func delete(recordZone: CKRecordZone) -> Bool {
+    public func delete(with recordZoneID: CKRecordZone.ID) -> Bool {
         
         let semaphore = DispatchSemaphore(value: 0)
         var success = true
         
-        database.delete(withRecordZoneID: recordZone.zoneID) { (zoneId, error) in
+        database.delete(withRecordZoneID: recordZoneID) { (zoneId, error) in
             if let error = error {
                 self.delegate?.cloudKitHelper(self, didEncounter: error)
                 success = false
