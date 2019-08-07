@@ -38,6 +38,9 @@
 		543E2B371EE4770200F36A35 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543E2B361EE4770200F36A35 /* ColorManager.swift */; };
 		5449B69521D2BB6E00212372 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449B69421D2BB6E00212372 /* CloudKitHelper.swift */; };
 		5449B69621D2BDF300212372 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449B69421D2BB6E00212372 /* CloudKitHelper.swift */; };
+		5460D94A22FB503D0038D146 /* TimePickerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460D94722FB503D0038D146 /* TimePickerDatasource.swift */; };
+		5460D94C22FB503D0038D146 /* CountPickerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460D94822FB503D0038D146 /* CountPickerDatasource.swift */; };
+		5460D94E22FB503D0038D146 /* StringPickerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460D94922FB503D0038D146 /* StringPickerDatasource.swift */; };
 		5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F71F5ACE8D00118D70 /* RatingManager.swift */; };
 		5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
 		5470B7FB1F5AD09500118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
@@ -84,6 +87,9 @@
 		543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+RemoveObject.swift"; path = "App Tools/Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		543E2B361EE4770200F36A35 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = "App Tools/ColorManager.swift"; sourceTree = "<group>"; };
 		5449B69421D2BB6E00212372 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
+		5460D94722FB503D0038D146 /* TimePickerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerDatasource.swift; sourceTree = "<group>"; };
+		5460D94822FB503D0038D146 /* CountPickerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountPickerDatasource.swift; sourceTree = "<group>"; };
+		5460D94922FB503D0038D146 /* StringPickerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPickerDatasource.swift; sourceTree = "<group>"; };
 		5470B7F71F5ACE8D00118D70 /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		5470B7F91F5ACEC600118D70 /* InstallAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallAge.swift; sourceTree = "<group>"; };
 		54A24B182222C336007DF337 /* NumericTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTypes.swift; sourceTree = "<group>"; };
@@ -224,6 +230,9 @@
 		54EDB3761EC84ED900BB5061 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5460D94822FB503D0038D146 /* CountPickerDatasource.swift */,
+				5460D94922FB503D0038D146 /* StringPickerDatasource.swift */,
+				5460D94722FB503D0038D146 /* TimePickerDatasource.swift */,
 				54EDB4651ECA197400BB5061 /* FileMonitor.swift */,
 				54EDB3B31EC8B29200BB5061 /* AppState.swift */,
 				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
@@ -437,10 +446,12 @@
 				5402E68921EF1EB200917445 /* StaticCell.swift in Sources */,
 				54EDB3BA1EC8B29200BB5061 /* UIControl+Blocks.swift in Sources */,
 				54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */,
+				5460D94C22FB503D0038D146 /* CountPickerDatasource.swift in Sources */,
 				54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
 				5435F62A1F44905D008C998B /* UIViewController+KeyboardObservation.swift in Sources */,
+				5460D94E22FB503D0038D146 /* StringPickerDatasource.swift in Sources */,
 				54EDB3861EC84F3900BB5061 /* XIbLoadable.swift in Sources */,
 				543E2B371EE4770200F36A35 /* ColorManager.swift in Sources */,
 				5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */,
@@ -453,6 +464,7 @@
 				54F49C511F4CD10E008EB1F5 /* String+isEmail.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
 				5435F6281F448FC5008C998B /* UITableView+Register.swift in Sources */,
+				5460D94A22FB503D0038D146 /* TimePickerDatasource.swift in Sources */,
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
 				5435F6201F448FA5008C998B /* IconCell.swift in Sources */,
 				5449B69521D2BB6E00212372 /* CloudKitHelper.swift in Sources */,
@@ -574,7 +586,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 4;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -628,7 +640,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = 4;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
