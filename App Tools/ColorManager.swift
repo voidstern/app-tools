@@ -14,14 +14,28 @@ final public class ColorManager {
 
     public static let colorsChangedNotificationName = NSNotification.Name(rawValue: "net.voidstern.color.changed")
 
-    open class Color {
+    open class Color: ExpressibleByStringLiteral, LosslessStringConvertible {
+        public typealias StringLiteralType = String
         public let name: String
+        
         public init(name: String) {
             self.name = name
+        }
+        
+        required public init?(_ description: String) {
+            self.name = description
+        }
+        
+        required public init(stringLiteral value: ColorManager.Color.StringLiteralType) {
+            self.name = value
         }
 
         public var uiColor: UIColor {
             return UIColor(color: self)
+        }
+        
+        public var description: String {
+            return name
         }
 
         public static func == (lhs: Color, rhs: Color) -> Bool {
