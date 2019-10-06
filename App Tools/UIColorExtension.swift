@@ -89,9 +89,9 @@ extension UIColor {
 
         let index = rgba.index(rgba.startIndex, offsetBy: 1)
         let hexString: String = String(rgba[index...])
-        var hexValue: UInt32 = 0
+        var hexValue: UInt64 = 0
 
-        guard Scanner(string: hexString).scanHexInt32(&hexValue) else {
+        guard Scanner(string: hexString).scanHexInt64(&hexValue) else {
                 throw UIColorInputError.unableToScanHexValue
         }
 
@@ -105,9 +105,9 @@ extension UIColor {
         case 4:
             self.init(hex4: UInt16(hexValue))
         case 6:
-            self.init(hex6: hexValue)
+            self.init(hex6: UInt32(hexValue))
         default:
-            self.init(hex8: hexValue)
+            self.init(hex8: UInt32(hexValue))
         }
     }
     
