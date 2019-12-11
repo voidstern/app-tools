@@ -44,6 +44,10 @@
 		5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F71F5ACE8D00118D70 /* RatingManager.swift */; };
 		5470B7FA1F5ACEC600118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
 		5470B7FB1F5AD09500118D70 /* InstallAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470B7F91F5ACEC600118D70 /* InstallAge.swift */; };
+		548016EE238562E500FD8F18 /* URL+FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016ED238562E500FD8F18 /* URL+FilePath.swift */; };
+		548016F22385637F00FD8F18 /* URL+FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016ED238562E500FD8F18 /* URL+FilePath.swift */; };
+		548016F6238568F700FD8F18 /* WeakObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016F5238568F600FD8F18 /* WeakObjectCache.swift */; };
+		548016F7238568F700FD8F18 /* WeakObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016F5238568F600FD8F18 /* WeakObjectCache.swift */; };
 		54A24B192222C336007DF337 /* NumericTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A24B182222C336007DF337 /* NumericTypes.swift */; };
 		54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */; };
 		54B6FDD723111F9D0009EF52 /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */; };
@@ -93,6 +97,8 @@
 		5460D94922FB503D0038D146 /* StringPickerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPickerDatasource.swift; sourceTree = "<group>"; };
 		5470B7F71F5ACE8D00118D70 /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		5470B7F91F5ACEC600118D70 /* InstallAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallAge.swift; sourceTree = "<group>"; };
+		548016ED238562E500FD8F18 /* URL+FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FilePath.swift"; sourceTree = "<group>"; };
+		548016F5238568F600FD8F18 /* WeakObjectCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakObjectCache.swift; sourceTree = "<group>"; };
 		54A24B182222C336007DF337 /* NumericTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTypes.swift; sourceTree = "<group>"; };
 		54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
@@ -171,20 +177,70 @@
 			name = Ratings;
 			sourceTree = "<group>";
 		};
+		548016F12385632700FD8F18 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				54A24B182222C336007DF337 /* NumericTypes.swift */,
+				54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */,
+				54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */,
+				54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */,
+				54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */,
+				548016ED238562E500FD8F18 /* URL+FilePath.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		548016F82385690600FD8F18 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */,
+				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
+				548016F5238568F600FD8F18 /* WeakObjectCache.swift */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
+		548016F92385692800FD8F18 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				548016FB2385697A00FD8F18 /* View Controllers */,
+				54EDB3651EC84CA100BB5061 /* Views */,
+				54EDB4641ECA195300BB5061 /* Colors */,
+				5435F6161F448C67008C998B /* TableViewCells */,
+				54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		548016FA2385695300FD8F18 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				54EDB3711EC84E6C00BB5061 /* User Settings */,
+				546EB3041F5ADE9D00E980A1 /* Ratings */,
+				54EDB39D1EC8583600BB5061 /* Purchases */,
+				54EDB3A31EC869DF00BB5061 /* Events */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		548016FB2385697A00FD8F18 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */,
+				5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		54EDB31B1EC848E800BB5061 = {
 			isa = PBXGroup;
 			children = (
-				54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */,
+				548016FA2385695300FD8F18 /* Settings */,
+				548016F92385692800FD8F18 /* User Interface */,
+				548016F82385690600FD8F18 /* Collections */,
 				5449B69321D2BB5300212372 /* CloudKit */,
-				546EB3041F5ADE9D00E980A1 /* Ratings */,
-				5435F6161F448C67008C998B /* TableViewCells */,
 				54EDB46F1ECA1E9E00BB5061 /* Extensions */,
-				54EDB4641ECA195300BB5061 /* Colors */,
-				54EDB3A31EC869DF00BB5061 /* Events */,
-				54EDB39D1EC8583600BB5061 /* Purchases */,
 				54EDB3761EC84ED900BB5061 /* Tools */,
-				54EDB3711EC84E6C00BB5061 /* User Settings */,
-				54EDB3651EC84CA100BB5061 /* Views */,
 				54EDB34F1EC84A5F00BB5061 /* App Tools */,
 				54EDB3261EC848E900BB5061 /* Products */,
 				54211D261F54BD4600E8371C /* AppTools-iOS copy-Info.plist */,
@@ -212,9 +268,13 @@
 		54EDB3651EC84CA100BB5061 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
+				54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */,
+				543B24D61ED72E7600AD99AE /* UIView+Animations.swift */,
+				5435F6271F448FC4008C998B /* UITableView+Register.swift */,
+				54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */,
 				54EDB3831EC84F3900BB5061 /* ScrollingStackView.swift */,
 				54EDB3841EC84F3900BB5061 /* XIbLoadable.swift */,
-				54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -271,20 +331,8 @@
 		54EDB46F1ECA1E9E00BB5061 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5435F6271F448FC4008C998B /* UITableView+Register.swift */,
-				54A24B182222C336007DF337 /* NumericTypes.swift */,
-				5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */,
-				543B24D61ED72E7600AD99AE /* UIView+Animations.swift */,
-				54EDB3B61EC8B29200BB5061 /* UIControl+Blocks.swift */,
-				54DA49AC1ED01A83007A82C4 /* UIView+Transition.swift */,
-				54EDB3B41EC8B29200BB5061 /* Array+ObjectOrNil.swift */,
+				548016F12385632700FD8F18 /* Data */,
 				54EDB44E1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift */,
-				54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */,
-				54DA499E1ED019DE007A82C4 /* UITableView+deselectRow.swift */,
-				543B24DA1ED77A7A00AD99AE /* Array+RemoveObject.swift */,
-				54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */,
-				54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */,
-				54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -418,11 +466,13 @@
 				54211CFF1F54BD4600E8371C /* UIColorExtension.swift in Sources */,
 				54211D001F54BD4600E8371C /* FileMonitor.swift in Sources */,
 				54211D021F54BD4600E8371C /* EventLogger.swift in Sources */,
+				548016F7238568F700FD8F18 /* WeakObjectCache.swift in Sources */,
 				5470B7FB1F5AD09500118D70 /* InstallAge.swift in Sources */,
 				54211D041F54BD4600E8371C /* Array+RemoveObject.swift in Sources */,
 				54211D061F54BD4600E8371C /* Data+hexString.swift in Sources */,
 				54211D081F54BD4600E8371C /* SettingsStorage.swift in Sources */,
 				54211D0B1F54BD4600E8371C /* ColorManager.swift in Sources */,
+				548016F22385637F00FD8F18 /* URL+FilePath.swift in Sources */,
 				54211D0E1F54BD4600E8371C /* URL+QueryDictionary.swift in Sources */,
 				54211D101F54BD4600E8371C /* Array+ObjectOrNil.swift in Sources */,
 				5449B69621D2BDF300212372 /* CloudKitHelper.swift in Sources */,
@@ -460,6 +510,7 @@
 				5470B7F81F5ACE8D00118D70 /* RatingManager.swift in Sources */,
 				54EDB3A81EC86B9B00BB5061 /* SupportMailController.swift in Sources */,
 				543B24D71ED72E7600AD99AE /* UIView+Animations.swift in Sources */,
+				548016EE238562E500FD8F18 /* URL+FilePath.swift in Sources */,
 				54EDB4711ECA1EAE00BB5061 /* URL+QueryDictionary.swift in Sources */,
 				5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */,
 				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
@@ -471,6 +522,7 @@
 				54EDB3B91EC8B29200BB5061 /* Limit.swift in Sources */,
 				5435F6201F448FA5008C998B /* IconCell.swift in Sources */,
 				5449B69521D2BB6E00212372 /* CloudKitHelper.swift in Sources */,
+				548016F6238568F700FD8F18 /* WeakObjectCache.swift in Sources */,
 				54B6FDD723111F9D0009EF52 /* CGRect+Center.swift in Sources */,
 				54DA49AD1ED01A83007A82C4 /* UIView+Transition.swift in Sources */,
 				5435F61F1F448FA5008C998B /* ButtonCell.swift in Sources */,
