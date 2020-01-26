@@ -95,8 +95,8 @@ public class ScrollingStackView: UIScrollView {
     func layout(views: [UIView], forColumn: Int) {
 
         let numberOfColumns: Int = colums.values.reduce(0, { return max($0, $1)}) + 1
-        let x = ((frame.width / CGFloat(numberOfColumns)) * CGFloat(forColumn)) + stackInset.left
-        let width = (frame.width / CGFloat(numberOfColumns)) - stackInset.left - stackInset.right
+        let x = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat) + stackInset.left
+        let width = (frame.width / numberOfColumns.cgFloat) - stackInset.left - stackInset.right
 
         var y = stackInset.top
         for view in views {
