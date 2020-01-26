@@ -40,6 +40,10 @@ public class WeakObjectCache<ObjectType: AnyObject> {
         return objects[identifier] = nil
     }
     
+    public func removeAllObjects() {
+        return objects.removeAll()
+    }
+    
     func cleanObjectsCache() {
         objects = objects.filter({ $1.object != nil })
     }
