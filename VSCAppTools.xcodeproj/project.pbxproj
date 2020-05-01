@@ -48,6 +48,7 @@
 		548016F22385637F00FD8F18 /* URL+FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016ED238562E500FD8F18 /* URL+FilePath.swift */; };
 		548016F6238568F700FD8F18 /* WeakObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016F5238568F600FD8F18 /* WeakObjectCache.swift */; };
 		548016F7238568F700FD8F18 /* WeakObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548016F5238568F600FD8F18 /* WeakObjectCache.swift */; };
+		5498F4B8241BEA0600BF1D69 /* SelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5498F4B7241BEA0600BF1D69 /* SelectionTableViewController.swift */; };
 		54A24B192222C336007DF337 /* NumericTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A24B182222C336007DF337 /* NumericTypes.swift */; };
 		54ABCA3F1FEADD3A006D7752 /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */; };
 		54B6FDD723111F9D0009EF52 /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */; };
@@ -99,6 +100,7 @@
 		5470B7F91F5ACEC600118D70 /* InstallAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallAge.swift; sourceTree = "<group>"; };
 		548016ED238562E500FD8F18 /* URL+FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FilePath.swift"; sourceTree = "<group>"; };
 		548016F5238568F600FD8F18 /* WeakObjectCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakObjectCache.swift; sourceTree = "<group>"; };
+		5498F4B7241BEA0600BF1D69 /* SelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewController.swift; sourceTree = "<group>"; };
 		54A24B182222C336007DF337 /* NumericTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTypes.swift; sourceTree = "<group>"; };
 		54ABCA3E1FEADD3A006D7752 /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		54B6FDD623111F9D0009EF52 /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				54EDB3A71EC86B9B00BB5061 /* SupportMailController.swift */,
 				5435F6291F44905B008C998B /* UIViewController+KeyboardObservation.swift */,
+				5498F4B7241BEA0600BF1D69 /* SelectionTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				5460D94C22FB503D0038D146 /* CountPickerDatasource.swift in Sources */,
 				54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */,
 				54EDB3B71EC8B29200BB5061 /* AppState.swift in Sources */,
+				5498F4B8241BEA0600BF1D69 /* SelectionTableViewController.swift in Sources */,
 				54EDB3891EC84F4300BB5061 /* SettingsStorage.swift in Sources */,
 				5435F62A1F44905D008C998B /* UIViewController+KeyboardObservation.swift in Sources */,
 				5460D94E22FB503D0038D146 /* StringPickerDatasource.swift in Sources */,
@@ -656,7 +660,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "App Tools/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -822,7 +826,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "App Tools/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -845,7 +849,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "App Tools/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.voidstern.App-Tools";
 				PRODUCT_NAME = "$(TARGET_NAME)";
