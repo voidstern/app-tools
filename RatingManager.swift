@@ -49,7 +49,6 @@ public class RatingManager {
     private func showRatingDialog(on controller: UIViewController) {
         if #available(iOSApplicationExtension 10.3, *) {
             SKStoreReviewController.requestReview()
-            EventLogger.shared.log(event: .ratingDialogPresented)
         }
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
     }
