@@ -47,9 +47,14 @@ public class RatingManager {
     }
 
     private func showRatingDialog(on controller: UIViewController) {
-        if #available(iOSApplicationExtension 10.3, *) {
-            SKStoreReviewController.requestReview()
+        guard let windowScene = controller.view.window?.windowScene else {
+            return
         }
+        
+        if #available(iOSApplicationExtension 10.3, *) {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
+        
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
     }
 }
