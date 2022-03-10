@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol CountPickerDataSourceDelegate: class {
+public protocol CountPickerDataSourceDelegate: AnyObject {
     func countPickerDidChange(count: Int)
 }
 

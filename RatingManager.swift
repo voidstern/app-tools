@@ -51,7 +51,7 @@ public class RatingManager {
             return
         }
         
-        if #available(iOSApplicationExtension 10.3, *) {
+        if #available(iOSApplicationExtension 14.0, *) {
             SKStoreReviewController.requestReview(in: windowScene)
         }
         

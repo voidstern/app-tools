@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol StringPickerDataSourceDelegate: class {
+public protocol StringPickerDataSourceDelegate: AnyObject {
     func stringPickerDidChange(string: String)
 }
 

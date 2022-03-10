@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-public protocol CloudKitHelperDelegate: class {
+public protocol CloudKitHelperDelegate: AnyObject {
     func cloudKitHelper(_ helper: CloudKitHelper, didEncounter error: Error)
 }
 
