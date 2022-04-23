@@ -41,16 +41,20 @@ public class RatingManager {
         let lastRating = UserSettings.shared.double(key: .lastRatedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 
-        if events > requiredEvents && days > requiredDays && timePassed > threeMonths  {
+        if events >= requiredEvents && days >= requiredDays && timePassed > threeMonths  {
             showRatingDialog(on: controller)
         }
     }
 
     private func showRatingDialog(on controller: UIViewController) {
-        if #available(iOSApplicationExtension 10.3, *) {
-            SKStoreReviewController.requestReview()
-            EventLogger.shared.log(event: .ratingDialogPresented)
+        guard let windowScene = controller.view.window?.windowScene else {
+            return
         }
+        
+        if #available(iOSApplicationExtension 14.0, *) {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
+        
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
     }
 }

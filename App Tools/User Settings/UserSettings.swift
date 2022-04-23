@@ -64,13 +64,10 @@ public class UserSettings {
 
     @discardableResult
     public func increment(_ key: Setting) -> Int {
-        if let value = userDefaults.integer(forKey: key.identifier) {
-            userDefaults.set((value + 1), forKey: key.identifier)
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-            return (value + 1)
-        }
-
-        return 0
+        let value = userDefaults.integer(forKey: key.identifier) ?? 0
+        userDefaults.set((value + 1), forKey: key.identifier)
+        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        return (value + 1)
     }
 
     public func integer(key: Setting) -> Int {

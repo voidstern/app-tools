@@ -72,6 +72,7 @@
 		54EDB4711ECA1EAE00BB5061 /* URL+QueryDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */; };
 		54F49C511F4CD10E008EB1F5 /* String+isEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */; };
 		54F49C531F4CDC82008EB1F5 /* Data+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */; };
+		F6F3AA3224B10A100067574C /* DelayedBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3AA3124B10A0F0067574C /* DelayedBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		54EDB4701ECA1EAE00BB5061 /* URL+QueryDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+QueryDictionary.swift"; path = "App Tools/URL+QueryDictionary.swift"; sourceTree = "<group>"; };
 		54F49C501F4CD10E008EB1F5 /* String+isEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isEmail.swift"; sourceTree = "<group>"; };
 		54F49C521F4CDC82008EB1F5 /* Data+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+hexString.swift"; sourceTree = "<group>"; };
+		F6F3AA3124B10A0F0067574C /* DelayedBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 				54EDB4651ECA197400BB5061 /* FileMonitor.swift */,
 				54EDB3B31EC8B29200BB5061 /* AppState.swift */,
 				54EDB3B51EC8B29200BB5061 /* Limit.swift */,
+				F6F3AA3124B10A0F0067574C /* DelayedBlock.swift */,
 			);
 			name = Tools;
 			path = "App Tools/Tools";
@@ -518,6 +521,7 @@
 				54EDB4711ECA1EAE00BB5061 /* URL+QueryDictionary.swift in Sources */,
 				5435F6211F448FA5008C998B /* SwitchCell.swift in Sources */,
 				54EDB3B81EC8B29200BB5061 /* Array+ObjectOrNil.swift in Sources */,
+				F6F3AA3224B10A100067574C /* DelayedBlock.swift in Sources */,
 				54EDB44F1EC9E81800BB5061 /* DispatchQueue+OnMainQueue.swift in Sources */,
 				54F49C511F4CD10E008EB1F5 /* String+isEmail.swift in Sources */,
 				54EDB38A1EC84F4300BB5061 /* UserSettings.swift in Sources */,
@@ -869,7 +873,6 @@
 			buildConfigurations = (
 				54211D231F54BD4600E8371C /* Debug */,
 				54211D241F54BD4600E8371C /* Release */,
-				54DB268F23A0E1EE00F90E86 /* Trial */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -879,7 +882,6 @@
 			buildConfigurations = (
 				54EDB32B1EC848E900BB5061 /* Debug */,
 				54EDB32C1EC848E900BB5061 /* Release */,
-				54DB268D23A0E1EE00F90E86 /* Trial */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -889,7 +891,6 @@
 			buildConfigurations = (
 				54EDB3531EC84A5F00BB5061 /* Debug */,
 				54EDB3541EC84A5F00BB5061 /* Release */,
-				54DB268E23A0E1EE00F90E86 /* Trial */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

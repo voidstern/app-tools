@@ -123,4 +123,14 @@ extension UIColor {
         }
         self.init(cgColor: color.cgColor)
     }
+    
+    public static func rgbaOrSystem(_ rgbaOrSystem: String) -> UIColor {
+        if UIColor.responds(to: Selector(rgbaOrSystem)) {
+            if let color = UIColor.perform(Selector(rgbaOrSystem))?.takeRetainedValue() as? UIColor {
+                return color
+            }
+        }
+        
+        return UIColor(rgba: rgbaOrSystem)
+    }
 }
