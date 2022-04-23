@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol TimerPickerDataSourceDelegate: class {
+public protocol TimerPickerDataSourceDelegate: AnyObject {
     func timePickerDidChange(duration: TimeInterval)
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol SelectionTableViewControllerDelegate: class {
+public protocol SelectionTableViewControllerDelegate: AnyObject {
     func itemsForSelectionTableViewController(_ controller: SelectionTableViewController) -> [String]
     func selectionTableViewController(_ controller: SelectionTableViewController, didSelect index: Int)
     func selectedItemInSelectionTableViewController(_ controller: SelectionTableViewController) -> Int?

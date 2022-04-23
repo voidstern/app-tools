@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol SwitchCellDelegate: class {
+public protocol SwitchCellDelegate: AnyObject {
     func switchCellDidChange(_ switchCell: SwitchCell)
 }
 

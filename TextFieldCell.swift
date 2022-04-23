@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol TextFieldCellDelegate: class {
+public protocol TextFieldCellDelegate: AnyObject {
     func textFieldTextDidFocus(_ textFieldCell: TextFieldCell)
     func textFieldTextDidChange(_ textFieldCell: TextFieldCell)
     func textFieldHidDoneButton(_ textFieldCell: TextFieldCell)

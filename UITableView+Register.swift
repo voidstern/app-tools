@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol Cell: class {
+public protocol Cell: AnyObject {
     static var identifier: String { get }
     static var xibName: String { get }
 }
