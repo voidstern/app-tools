@@ -16,4 +16,8 @@ extension DispatchQueue {
             DispatchQueue.main.async(execute: block)
         }
     }
+    
+    public func async(after timeInterval: TimeInterval, execute: @escaping () -> Void) {
+        asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: execute)
+    }
 }
