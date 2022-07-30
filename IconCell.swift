@@ -12,13 +12,15 @@ public final class IconCell: UITableViewCell, Cell {
     static public let identifier = "IconCell"
     static public let xibName = "IconCell"
     
-    @IBOutlet public weak var iconView: UIImageView!
-    @IBOutlet public weak var label: UILabel!
-    @IBOutlet public weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet public private(set) weak var iconView: UIImageView!
+    @IBOutlet public private(set) weak var leftLabel: UILabel!
+    @IBOutlet public private(set) weak var rightLabel: UILabel!
+    @IBOutlet public private(set) weak var activityIndicator: UIActivityIndicatorView!
     
     override public func prepareForReuse() {
         super.prepareForReuse()
-        textLabel?.text = nil
+        leftLabel?.text = nil
+        rightLabel?.text = nil
         detailTextLabel?.text = nil
         accessoryType = .none
         imageView?.image = nil

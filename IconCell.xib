@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21191"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,12 +33,20 @@
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="t09-fZ-CvV">
                         <rect key="frame" x="339" y="12" width="20" height="20"/>
                     </activityIndicatorView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btX-OP-whg">
+                        <rect key="frame" x="359" y="22" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vZN-Vj-5CF" firstAttribute="leading" secondItem="YtD-UF-H6o" secondAttribute="leadingMargin" id="32O-Aq-wbV"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="UHQ-LV-jcr" secondAttribute="trailing" id="Iew-UT-tGb"/>
                     <constraint firstItem="UHQ-LV-jcr" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="MBe-sa-PNU"/>
+                    <constraint firstItem="btX-OP-whg" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="ZZe-5M-pVt"/>
                     <constraint firstItem="t09-fZ-CvV" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="jvp-nd-Dgd"/>
+                    <constraint firstItem="btX-OP-whg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UHQ-LV-jcr" secondAttribute="trailing" constant="8" id="ndp-Ap-Puw"/>
+                    <constraint firstItem="btX-OP-whg" firstAttribute="trailing" secondItem="YtD-UF-H6o" secondAttribute="trailingMargin" id="pBX-U9-IL6"/>
                     <constraint firstItem="t09-fZ-CvV" firstAttribute="trailing" secondItem="YtD-UF-H6o" secondAttribute="trailingMargin" id="tmr-z5-BNl"/>
                     <constraint firstItem="UHQ-LV-jcr" firstAttribute="leading" secondItem="vZN-Vj-5CF" secondAttribute="trailing" constant="8" id="w6E-0m-9bu"/>
                     <constraint firstItem="vZN-Vj-5CF" firstAttribute="centerY" secondItem="YtD-UF-H6o" secondAttribute="centerY" id="ws9-CW-qEQ"/>
@@ -47,7 +55,8 @@
             <connections>
                 <outlet property="activityIndicator" destination="t09-fZ-CvV" id="B4Z-1c-3Na"/>
                 <outlet property="iconView" destination="vZN-Vj-5CF" id="nDD-ze-s8m"/>
-                <outlet property="label" destination="UHQ-LV-jcr" id="FoO-oF-qQ6"/>
+                <outlet property="leftLabel" destination="UHQ-LV-jcr" id="bn5-0f-XRV"/>
+                <outlet property="rightLabel" destination="btX-OP-whg" id="RA2-lU-Ozy"/>
             </connections>
             <point key="canvasLocation" x="-347" y="-379"/>
         </tableViewCell>

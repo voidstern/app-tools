@@ -26,7 +26,7 @@ public final class SelectionCell: UITableViewCell, Cell {
         didSet { updateSelectionMenu() }
     }
     public var selectedOption: Int? {
-        didSet { delegate?.selectionCellDidChange(self) }
+        didSet { updateSelectionMenu() }
     }
     
     public override func awakeFromNib() {
@@ -42,9 +42,15 @@ public final class SelectionCell: UITableViewCell, Cell {
     }
     
     func updateSelectionMenu() {
+        if let selectedOption = selectedOption, let title = options.objectOrNil(at: selectedOption) {
+            popupButton.setTitle(title, for: .normal)
+        }
+        
         let optionActions = options.map({ option in
-            UIAction(title: option) { action in
+            let isActive = selectedOption != nil && selectedOption == options.firstIndex(of: option)
+            return UIAction(title: option, state: isActive ? .on : .off) { action in
                 self.selectedOption = self.options.firstIndex(of: option)
+                self.delegate?.selectionCellDidChange(self)
             }
         })
         
