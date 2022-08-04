@@ -20,6 +20,7 @@ extension UserSettings.Setting {
     }
 }
 
+@available(iOS 14.0, *)
 public class RatingManager {
 
     let requiredEvents: Int
@@ -51,10 +52,7 @@ public class RatingManager {
             return
         }
         
-        if #available(iOSApplicationExtension 14.0, *) {
-            SKStoreReviewController.requestReview(in: windowScene)
-        }
-        
+        SKStoreReviewController.requestReview(in: windowScene)
         UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
     }
 }

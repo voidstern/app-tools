@@ -8,10 +8,12 @@
 
 import UIKit
 
+@available(iOS 15.0, *)
 public protocol SelectionCellDelegate: AnyObject {
     func selectionCellDidChange(_ switchCell: SelectionCell)
 }
 
+@available(iOS 15.0, *)
 public final class SelectionCell: UITableViewCell, Cell {
     static public let identifier = "SelectionCell"
     static public let xibName = "SelectionCell"

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOS 13.0, *)
 public protocol SelectionTableViewControllerDelegate: AnyObject {
     func itemsForSelectionTableViewController(_ controller: SelectionTableViewController) -> [String]
     func selectionTableViewController(_ controller: SelectionTableViewController, didSelect index: Int)
@@ -16,6 +17,7 @@ public protocol SelectionTableViewControllerDelegate: AnyObject {
     func headerTitleForSelectionTableViewController(_ controller: SelectionTableViewController) -> String?
 }
 
+@available(iOS 13.0, *)
 open class SelectionTableViewController: UITableViewController {
     public weak var delegate: SelectionTableViewControllerDelegate?
     
