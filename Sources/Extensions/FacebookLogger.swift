@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AppToolsMobile
+import AppTools
 import FBSDKCoreKit
 
 class FacebookLogger: EventLoggerImplementation {
