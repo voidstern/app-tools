@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension DispatchQueue {
-    public static func onMainQueue(_ block: @escaping () -> ()) {
+public extension DispatchQueue {
+    static func onMainQueue(_ block: @escaping () -> ()) {
         if Thread.isMainThread {
             block()
         } else {
@@ -17,7 +17,7 @@ extension DispatchQueue {
         }
     }
     
-    public func async(after timeInterval: TimeInterval, execute: @escaping () -> Void) {
+    func async(after timeInterval: TimeInterval, execute: @escaping () -> Void) {
         asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: execute)
     }
 }

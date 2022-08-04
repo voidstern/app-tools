@@ -8,9 +8,8 @@
 
 import Foundation
 
-extension URL {
-
-    public var queryDictionary: [String: [String]]? {
+public extension URL {
+     var queryDictionary: [String: [String]]? {
         guard let query = self.query else {
             return nil
         }

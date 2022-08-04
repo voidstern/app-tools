@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    public static func animateWithDefaults(_ animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
+public extension UIView {
+    static func animateWithDefaults(_ animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
         animateWithDefaults(animations: animations, completion: completion)
     }
     
-    public static func animateWithDefaults(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
+    static func animateWithDefaults(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.35, options: [.allowAnimatedContent, .allowUserInteraction], animations: animations, completion: completion)
     }
 }

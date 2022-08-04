@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final public class TapticFeedback {
+public class TapticFeedback {
     public static let shared = TapticFeedback()
     
     var enabled: Bool = true

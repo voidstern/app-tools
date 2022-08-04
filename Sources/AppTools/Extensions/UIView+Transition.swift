@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    public func animateTransition(_ type: CATransitionType, duration: TimeInterval = 0.25) {
+public extension UIView {
+    func animateTransition(_ type: CATransitionType, duration: TimeInterval = 0.25) {
         let transition = CATransition()
         transition.duration = duration
         transition.type = type

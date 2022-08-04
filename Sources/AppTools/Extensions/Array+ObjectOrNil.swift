@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension Array {
-    public func objectOrNil(at index: Int) -> Element? {
+public extension Array {
+    func objectOrNil(at index: Int) -> Element? {
         if indices.contains(index) {
             return self[index]
         }

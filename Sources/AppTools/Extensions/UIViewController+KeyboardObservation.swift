@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-protocol KeyboardOverlapObserver {
+public protocol KeyboardOverlapObserver {
     func keyboardOverlapChanged(size: CGSize)
 }
 
-extension UIViewController {
+public extension UIViewController {
 
     func setupKeyboardObservation() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)

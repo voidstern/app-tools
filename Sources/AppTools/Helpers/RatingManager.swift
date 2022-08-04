@@ -10,12 +10,12 @@ import Foundation
 import StoreKit
 import UIKit
 
-extension UserSettings.Setting {
-    public static var ratingEvents: UserSettings.Setting {
+public extension UserSettings.Setting {
+    static var ratingEvents: UserSettings.Setting {
         return UserSettings.Setting(identifier: "rating_events")
     }
 
-    public static var lastRatedDate: UserSettings.Setting {
+    static var lastRatedDate: UserSettings.Setting {
         return UserSettings.Setting(identifier: "last_rated_date")
     }
 }

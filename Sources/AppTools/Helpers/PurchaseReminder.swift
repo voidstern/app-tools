@@ -10,12 +10,12 @@ import Foundation
 import StoreKit
 import UIKit
 
-extension UserSettings.Setting {
-    public static var reminderEvents: UserSettings.Setting {
+public extension UserSettings.Setting {
+    static var reminderEvents: UserSettings.Setting {
         return UserSettings.Setting(identifier: "reminder_events")
     }
 
-    public static var lastRemindedDate: UserSettings.Setting {
+    static var lastRemindedDate: UserSettings.Setting {
         return UserSettings.Setting(identifier: "last_reminded_date")
     }
 }
@@ -26,7 +26,6 @@ public protocol PurchaseReminderDelegate {
 }
 
 public class PurchaseReminder {
-
     let requiredEvents: Int
     let requiredDays: Int
 
