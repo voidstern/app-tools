@@ -49,11 +49,11 @@ public class PurchaseReminder {
     private func triggerPurchaseViewIfNeeded() {
         let events: Int = UserSettings.shared.integer(key: .reminderEvents)
 
-        let lastRating = UserSettings.shared.double(key: .lastRatedDate) as TimeInterval
+        let lastRating = UserSettings.shared.double(key: .lastRemindedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 
         if events >= requiredEvents || timePassed > threeDays {
-            UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
+            UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRemindedDate)
             UserSettings.shared.set(value: 0, key: .reminderEvents)
             delegate?.purchaseReminderShouldRemind(self)
         }
