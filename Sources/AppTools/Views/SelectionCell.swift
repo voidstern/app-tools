@@ -48,7 +48,7 @@ public final class SelectionCell: UITableViewCell, Cell {
             popupButton.setTitle(title, for: .normal)
         }
         
-        let optionActions = options.map({ option in
+        let optionActions = options.map({ option -> UIAction in
             let isActive = selectedOption != nil && selectedOption == options.firstIndex(of: option)
             return UIAction(title: option, state: isActive ? .on : .off) { action in
                 self.selectedOption = self.options.firstIndex(of: option)

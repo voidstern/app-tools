@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 10.0, *)
 public class DelayedBlock: NSObject {
     var timer: Timer?
     @objc var delay: TimeInterval
