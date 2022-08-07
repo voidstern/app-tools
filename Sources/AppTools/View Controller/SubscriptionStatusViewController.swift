@@ -96,6 +96,14 @@ public class SubscriptionStatusViewController: UIViewController {
     
     private var tableContent: [[TableContent]] = []
     
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil ?? .module)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
