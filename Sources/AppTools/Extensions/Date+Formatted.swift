@@ -63,7 +63,9 @@ public extension Date {
     var iso9601: String {
         return iso8601Formatter.string(from: self)
     }
-    
+}
+
+public extension String {
     var iso8601: Date? {
         return iso8601Formatter.date(from: self)
     }
