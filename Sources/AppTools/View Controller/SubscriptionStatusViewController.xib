@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21219" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21200"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubscriptionStatusViewController" customModule="Dozzzer" customModuleProvider="target">
+            <connections>
+                <outlet property="footerView" destination="hTw-IR-H3R" id="9Bd-tZ-phs"/>
+                <outlet property="tableView" destination="Z3l-bJ-qcG" id="c4I-eX-s58"/>
+                <outlet property="termsTextView" destination="AKt-Mz-cVI" id="wtj-w3-3WU"/>
+                <outlet property="termsTitle" destination="27f-8N-geI" id="b0A-26-013"/>
+                <outlet property="view" destination="WUN-AI-2dP" id="2V2-tZ-rPL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hTw-IR-H3R">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AKt-Mz-cVI">
+                    <rect key="frame" x="16" y="71.666666666666686" width="288" height="129"/>
+                    <string key="text">Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period. Payment will be charged to iTunes Account at confirmation of purchase. Account will be charged for renewal within 24-hours prior to the end of the current period for the full price. Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Subscription Terms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27f-8N-geI">
+                    <rect key="frame" x="16" y="51" width="288" height="14.666666666666671"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="V91-Pu-Dt4"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="V91-Pu-Dt4" firstAttribute="trailing" secondItem="27f-8N-geI" secondAttribute="trailing" constant="16" id="AwY-Uu-j69"/>
+                <constraint firstItem="AKt-Mz-cVI" firstAttribute="top" secondItem="27f-8N-geI" secondAttribute="bottom" constant="6" id="Dc9-g9-lSJ"/>
+                <constraint firstItem="V91-Pu-Dt4" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AKt-Mz-cVI" secondAttribute="bottom" constant="8" id="KRH-Te-2CN"/>
+                <constraint firstItem="27f-8N-geI" firstAttribute="top" secondItem="V91-Pu-Dt4" secondAttribute="top" constant="4" id="Rvk-q5-thf"/>
+                <constraint firstItem="AKt-Mz-cVI" firstAttribute="leading" secondItem="hTw-IR-H3R" secondAttribute="leading" constant="16" id="bXP-Bt-ka1"/>
+                <constraint firstItem="27f-8N-geI" firstAttribute="leading" secondItem="V91-Pu-Dt4" secondAttribute="leading" constant="16" id="gwF-5P-6kv"/>
+                <constraint firstItem="V91-Pu-Dt4" firstAttribute="trailing" secondItem="AKt-Mz-cVI" secondAttribute="trailing" constant="16" id="svL-HL-DJ4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="721" y="141"/>
+        </view>
+        <view contentMode="scaleToFill" id="WUN-AI-2dP">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Z3l-bJ-qcG">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="vAK-2i-RW0"/>
+                        <outlet property="delegate" destination="-1" id="UNj-QU-a4k"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="nK6-Js-HhE"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Z3l-bJ-qcG" firstAttribute="top" secondItem="WUN-AI-2dP" secondAttribute="top" id="GYT-bg-Agh"/>
+                <constraint firstItem="Z3l-bJ-qcG" firstAttribute="trailing" secondItem="nK6-Js-HhE" secondAttribute="trailing" id="HbE-Gs-Qhd"/>
+                <constraint firstItem="Z3l-bJ-qcG" firstAttribute="leading" secondItem="nK6-Js-HhE" secondAttribute="leading" id="pRI-j0-5bu"/>
+                <constraint firstAttribute="bottom" secondItem="Z3l-bJ-qcG" secondAttribute="bottom" id="qt0-ju-TiJ"/>
+            </constraints>
+            <point key="canvasLocation" x="-55" y="46"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
