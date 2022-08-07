@@ -120,6 +120,7 @@ public class SubscriptionStatusViewController: UIViewController {
     }
 }
 
+@available(iOS 14.0, *)
 extension SubscriptionStatusViewController: UITableViewDelegate, UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return tableContent.count

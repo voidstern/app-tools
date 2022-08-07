@@ -23,7 +23,7 @@ public class ActionBlockWrapper: NSObject {
 }
 
 public extension UISwitch {
-    public func block_setAction(block: @escaping BlockButtonActionBlock) {
+    func block_setAction(block: @escaping BlockButtonActionBlock) {
         objc_setAssociatedObject(self, &actionBlockKey, ActionBlockWrapper(block: block), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         addTarget(self, action: #selector(UISwitch.block_handleAction(_: )), for: .touchUpInside)
     }
