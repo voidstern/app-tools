@@ -11,6 +11,7 @@ import SafariServices
 import StoreKit
 import UIKit
 
+@available(iOS 14.0, *)
 public class SubscriptionStatusViewController: UIViewController {
     
     public struct SubscriptionStatus {
