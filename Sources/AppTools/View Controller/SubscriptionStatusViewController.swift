@@ -18,6 +18,12 @@ public class SubscriptionStatusViewController: UIViewController {
         let title: String
         let endDate: Date?
         let type: SubscriptionType
+        
+        public init(title: String, endDate: Date?, type: SubscriptionType) {
+            self.title = title
+            self.endDate = endDate
+            self.type = type
+        }
     }
     
     public struct Configuration {
@@ -25,11 +31,23 @@ public class SubscriptionStatusViewController: UIViewController {
         let backgroundColor: UIColor
         let backgroundAccentColor: UIColor
         let tintColor: UIColor
+        
+        public init(foregroundColor: UIColor = .label, backgroundColor: UIColor = .systemBackground, backgroundAccentColor: UIColor = .secondarySystemBackground, tintColor: UIColor = .systemBlue) {
+            self.foregroundColor = foregroundColor
+            self.backgroundColor = backgroundColor
+            self.backgroundAccentColor = backgroundAccentColor
+            self.tintColor = tintColor
+        }
     }
     
     public struct AdditionalEntry {
         let title: String
         let action: (() -> ())
+        
+        public init(title: String, action: @escaping () -> Void) {
+            self.title = title
+            self.action = action
+        }
     }
     
     public enum SubscriptionType {
