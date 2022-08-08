@@ -9,13 +9,11 @@
 import UIKit
 import AppTools
 
-@available(iOS 15.0, *)
 public protocol SelectionCellDelegate: AnyObject {
     func selectionCellDidChange(_ switchCell: SelectionCell)
 }
 
-@available(iOS 15.0, *)
-public final class SelectionCell: UITableViewCell, Cell {
+public class SelectionCell: UITableViewCell, Cell {
     static public let identifier = "SelectionCell"
     static public let xibName = "SelectionCell"
     static public let bundle = Bundle.module
@@ -58,6 +56,8 @@ public final class SelectionCell: UITableViewCell, Cell {
             }
         })
         
-        popupButton.menu = UIMenu(children: optionActions)
+        if #available(macCatalyst 14.0, *) {
+            popupButton.menu = UIMenu(children: optionActions)
+        }
     }
 }

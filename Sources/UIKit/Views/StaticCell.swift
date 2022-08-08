@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class StaticCell: UITableViewCell, Cell {
+public class StaticCell: UITableViewCell, Cell {
     static public let identifier = "StaticCell"
     static public let xibName = "StaticCell"
     static public let bundle = Bundle.module
