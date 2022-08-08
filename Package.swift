@@ -13,10 +13,13 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "AppTools",
-            targets: ["AppTools", "AppToolsUIKit"]),
-        .library(
-            name: "AppToolsWatch",
             targets: ["AppTools"]),
+        .library(
+            name: "AppToolsUI",
+            targets: ["AppTools", "AppToolsUI"]),
+        .library(
+            name: "AppToolsSwiftUI",
+            targets: ["AppTools", "AppToolsSwiftUI"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -30,8 +33,12 @@ let package = Package(
             dependencies: [],
             path: "Sources/AppTools"),
         .target(
-            name: "AppToolsUIKit",
+            name: "AppToolsUI",
             dependencies: ["AppTools"],
-            path: "Sources/UIKit")
+            path: "Sources/UIKit"),
+        .target(
+            name: "AppToolsSwiftUI",
+            dependencies: ["AppTools"],
+            path: "Sources/SwiftUI")
     ]
 )

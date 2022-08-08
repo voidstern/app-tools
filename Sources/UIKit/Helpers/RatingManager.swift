@@ -8,6 +8,7 @@
 
 import Foundation
 import StoreKit
+import AppTools
 import UIKit
 
 public extension UserSettings.Setting {
