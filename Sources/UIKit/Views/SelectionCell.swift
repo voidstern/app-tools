@@ -18,6 +18,7 @@ public protocol SelectionCellDelegate: AnyObject {
 public final class SelectionCell: UITableViewCell, Cell {
     static public let identifier = "SelectionCell"
     static public let xibName = "SelectionCell"
+    static public let bundle = Bundle.module
     
     public weak var delegate: SelectionCellDelegate?
     

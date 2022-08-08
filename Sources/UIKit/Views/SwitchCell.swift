@@ -15,6 +15,7 @@ public protocol SwitchCellDelegate: AnyObject {
 public final class SwitchCell: UITableViewCell, Cell {
     static public let identifier = "SwitchCell"
     static public let xibName = "SwitchCell"
+    static public let bundle = Bundle.module
 
     public weak var delegate: SwitchCellDelegate?
 

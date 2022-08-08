@@ -11,6 +11,7 @@ import UIKit
 public final class ButtonCell: UITableViewCell, Cell {
     static public let identifier = "ButtonCell"
     static public let xibName = "ButtonCell"
+    static public let bundle = Bundle.module
     
     @IBOutlet weak var buttonLabel: UILabel?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

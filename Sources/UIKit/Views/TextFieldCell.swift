@@ -18,6 +18,7 @@ public protocol TextFieldCellDelegate: AnyObject {
 public final class TextFieldCell: UITableViewCell, Cell {
     static public let identifier = "TextFieldCell"
     static public let xibName = "TextFieldCell"
+    static public let bundle = Bundle.module
 
     @IBOutlet weak public var textField: UITextField?
 

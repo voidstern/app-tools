@@ -11,6 +11,7 @@ import UIKit
 public final class StaticCell: UITableViewCell, Cell {
     static public let identifier = "StaticCell"
     static public let xibName = "StaticCell"
+    static public let bundle = Bundle.module
 
     override public func prepareForReuse() {
         super.prepareForReuse()

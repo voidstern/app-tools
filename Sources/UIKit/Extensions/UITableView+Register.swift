@@ -11,11 +11,12 @@ import UIKit
 public protocol Cell: AnyObject {
     static var identifier: String { get }
     static var xibName: String { get }
+    static var bundle: Bundle { get }
 }
 
 public extension UITableView {
     func register<T: Cell> (type: T.Type) {
-        register(UINib(nibName: T.xibName, bundle: Bundle(for: T.self)), forCellReuseIdentifier: T.identifier)
+        register(UINib(nibName: T.xibName, bundle: T.bundle), forCellReuseIdentifier: T.identifier)
     }
 
     func dequeueReusableCell<T: Cell> (for indexPath: IndexPath) -> T? {

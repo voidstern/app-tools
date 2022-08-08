@@ -11,6 +11,7 @@ import UIKit
 public final class IconCell: UITableViewCell, Cell {
     static public let identifier = "IconCell"
     static public let xibName = "IconCell"
+    static public let bundle = Bundle.module
     
     @IBOutlet public private(set) weak var iconView: UIImageView!
     @IBOutlet public private(set) weak var leftLabel: UILabel!
