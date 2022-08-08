@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AppTools
 
 @available(iOS 15.0, *)
 public protocol SelectionCellDelegate: AnyObject {

@@ -7,11 +7,15 @@ let package = Package(
     name: "AppTools",
     platforms: [
        .iOS(.v13),
+       .watchOS(.v7)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "AppTools",
+            targets: ["AppTools", "AppToolsUIKit"]),
+        .library(
+            name: "AppToolsWatch",
             targets: ["AppTools"]),
     ],
     dependencies: [
@@ -23,9 +27,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "AppTools",
-            dependencies: []),
-        .testTarget(
-            name: "AppToolsTests",
-            dependencies: ["AppTools"]),
+            dependencies: [],
+            path: "Sources/AppTools"),
+        .target(
+            name: "AppToolsUIKit",
+            dependencies: ["AppTools"],
+            path: "Sources/UIKit")
     ]
 )
