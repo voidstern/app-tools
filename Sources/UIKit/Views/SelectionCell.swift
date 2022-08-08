@@ -56,7 +56,7 @@ public class SelectionCell: UITableViewCell, Cell {
             }
         })
         
-        if #available(macCatalyst 14.0, *) {
+        if #available(iOS 14.0, *) {
             popupButton.menu = UIMenu(children: optionActions)
         }
     }
