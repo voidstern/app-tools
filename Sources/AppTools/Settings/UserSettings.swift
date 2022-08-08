@@ -35,18 +35,24 @@ public class UserSettings {
 
     public func set(value: Bool, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
     }
 
     @discardableResult
     public func toggle(_ key: Setting) -> Bool {
         if let value = userDefaults.bool(forKey: key.identifier) {
             userDefaults.set(!value, forKey: key.identifier)
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            DispatchQueue.onMainQueue {
+                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            }
             return (!value)
         } else {
             userDefaults.set(true, forKey: key.identifier)
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            DispatchQueue.onMainQueue {
+                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            }
             return true
         }
     }
@@ -55,7 +61,9 @@ public class UserSettings {
     public func increment(_ key: Setting) -> Double {
         if let value = userDefaults.double(forKey: key.identifier) {
             userDefaults.set((value + 1), forKey: key.identifier)
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            DispatchQueue.onMainQueue {
+                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            }
             return (value + 1)
         }
 
@@ -66,7 +74,9 @@ public class UserSettings {
     public func increment(_ key: Setting) -> Int {
         let value = userDefaults.integer(forKey: key.identifier) ?? 0
         userDefaults.set((value + 1), forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
         return (value + 1)
     }
 
@@ -80,7 +90,9 @@ public class UserSettings {
 
     public func set(value: Int, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
     }
 
     public func double(key: Setting) -> Double {
@@ -93,7 +105,9 @@ public class UserSettings {
 
     public func set(value: Double, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
     }
     
     public func string(key: Setting) -> String {
@@ -105,7 +119,9 @@ public class UserSettings {
     
     public func set(value: String, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
     }
     
     public func strings(key: Setting) -> [String]? {
@@ -118,6 +134,8 @@ public class UserSettings {
     
     public func set(strings: [String], key: Setting) {
         userDefaults.set(strings, forKey: key.identifier)
-        NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
     }
 }

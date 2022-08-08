@@ -86,15 +86,19 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
                 self.purchasedProducts.append(product)
                 self.savePurchases()
-
-                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                
+                DispatchQueue.onMainQueue {
+                    NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                }
             })
             
             return
         }
 
         guard !isPurchased(product) else {
-            NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+            DispatchQueue.onMainQueue {
+                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+            }
             return
         }
 
@@ -157,7 +161,9 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
     @objc public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         self.products += response.products
-        NotificationCenter.default.post(name: PurchaseManager.loadedPurchasesNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+        }
     }
 
     // MARK: Price Formating
@@ -193,7 +199,9 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
                 purchasedProducts.append(product)
                 savePurchases()
 
-                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                DispatchQueue.onMainQueue {
+                    NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                }
                 SKPaymentQueue.default().finishTransaction(transaction)
 
                 var parameters: [String: String] = ["product": product.identifier]
@@ -211,7 +219,9 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
                 purchasedProducts.append(product)
                 savePurchases()
 
-                NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                DispatchQueue.onMainQueue {
+                    NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                }
                 SKPaymentQueue.default().finishTransaction(transaction)
 
                 EventLogger.shared.log(event: .restoredProduct, parameters: ["product": product.identifier])
@@ -219,17 +229,23 @@ final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKPr
 
             if transaction.transactionState == SKPaymentTransactionState.failed  {
                 print("Transaction failed: \(String(describing: transaction.error?.localizedDescription))")
-                NotificationCenter.default.post(name: PurchaseManager.purchaseProductFailedNotificationName, object: self)
+                DispatchQueue.onMainQueue {
+                    NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+                }
             }
         }
     }
 
     @objc public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         print("Restoring Transactions Failed: \(String(describing: error.localizedDescription))")
-        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinishedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+        }
     }
 
     @objc public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        NotificationCenter.default.post(name: PurchaseManager.restoringPurchasesFinishedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: PurchaseManager.purchasedProductNotificationName, object: self)
+        }
     }
 }

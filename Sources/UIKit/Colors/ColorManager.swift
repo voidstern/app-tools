@@ -52,7 +52,9 @@ final public class ColorManager {
         self.lightColors = light
         self.darkColors = dark
         
-        NotificationCenter.default.post(name: ColorManager.colorsChangedNotificationName, object: self)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: ColorManager.colorsChangedNotificationName, object: self)
+        }
     }
 
     public func loadColors(json jsonURL: URL?) {
