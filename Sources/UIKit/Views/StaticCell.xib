@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StaticCell" textLabel="8Om-pj-ldc" detailTextLabel="ccP-VG-U12" style="IBUITableViewCellStyleValue1" id="dEC-Dc-fNC" customClass="StaticCell" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StaticCell" textLabel="8Om-pj-ldc" detailTextLabel="ccP-VG-U12" style="IBUITableViewCellStyleValue1" id="dEC-Dc-fNC" customClass="StaticCell" customModule="AppToolsUI">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dEC-Dc-fNC" id="YtD-UF-H6o">
