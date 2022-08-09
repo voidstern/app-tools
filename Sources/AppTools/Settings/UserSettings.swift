@@ -14,23 +14,28 @@ public class UserSettings {
 
     open class Setting: Equatable {
         public let identifier: String
-        public init(identifier: String) {
+        public let defaultValue: Any?
+        
+        public init(identifier: String, defaultValue: Any? = nil) {
             self.identifier = identifier
+            self.defaultValue = defaultValue
         }
 
         public static func == (lhs: Setting, rhs: Setting) -> Bool {
             return lhs.identifier == rhs.identifier
         }
     }
+    
+    // MARK: Boolean
 
     static public let shared = UserSettings()
 	private var userDefaults = SettingsStorage.shared
 
     public func bool(key: Setting) -> Bool {
-        if let value = userDefaults.bool(forKey: key.identifier) {
-            return value
+        guard let value = userDefaults.bool(forKey: key.identifier) else {
+            return key.defaultValue as? Bool ?? false
         }
-		return false
+		return value
     }
 
     public func set(value: Bool, key: Setting) {
@@ -56,48 +61,12 @@ public class UserSettings {
             return true
         }
     }
-
-    @discardableResult
-    public func increment(_ key: Setting) -> Double {
-        if let value = userDefaults.double(forKey: key.identifier) {
-            userDefaults.set((value + 1), forKey: key.identifier)
-            DispatchQueue.onMainQueue {
-                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-            }
-            return (value + 1)
-        }
-
-        return 0.0
-    }
-
-    @discardableResult
-    public func increment(_ key: Setting) -> Int {
-        let value = userDefaults.integer(forKey: key.identifier) ?? 0
-        userDefaults.set((value + 1), forKey: key.identifier)
-        DispatchQueue.onMainQueue {
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-        }
-        return (value + 1)
-    }
-
-    public func integer(key: Setting) -> Int {
-        guard let value = userDefaults.integer(forKey: key.identifier) else {
-            return 0
-        }
-        
-        return value
-    }
-
-    public func set(value: Int, key: Setting) {
-        userDefaults.set(value, forKey: key.identifier)
-        DispatchQueue.onMainQueue {
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-        }
-    }
-
+    
+    // MARK: Double
+    
     public func double(key: Setting) -> Double {
         guard let value = userDefaults.double(forKey: key.identifier) else {
-            return 0.0
+            return key.defaultValue as? Double ?? 0.0
         }
 
         return value
@@ -110,11 +79,53 @@ public class UserSettings {
         }
     }
     
-    public func string(key: Setting) -> String {
-        if let value = userDefaults.string(forKey: key.identifier) {
-            return value
+    @discardableResult
+    public func increment(_ key: Setting) -> Double {
+        if let value = userDefaults.double(forKey: key.identifier) {
+            userDefaults.set((value + 1), forKey: key.identifier)
+            DispatchQueue.onMainQueue {
+                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            }
+            return (value + 1)
         }
-        return ""
+
+        return 0.0
+    }
+    
+    // MARK: Integer
+    
+    public func integer(key: Setting) -> Int {
+        guard let value = userDefaults.integer(forKey: key.identifier) else {
+            return key.defaultValue as? Int ?? 0
+        }
+        
+        return value
+    }
+
+    public func set(value: Int, key: Setting) {
+        userDefaults.set(value, forKey: key.identifier)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
+    }
+    
+    @discardableResult
+    public func increment(_ key: Setting) -> Int {
+        let value = userDefaults.integer(forKey: key.identifier) ?? 0
+        userDefaults.set((value + 1), forKey: key.identifier)
+        DispatchQueue.onMainQueue {
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
+        return (value + 1)
+    }
+    
+    // MARK: String
+    
+    public func string(key: Setting) -> String {
+        guard let value = userDefaults.string(forKey: key.identifier) else {
+            return key.defaultValue as? String ?? ""
+        }
+        return value
     }
     
     public func set(value: String, key: Setting) {
