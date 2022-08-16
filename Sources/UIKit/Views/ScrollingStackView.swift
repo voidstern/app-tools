@@ -62,20 +62,20 @@ public class ScrollingStackView: UIScrollView {
     func updateContentSize() {
         var height: CGFloat = 0
         for column in 0...(colums.values.reduce(0, { return max($0, $1)}) + 1) {
-            let columnHeight = neededHeight(forViews: arrangedViews.filter({ self.colums[$0] == column }))
+            let columnHeight = neededHeight(forViews: arrangedViews.filter({ self.colums[$0] == column && $0.isHidden == false }))
             height = max(height, columnHeight)
         }
 
-        contentSize = CGSize(width: frame.width, height: height + stackInset.top + stackInset.bottom)
+        contentSize = CGSize(width: frame.width - stackInset.width, height: height)
+        contentInset = stackInset
     }
 
-    func neededHeight(forViews: [UIView]) -> CGFloat {
-        var neededHeight = forViews
-            .filter{ return !$0.isHidden && $0.alpha > 0 }
-            .reduce(0) { return $0 + $1.intrinsicContentSize.height }
+    func neededHeight(forViews views: [UIView]) -> CGFloat {
+        let visibleViews = views.filter{ return !$0.isHidden && $0.alpha > 0 }
+        var neededHeight = visibleViews.reduce(0) { return $0 + $1.intrinsicContentSize.height }
 
-        if forViews.count > 0 {
-            neededHeight += (spacing * CGFloat(arrangedViews.count - 1))
+        if visibleViews.count > 0 {
+            neededHeight += (spacing * CGFloat(visibleViews.count - 1))
         }
 
         return neededHeight + stackInset.top + stackInset.bottom
@@ -95,8 +95,8 @@ public class ScrollingStackView: UIScrollView {
     func layout(views: [UIView], forColumn: Int) {
 
         let numberOfColumns: Int = colums.values.reduce(0, { return max($0, $1)}) + 1
-        let x = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat) + stackInset.left
-        let width = (frame.width / numberOfColumns.cgFloat) - stackInset.left - stackInset.right
+        let x = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat)
+        let width = (frame.width / numberOfColumns.cgFloat) - stackInset.width
 
         var y = stackInset.top
         for view in views {
