@@ -48,8 +48,11 @@ public class PurchaseReminder {
     }
     
     private func triggerPurchaseViewIfNeeded() {
+        guard delegate?.purchaseReminderIsAlreadyPro(self) == false else {
+            return
+        }
+        
         let events: Int = UserSettings.shared.integer(key: .reminderEvents)
-
         let lastRating = UserSettings.shared.double(key: .lastRemindedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 
