@@ -27,7 +27,7 @@ public class UpdateNewsViewController: UIViewController {
     @IBOutlet weak var secondaryButton: UIButton!
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: Bundle.init(for: UpdateNewsViewController.self))
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil ?? .module)
     }
     
     required init?(coder: NSCoder) {

@@ -12,7 +12,7 @@ import UIKit
 internal class UpdateNewsTableCell: UITableViewCell, Cell {
     static let identifier = "UpdateNewsTableCell"
     static let xibName = "UpdateNewsTableCell"
-    static let bundle = Bundle(for: UpdateNewsTableCell.self)
+    static let bundle: Bundle = .module
     
     @IBOutlet weak var entryIcon: UIImageView!
     @IBOutlet weak var entryTitleLabel: UILabel!
