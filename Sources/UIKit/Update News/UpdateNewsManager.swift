@@ -11,15 +11,15 @@ import AppTools
 import UIKit
 
 public class UpdateNewsManager {
-    let elements: [UpdateNewsViewController.ListItem]
-    let colors: UpdateNewsViewController.Colors
-    let configuration: UpdateNewsViewController.Configuration
-    let displayBuildVersion: String
+    private let elements: [UpdateNewsViewController.ListItem]
+    private let colors: UpdateNewsViewController.Colors
+    private let configuration: UpdateNewsViewController.Configuration
+    private let displayBuildVersion: String
     
-    let primaryAction: () -> ()
-    let secondaryAction: () -> ()
+    private let primaryAction: () -> ()
+    private let secondaryAction: () -> ()
     
-    init(elements: [UpdateNewsViewController.ListItem], colors: UpdateNewsViewController.Colors, configuration: UpdateNewsViewController.Configuration, displayBuildVersion: String, primaryAction: @escaping () -> Void, secondaryAction: @escaping () -> Void) {
+    public init(elements: [UpdateNewsViewController.ListItem], colors: UpdateNewsViewController.Colors, configuration: UpdateNewsViewController.Configuration, displayBuildVersion: String, primaryAction: @escaping () -> Void, secondaryAction: @escaping () -> Void) {
         self.elements = elements
         self.colors = colors
         self.configuration = configuration

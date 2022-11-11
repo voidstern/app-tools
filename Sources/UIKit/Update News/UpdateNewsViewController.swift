@@ -54,11 +54,11 @@ public class UpdateNewsViewController: UIViewController {
         tableView.allowsSelection = false
     }
     
-    @IBAction func primaryButtonHit(_ sender: Any) {
+    @IBAction private func primaryButtonHit(_ sender: Any) {
         delegate?.whatsNewViewDidPressPrimaryButton(self)
     }
     
-    @IBAction func secondaryButtonHit(_ sender: Any) {
+    @IBAction private func secondaryButtonHit(_ sender: Any) {
         delegate?.whatsNewViewDidPressSecondaryButton(self)
     }
 }
@@ -96,7 +96,7 @@ extension UpdateNewsViewController: UITableViewDataSource {
 }
 
 extension UpdateNewsViewController {
-    struct ListItem {
+    public struct ListItem {
         let icon: UIImage?
         let title: String
         let description: String
@@ -108,7 +108,7 @@ extension UpdateNewsViewController {
         }
     }
 
-    struct Colors {
+    public struct Colors {
         let foreground: UIColor
         let background: UIColor
         let tint: UIColor
@@ -120,7 +120,7 @@ extension UpdateNewsViewController {
         }
     }
 
-    struct Configuration {
+    public struct Configuration {
         let viewTitle: String
         let primaryButtonTitle: String
         let secondaryButtonTitle: String?
