@@ -100,17 +100,35 @@ extension UpdateNewsViewController {
         let icon: UIImage?
         let title: String
         let description: String
+        
+        public init(icon: UIImage?, title: String, description: String) {
+            self.icon = icon
+            self.title = title
+            self.description = description
+        }
     }
 
     struct Colors {
         let foreground: UIColor
         let background: UIColor
         let tint: UIColor
+        
+        public init(foreground: UIColor, background: UIColor, tint: UIColor) {
+            self.foreground = foreground
+            self.background = background
+            self.tint = tint
+        }
     }
 
     struct Configuration {
         let viewTitle: String
         let primaryButtonTitle: String
         let secondaryButtonTitle: String?
+        
+        public init(viewTitle: String, primaryButtonTitle: String, secondaryButtonTitle: String?) {
+            self.viewTitle = viewTitle
+            self.primaryButtonTitle = primaryButtonTitle
+            self.secondaryButtonTitle = secondaryButtonTitle
+        }
     }
 }
