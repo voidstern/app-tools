@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AppTools
 
 extension UserSettings.Setting {
     public static var installDate: UserSettings.Setting {
