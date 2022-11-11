@@ -26,6 +26,14 @@ public class UpdateNewsViewController: UIViewController {
     @IBOutlet weak var primaryButton: UIButton!
     @IBOutlet weak var secondaryButton: UIButton!
     
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: Bundle.init(for: UpdateNewsViewController.self))
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     public override func viewDidLoad() {
         tableView.register(type: UpdateNewsTableCell.self)
         
