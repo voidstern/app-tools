@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-protocol UpdateNewsViewControllerDelegate: AnyObject {
+public protocol UpdateNewsViewControllerDelegate: AnyObject {
     func whatsNewViewDidPressPrimaryButton(_ whatsNewView: UpdateNewsViewController)
     func whatsNewViewDidPressSecondaryButton(_ whatsNewView: UpdateNewsViewController)
 }
 
-class UpdateNewsViewController: UIViewController {
+public class UpdateNewsViewController: UIViewController {
     weak var delegate: UpdateNewsViewControllerDelegate?
     
     var elements: [ListItem] = []
@@ -26,7 +26,7 @@ class UpdateNewsViewController: UIViewController {
     @IBOutlet weak var primaryButton: UIButton!
     @IBOutlet weak var secondaryButton: UIButton!
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         tableView.register(type: UpdateNewsTableCell.self)
         
         titleLabel.text = configuration.viewTitle
@@ -64,15 +64,15 @@ class UpdateNewsViewController: UIViewController {
 }
 
 extension UpdateNewsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elements.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: UpdateNewsTableCell.identifier, for: indexPath) as? UpdateNewsTableCell else {
             return UITableViewCell()
         }

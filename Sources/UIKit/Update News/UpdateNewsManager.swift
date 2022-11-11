@@ -10,7 +10,7 @@ import Foundation
 import AppTools
 import UIKit
 
-class UpdateNewsManager {
+public class UpdateNewsManager {
     let elements: [UpdateNewsViewController.ListItem]
     let colors: UpdateNewsViewController.Colors
     let configuration: UpdateNewsViewController.Configuration
@@ -60,12 +60,12 @@ class UpdateNewsManager {
 }
 
 extension UpdateNewsManager: UpdateNewsViewControllerDelegate {
-    func whatsNewViewDidPressPrimaryButton(_ whatsNewView: UpdateNewsViewController) {
+    public func whatsNewViewDidPressPrimaryButton(_ whatsNewView: UpdateNewsViewController) {
         primaryAction()
         whatsNewView.dismiss(animated: true)
     }
     
-    func whatsNewViewDidPressSecondaryButton(_ whatsNewView: UpdateNewsViewController) {
+    public func whatsNewViewDidPressSecondaryButton(_ whatsNewView: UpdateNewsViewController) {
         secondaryAction()
         whatsNewView.dismiss(animated: true)
     }

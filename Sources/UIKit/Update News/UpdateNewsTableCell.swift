@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UpdateNewsTableCell: UITableViewCell, Cell {
+internal class UpdateNewsTableCell: UITableViewCell, Cell {
     static let identifier = "UpdateNewsTableCell"
     static let xibName = "UpdateNewsTableCell"
     static let bundle = Bundle(for: UpdateNewsTableCell.self)
