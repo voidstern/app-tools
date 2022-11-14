@@ -29,7 +29,7 @@ public class UpdateNewsManager {
     }
     
     private var currentBuild: String? {
-        return Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
     
     private var installAge: Int {
