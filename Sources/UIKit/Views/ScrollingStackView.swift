@@ -78,7 +78,7 @@ public class ScrollingStackView: UIScrollView {
             neededHeight += (spacing * CGFloat(visibleViews.count - 1))
         }
 
-        return neededHeight + stackInset.top + stackInset.bottom
+        return neededHeight
     }
 
     // Layout Views
@@ -95,10 +95,11 @@ public class ScrollingStackView: UIScrollView {
     func layout(views: [UIView], forColumn: Int) {
 
         let numberOfColumns: Int = colums.values.reduce(0, { return max($0, $1)}) + 1
-        let x = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat)
         let width = (frame.width / numberOfColumns.cgFloat) - stackInset.width
-
-        var y = stackInset.top
+        
+        let x: CGFloat = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat)
+        var y: CGFloat = 0
+        
         for view in views {
             if !view.isHidden && view.alpha > 0 {
                 let height = view.intrinsicContentSize.height
