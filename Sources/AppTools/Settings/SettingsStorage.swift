@@ -16,8 +16,10 @@ public class SettingsStorage {
     private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
     public var appGroupIdentifier: String? {
         didSet {
-            saveFileURL = getSaveFileURL()
-            loadFromDisk()
+            if appGroupIdentifier != oldValue {
+                saveFileURL = getSaveFileURL()
+                loadFromDisk()
+            }
         }
     }
 
