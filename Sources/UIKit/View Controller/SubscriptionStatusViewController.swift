@@ -30,12 +30,14 @@ public class SubscriptionStatusViewController: UIViewController {
         let foregroundColor: UIColor
         let backgroundColor: UIColor
         let backgroundAccentColor: UIColor
+        let titleColor: UIColor
         let tintColor: UIColor
         
-        public init(foregroundColor: UIColor = .label, backgroundColor: UIColor = .systemBackground, backgroundAccentColor: UIColor = .secondarySystemBackground, tintColor: UIColor = .systemBlue) {
+        public init(foregroundColor: UIColor = .label, backgroundColor: UIColor = .systemBackground, backgroundAccentColor: UIColor = .secondarySystemBackground, tintColor: UIColor = .systemBlue, titleColor: UIColor? = nil) {
             self.foregroundColor = foregroundColor
             self.backgroundColor = backgroundColor
             self.backgroundAccentColor = backgroundAccentColor
+            self.titleColor = titleColor ?? foregroundColor
             self.tintColor = tintColor
         }
     }
@@ -115,6 +117,12 @@ public class SubscriptionStatusViewController: UIViewController {
         }))
     }
     
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateTableContent()
+    }
+    
     private func updateTableContent() {
         guard let status = status else {
             return
@@ -142,6 +150,7 @@ public class SubscriptionStatusViewController: UIViewController {
             tableView.backgroundColor = configuration.backgroundAccentColor
             termsTextView.textColor = configuration.foregroundColor
             termsTitle.textColor = configuration.foregroundColor
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: configuration.titleColor]
         }
     }
 }
