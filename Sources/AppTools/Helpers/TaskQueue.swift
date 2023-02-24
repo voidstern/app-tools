@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TaskQueue {
+public class TaskQueue {
     private actor TaskQueueActor {
         private var blocks : [() async -> Void] = []
         private var currentTask : Task<Void,Never>? = nil
