@@ -35,13 +35,11 @@ public class TaskQueue {
         }
     }
     
-    public init() {
-        
-    }
-    
     private let taskQueueActor = TaskQueueActor()
     
-    func dispatch(block: @escaping () async ->Void){
+    public init() { }
+    
+    public func dispatch(block: @escaping () async ->Void){
         Task{
             await taskQueueActor.addBlock(block: block)
         }
