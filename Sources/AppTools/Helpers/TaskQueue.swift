@@ -35,6 +35,10 @@ public class TaskQueue {
         }
     }
     
+    public init() {
+        
+    }
+    
     private let taskQueueActor = TaskQueueActor()
     
     func dispatch(block: @escaping () async ->Void){
