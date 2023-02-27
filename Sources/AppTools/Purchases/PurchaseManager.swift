@@ -9,6 +9,7 @@
 import Foundation
 import StoreKit
 
+@available(iOS 13.0, watchOS 7.0, *)
 final public class PurchaseManager: NSObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     public static let loadedPurchasesNotificationName = Notification.Name("loadedPurchasesNotification")
     public static let purchasedProductNotificationName = Notification.Name("purchasedProductNotificationName")

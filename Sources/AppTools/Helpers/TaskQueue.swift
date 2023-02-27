@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 13.0, watchOS 7.0, *)
 public class TaskQueue {
     private actor TaskQueueActor {
         private var blocks : [() async -> Void] = []
