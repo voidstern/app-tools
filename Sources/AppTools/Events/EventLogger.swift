@@ -74,4 +74,18 @@ extension EventLogger {
     public func updateInstallAge() {
         set(userProperty: String(UserSettings.shared.installAge), name: .installAge)
     }
+    
+    public func trackFirstLaunch() {
+        if !UserSettings.shared.bool(key: .firstLaunch) {
+            log(event: .firstLaunch)
+        }
+    }
+}
+
+extension EventLogger.Event {
+    public static let firstLaunch = EventLogger.Event(eventName: "firstLaunch")
+}
+
+extension UserSettings.Setting {
+    public static let firstLaunch = UserSettings.Setting(identifier: "firstLaunch")
 }
