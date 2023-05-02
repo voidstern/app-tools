@@ -60,13 +60,13 @@ public class ScrollingStackView: UIScrollView {
     // Calculate Height
 
     func updateContentSize() {
-        var height: CGFloat = 0
+        var height: CGFloat = stackInset.top
         for column in 0...(colums.values.reduce(0, { return max($0, $1)}) + 1) {
             let columnHeight = neededHeight(forViews: arrangedViews.filter({ self.colums[$0] == column && $0.isHidden == false }))
             height = max(height, columnHeight)
         }
 
-        contentSize = CGSize(width: frame.width - stackInset.width, height: height)
+        contentSize = CGSize(width: frame.width - stackInset.width, height: height + stackInset.bottom)
         contentInset = stackInset
     }
 
@@ -98,7 +98,7 @@ public class ScrollingStackView: UIScrollView {
         let width = (frame.width / numberOfColumns.cgFloat) - stackInset.width
         
         let x: CGFloat = ((frame.width / numberOfColumns.cgFloat) * forColumn.cgFloat)
-        var y: CGFloat = 0
+        var y: CGFloat = stackInset.top
         
         for view in views {
             if !view.isHidden && view.alpha > 0 {
