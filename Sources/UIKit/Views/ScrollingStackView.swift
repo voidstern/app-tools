@@ -107,7 +107,7 @@ public class ScrollingStackView: UIScrollView {
                 y += height
                 y += spacing
             } else {
-                view.frame = CGRect(x: stackInset.left, y: y, width: width, height: 0)
+                view.frame = CGRect(x: x, y: y, width: width, height: 0)
             }
         }
     }
