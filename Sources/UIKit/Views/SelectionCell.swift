@@ -20,6 +20,9 @@ public class SelectionCell: UITableViewCell, Cell {
     
     public weak var delegate: SelectionCellDelegate?
     
+    @IBOutlet weak var popupButtonLeading: NSLayoutConstraint!
+    @IBOutlet weak var popupButtonTrailing: NSLayoutConstraint!
+    
     @IBOutlet public private(set) weak var iconView: UIImageView!
     @IBOutlet public private(set) weak var popupButton: UIButton!
     @IBOutlet public private(set) weak var label: UILabel!
@@ -41,6 +44,15 @@ public class SelectionCell: UITableViewCell, Cell {
         detailTextLabel?.text = nil
         accessoryType = .none
         imageView?.image = nil
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+#if targetEnvironment(macCatalyst)
+        popupButtonLeading.constant = label.frame.maxX + 8
+        popupButtonTrailing.constant = 8
+#endif
     }
     
     func updateSelectionMenu() {

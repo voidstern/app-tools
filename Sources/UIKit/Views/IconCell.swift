@@ -25,5 +25,10 @@ public final class IconCell: UITableViewCell, Cell {
         detailTextLabel?.text = nil
         accessoryType = .none
         imageView?.image = nil
+        
+#if targetEnvironment(macCatalyst)
+        leftLabel.font = .systemFont(ofSize: 13)
+        rightLabel.font = .systemFont(ofSize: 13)
+#endif
     }
 }
