@@ -12,6 +12,9 @@ public class SettingsStorage {
     
     public static let shared = SettingsStorage()
     private var settings: [String: Any] = [:]
+    
+    private let savingQueue = DispatchQueue(label: "net.voidstern.app-tools.settings-storage")
+    private let accessQueue = DispatchQueue(label: "net.voidstern.app-tools.access")
 
     private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
     public var appGroupIdentifier: String? {
@@ -33,10 +36,12 @@ public class SettingsStorage {
     }
     
     private func saveToDisk() {
-        do {
-            try JSONSerialization.data(withJSONObject: settings, options: JSONSerialization.WritingOptions(rawValue: 0)).write(to: saveFileURL, options: [])
-        } catch {
-            print("Error saving settings file", error.localizedDescription)
+        savingQueue.async {
+            do {
+                try JSONSerialization.data(withJSONObject: self.settings, options: JSONSerialization.WritingOptions(rawValue: 0)).write(to: self.saveFileURL, options: [])
+            } catch {
+                print("Error saving settings file", error.localizedDescription)
+            }
         }
     }
     
@@ -49,81 +54,104 @@ public class SettingsStorage {
             settings = settingsDict
         }
     }
+    
+    private func loadFromDiskIfNeeded() {
+    }
 
     // Mark: Accessors
 
     public func set(_ value: Bool, forKey: String) {
-        if value {
-            settings[forKey] = "YES"
-        } else {
-            settings[forKey] = "NO"
+        accessQueue.async {
+            if value {
+                self.settings[forKey] = "YES"
+            } else {
+                self.settings[forKey] = "NO"
+            }
+            self.saveToDisk()
         }
-        saveToDisk()
     }
 
     public func bool(forKey: String) -> Bool? {
-        loadFromDisk()
-        if let bool = settings[forKey] as? String {
-            return bool == "YES"
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let bool = settings[forKey] as? String {
+                return bool == "YES"
+            }
+            return nil
         }
-        return nil
     }
-
+    
     public func set(_ value: String, forKey: String) {
-        settings[forKey] = value
-        saveToDisk()
+        accessQueue.async {
+            self.settings[forKey] = value
+            self.saveToDisk()
+        }
     }
 
     public func string(forKey: String) -> String? {
-        loadFromDisk()
-        if let value = settings[forKey] as? String {
-            return value
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let value = settings[forKey] as? String {
+                return value
+            }
+            return nil
         }
-        return nil
     }
     
     public func set(_ value: [String], forKey: String) {
-        settings[forKey] = value
-        saveToDisk()
+        accessQueue.async {
+            self.settings[forKey] = value
+            self.saveToDisk()
+        }
     }
     
     public func strings(forKey: String) -> [String]? {
-        loadFromDisk()
-        if let value = settings[forKey] as? [String] {
-            return value
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let value = settings[forKey] as? [String] {
+                return value
+            }
+            return nil
         }
-        return nil
     }
 
     public func set(_ value: Int, forKey: String) {
-        settings[forKey] = String(value);
-        saveToDisk()
+        accessQueue.async {
+            self.settings[forKey] = String(value);
+            self.saveToDisk()
+        }
     }
 
     public func integer(forKey: String) -> Int? {
-        loadFromDisk()
-        if let setting = settings[forKey] as? String {
-            if let int : Int = Int(setting) {
-                return int
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let setting = settings[forKey] as? String {
+                if let int : Int = Int(setting) {
+                    return int
+                }
             }
+            
+            return nil
         }
-        
-        return nil
     }
 
     public func set(_ value: Double, forKey: String) {
-        settings[forKey] = String(value);
-        saveToDisk()
+        accessQueue.async {
+            self.settings[forKey] = String(value);
+            self.saveToDisk()
+        }
     }
 
     public func double(forKey: String) -> Double? {
-        loadFromDisk()
-        if let setting = settings[forKey] as? String {
-            if let double: Double = Double(setting) {
-                return double
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let setting = settings[forKey] as? String {
+                if let double: Double = Double(setting) {
+                    return double
+                }
             }
+            
+            return nil
         }
-
-        return nil
     }
 }
