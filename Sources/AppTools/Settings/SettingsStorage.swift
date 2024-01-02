@@ -43,7 +43,9 @@ public class SettingsStorage {
         
         savingQueue.async {
             do {
-                try JSONSerialization.data(withJSONObject: settings, options: JSONSerialization.WritingOptions(rawValue: 0)).write(to: self.saveFileURL, options: [])
+                try JSONSerialization
+                    .data(withJSONObject: settings, options: [.fragmentsAllowed])
+                    .write(to: self.saveFileURL, options: [])
             } catch {
                 print("Error saving settings file", error.localizedDescription)
             }
@@ -55,7 +57,7 @@ public class SettingsStorage {
             return
         }
 
-        if let settingsDict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String : Any] ?? [:] {
+        if let settingsDict = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed]) as? [String : Any] ?? [:] {
             settings = settingsDict
         }
     }
