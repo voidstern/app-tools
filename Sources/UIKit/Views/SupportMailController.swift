@@ -26,7 +26,7 @@ extension UIDevice {
 
 public final class SupportMailController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
 
-    private static func messageBody(rcid: String?) -> String {
+    public static func messageBody(rcid: String?) -> String {
         let system = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
         let machine = UIDevice.current.machine
         
@@ -38,19 +38,22 @@ public final class SupportMailController: MFMailComposeViewController, MFMailCom
 
         return body
     }
+    
+    public static func subject() -> String {
+        let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
+        let version = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
+        return "\(name) (Build \(version))"
+    }
 
-    static public func create(mailAdress: String, rcid: String?) -> UIViewController? {
+    public static func create(mailAdress: String, rcid: String?) -> UIViewController {
         guard MFMailComposeViewController.canSendMail() else {
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please add an email account in the settings app", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: ""), style: .default, handler: nil))
             return alert
         }
 
-        let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
-        let version = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
-
         let supportMailController = SupportMailController()
-        supportMailController.setSubject("\(name) (Build \(version))")
+        supportMailController.setSubject(subject())
         supportMailController.setMessageBody(messageBody(rcid: rcid), isHTML: false)
         supportMailController.setToRecipients([mailAdress])
         supportMailController.mailComposeDelegate = supportMailController

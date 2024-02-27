@@ -15,11 +15,13 @@ public class TapticFeedback {
     
     var enabled: Bool = true
     
+#if !os(visionOS)
     private let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
     private let impactMedium = UIImpactFeedbackGenerator(style: .medium)
     private let impactLight = UIImpactFeedbackGenerator(style: .light)
     private let selection = UISelectionFeedbackGenerator()
     private let notification = UINotificationFeedbackGenerator()
+#endif
     
     public enum TapticFeedbackType {
         case impactHeavy
@@ -36,6 +38,7 @@ public class TapticFeedback {
             return
         }
         
+    #if !os(visionOS)
         switch type {
         case .impactHeavy:
             impactHeavy.prepare()
@@ -52,6 +55,7 @@ public class TapticFeedback {
         case .notificationError, .notificationWarning, .notificationSuccess:
             notification.prepare()
         }
+#endif
     }
     
     public func trigger(type: TapticFeedbackType) {
@@ -59,6 +63,7 @@ public class TapticFeedback {
             return
         }
         
+    #if !os(visionOS)
         switch type {
         case .impactHeavy:
             impactHeavy.impactOccurred()
@@ -82,5 +87,6 @@ public class TapticFeedback {
             notification.notificationOccurred(.success)
             
         }
+#endif
     }
 }

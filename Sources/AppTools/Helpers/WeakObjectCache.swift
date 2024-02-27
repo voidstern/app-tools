@@ -17,8 +17,8 @@ public class WeakObjectCache<ObjectType: AnyObject> {
         self.maxObjects = maxObjects
     }
     
-    private struct WeakObject<ObjectType: AnyObject> {
-        weak var object: ObjectType?
+    private struct WeakObject<T: AnyObject> {
+        weak var object: T?
     }
     
     @discardableResult

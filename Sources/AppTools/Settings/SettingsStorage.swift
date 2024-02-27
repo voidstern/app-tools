@@ -37,18 +37,29 @@ public class SettingsStorage {
     }
     
     private func saveToDisk() {
-        guard let settings else {
+        let settingsCount = accessQueue.sync {
+            return settings?.count ?? 0
+        }
+        
+        guard settingsCount > 0 else {
+            return
+        }
+        
+        let jsonData = accessQueue.sync {
+            guard let settings = self.settings else {
+                return Optional<Data>.none
+            }
+            
+            return try? JSONSerialization
+                .data(withJSONObject: settings, options: [.fragmentsAllowed])
+        }
+        
+        guard let jsonData else {
             return
         }
         
         savingQueue.async {
-            do {
-                try JSONSerialization
-                    .data(withJSONObject: settings, options: [.fragmentsAllowed])
-                    .write(to: self.saveFileURL, options: [])
-            } catch {
-                print("Error saving settings file", error.localizedDescription)
-            }
+            try? jsonData.write(to: self.saveFileURL, options: [])
         }
     }
     

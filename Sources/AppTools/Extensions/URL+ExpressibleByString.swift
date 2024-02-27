@@ -7,11 +7,11 @@
 
 import Foundation
 
-extension URL: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self = URL(string: value)!
-    }
-}
+//extension URL: ExpressibleByStringLiteral {
+//    public init(stringLiteral value: String) {
+//        self = URL(string: value) ?? URL(string: "http://google.com")
+//    }
+//}
 
 extension URL {
     public func appendingQueryItems(_ queryItems: [URLQueryItem]) -> URL {
