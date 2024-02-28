@@ -70,7 +70,7 @@ public extension URL {
             return nil
         }
         
-        if #available(iOS 16.0, watchOS 9.0, *) {
+        if #available(iOS 16.0, watchOS 9.0, macOS 13.0, *) {
             return deletingLastPathComponent().appending(component: ".\(lastPathComponent).icloud", directoryHint: .checkFileSystem)
         } else {
             return deletingLastPathComponent().appendingPathComponent(".\(lastPathComponent).icloud")
@@ -109,7 +109,7 @@ public extension URL {
         }
         
         let contents: [String] = try FileManager.default.contentsOfDirectory(atPath: path)
-        if #available(iOS 16.0, watchOS 9.0, *) {
+        if #available(iOS 16.0, watchOS 9.0, macOS 13.0, *) {
             return contents.map({ self.appending(component: $0, directoryHint: .checkFileSystem) })
         } else {
             return contents.map({ self.appendingPathComponent($0) })

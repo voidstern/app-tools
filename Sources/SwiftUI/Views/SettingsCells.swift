@@ -9,6 +9,7 @@
 import Foundation
 import AppTools
 import SwiftUI
+import UIKit
 
 public struct BooleanSettingsCell: View {
     let setting: UserSettings.Setting

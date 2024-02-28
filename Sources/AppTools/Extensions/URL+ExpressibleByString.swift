@@ -15,7 +15,7 @@ import Foundation
 
 extension URL {
     public func appendingQueryItems(_ queryItems: [URLQueryItem]) -> URL {
-        if #available(iOS 16.0, watchOS 9.0, *) {
+        if #available(iOS 16.0, watchOS 9.0, macOS 13.0, *) {
             return appending(queryItems: queryItems)
         } else {
             var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
