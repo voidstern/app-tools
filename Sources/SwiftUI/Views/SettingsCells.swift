@@ -237,7 +237,7 @@ public struct OtherAppSettingsCell: View {
     
     public var body: some View {
         Button(action: action, label: {
-            HStack {
+            HStack(spacing: 16) {
                 Image(uiImage: appIcon)
                     .resizable()
                     .scaledToFit()
