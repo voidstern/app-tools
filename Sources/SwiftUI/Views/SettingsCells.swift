@@ -45,6 +45,47 @@ public struct BooleanSettingsCell: View {
     }
 }
 
+public struct StepperSettingsCell: View {
+    @ObservedObject var storage: UserSettings
+    
+    let setting: UserSettings.Setting
+    let image: UIImage?
+    let title: LocalizedStringResource
+    let tint: Color
+    
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: LocalizedStringResource, tint: Color = .accentColor) {
+        self.setting = setting
+        self.storage = storage
+        self.image = image
+        self.title = title
+        self.tint = tint
+    }
+    
+    public var body: some View {
+        HStack {
+            if let image {
+                Image(uiImage: image)
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(tint)
+                    .tint(tint)
+            }
+            
+
+            HStack(spacing: 4) {
+                Text("\(storage.integer(key: setting))")
+                Stepper(String(localized: title), value: binding)
+            }
+        }
+    }
+    
+    private var binding: Binding<Int> {
+        storage.binding(for: setting)
+    }
+}
+
 public struct PickerSettingsCell: View {
     let setting: UserSettings.Setting
     let storage: UserSettings

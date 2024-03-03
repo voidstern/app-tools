@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class SettingsStorage {
+public class SettingsStorage: ObservableObject {
     
     public static let shared = SettingsStorage()
     
-    private var settings: [String: Any]?
+    @Published private var settings: [String: Any]?
     
     private let savingQueue = DispatchQueue(label: "net.voidstern.app-tools.settings-storage")
     private let accessQueue = DispatchQueue(label: "net.voidstern.app-tools.access")

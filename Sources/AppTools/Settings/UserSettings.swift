@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class UserSettings {
+public class UserSettings: ObservableObject {
 
     public static let userSettingsChangedNotificationName = NSNotification.Name(rawValue: "net.voidstern.usersettings.changed")
 
@@ -29,7 +29,7 @@ public class UserSettings {
     // MARK: Boolean
 
     static public let shared = UserSettings()
-	private var userDefaults = SettingsStorage.shared
+    @Published private var userDefaults = SettingsStorage.shared
 
     public func bool(key: Setting) -> Bool {
         guard let value = userDefaults.bool(forKey: key.identifier) else {
