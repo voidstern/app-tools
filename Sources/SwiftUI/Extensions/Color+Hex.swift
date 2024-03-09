@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-public extension Color {
-     init(hex: UInt32, opacity: Double = 1.0) {
+extension Color {
+    public init(hex: UInt32, opacity: Double = 1.0) {
         let red = Double((hex & 0xff0000) >> 16) / 255.0
         let green = Double((hex & 0xff00) >> 8) / 255.0
         let blue = Double((hex & 0xff) >> 0) / 255.0
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 
-    init(hex: String, alpha: CGFloat = 1.0) {
-        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    public init(hex: String, opacity: CGFloat = 1.0) {
+        let hexString: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexString)
 
         if hexString.hasPrefix("#") {

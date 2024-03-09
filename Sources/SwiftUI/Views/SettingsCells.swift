@@ -75,7 +75,7 @@ public struct StepperSettingsCell: View {
 
             HStack(spacing: 4) {
                 Text("\(storage.integer(key: setting))")
-                Stepper(String(localized: title), value: binding)
+                Stepper(title, value: binding)
             }
         }
     }
