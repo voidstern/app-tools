@@ -9,16 +9,15 @@
 import Foundation
 import AppTools
 import SwiftUI
-import UIKit
 
 public struct BooleanSettingsCell: View {
     let setting: UserSettings.Setting
     let storage: UserSettings
     let image: UIImage?
-    let title: LocalizedStringResource
+    let title: String
     let tint: Color
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: LocalizedStringResource, tint: Color = .accentColor) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: String, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
@@ -50,10 +49,10 @@ public struct StepperSettingsCell: View {
     
     let setting: UserSettings.Setting
     let image: UIImage?
-    let title: LocalizedStringResource
+    let title: String
     let tint: Color
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: LocalizedStringResource, tint: Color = .accentColor) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: String, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
@@ -90,11 +89,11 @@ public struct PickerSettingsCell: View {
     let setting: UserSettings.Setting
     let storage: UserSettings
     let image: UIImage?
-    let title: LocalizedStringResource
+    let title: String
     let tint: Color
     let options: [String]
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: LocalizedStringResource, tint: Color = .accentColor, options: [String]) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: UIImage? = nil, title: String, tint: Color = .accentColor, options: [String]) {
         self.setting = setting
         self.storage = storage
         self.image = image
@@ -134,13 +133,13 @@ public struct PickerSettingsCell: View {
 
 public struct ButtonSettingsCell: View {
     let image: UIImage?
-    let title: LocalizedStringResource
+    let title: String
     let tint: Color
     let isWorking: Bool
     
     let action: () -> ()
     
-    public init(image: UIImage?, title: LocalizedStringResource, tint: Color = .accentColor, isWorking: Bool = false, action: @escaping () -> Void) {
+    public init(image: UIImage?, title: String, tint: Color = .accentColor, isWorking: Bool = false, action: @escaping () -> Void) {
         self.image = image
         self.title = title
         self.tint = tint
@@ -179,12 +178,12 @@ public struct ButtonSettingsCell: View {
 
 public struct NavigationSettingsCell<Destination: View>: View {
     let image: UIImage?
-    let title: LocalizedStringResource
+    let title: String
     let tint: Color
     let isWorking: Bool
     let destination: Destination
     
-    public init(image: UIImage?, title: LocalizedStringResource, tint: Color = .accentColor, isWorking: Bool = false, destination: () -> Destination) {
+    public init(image: UIImage?, title: String, tint: Color = .accentColor, isWorking: Bool = false, destination: () -> Destination) {
         self.image = image
         self.title = title
         self.tint = tint
@@ -223,12 +222,12 @@ public struct NavigationSettingsCell<Destination: View>: View {
 
 public struct OtherAppSettingsCell: View {
     let appIcon: UIImage
-    let title: LocalizedStringResource
-    let subtitle: LocalizedStringResource
+    let title: String
+    let subtitle: String
     
     let action: () -> ()
     
-    public init(appIcon: UIImage, title: LocalizedStringResource, subtitle: LocalizedStringResource, action: @escaping () -> Void) {
+    public init(appIcon: UIImage, title: String, subtitle: String, action: @escaping () -> Void) {
         self.appIcon = appIcon
         self.title = title
         self.subtitle = subtitle
