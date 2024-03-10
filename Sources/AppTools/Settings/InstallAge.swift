@@ -15,7 +15,8 @@ extension UserSettings.Setting {
 }
 
 extension UserSettings {
-    private func setFirstInstallIfNeeded() -> Date {
+    @discardableResult
+    public func setFirstInstallIfNeeded() -> Date {
         let timestamp = self.double(key: .installDate) as TimeInterval
 
         if timestamp > 0 {
