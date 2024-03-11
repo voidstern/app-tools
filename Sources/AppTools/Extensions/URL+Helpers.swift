@@ -35,14 +35,3 @@ public extension URL {
         return attributes?[.creationDate] as? Date
     }
 }
-
-public extension URL {
-    func open() {
-#if canImport(UIKit)
-        UIApplication.shared.open(self)
-#else
-        NSWorkspace.shared.open(self)
-#endif
-
-    }
-}
