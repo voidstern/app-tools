@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+
+#if canImport(UIKit)
 import UIKit
 
 public func SwiftUIWindows() -> [UIWindow] {
@@ -25,3 +27,4 @@ extension UIWindow {
         return topViewController
     }
 }
+#endif
