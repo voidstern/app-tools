@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AppTools
 import SwiftUI
 
 public struct BooleanSettingsCell: View {

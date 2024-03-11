@@ -17,10 +17,7 @@ let package = Package(
             targets: ["AppTools"]),
         .library(
             name: "AppToolsUI",
-            targets: ["AppTools", "AppToolsUI"]),
-        .library(
-            name: "AppToolsSwiftUI",
-            targets: ["AppTools", "AppToolsSwiftUI"]),
+            targets: ["AppTools", "AppToolsUI"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -36,10 +33,6 @@ let package = Package(
         .target(
             name: "AppToolsUI",
             dependencies: ["AppTools"],
-            path: "Sources/UIKit"),
-        .target(
-            name: "AppToolsSwiftUI",
-            dependencies: ["AppTools"],
-            path: "Sources/SwiftUI")
+            path: "Sources/UIKit")
     ]
 )

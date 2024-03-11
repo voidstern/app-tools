@@ -9,12 +9,10 @@
 import Foundation
 import CloudKit
 
-@available(iOS 12.0, *)
 public protocol CloudKitHelperDelegate: AnyObject {
     func cloudKitHelper(_ helper: CloudKitHelper, didEncounter error: Error)
 }
 
-@available(iOS 12.0, *)
 public class CloudKitHelper {
     public let database: CKDatabase
     public weak var delegate: CloudKitHelperDelegate?

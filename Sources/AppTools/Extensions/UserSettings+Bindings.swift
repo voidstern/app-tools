@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AppTools
 import SwiftUI
 
 extension UserSettings {
