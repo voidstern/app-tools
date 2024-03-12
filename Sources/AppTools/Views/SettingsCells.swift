@@ -172,6 +172,7 @@ public struct ButtonSettingsCell: View {
                 }
             }
         })
+        .buttonStyle(.plain)
     }
 }
 
@@ -216,6 +217,7 @@ public struct NavigationSettingsCell<Destination: View>: View {
                 }
             }
         }
+        .buttonStyle(.plain)
     }
 }
 
@@ -252,7 +254,10 @@ public struct OtherAppSettingsCell: View {
                         .foregroundStyle(.primary)
                         .tint(.primary)
                 }
+                
+                Spacer()
             }
         })
+        .buttonStyle(.plain)
     }
 }
