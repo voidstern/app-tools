@@ -12,7 +12,7 @@ public class UserSettings: ObservableObject {
 
     public static let userSettingsChangedNotificationName = NSNotification.Name(rawValue: "net.voidstern.usersettings.changed")
 
-    open class Setting: Equatable {
+    open class Setting: Equatable, Hashable {
         public let identifier: String
         public let defaultValue: Any?
         
@@ -24,6 +24,10 @@ public class UserSettings: ObservableObject {
         public static func == (lhs: Setting, rhs: Setting) -> Bool {
             return lhs.identifier == rhs.identifier
         }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(identifier)
+        }
     }
     
     // MARK: Boolean
@@ -31,9 +35,9 @@ public class UserSettings: ObservableObject {
     static public let shared = UserSettings()
     private var userDefaults = SettingsStorage.shared
 
-    public func bool(key: Setting) -> Bool {
+    public func bool(key: Setting, defaultValue: Bool = false) -> Bool {
         guard let value = userDefaults.bool(forKey: key.identifier) else {
-            return key.defaultValue as? Bool ?? false
+            return key.defaultValue as? Bool ?? key.defaultValue as? Bool ?? defaultValue
         }
 		return value
     }
@@ -68,9 +72,9 @@ public class UserSettings: ObservableObject {
     
     // MARK: Double
     
-    public func double(key: Setting) -> Double {
+    public func double(key: Setting, defaultValue: Double = 0.0) -> Double {
         guard let value = userDefaults.double(forKey: key.identifier) else {
-            return key.defaultValue as? Double ?? 0.0
+            return key.defaultValue as? Double ?? key.defaultValue as? Double ?? defaultValue
         }
 
         return value
@@ -102,9 +106,9 @@ public class UserSettings: ObservableObject {
     
     // MARK: Integer
     
-    public func integer(key: Setting) -> Int {
+    public func integer(key: Setting, defaultValue: Int = 0) -> Int {
         guard let value = userDefaults.integer(forKey: key.identifier) else {
-            return key.defaultValue as? Int ?? 0
+            return key.defaultValue as? Int ?? key.defaultValue as? Int ?? defaultValue
         }
         
         return value
@@ -133,9 +137,9 @@ public class UserSettings: ObservableObject {
     
     // MARK: String
     
-    public func string(key: Setting) -> String {
+    public func string(key: Setting, defaultValue: String = "") -> String {
         guard let value = userDefaults.string(forKey: key.identifier) else {
-            return key.defaultValue as? String ?? ""
+            return key.defaultValue as? String ?? key.defaultValue as? String ?? defaultValue
         }
         return value
     }
@@ -149,12 +153,12 @@ public class UserSettings: ObservableObject {
         }
     }
     
-    public func strings(key: Setting) -> [String]? {
+    public func strings(key: Setting, defaultValue: [String] = []) -> [String] {
         guard let value = userDefaults.strings(forKey: key.identifier) else {
             return []
         }
         
-        return value
+        return value ?? key.defaultValue as? [String] ?? defaultValue
     }
     
     public func set(strings: [String], key: Setting) {

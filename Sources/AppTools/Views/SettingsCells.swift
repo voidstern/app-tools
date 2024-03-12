@@ -85,8 +85,9 @@ public struct StepperSettingsCell: View {
 }
 
 public struct PickerSettingsCell: View {
+    @ObservedObject var storage: UserSettings
+    
     let setting: UserSettings.Setting
-    let storage: UserSettings
     let image: Image?
     let title: String
     let tint: Color
