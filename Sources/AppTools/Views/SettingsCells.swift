@@ -40,6 +40,9 @@ public struct BooleanSettingsCell: View {
                 Text(title)
             })
         }
+#if os(macOS)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
 }
 
@@ -77,6 +80,9 @@ public struct StepperSettingsCell: View {
                 Stepper(title, value: binding)
             }
         }
+#if os(macOS)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
     
     private var binding: Binding<Int> {
@@ -124,6 +130,9 @@ public struct PickerSettingsCell: View {
             }
 
         }
+#if os(macOS)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
     
     var binding: Binding<Int> {
@@ -173,7 +182,10 @@ public struct ButtonSettingsCell: View {
                 }
             }
         })
+#if os(macOS)
         .buttonStyle(.plain)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
 }
 
@@ -218,7 +230,10 @@ public struct NavigationSettingsCell<Destination: View>: View {
                 }
             }
         }
+#if os(macOS)
         .buttonStyle(.plain)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
 }
 
@@ -259,6 +274,9 @@ public struct OtherAppSettingsCell: View {
                 Spacer()
             }
         })
+#if os(macOS)
         .buttonStyle(.plain)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
     }
 }
