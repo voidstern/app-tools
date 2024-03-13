@@ -11,7 +11,7 @@ import MessageUI
 import AppTools
 
 public final class SupportMailController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
-    let supportMailContent = SupportMailContent()
+    static let supportMailContent = SupportMailContent()
 
     public static func create(mailAdress: String, rcid: String?) -> UIViewController {
         guard MFMailComposeViewController.canSendMail() else {
