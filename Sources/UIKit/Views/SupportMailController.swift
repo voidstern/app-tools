@@ -8,42 +8,10 @@
 
 import Foundation
 import MessageUI
-
-extension UIDevice {
-    var machine: String {
-
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let modelCode = withUnsafePointer(to: &systemInfo.machine) {
-            $0.withMemoryRebound(to: CChar.self, capacity: 1) {
-                ptr in String.init(validatingUTF8: ptr)
-            }
-        }
-
-        return modelCode ?? UIDevice.current.model
-    }
-}
+import AppTools
 
 public final class SupportMailController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
-
-    public static func messageBody(rcid: String?) -> String {
-        let system = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
-        let machine = UIDevice.current.machine
-        
-        var body = "\n\n\nSystem: \(system)\nDevice: \(machine)"
-        
-        if let rcid = rcid {
-            body.append(contentsOf: "\nRCID: \(rcid)")
-        }
-
-        return body
-    }
-    
-    public static func subject() -> String {
-        let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
-        let version = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
-        return "\(name) (Build \(version))"
-    }
+    let supportMailContent = SupportMailContent()
 
     public static func create(mailAdress: String, rcid: String?) -> UIViewController {
         guard MFMailComposeViewController.canSendMail() else {
@@ -53,8 +21,8 @@ public final class SupportMailController: MFMailComposeViewController, MFMailCom
         }
 
         let supportMailController = SupportMailController()
-        supportMailController.setSubject(subject())
-        supportMailController.setMessageBody(messageBody(rcid: rcid), isHTML: false)
+        supportMailController.setSubject(supportMailContent.subject())
+        supportMailController.setMessageBody(supportMailContent.messageBody(rcid: rcid), isHTML: false)
         supportMailController.setToRecipients([mailAdress])
         supportMailController.mailComposeDelegate = supportMailController
 
