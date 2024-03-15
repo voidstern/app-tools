@@ -120,3 +120,17 @@ extension CalendarColor: Identifiable {
         return rawValue
     }
 }
+
+extension CalendarColor: Comparable {
+    public static func < (lhs: CalendarColor, rhs: CalendarColor) -> Bool {
+        guard let lhsIndex = Self.allCases.firstIndex(of: lhs) else {
+            return true
+        }
+        
+        guard let rhsIndex = self.allCases.firstIndex(of: rhs) else {
+            return false
+        }
+        
+        return lhsIndex > rhsIndex
+    }
+}
