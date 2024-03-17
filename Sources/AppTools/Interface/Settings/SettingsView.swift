@@ -67,19 +67,19 @@ public struct SettingsView<Content: View>: View {
                     SupportMailContent().emailURL(email: supportMail, rcid: subscriptionManager.rcid)?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("TwitterIcon"), title: "Twitter") {
+                ButtonSettingsCell(image: Image("TwitterIcon", bundle: .module), title: "Twitter") {
                     URL(string: "https://twitter.com/voidstern")?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("MastodonIcon"), title: "Mastodon") {
+                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module, title: "Mastodon") {
                     URL(string: "http://graz.social/web/@voidstern")?.open()
                 }
             }
             
             Section {
-                OtherAppSettingsCell(appIcon: Image("FieryFeeds"), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers, action: showFieryFeeds)
-                OtherAppSettingsCell(appIcon: Image("TidurTimers"), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore, action: showTidur)
-                OtherAppSettingsCell(appIcon: Image("Dozzzer"), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds, action: showDozzzer)
+                OtherAppSettingsCell(appIcon: Image("FieryFeeds", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers, action: showFieryFeeds)
+                OtherAppSettingsCell(appIcon: Image("TidurTimers", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore, action: showTidur)
+                OtherAppSettingsCell(appIcon: Image("Dozzzer", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds, action: showDozzzer)
             } header: { Text(L10n.otherApps) } footer: { footerView }
         }
     }
