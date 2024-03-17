@@ -1,0 +1,5 @@
+strings:
+  inputs: "Sources/AppTools/Resources/en.lproj/Localizable.strings"
+  outputs:
+    - templateName: flat-swift4
+      output: "Sources/AppTools/Resources/Localizable.swift"
