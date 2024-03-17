@@ -29,20 +29,28 @@ internal enum L10n {
   internal static func year(_ p1: Any) -> String {
     return L10n.tr("Localizable", "%@/year", String(describing: p1), fallback: "%@/year")
   }
+  /// A news reader for power users
+  internal static let aNewsReaderForPowerUsers = L10n.tr("Localizable", "A news reader for power users", fallback: "A news reader for power users")
   /// Bi-Monthly
   internal static let biMonthly = L10n.tr("Localizable", "Bi-Monthly", fallback: "Bi-Monthly")
   /// Cancel
   internal static let cancel = L10n.tr("Localizable", "Cancel", fallback: "Cancel")
+  /// Contact
+  internal static let contact = L10n.tr("Localizable", "Contact", fallback: "Contact")
   /// Continue
   internal static let `continue` = L10n.tr("Localizable", "Continue", fallback: "Continue")
   /// Done
   internal static let done = L10n.tr("Localizable", "Done", fallback: "Done")
   /// Dozzzer: Sleep Sounds
   internal static let dozzzerSleepSounds = L10n.tr("Localizable", "Dozzzer: Sleep Sounds", fallback: "Dozzzer: Sleep Sounds")
+  /// Email
+  internal static let email = L10n.tr("Localizable", "Email", fallback: "Email")
   /// End Date
   internal static let endDate = L10n.tr("Localizable", "End Date", fallback: "End Date")
   /// Fall asleep to music & sounds
   internal static let fallAsleepToMusicSounds = L10n.tr("Localizable", "Fall asleep to music & sounds", fallback: "Fall asleep to music & sounds")
+  /// Fiery Feeds: RSS Reader
+  internal static let fieryFeedsRSSReader = L10n.tr("Localizable", "Fiery Feeds: RSS Reader", fallback: "Fiery Feeds: RSS Reader")
   /// HIIT, Pomodoro and more
   internal static let hiitPomodoroAndMore = L10n.tr("Localizable", "HIIT, Pomodoro and more", fallback: "HIIT, Pomodoro and more")
   /// Manage Subscription
