@@ -209,7 +209,7 @@ public struct PurchaseView: View {
     
     private func restorePurchases() {
         subscriptionManager.restorePurchases {
-            if subscriptionManager.subscription != .free {
+            if subscriptionManager.subscription != nil {
                 (onClose ?? dismiss.callAsFunction)()
             }
         }
@@ -217,7 +217,7 @@ public struct PurchaseView: View {
     
     private func purchaseSubscription() {
         subscriptionManager.purchase(subscription: subscription) {
-            if subscriptionManager.subscription != .free {
+            if subscriptionManager.subscription != nil {
                 (onClose ?? dismiss.callAsFunction)()
             }
         }
