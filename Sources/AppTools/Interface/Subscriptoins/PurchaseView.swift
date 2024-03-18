@@ -65,6 +65,7 @@ public struct PurchaseView: View {
         if subscriptionManager.isRestoring {
             ProgressView()
                 .progressViewStyle(.circular)
+                .frame(width: 22, height: 22, alignment: .center)
         } else {
             Button(action: restorePurchases, label: {
                 Text(L10n.restore)
@@ -93,6 +94,7 @@ public struct PurchaseView: View {
                 
                 closeButton
             }
+            .frame(height: 44)
             .padding()
 #endif
             Image("FocusedPro")

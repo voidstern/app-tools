@@ -71,7 +71,7 @@ public struct SettingsView<Content: View>: View {
                     URL(string: "https://twitter.com/voidstern")?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module, title: "Mastodon") {
+                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module), title: "Mastodon") {
                     URL(string: "http://graz.social/web/@voidstern")?.open()
                 }
             }
