@@ -62,7 +62,9 @@ public class SubscriptionManager: ObservableObject {
     }
     
     private func updateSubscriptionLevel() {
-#if !DEBUG
+#if DEBUG
+        subscription = self.subscriptions.filter({ !$0.isFree }).first ?? .free
+#else
         if let purchaserInfo = purchaserInfo {
             if purchaserInfo.entitlements.active.keys.contains(SubscriptionManager.proEntitlementId) {
                 subscription = .pro
