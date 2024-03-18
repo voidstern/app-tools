@@ -30,7 +30,7 @@ public struct PurchaseView: View {
     public var body: some View {
         content
             .navigationBarBackButtonHidden(true)
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
             .sheet(item: $presentedURL) { url in
                 SafariWebView(url: url)
                     .ignoresSafeArea()
@@ -45,7 +45,7 @@ public struct PurchaseView: View {
                     subscriptionPrice = product.localizedPriceString
                 }
             }
-#if !os(macOS)
+#if !os(macOS) && !os(watchOS)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     restoreButton

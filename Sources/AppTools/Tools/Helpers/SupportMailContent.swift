@@ -7,7 +7,11 @@
 
 import Foundation
 
-#if canImport(UIKit)
+#if canImport(WatchKit)
+import WatchKit
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 extension UIDevice {
@@ -61,6 +65,17 @@ public class SupportMailContent {
         if let machine = getMacModel() {
             body.append(contentsOf: "\nDevice: \(machine)")
         }
+        
+        if let rcid = rcid {
+            body.append(contentsOf: "\nRCID: \(rcid)")
+        }
+        
+        return body
+#elseif os(watchOS)
+        let system = "\(WKInterfaceDevice.current().systemName) \(WKInterfaceDevice.current().systemVersion)"
+        let machine = WKInterfaceDevice.current().model
+        
+        var body = "\n\n\nSystem: \(system)\nDevice: \(machine)"
         
         if let rcid = rcid {
             body.append(contentsOf: "\nRCID: \(rcid)")

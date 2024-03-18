@@ -17,7 +17,9 @@ import AppKit
 
 public extension URL {
     func open() {
-#if canImport(UIKit)
+#if os(watchOS)
+        // Nothing
+#elseif canImport(UIKit)
         UIApplication.shared.open(self)
 #else
         NSWorkspace.shared.open(self)

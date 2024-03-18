@@ -38,6 +38,10 @@ public class SubscriptionManager: ObservableObject {
         return Purchases.shared.appUserID
     }
     
+    public var subscriptionLevel: SubscriptionLevel {
+        return self.subscription.level
+    }
+    
     public var levels: [SubscriptionLevel] {
         return subscriptions.map(\.level)
     }
