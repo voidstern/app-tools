@@ -131,7 +131,8 @@ public struct SettingsView<Content: View>: View {
             Image(systemSymbol: .staroflifeCircleFill)
                 .onTapGesture { URL(string: "https://voidstern.net/")?.open() }
                 .font(.system(size: 32))
-                .foregroundStyle(.background)
+                .foregroundStyle(.gray)
+                .opacity(0.4)
                 .padding(.top, 32)
         }
     }

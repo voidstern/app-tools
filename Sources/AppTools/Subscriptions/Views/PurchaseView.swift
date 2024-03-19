@@ -29,6 +29,7 @@ public struct PurchaseView: View {
     
     public var body: some View {
         content
+            .environment(\.colorScheme, .dark)
             .navigationBarBackButtonHidden(true)
 #if canImport(UIKit) && !os(watchOS)
             .sheet(item: $presentedURL) { url in

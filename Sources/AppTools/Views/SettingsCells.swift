@@ -9,9 +9,10 @@
 import Foundation
 import SwiftUI
 
-public struct BooleanSettingsCell: View {
+public struct ToggleSettingsCell: View {
+    @ObservedObject var storage: UserSettings
+    
     let setting: UserSettings.Setting
-    let storage: UserSettings
     let image: Image?
     let title: String
     let tint: Color
@@ -36,13 +37,17 @@ public struct BooleanSettingsCell: View {
                     .tint(tint)
             }
             
-            Toggle(isOn: storage.binding(for: setting), label: {
+            Toggle(isOn: binding, label: {
                 Text(title)
             })
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
 #endif
+    }
+    
+    private var binding: Binding<Bool> {
+        storage.binding(for: setting)
     }
 }
 
@@ -128,6 +133,7 @@ public struct PickerSettingsCell: View {
             } label: {
                 Text(title)
             }
+            .tint(.secondary)
 
         }
 #if os(macOS)
