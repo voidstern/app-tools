@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if !os(watchOS)
+#if canImport(UIKit)
 ///https://stackoverflow.com/questions/67502138/select-all-text-in-textfield-upon-click-swiftui
 public struct SelectAllTextOnBeginEditingModifier: ViewModifier {
     public func body(content: Content) -> some View {
@@ -26,7 +26,7 @@ public struct SelectAllTextOnBeginEditingModifier: ViewModifier {
 #endif
 
 extension View {
-#if !os(watchOS)
+#if canImport(UIKit)
     public func selectAllTextOnBeginEditing() -> some View {
         modifier(SelectAllTextOnBeginEditingModifier())
     }

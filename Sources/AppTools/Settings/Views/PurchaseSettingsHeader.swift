@@ -61,7 +61,7 @@ public struct PurchaseSettingsGetProHeader: View {
                 Color.clear
                     .frame(height: 16)
                 
-                if #available(iOS 17.0, watchOS 10.0, *) {
+                if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
                     Color.clear.background(.background.secondary)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .ignoresSafeArea(.all, edges: .horizontal)
