@@ -17,13 +17,11 @@ public struct PurchaseView: View {
     @State var subscriptionPrice: String = "-,--"
     @State var presentedURL: URL?
     
-    let subscription: SubscriptionManager.Subscription
-    let features: [Feature]
+    let upgradeContext: UpgradeContext
     let onClose: (() -> ())?
     
-    public init(_ subscription: SubscriptionManager.Subscription, features: [Feature], onClose: (() -> Void)? = nil) {
-        self.subscription = subscription
-        self.features = features
+    public init(_ upgradeContext: UpgradeContext, onClose: (() -> Void)? = nil) {
+        self.upgradeContext = upgradeContext
         self.onClose = onClose
     }
     
@@ -42,7 +40,7 @@ public struct PurchaseView: View {
                     closeButtonVisible = true
                 }
                 
-                subscriptionManager.getProduct(for: subscription) { product in
+                subscriptionManager.getProduct(for: upgradeContext.subscription) { product in
                     subscriptionPrice = product.localizedPriceString
                 }
             }
@@ -98,23 +96,26 @@ public struct PurchaseView: View {
             .frame(height: 44)
             .padding()
 #endif
-            Image("FocusedPro")
+            upgradeContext.proLogo
                 .padding(.top, 32)
             
             Spacer()
             
             VStack(alignment: .leading, spacing: 16) {
-                
-                ForEach (features) { feature in
-                    
+                ForEach (upgradeContext.features) { feature in
                     HStack {
                         Image(systemSymbol: feature.symbol)
+                            .symbolRenderingMode(.hierarchical)
                             .foregroundStyle(Color.accentColor)
                         Text(feature.title)
+                            .lineLimit(2)
+                        
+                        Spacer()
                     }
-                    .frame(maxWidth: .infinity)
+                    .padding(6)
                 }
             }
+            .fixedSize()
             
             Spacer()
             
@@ -128,6 +129,7 @@ public struct PurchaseView: View {
                         continueLabel
                     })
                     .padding(.horizontal, 32)
+                    .padding(.bottom, 4)
                     .buttonStyle(.plain)
                     
                     Text(subscriptionTerms)
@@ -146,27 +148,34 @@ public struct PurchaseView: View {
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
 #if !os(macOS)
+                            .minimumScaleFactor(0.5)
                             .opacity(0.3)
 #endif
                     })
                     .foregroundStyle(.foreground)
+                    .minimumScaleFactor(0.5)
                     
                     Button(action: showPrivacyPolicy, label: {
                         Text(L10n.privacyPolicy)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
 #if !os(macOS)
+                            .minimumScaleFactor(0.5)
                             .opacity(0.3)
 #endif
                     })
                     .foregroundStyle(.foreground)
+                    .minimumScaleFactor(0.5)
                 }
                 .padding(.bottom, 16)
+                .padding(.horizontal, 32)
             }
         }
     }
     
     var subscriptionTerms: String {
+        let subscription = upgradeContext.subscription
+        
         switch (subscription.type, subscription.hasTrial) {
         case (.yearly, true):
             return L10n.daysFreeThenYear(subscription.trialDuration, subscriptionPrice)
@@ -221,7 +230,7 @@ public struct PurchaseView: View {
     }
     
     private func purchaseSubscription() {
-        subscriptionManager.purchase(subscription: subscription) {
+        subscriptionManager.purchase(subscription: upgradeContext.subscription) {
             if subscriptionManager.subscription != nil {
                 (onClose ?? dismiss.callAsFunction)()
             }

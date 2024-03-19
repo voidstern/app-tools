@@ -19,7 +19,7 @@ public struct PurchaseSettingsGetProHeader: View {
     public var body: some View {
         ZStack {
             NavigationLink {
-                PurchaseView(upgradeContext.subscription, features: upgradeContext.features)
+                PurchaseView(upgradeContext)
             } label: {
                 EmptyView()
             }
@@ -35,7 +35,7 @@ public struct PurchaseSettingsGetProHeader: View {
         VStack(alignment: .center) {
             upgradeContext.proLogo
             
-            Text(upgradeContext.subtitle)
+            Text(upgradeContext.featureString())
                 .lineLimit(2)
                 .font(.system(size: 13))
                 .padding(.horizontal)
