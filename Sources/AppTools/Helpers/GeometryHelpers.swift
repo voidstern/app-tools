@@ -7,34 +7,34 @@
 
 import Foundation
 
-struct CGLine {
+public struct CGLine {
     let start: CGPoint
     let end: CGPoint
 }
 
-struct CGCircle {
+public struct CGCircle {
     let center: CGPoint
     let radius: CGFloat
 }
 
-struct CGEllipse {
+public struct CGEllipse {
     let center: CGPoint
     let radiusX: CGFloat
     let radiusY: CGFloat
 }
 
 extension CGFloat {
-    var degrees: Double {
+    public var degrees: Double {
         return self * 180 / Double.pi
     }
     
-    var radians: Double {
+    public var radians: Double {
         return self * Double.pi / 180
     }
 }
 
 extension CGPoint {
-    func rotated(around center: CGPoint, by degrees: CGFloat) -> CGPoint {
+    public func rotated(around center: CGPoint, by degrees: CGFloat) -> CGPoint {
         let s: CGFloat = CGFloat(sin(degrees.radians))
         let c: CGFloat = CGFloat(cos(degrees.radians))
         
@@ -44,11 +44,11 @@ extension CGPoint {
         return CGPoint(x: rotatedPoint.x + center.x, y: rotatedPoint.y + center.y)
     }
     
-    func distance(to point: CGPoint) -> CGFloat {
+    public func distance(to point: CGPoint) -> CGFloat {
         return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
     }
     
-    func distance(to rect: CGRect) -> CGFloat {
+    public func distance(to rect: CGRect) -> CGFloat {
         let dx: CGFloat
         let dy: CGFloat
         
@@ -71,7 +71,7 @@ extension CGPoint {
         return sqrt(pow(dx, 2) + pow(dy, 2))
     }
     
-    func angle(to point: CGPoint) -> CGFloat {
+    public func angle(to point: CGPoint) -> CGFloat {
         let originX = point.x - x
         let originY = point.y - y
         let bearingRadians = atan2f(Float(originY), Float(originX))
@@ -84,7 +84,7 @@ extension CGPoint {
         return bearingDegrees
     }
     
-    func distance(to line: CGLine) -> CGFloat {
+    public func distance(to line: CGLine) -> CGFloat {
         let x0 = x
         let y0 = y
         let x1 = line.start.x
@@ -97,18 +97,18 @@ extension CGPoint {
         return t / b
     }
     
-    func distance(to circle: CGCircle) -> CGFloat {
+    public func distance(to circle: CGCircle) -> CGFloat {
         let dc = circle.center.distance(to: self)
         return abs(dc - circle.radius)
     }
     
-    func distance(to ellipse: CGEllipse) -> CGFloat {
+    public func distance(to ellipse: CGEllipse) -> CGFloat {
         let closestPoint = ellipse.closestPoint(to: self)
         let distance = closestPoint.distance(to: self)
         return distance
     }
     
-    func degrees(to point: CGPoint) -> CGFloat {
+    public func degrees(to point: CGPoint) -> CGFloat {
         let center = CGPoint(x: point.x - x, y: point.y - y)
         let radians = atan2(center.y, center.x)
         let degrees = radians * 180 / .pi
@@ -117,48 +117,48 @@ extension CGPoint {
 }
 
 extension CGRect {
-    var center: CGPoint {
+    public var center: CGPoint {
         return CGPoint(x: midX, y: midY)
     }
     
-    func totalStrokeLength() -> CGFloat {
+    public func totalStrokeLength() -> CGFloat {
         return ((maxX - minX) * 2) + ((maxY - minY) * 2)
     }
     
-    func fittedCircle() -> CGCircle {
+    public func fittedCircle() -> CGCircle {
         return CGCircle(center: center, radius: min(height / 2, width / 2))
     }
     
-    func fittedEllipse() -> CGEllipse {
+    public func fittedEllipse() -> CGEllipse {
         return CGEllipse(center: center, radiusX: width / 2, radiusY: height / 2)
     }
     
-    func averageSquare() -> CGRect {
+    public func averageSquare() -> CGRect {
         let size = (width + height) / 2
         return CGRect(x: midX - (size / 2), y: midY - (size / 2), width: size, height: size)
     }
 }
 
 extension CGLine {
-    func totalStrokeLength() -> CGFloat {
+    public func totalStrokeLength() -> CGFloat {
         return start.distance(to: end)
     }
 }
 
 extension CGCircle {
-    func totalStrokeLength() -> CGFloat {
+    public func totalStrokeLength() -> CGFloat {
         return 2 * radius * .pi
     }
 }
 
 extension CGEllipse {
-    func totalStrokeLength() -> CGFloat {
+    public func totalStrokeLength() -> CGFloat {
         // Ramanujan approximation
         return (Double.pi * (radiusX + radiusY)) - sqrt(((3 * radiusX) + radiusY) + (radiusX + (3 * radiusY)))
     }
     
     // From http://wwwf.imperial.ac.uk/~rn/distance2ellipse.pdf
-    func closestPoint(to p: CGPoint, maxIterations: Int = 10) -> CGPoint {
+    public func closestPoint(to p: CGPoint, maxIterations: Int = 10) -> CGPoint {
         
         let eps = CGFloat(0.1 / max(radiusX, radiusY))
         let p1 = CGPoint(x: p.x - center.x, y: p.y - center.y)
