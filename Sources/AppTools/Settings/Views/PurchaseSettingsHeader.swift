@@ -19,7 +19,7 @@ public struct PurchaseSettingsGetProHeader: View {
     public var body: some View {
         ZStack {
             NavigationLink {
-                PurchaseView(upgradeContext.subscription, features: upgradeContext.features)
+                PurchaseView(upgradeContext)
             } label: {
                 EmptyView()
             }
@@ -35,11 +35,12 @@ public struct PurchaseSettingsGetProHeader: View {
         VStack(alignment: .center) {
             upgradeContext.proLogo
             
-            Text(upgradeContext.subtitle)
-                .lineLimit(2)
+            Text(upgradeContext.featureString(separator: "\n"))
+                .lineLimit(5)
                 .font(.system(size: 13))
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
                 .opacity(0.5)
             
             Text("\(Image(systemSymbol: .arrowUpCircleFill)) \(L10n.upgradeNow)")
@@ -49,9 +50,31 @@ public struct PurchaseSettingsGetProHeader: View {
                 .background {
                     Color.accentColor
                         .opacity(0.7)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: 22))
                 }
                 .padding(.top, 12)
+                .shadow(color: .accentColor.opacity(0.5), radius: 10, x: 0, y: 2)
+                .padding(.bottom, 8)
+        }
+        .background {
+            VStack {
+                Color.clear
+                    .frame(height: 16)
+                
+                if #available(iOS 17.0, *) {
+                    Color.clear.background(.background.secondary)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .ignoresSafeArea(.all, edges: .horizontal)
+                } else {
+                    Color.clear.background(Color.gray.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .ignoresSafeArea(.all, edges: .horizontal)
+                }
+                
+                Color.clear
+                    .frame(height: 16)
+            }
+            .ignoresSafeArea(.all, edges: .horizontal)
         }
         .frame(maxWidth: .infinity)
     }

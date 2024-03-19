@@ -44,6 +44,8 @@ public class UserSettings: ObservableObject {
 
     public func set(value: Bool, key: Setting) {
         userDefaults.set(value, forKey: key.identifier)
+        self.objectWillChange.send()
+        
         DispatchQueue.onMainQueue {
             NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
         }

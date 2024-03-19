@@ -10,15 +10,17 @@ import SwiftUI
 
 public struct UpgradeContext {
     let proLogo: Image
-    let subtitle: String
     
     let subscription: SubscriptionManager.Subscription
     let features: [PurchaseView.Feature]
     
-    public init(proLogo: Image, subtitle: String, subscription: SubscriptionManager.Subscription, features: [PurchaseView.Feature]) {
+    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, features: [PurchaseView.Feature]) {
         self.proLogo = proLogo
-        self.subtitle = subtitle
         self.subscription = subscription
         self.features = features
+    }
+    
+    public func featureString(separator: String = " · ") -> String {
+        features.map(\.title).joined(separator: separator)
     }
 }
