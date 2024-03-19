@@ -67,6 +67,8 @@ extension SubscriptionManager {
 
 extension SubscriptionManager {
     public class SubscriptionLevel: Equatable, Hashable {
+        public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil, value: 0)
+
         public let identifier: String
         public let entitlement: String?
         public let value: Int
@@ -85,7 +87,9 @@ extension SubscriptionManager {
             hasher.combine(identifier)
         }
         
-        public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil, value: 0)
+        public func equalOrHigher(than otherLevel: SubscriptionLevel) -> Bool {
+            return self.value >= otherLevel.value
+        }
     }
 }
 
