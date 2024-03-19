@@ -144,7 +144,9 @@ public struct PurchaseView: View {
                         Text(L10n.termsOfService)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
+#if !os(macOS)
                             .opacity(0.3)
+#endif
                     })
                     .foregroundStyle(.foreground)
                     
@@ -152,7 +154,9 @@ public struct PurchaseView: View {
                         Text(L10n.privacyPolicy)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
+#if !os(macOS)
                             .opacity(0.3)
+#endif
                     })
                     .foregroundStyle(.foreground)
                 }
@@ -209,7 +213,7 @@ public struct PurchaseView: View {
     
     private func restorePurchases() {
         subscriptionManager.restorePurchases {
-            if subscriptionManager.subscription != .free {
+            if subscriptionManager.subscription != nil {
                 (onClose ?? dismiss.callAsFunction)()
             }
         }
@@ -217,18 +221,26 @@ public struct PurchaseView: View {
     
     private func purchaseSubscription() {
         subscriptionManager.purchase(subscription: subscription) {
-            if subscriptionManager.subscription != .free {
+            if subscriptionManager.subscription != nil {
                 (onClose ?? dismiss.callAsFunction)()
             }
         }
     }
     
     private func showTermsOfService() {
-        presentedURL = URL(string: "https://voidstern.net/terms-of-use")!
+#if os(macOS)
+        URL(string: "https://voidstern.net/terms-of-use")?.open()
+#else
+        presentedURL = URL(string: "https://voidstern.net/terms-of-use")
+#endif
     }
     
     private func showPrivacyPolicy() {
-        presentedURL = URL(string: "https://voidstern.net/privacy-policy")!
+#if os(macOS)
+        URL(string: "https://voidstern.net/privacy-policy")?.open()
+#else
+        presentedURL = URL(string: "https://voidstern.net/privacy-policy")
+#endif
     }
 }
 

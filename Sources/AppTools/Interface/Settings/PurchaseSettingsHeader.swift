@@ -10,16 +10,16 @@ import Foundation
 import SwiftUI
 
 public struct PurchaseSettingsGetProHeader: View {
-    let upgradeInfo: UpgradeInfo
+    let upgradeContext: UpgradeContext
     
-    public init(upgradeInfo: UpgradeInfo) {
-        self.upgradeInfo = upgradeInfo
+    public init(upgradeContext: UpgradeContext) {
+        self.upgradeContext = upgradeContext
     }
     
     public var body: some View {
         ZStack {
             NavigationLink {
-                PurchaseView(upgradeInfo.subscription, features: upgradeInfo.features)
+                PurchaseView(upgradeContext.subscription, features: upgradeContext.features)
             } label: {
                 EmptyView()
             }
@@ -33,9 +33,9 @@ public struct PurchaseSettingsGetProHeader: View {
     
     var content: some View {
         VStack(alignment: .center) {
-            upgradeInfo.proLogo
+            upgradeContext.proLogo
             
-            Text(upgradeInfo.subtitle)
+            Text(upgradeContext.subtitle)
                 .lineLimit(2)
                 .font(.system(size: 13))
                 .padding(.horizontal)
@@ -58,10 +58,10 @@ public struct PurchaseSettingsGetProHeader: View {
 }
 
 public struct PurchaseSettingsProHeader: View {
-    let upgradeInfo: UpgradeInfo
+    let upgradeContext: UpgradeContext
     
-    public init(upgradeInfo: UpgradeInfo) {
-        self.upgradeInfo = upgradeInfo
+    public init(upgradeContext: UpgradeContext) {
+        self.upgradeContext = upgradeContext
     }
     
     public var body: some View {
@@ -81,7 +81,7 @@ public struct PurchaseSettingsProHeader: View {
     
     var content: some View {
         VStack(alignment: .center) {
-            upgradeInfo.proLogo
+            upgradeContext.proLogo
             
             Text(L10n.thanksForYourSupport)
                 .font(.system(size: 15, weight: .semibold))

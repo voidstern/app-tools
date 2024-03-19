@@ -35,6 +35,8 @@ internal enum L10n {
   internal static let biMonthly = L10n.tr("Localizable", "Bi-Monthly", fallback: "Bi-Monthly")
   /// Cancel
   internal static let cancel = L10n.tr("Localizable", "Cancel", fallback: "Cancel")
+  /// Changelog
+  internal static let changelog = L10n.tr("Localizable", "Changelog", fallback: "Changelog")
   /// Contact
   internal static let contact = L10n.tr("Localizable", "Contact", fallback: "Contact")
   /// Continue
@@ -51,6 +53,8 @@ internal enum L10n {
   internal static let fallAsleepToMusicSounds = L10n.tr("Localizable", "Fall asleep to music & sounds", fallback: "Fall asleep to music & sounds")
   /// Fiery Feeds: RSS Reader
   internal static let fieryFeedsRSSReader = L10n.tr("Localizable", "Fiery Feeds: RSS Reader", fallback: "Fiery Feeds: RSS Reader")
+  /// Focused: Task Planner
+  internal static let focusedTaskPlanner = L10n.tr("Localizable", "Focused: Task Planner", fallback: "Focused: Task Planner")
   /// HIIT, Pomodoro and more
   internal static let hiitPomodoroAndMore = L10n.tr("Localizable", "HIIT, Pomodoro and more", fallback: "HIIT, Pomodoro and more")
   /// Manage Subscription
@@ -59,6 +63,8 @@ internal enum L10n {
   internal static let monthly = L10n.tr("Localizable", "Monthly", fallback: "Monthly")
   /// No Subscription
   internal static let noSubscription = L10n.tr("Localizable", "No Subscription", fallback: "No Subscription")
+  /// One Step at a Time
+  internal static let oneStepAtATime = L10n.tr("Localizable", "One Step at a Time", fallback: "One Step at a Time")
   /// Other
   internal static let other = L10n.tr("Localizable", "Other", fallback: "Other")
   /// Other Apps
@@ -73,10 +79,16 @@ internal enum L10n {
   internal static let restore = L10n.tr("Localizable", "Restore", fallback: "Restore")
   /// Restore Purchases
   internal static let restorePurchases = L10n.tr("Localizable", "Restore Purchases", fallback: "Restore Purchases")
+  /// Review %@
+  internal static func review(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "Review %@", String(describing: p1), fallback: "Review %@")
+  }
   /// Settings
   internal static let settings = L10n.tr("Localizable", "Settings", fallback: "Settings")
   /// Subscription Terms
   internal static let subscriptionTerms = L10n.tr("Localizable", "Subscription Terms", fallback: "Subscription Terms")
+  /// Support
+  internal static let support = L10n.tr("Localizable", "Support", fallback: "Support")
   /// Terms of Service
   internal static let termsOfService = L10n.tr("Localizable", "Terms of Service", fallback: "Terms of Service")
   /// TestFlight
@@ -93,6 +105,8 @@ internal enum L10n {
   internal static let unknown = L10n.tr("Localizable", "Unknown", fallback: "Unknown")
   /// Upgrade Now
   internal static let upgradeNow = L10n.tr("Localizable", "Upgrade Now", fallback: "Upgrade Now")
+  /// User Guide
+  internal static let userGuide = L10n.tr("Localizable", "User Guide", fallback: "User Guide")
   /// Yearly
   internal static let yearly = L10n.tr("Localizable", "Yearly", fallback: "Yearly")
   /// Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period. Payment will be charged to iTunes Account at confirmation of purchase. Account will be charged for renewal within 24-hours prior to the end of the current period for the full price. Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase.

@@ -40,8 +40,6 @@ extension SubscriptionManager {
         public var isFree: Bool {
             return type == .free
         }
-        
-        public static let free = SubscriptionManager.Subscription(identifier: "", level: .free, type: .free, trialDuration: 0)
     }
 }
 
@@ -71,10 +69,12 @@ extension SubscriptionManager {
     public class SubscriptionLevel: Equatable, Hashable {
         public let identifier: String
         public let entitlement: String?
+        public let value: Int
         
-        public init(identifier: String, entitlement: String?) {
+        public init(identifier: String, entitlement: String?, value: Int) {
             self.identifier = identifier
             self.entitlement = entitlement
+            self.value = value
         }
         
         public static func == (lhs: SubscriptionLevel, rhs: SubscriptionLevel) -> Bool {
@@ -85,7 +85,7 @@ extension SubscriptionManager {
             hasher.combine(identifier)
         }
         
-        public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil)
+        public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil, value: 0)
     }
 }
 

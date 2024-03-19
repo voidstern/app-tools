@@ -30,7 +30,7 @@ public struct SubscriptionStatusView: View {
                     
                     Spacer()
                     
-                    Text(subscriptionManager.subscription.type.string)
+                    Text(subscriptionManager.subscription?.type.string ?? L10n.unknown)
                         .font(.system(size: 15))
                         .opacity(0.7)
                 }

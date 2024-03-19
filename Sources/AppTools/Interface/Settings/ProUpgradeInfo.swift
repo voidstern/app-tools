@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct UpgradeInfo {
+public struct UpgradeContext {
     let proLogo: Image
     let subtitle: String
     
