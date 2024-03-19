@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if canImport(UIKit)
 import UIKit
+#endif
 
 @available(iOS 10.0, *)
 public class TapticFeedback {
@@ -15,7 +18,7 @@ public class TapticFeedback {
     
     var enabled: Bool = true
     
-#if !os(visionOS)
+#if os(iOS)
     private let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
     private let impactMedium = UIImpactFeedbackGenerator(style: .medium)
     private let impactLight = UIImpactFeedbackGenerator(style: .light)
@@ -38,7 +41,7 @@ public class TapticFeedback {
             return
         }
         
-    #if !os(visionOS)
+#if os(iOS)
         switch type {
         case .impactHeavy:
             impactHeavy.prepare()
@@ -63,7 +66,7 @@ public class TapticFeedback {
             return
         }
         
-    #if !os(visionOS)
+#if os(iOS)
         switch type {
         case .impactHeavy:
             impactHeavy.impactOccurred()
