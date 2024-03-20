@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Lukas Burgstaller on 30.10.23.
 //
@@ -13,7 +13,9 @@ extension UserSettings {
         return Binding<String>(get: {
             UserSettings.shared.string(key: key)
         }, set: { value in
-            UserSettings.shared.set(value: value, key: key)
+            DispatchQueue.onMainQueue {
+                UserSettings.shared.set(value: value, key: key)
+            }
         })
     }
     
@@ -21,7 +23,9 @@ extension UserSettings {
         return Binding<Int>(get: {
             UserSettings.shared.integer(key: key)
         }, set: { value in
-            UserSettings.shared.set(value: value, key: key)
+            DispatchQueue.onMainQueue {
+                UserSettings.shared.set(value: value, key: key)
+            }
         })
     }
     
@@ -29,7 +33,9 @@ extension UserSettings {
         return Binding<Double>(get: {
             UserSettings.shared.double(key: key)
         }, set: { value in
-            UserSettings.shared.set(value: value, key: key)
+            DispatchQueue.onMainQueue {
+                UserSettings.shared.set(value: value, key: key)
+            }
         })
     }
     
@@ -37,7 +43,9 @@ extension UserSettings {
         return Binding<Bool>(get: {
             UserSettings.shared.bool(key: key)
         }, set: { value in
-            UserSettings.shared.set(value: value, key: key)
+            DispatchQueue.onMainQueue {
+                UserSettings.shared.set(value: value, key: key)
+            }
         })
     }
 }
