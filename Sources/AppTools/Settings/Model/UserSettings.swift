@@ -45,17 +45,21 @@ public class UserSettings: ObservableObject {
     // MARK: Boolean
 
     static public let shared = UserSettings()
-    private var userDefaults = SettingsStorage.shared
+    private var settingsStorage = SettingsStorage.shared
 
     public func bool(key: Setting, defaultValue: Bool = false) -> Bool {
-        guard let value = userDefaults.bool(forKey: key.identifier) else {
+        guard let value = settingsStorage.bool(forKey: key.identifier) else {
             return key.defaultValue as? Bool ?? key.defaultValue as? Bool ?? defaultValue
         }
 		return value
     }
 
     public func set(value: Bool, key: Setting) {
-        userDefaults.set(value, forKey: key.identifier)
+        guard settingsStorage.bool(forKey: key.identifier) != value else {
+            return
+        }
+        
+        settingsStorage.set(value, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
@@ -65,8 +69,8 @@ public class UserSettings: ObservableObject {
 
     @discardableResult
     public func toggle(_ key: Setting) -> Bool {
-        if let value = userDefaults.bool(forKey: key.identifier) {
-            userDefaults.set(!value, forKey: key.identifier)
+        if let value = settingsStorage.bool(forKey: key.identifier) {
+            settingsStorage.set(!value, forKey: key.identifier)
             
             DispatchQueue.onMainQueue {
                 self.objectWillChange.send()
@@ -75,7 +79,7 @@ public class UserSettings: ObservableObject {
             
             return (!value)
         } else {
-            userDefaults.set(true, forKey: key.identifier)
+            settingsStorage.set(true, forKey: key.identifier)
             
             DispatchQueue.onMainQueue {
                 self.objectWillChange.send()
@@ -89,7 +93,7 @@ public class UserSettings: ObservableObject {
     // MARK: Double
     
     public func double(key: Setting, defaultValue: Double = 0.0) -> Double {
-        guard let value = userDefaults.double(forKey: key.identifier) else {
+        guard let value = settingsStorage.double(forKey: key.identifier) else {
             return key.defaultValue as? Double ?? key.defaultValue as? Double ?? defaultValue
         }
 
@@ -97,7 +101,11 @@ public class UserSettings: ObservableObject {
     }
 
     public func set(value: Double, key: Setting) {
-        userDefaults.set(value, forKey: key.identifier)
+        guard settingsStorage.double(forKey: key.identifier) != value else {
+            return
+        }
+        
+        settingsStorage.set(value, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
@@ -107,8 +115,8 @@ public class UserSettings: ObservableObject {
     
     @discardableResult
     public func increment(_ key: Setting) -> Double {
-        if let value = userDefaults.double(forKey: key.identifier) {
-            userDefaults.set((value + 1), forKey: key.identifier)
+        if let value = settingsStorage.double(forKey: key.identifier) {
+            settingsStorage.set((value + 1), forKey: key.identifier)
             
             DispatchQueue.onMainQueue {
                 self.objectWillChange.send()
@@ -124,7 +132,7 @@ public class UserSettings: ObservableObject {
     // MARK: Integer
     
     public func integer(key: Setting, defaultValue: Int = 0) -> Int {
-        guard let value = userDefaults.integer(forKey: key.identifier) else {
+        guard let value = settingsStorage.integer(forKey: key.identifier) else {
             return key.defaultValue as? Int ?? key.defaultValue as? Int ?? defaultValue
         }
         
@@ -132,7 +140,11 @@ public class UserSettings: ObservableObject {
     }
 
     public func set(value: Int, key: Setting) {
-        userDefaults.set(value, forKey: key.identifier)
+        guard settingsStorage.integer(forKey: key.identifier) != value else {
+            return
+        }
+        
+        settingsStorage.set(value, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
@@ -142,8 +154,8 @@ public class UserSettings: ObservableObject {
     
     @discardableResult
     public func increment(_ key: Setting) -> Int {
-        let value = userDefaults.integer(forKey: key.identifier) ?? 0
-        userDefaults.set((value + 1), forKey: key.identifier)
+        let value = settingsStorage.integer(forKey: key.identifier) ?? 0
+        settingsStorage.set((value + 1), forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
@@ -156,14 +168,18 @@ public class UserSettings: ObservableObject {
     // MARK: String
     
     public func string(key: Setting, defaultValue: String = "") -> String {
-        guard let value = userDefaults.string(forKey: key.identifier) else {
+        guard let value = settingsStorage.string(forKey: key.identifier) else {
             return key.defaultValue as? String ?? key.defaultValue as? String ?? defaultValue
         }
         return value
     }
     
     public func set(value: String, key: Setting) {
-        userDefaults.set(value, forKey: key.identifier)
+        guard settingsStorage.string(forKey: key.identifier) != value else {
+            return
+        }
+        
+        settingsStorage.set(value, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
@@ -172,7 +188,7 @@ public class UserSettings: ObservableObject {
     }
     
     public func strings(key: Setting, defaultValue: [String] = []) -> [String] {
-        guard let value = userDefaults.strings(forKey: key.identifier) else {
+        guard let value = settingsStorage.strings(forKey: key.identifier) else {
             return []
         }
         
@@ -180,7 +196,11 @@ public class UserSettings: ObservableObject {
     }
     
     public func set(strings: [String], key: Setting) {
-        userDefaults.set(strings, forKey: key.identifier)
+        guard settingsStorage.strings(forKey: key.identifier) != strings else {
+            return
+        }
+        
+        settingsStorage.set(strings, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
