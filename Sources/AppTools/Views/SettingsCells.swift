@@ -37,17 +37,13 @@ public struct ToggleSettingsCell: View {
                     .tint(tint)
             }
             
-            Toggle(isOn: binding, label: {
+            Toggle(isOn: storage.bool(for: setting), label: {
                 Text(title)
             })
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
 #endif
-    }
-    
-    private var binding: Binding<Bool> {
-        storage.binding(for: setting)
     }
 }
 
@@ -82,16 +78,12 @@ public struct StepperSettingsCell: View {
 
             HStack(spacing: 4) {
                 Text("\(storage.integer(key: setting))")
-                Stepper(title, value: binding)
+                Stepper(title, value: storage.integer(for: setting))
             }
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
 #endif
-    }
-    
-    private var binding: Binding<Int> {
-        storage.binding(for: setting)
     }
 }
 
@@ -102,15 +94,13 @@ public struct PickerSettingsCell: View {
     let image: Image?
     let title: String
     let tint: Color
-    let options: [String]
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, tint: Color = .accentColor, options: [String]) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
         self.title = title
         self.tint = tint
-        self.options = options
     }
     
     public var body: some View {
@@ -125,10 +115,10 @@ public struct PickerSettingsCell: View {
                     .tint(tint)
             }
             
-            Picker(selection: binding) {
-                ForEach(Array(options.enumerated()), id: \.element) { index, option in
-                    Text(option)
-                        .tag(index)
+            Picker(selection: storage.integer(for: setting)) {
+                ForEach((setting.options ?? [])) { option in
+                    Text(option.title)
+                        .tag(option.value)
                 }
             } label: {
                 Text(title)
@@ -139,10 +129,6 @@ public struct PickerSettingsCell: View {
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
 #endif
-    }
-    
-    var binding: Binding<Int> {
-        storage.binding(for: setting)
     }
 }
 
@@ -284,5 +270,11 @@ public struct OtherAppSettingsCell: View {
         .buttonStyle(.plain)
         .listRowSeparator(.hidden, edges: .all)
 #endif
+    }
+}
+
+extension UserSettings.Setting.Option: Identifiable {
+    public var id: Int {
+        self.value
     }
 }

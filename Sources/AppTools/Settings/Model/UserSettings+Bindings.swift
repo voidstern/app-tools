@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension UserSettings {
-    public func binding(for key: UserSettings.Setting) -> Binding<String> {
+    public func string(for key: UserSettings.Setting) -> Binding<String> {
         return Binding<String>(get: {
             UserSettings.shared.string(key: key)
         }, set: { value in
@@ -17,7 +17,7 @@ extension UserSettings {
         })
     }
     
-    public func binding(for key: UserSettings.Setting) -> Binding<Int> {
+    public func integer(for key: UserSettings.Setting) -> Binding<Int> {
         return Binding<Int>(get: {
             UserSettings.shared.integer(key: key)
         }, set: { value in
@@ -25,7 +25,15 @@ extension UserSettings {
         })
     }
     
-    public func binding(for key: UserSettings.Setting) -> Binding<Bool> {
+    public func double(for key: UserSettings.Setting) -> Binding<Double> {
+        return Binding<Double>(get: {
+            UserSettings.shared.double(key: key)
+        }, set: { value in
+            UserSettings.shared.set(value: value, key: key)
+        })
+    }
+    
+    public func bool(for key: UserSettings.Setting) -> Binding<Bool> {
         return Binding<Bool>(get: {
             UserSettings.shared.bool(key: key)
         }, set: { value in
