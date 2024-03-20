@@ -13,7 +13,7 @@ public struct PurchaseView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     
-    @State var closeButtonVisible: Bool = true
+    @State var closeButtonVisible: Bool = false
     @State var subscriptionPrice: String = "-,--"
     @State var presentedURL: URL?
     
@@ -27,7 +27,6 @@ public struct PurchaseView: View {
     
     public var body: some View {
         content
-            .environment(\.colorScheme, .dark)
             .navigationBarBackButtonHidden(true)
 #if canImport(UIKit) && !os(watchOS)
             .sheet(item: $presentedURL) { url in
@@ -36,7 +35,7 @@ public struct PurchaseView: View {
             }
 #endif
             .onAppear {
-                DispatchQueue.main.async(after: 5.0) {
+                DispatchQueue.main.async(after: 3.0) {
                     closeButtonVisible = true
                 }
                 
@@ -101,21 +100,19 @@ public struct PurchaseView: View {
             
             Spacer()
             
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .center, spacing: 16) {
                 ForEach (upgradeContext.features) { feature in
                     HStack {
                         Image(systemSymbol: feature.symbol)
                             .symbolRenderingMode(.hierarchical)
                             .foregroundStyle(Color.accentColor)
                         Text(feature.title)
+                            .foregroundStyle(.primary)
                             .lineLimit(2)
-                        
-                        Spacer()
                     }
                     .padding(6)
                 }
             }
-            .fixedSize()
             
             Spacer()
             
@@ -217,7 +214,7 @@ public struct PurchaseView: View {
             .frame(maxWidth: .infinity)
             .background {
                 Color.accentColor
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
             }
     }
     

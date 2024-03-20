@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 public struct PurchaseSettingsGetProHeader: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let upgradeContext: UpgradeContext
     
     public init(upgradeContext: UpgradeContext) {
@@ -47,6 +49,7 @@ public struct PurchaseSettingsGetProHeader: View {
                 .font(.system(size: 17, weight: .semibold))
                 .foregroundStyle(.white)
                 .padding(12)
+                .padding(.horizontal, 24)
                 .background {
                     Color.accentColor
                         .opacity(0.7)
@@ -62,9 +65,15 @@ public struct PurchaseSettingsGetProHeader: View {
                     .frame(height: 16)
                 
                 if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
-                    Color.clear.background(.background.secondary)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .ignoresSafeArea(.all, edges: .horizontal)
+                    if colorScheme == .dark {
+                        Color.clear.background(.background.secondary)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .ignoresSafeArea(.all, edges: .horizontal)
+                    } else {
+                        Color.clear.background(.background)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .ignoresSafeArea(.all, edges: .horizontal)
+                    }
                 } else {
                     Color.clear.background(Color.gray.opacity(0.2))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
