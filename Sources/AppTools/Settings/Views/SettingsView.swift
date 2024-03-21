@@ -138,7 +138,11 @@ public struct SettingsView<Content: View>: View {
     }
     
     func tint(index: Int) -> Color {
-        settingsContext.tintColors.objectOrNil(at: index % settingsContext.tintColors.count) ?? .accentColor
+        guard settingsContext.tintColors.count > 0 else {
+            return .accentColor
+        }
+        
+        return settingsContext.tintColors.objectOrNil(at: index % settingsContext.tintColors.count) ?? .accentColor
     }
 }
 
