@@ -13,11 +13,13 @@ public struct UpgradeContext {
     
     let subscription: SubscriptionManager.Subscription
     let features: [PurchaseView.Feature]
+    let title: String
     
-    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, features: [PurchaseView.Feature]) {
+    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature]) {
         self.proLogo = proLogo
         self.subscription = subscription
         self.features = features
+        self.title = title
     }
     
     public func featureString(separator: String = " · ") -> String {

@@ -12,21 +12,23 @@ public struct SubscriptionStatusView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @State var presentedURL: URL?
     
-    public init() {
-        
+    let upgradeContext: UpgradeContext
+    
+    public init(upgradeContext: UpgradeContext) {
+        self.upgradeContext = upgradeContext
     }
     
     public var body: some View {
         List {
             VStack(alignment: .center, content: {
-                Image("FocusedPro")
+                upgradeContext.proLogo
             })
             .frame(maxWidth: .infinity)
             .listRowBackground(Color.clear)
             
             Section {
                 HStack {
-                    Text("Focused Pro")
+                    Text(upgradeContext.title)
                     
                     Spacer()
                     

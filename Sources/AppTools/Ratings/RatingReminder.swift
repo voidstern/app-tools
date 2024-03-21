@@ -38,7 +38,7 @@ public class RatingReminder {
         let lastRating = UserSettings.shared.double(key: .lastRatedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 
-        if events >= requiredEvents && days >= requiredDays && timePassed > threeMonths  {
+        if events >= requiredEvents && days >= requiredDays && timePassed > threeMonths {
             requestReview()
             UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
         }

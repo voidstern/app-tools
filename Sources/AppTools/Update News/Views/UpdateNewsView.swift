@@ -10,6 +10,8 @@ import SFSafeSymbols
 import SwiftUI
 
 struct UpdateNewsView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     
     @State var subscriptionPrice: String = "-,--"
@@ -80,7 +82,7 @@ struct UpdateNewsView: View {
     @ViewBuilder
     var bottomButtons: some View {
         if subscriptionManager.subscriptionLevel == .free {
-            Button(L10n.continueWithoutUpgrade, action: onContinue)
+            Button(L10n.continueWithoutUpgrade, action: continueHit)
                 .buttonStyle(.plain)
                 .padding(.bottom, 8)
             
@@ -120,6 +122,7 @@ struct UpdateNewsView: View {
     
     private func continueHit() {
         onContinue()
+        dismiss()
     }
 
     private func upgradeSubscription() {
@@ -131,9 +134,9 @@ struct UpdateNewsView: View {
     }
 }
 
-#Preview {
-    UpdateNewsView(upgradeContext: UpgradeContext(proLogo: Image(systemSymbol: .arrowUp), subscription: .init(identifier: "", level: .free, type: .monthly, trialDuration: 7), features: []), 
-                   features: [.init("New Feature", description: "Some longer Feature Description for the app", symbol: .applepencil, tint: .orange)],
-                   title: "What's new in App",
-                   onContinue: {})
-}
+//#Preview {
+//    UpdateNewsView(upgradeContext: UpgradeContext(proLogo: Image(systemSymbol: .arrowUp), subscription: .init(identifier: "", level: .free, type: .monthly, trialDuration: 7), title: "Pro Subsscription", features: []),
+//                   features: [.init("New Feature", description: "Some longer Feature Description for the app", symbol: .applepencil, tint: .orange)],
+//                   title: "What's new in App",
+//                   onContinue: {})
+//}

@@ -30,7 +30,9 @@ public class UpdateNewsReminder: ObservableObject {
         self.showUpdateNews = false
         
         DispatchQueue.main.async(after: 0.5) {
-            self.showUpdateNews = self.needsDisplay
+            if self.needsDisplay {
+                self.showUpdateNews = true
+            }
         }
     }
     

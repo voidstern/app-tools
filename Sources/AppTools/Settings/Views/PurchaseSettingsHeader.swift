@@ -99,7 +99,7 @@ public struct PurchaseSettingsProHeader: View {
     public var body: some View {
         ZStack {
             NavigationLink {
-                SubscriptionStatusView()
+                SubscriptionStatusView(upgradeContext: upgradeContext)
             } label: {
                 EmptyView()
             }
