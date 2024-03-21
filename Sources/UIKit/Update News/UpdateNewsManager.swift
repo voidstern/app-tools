@@ -70,9 +70,3 @@ extension UpdateNewsManager: UpdateNewsViewControllerDelegate {
         whatsNewView.dismiss(animated: true)
     }
 }
-
-extension UserSettings.Setting {
-    public static var updateNewsVersion: UserSettings.Setting {
-        return UserSettings.Setting(identifier: "update_news_version")
-    }
-}

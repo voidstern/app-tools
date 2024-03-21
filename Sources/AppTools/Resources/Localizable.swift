@@ -41,6 +41,8 @@ internal enum L10n {
   internal static let contact = L10n.tr("Localizable", "Contact", fallback: "Contact")
   /// Continue
   internal static let `continue` = L10n.tr("Localizable", "Continue", fallback: "Continue")
+  /// Continue without Upgrade
+  internal static let continueWithoutUpgrade = L10n.tr("Localizable", "Continue without Upgrade", fallback: "Continue without Upgrade")
   /// Done
   internal static let done = L10n.tr("Localizable", "Done", fallback: "Done")
   /// Dozzzer: Sleep Sounds
@@ -107,6 +109,12 @@ internal enum L10n {
   internal static let upgradeNow = L10n.tr("Localizable", "Upgrade Now", fallback: "Upgrade Now")
   /// User Guide
   internal static let userGuide = L10n.tr("Localizable", "User Guide", fallback: "User Guide")
+  /// Version
+  internal static let version = L10n.tr("Localizable", "Version", fallback: "Version")
+  /// What's New in %@
+  internal static func whatSNewIn(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "What's New in %@", String(describing: p1), fallback: "What's New in %@")
+  }
   /// Yearly
   internal static let yearly = L10n.tr("Localizable", "Yearly", fallback: "Yearly")
   /// Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period. Payment will be charged to iTunes Account at confirmation of purchase. Account will be charged for renewal within 24-hours prior to the end of the current period for the full price. Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase.

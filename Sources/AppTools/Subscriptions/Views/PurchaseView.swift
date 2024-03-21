@@ -54,7 +54,7 @@ public struct PurchaseView: View {
                 }
             }
 #else
-            .frame(idealWidth: 320, idealHeight: 560)
+            .frame(idealWidth: 560, idealHeight: 640)
 #endif
     }
     
@@ -122,7 +122,7 @@ public struct PurchaseView: View {
                         .progressViewStyle(.circular)
                         .frame(height: 64)
                 } else {
-                    Text(subscriptionTerms)
+                    Text(upgradeContext.subscriptionTerms(subscriptionPrice: subscriptionPrice))
 #if os(macOS)
                         .font(.system(size: 13, weight: .regular))
 #else
@@ -167,36 +167,6 @@ public struct PurchaseView: View {
                 .padding(.bottom, 16)
                 .padding(.horizontal, 32)
             }
-        }
-    }
-    
-    var subscriptionTerms: String {
-        let subscription = upgradeContext.subscription
-        
-        switch (subscription.type, subscription.hasTrial) {
-        case (.yearly, true):
-            return L10n.daysFreeThenYear(subscription.trialDuration, subscriptionPrice)
-            
-        case (.yearly, false):
-            return L10n.year(subscriptionPrice)
-            
-        case (.monthly, true):
-            return L10n.daysFreeThenMonth(subscription.trialDuration, subscriptionPrice)
-            
-        case (.monthly, false):
-            return L10n.month(subscriptionPrice)
-            
-        case (.testflight, _):
-            return L10n.testFlightSubscriptionsAreNotChargedToYourCard
-            
-        case (.bimonthly, _):
-            return "\(subscriptionPrice)/2 Months"
-            
-        case (.quarterly, _):
-            return "\(subscriptionPrice)/3 Months"
-            
-        case (.free, _), (.legacy, _), (.other, _):
-            return "???"
         }
     }
     
