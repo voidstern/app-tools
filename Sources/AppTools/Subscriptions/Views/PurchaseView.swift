@@ -122,13 +122,6 @@ public struct PurchaseView: View {
                         .progressViewStyle(.circular)
                         .frame(height: 64)
                 } else {
-                    Button(action: purchaseSubscription, label: {
-                        continueLabel
-                    })
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 4)
-                    .buttonStyle(.plain)
-                    
                     Text(subscriptionTerms)
 #if os(macOS)
                         .font(.system(size: 13, weight: .regular))
@@ -136,7 +129,14 @@ public struct PurchaseView: View {
                         .font(.system(size: 15, weight: .regular))
 #endif
                         .opacity(0.5)
-                        .padding(.bottom, 16)
+                        .padding(.bottom, 8)
+                    
+                    Button(action: purchaseSubscription, label: {
+                        continueLabel
+                    })
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 4)
+                    .buttonStyle(.plain)
                 }
                 
                 HStack(spacing: 16) {
