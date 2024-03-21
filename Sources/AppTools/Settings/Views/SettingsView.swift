@@ -63,34 +63,34 @@ public struct SettingsView<Content: View>: View {
             content
             
             Section(L10n.contact) {
-                ButtonSettingsCell(image: Image(systemSymbol: .envelopeFill), title: L10n.email) {
+                ButtonSettingsCell(image: Image(systemSymbol: .envelopeFill), title: L10n.email, tint: tint(index: 0)) {
                     SupportMailContent().emailURL(email: settingsContext.supportMail, rcid: subscriptionManager.rcid)?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("TwitterIcon", bundle: .module), title: "Twitter") {
+                ButtonSettingsCell(image: Image("TwitterIcon", bundle: .module), title: "Twitter", tint: tint(index: 1)) {
                     URL(string: "https://twitter.com/voidstern")?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module), title: "Mastodon") {
+                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module), title: "Mastodon", tint: tint(index: 2)) {
                     URL(string: "http://graz.social/web/@voidstern")?.open()
                 }
             }
             
             Section(L10n.support) {
                 if let userGuideURL = settingsContext.userGuideURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .command), title: L10n.userGuide) {
+                    ButtonSettingsCell(image: Image(systemSymbol: .command), title: L10n.userGuide, tint: tint(index: 3)) {
                         userGuideURL.open()
                     }
                 }
                 
                 if let changelogURL = settingsContext.changelogURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .listBulletClipboard), title: L10n.changelog) {
+                    ButtonSettingsCell(image: Image(systemSymbol: .listBulletClipboard), title: L10n.changelog, tint: tint(index: 4)) {
                         changelogURL.open()
                     }
                 }
                 
                 if let reviewURL = settingsContext.reviewURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .starBubble), title: L10n.review(settingsContext.appName)) {
+                    ButtonSettingsCell(image: Image(systemSymbol: .starBubble), title: L10n.review(settingsContext.appName), tint: tint(index: 5)) {
                         reviewURL.open()
                     }
                 }
@@ -136,6 +136,10 @@ public struct SettingsView<Content: View>: View {
                 .padding(.top, 32)
         }
     }
+    
+    func tint(index: Int) -> Color {
+        settingsContext.tintColors.objectOrNil(at: index % settingsContext.tintColors.count) ?? .accentColor
+    }
 }
 
 public struct SettingsContext {
@@ -146,13 +150,16 @@ public struct SettingsContext {
     let userGuideURL: URL?
     let changelogURL: URL?
     let reviewURL: URL?
+        
+    let tintColors: [Color]
     
-    public init(appID: String, appName: String, supportMail: String, userGuideURL: URL?, changelogURL: URL?, reviewURL: URL?) {
+    public init(appID: String, appName: String, supportMail: String, userGuideURL: URL?, changelogURL: URL?, reviewURL: URL?, tintColors: [Color] = []) {
         self.appID = appID
         self.appName = appName
         self.supportMail = supportMail
         self.userGuideURL = userGuideURL
         self.changelogURL = changelogURL
         self.reviewURL = reviewURL
+        self.tintColors = tintColors
     }
 }
