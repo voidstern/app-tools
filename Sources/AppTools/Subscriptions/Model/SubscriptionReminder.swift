@@ -1,5 +1,5 @@
 //
-//  PurchaseReminder.swift
+//  SubscriptionReminder.swift
 //  AppToolsMobile
 //
 //  Created by Lukas on 02/09/2017.
@@ -9,21 +9,27 @@
 import Foundation
 import AppTools
 import StoreKit
-import UIKit
 
-public protocol PurchaseReminderDelegate {
-    func purchaseReminderShouldRemind(_ purchaseReminder: PurchaseReminder)
-    func purchaseReminderIsAlreadyPro(_ purchaseReminder: PurchaseReminder) -> Bool
+public extension UserSettings.Setting {
+    static var reminderEvents: UserSettings.Setting {
+        return UserSettings.Setting(identifier: "reminder_events")
+    }
+
+    static var lastRemindedDate: UserSettings.Setting {
+        return UserSettings.Setting(identifier: "last_reminded_date")
+    }
 }
 
-public class PurchaseReminder {
-    let requiredEvents: Int
-    let requiredDays: Int
+public class SubscriptionReminder: ObservableObject {
+    @Published public var showPurchaseView: Bool = false
+    
+    private let requiredEvents: Int
+    private let requiredDays: Int
+    private let subscriptionManager: SubscriptionManager
+    private let threeDays: TimeInterval = 24 * 60 * 60
 
-    let threeDays: TimeInterval = 24 * 60 * 60
-    public var delegate: PurchaseReminderDelegate?
-
-    public init(requiredEvents: Int, requiredDays: Int) {
+    public init(requiredEvents: Int, requiredDays: Int, subscriptionManager: SubscriptionManager) {
+        self.subscriptionManager = subscriptionManager
         self.requiredEvents = requiredEvents
         self.requiredDays = requiredDays
     }
@@ -38,7 +44,7 @@ public class PurchaseReminder {
     }
     
     private func triggerPurchaseViewIfNeeded() {
-        guard delegate?.purchaseReminderIsAlreadyPro(self) == false else {
+        guard subscriptionManager.subscriptionLevel == .free else {
             return
         }
         
@@ -49,7 +55,7 @@ public class PurchaseReminder {
         if events >= requiredEvents || timePassed > threeDays {
             UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRemindedDate)
             UserSettings.shared.set(value: 0, key: .reminderEvents)
-            delegate?.purchaseReminderShouldRemind(self)
+            showPurchaseView = true
         }
     }
 }
