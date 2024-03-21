@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 public final class AppStateManager {
-
     static public private(set) var shared = AppStateManager()
+    
     private var activeCount: Int = 0
     private let notificationCenter = NotificationCenter.default
 
@@ -32,7 +32,6 @@ public final class AppStateManager {
             notificationCenter.removeObserver(self)
         }
     }
-
 
     public private(set) var isInForeground = true
     @objc func enterForeground() {

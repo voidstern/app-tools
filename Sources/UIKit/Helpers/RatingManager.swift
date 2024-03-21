@@ -11,19 +11,7 @@ import StoreKit
 import AppTools
 import UIKit
 
-public extension UserSettings.Setting {
-    static var ratingEvents: UserSettings.Setting {
-        return UserSettings.Setting(identifier: "rating_events")
-    }
-
-    static var lastRatedDate: UserSettings.Setting {
-        return UserSettings.Setting(identifier: "last_rated_date")
-    }
-}
-
-@available(iOS 14.0, *)
 public class RatingManager {
-
     let requiredEvents: Int
     let requiredDays: Int
     let appName: String
