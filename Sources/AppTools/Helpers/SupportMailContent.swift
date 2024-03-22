@@ -16,7 +16,6 @@ import UIKit
 
 extension UIDevice {
     public var machine: String {
-
         var systemInfo = utsname()
         uname(&systemInfo)
         let modelCode = withUnsafePointer(to: &systemInfo.machine) {
