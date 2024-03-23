@@ -35,7 +35,11 @@ public struct PurchaseView: View {
             }
 #endif
             .onAppear {
-                DispatchQueue.main.async(after: 3.0) {
+                if upgradeContext.fadeInCloseButton {
+                    DispatchQueue.main.async(after: 3.0) {
+                        closeButtonVisible = true
+                    }
+                } else {
                     closeButtonVisible = true
                 }
                 

@@ -11,15 +11,17 @@ import SwiftUI
 public struct UpgradeContext {
     let proLogo: Image
     
+    let title: String
     let subscription: SubscriptionManager.Subscription
     let features: [PurchaseView.Feature]
-    let title: String
+    let fadeInCloseButton: Bool
     
-    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature]) {
+    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true) {
         self.proLogo = proLogo
         self.subscription = subscription
         self.features = features
         self.title = title
+        self.fadeInCloseButton = fadeInCloseButton
     }
     
     public func featureString(separator: String = " · ") -> String {
