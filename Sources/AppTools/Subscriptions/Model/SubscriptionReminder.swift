@@ -35,7 +35,9 @@ public class SubscriptionReminder: ObservableObject {
     }
     
     public func triggerAppLaunch() {
-        triggerPurchaseViewIfNeeded()
+        DispatchQueue.main.async(after: 0.5) {
+            self.triggerPurchaseViewIfNeeded()
+        }
     }
 
     public func triggerEvent() {
