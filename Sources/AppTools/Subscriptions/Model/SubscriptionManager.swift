@@ -36,6 +36,8 @@ public class SubscriptionManager: ObservableObject {
 //        Purchases.configure(with: Configuration.Builder(withAPIKey: "appl_QPJEAdJRFoqsrEsUFnCfgkvnvnw"))
 //            .with(usesStoreKit2IfAvailable: true))
 //        Purchases.shared.attribution.enableAdServicesAttributionTokenCollection()
+        
+        updateCustomerInfo()
     }
     
     public var rcid: String? {
