@@ -42,3 +42,9 @@ extension Optional where Wrapped == CGFloat {
         return CGFloat.platform(value, macOS: macOS, iOS: iOS, watchOS: watchOS, visionOS: visionOS)
     }
 }
+
+extension Double {
+    static public func platform(_ value: CGFloat, macOS: CGFloat? = nil, iOS: CGFloat? = nil, watchOS: CGFloat? = nil, visionOS: CGFloat? = nil) -> Double {
+        return CGFloat.platform(value, macOS: macOS, iOS: iOS, watchOS: watchOS, visionOS: visionOS)
+    }
+}
