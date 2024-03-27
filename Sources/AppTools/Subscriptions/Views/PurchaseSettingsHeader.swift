@@ -64,26 +64,25 @@ public struct PurchaseSettingsGetProHeader: View {
                 Color.clear
                     .frame(height: 16)
                 
-                if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
-                    if colorScheme == .dark {
-                        Color.clear.background(.background.secondary)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .ignoresSafeArea(.all, edges: .horizontal)
+                if upgradeContext.upgradeHeaderBackground {
+                    if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
+                        if colorScheme == .dark {
+                            Color.clear.background(.background.secondary)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        } else {
+                            Color.clear.background(.background)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
                     } else {
-                        Color.clear.background(.background)
+                        Color.clear.background(Color.gray.opacity(0.2))
                             .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .ignoresSafeArea(.all, edges: .horizontal)
                     }
-                } else {
-                    Color.clear.background(Color.gray.opacity(0.2))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .ignoresSafeArea(.all, edges: .horizontal)
                 }
                 
                 Color.clear
                     .frame(height: 16)
             }
-            .ignoresSafeArea(.all, edges: .horizontal)
+            .padding(.horizontal, -16)
         }
         .frame(maxWidth: .infinity)
     }

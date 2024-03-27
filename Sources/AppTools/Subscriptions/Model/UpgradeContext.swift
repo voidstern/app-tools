@@ -15,13 +15,15 @@ public struct UpgradeContext {
     let subscription: SubscriptionManager.Subscription
     let features: [PurchaseView.Feature]
     let fadeInCloseButton: Bool
+    let upgradeHeaderBackground: Bool
     
-    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true) {
+    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true, upgradeHeaderBackground: Bool = true) {
         self.proLogo = proLogo
         self.subscription = subscription
         self.features = features
         self.title = title
         self.fadeInCloseButton = fadeInCloseButton
+        self.upgradeHeaderBackground = upgradeHeaderBackground
     }
     
     public func featureString(separator: String = " · ") -> String {
