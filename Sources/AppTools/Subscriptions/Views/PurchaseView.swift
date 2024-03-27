@@ -136,8 +136,9 @@ public struct PurchaseView: View {
                         .padding(.bottom, 8)
                     
                     Button(action: purchaseSubscription, label: {
-                        continueLabel
+                        Text(L10n.continue)
                     })
+                    .buttonStyle(PurchaseButtonStyle())
                     .padding(.horizontal, 32)
                     .padding(.bottom, 4)
                     .buttonStyle(.plain)
@@ -172,24 +173,6 @@ public struct PurchaseView: View {
                 .padding(.horizontal, 32)
             }
         }
-    }
-    
-    var continueLabel: some View {
-        Text(L10n.continue)
-#if os(macOS)
-            .font(.system(size: 15, weight: .regular))
-            .frame(height: 44)
-#else
-            .font(.system(size: 19, weight: .semibold))
-            .frame(height: 64)
-#endif
-            .foregroundStyle(.background)
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity)
-            .background {
-                Color.accentColor
-                    .clipShape(RoundedRectangle(cornerRadius: 18))
-            }
     }
     
     private func restorePurchases() {
