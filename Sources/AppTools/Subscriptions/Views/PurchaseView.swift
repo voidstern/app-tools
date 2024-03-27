@@ -110,9 +110,19 @@ public struct PurchaseView: View {
                         Image(systemSymbol: feature.symbol)
                             .symbolRenderingMode(.hierarchical)
                             .foregroundStyle(Color.accentColor)
+#if os(macOS)
+                        .font(.system(size: 21, weight: .regular))
+#else
+                        .font(.system(size: 19, weight: .regular))
+#endif
                         Text(feature.title)
                             .foregroundStyle(.primary)
                             .lineLimit(2)
+#if os(macOS)
+                        .font(.system(size: 17, weight: .regular))
+#else
+                        .font(.system(size: 19, weight: .regular))
+#endif
                     }
                     .padding(6)
                 }
@@ -149,11 +159,10 @@ public struct PurchaseView: View {
                         Text(L10n.termsOfService)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
-#if !os(macOS)
                             .minimumScaleFactor(0.5)
                             .opacity(0.3)
-#endif
                     })
+                    .buttonStyle(.plain)
                     .foregroundStyle(.foreground)
                     .minimumScaleFactor(0.5)
                     
@@ -161,11 +170,10 @@ public struct PurchaseView: View {
                         Text(L10n.privacyPolicy)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.foreground)
-#if !os(macOS)
                             .minimumScaleFactor(0.5)
                             .opacity(0.3)
-#endif
                     })
+                    .buttonStyle(.plain)
                     .foregroundStyle(.foreground)
                     .minimumScaleFactor(0.5)
                 }
