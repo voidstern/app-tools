@@ -68,31 +68,31 @@ public class SubscriptionManager: ObservableObject {
     }
     
     private func updateSubscriptionLevel() {
-//#if DEBUG
-//        subscriptionLevel = self.levels.max(by: { $0.value > $1.value }) ?? .free
-//#else
-//        guard let purchaserInfo = purchaserInfo else {
-//            subscriptionLevel = .free
-//            return
-//        }
-//        
-//        var activeLevel: SubscriptionLevel = .free
-//        for entitlement in purchaserInfo.entitlements.active {
-//            if let level = self.levels.filter({ $0.entitlement == entitlement.key }).first, level.value > activeLevel.value {
-//                activeLevel = level
-//            }
-//        }
-//        
-//        var activeSubscription: Subscription? = nil
-//        for subscription in purchaserInfo.activeSubscriptions {
-//            if let mappedSubscription = self.subscriptions.filter({ $0.identifier == subscription }).first {
-//                activeSubscription = mappedSubscription
-//            }
-//        }
-//        
-//        self.subscriptionLevel = activeLevel
-//        self.subscription = activeSubscription
-//#endif
+#if DEBUG
+        subscriptionLevel = self.levels.max(by: { $0.value > $1.value }) ?? .free
+#else
+        guard let purchaserInfo = purchaserInfo else {
+            subscriptionLevel = .free
+            return
+        }
+        
+        var activeLevel: SubscriptionLevel = .free
+        for entitlement in purchaserInfo.entitlements.active {
+            if let level = self.levels.filter({ $0.entitlement == entitlement.key }).first, level.value > activeLevel.value {
+                activeLevel = level
+            }
+        }
+        
+        var activeSubscription: Subscription? = nil
+        for subscription in purchaserInfo.activeSubscriptions {
+            if let mappedSubscription = self.subscriptions.filter({ $0.identifier == subscription }).first {
+                activeSubscription = mappedSubscription
+            }
+        }
+        
+        self.subscriptionLevel = activeLevel
+        self.subscription = activeSubscription
+#endif
     }
     
     public func updateCustomerInfo(completion: (() -> ())? = nil) {

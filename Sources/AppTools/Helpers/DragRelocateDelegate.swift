@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS) || os(macOS)
 struct DragRelocateDelegate<Item: Equatable>: DropDelegate {
     let item: Item
     var listData: [Item]
@@ -32,3 +33,4 @@ struct DragRelocateDelegate<Item: Equatable>: DropDelegate {
         return true
     }
 }
+#endif
