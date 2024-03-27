@@ -51,10 +51,16 @@ public class SubscriptionReminder: ObservableObject {
         }
         
         let events: Int = UserSettings.shared.integer(key: .reminderEvents)
-        let lastRating = UserSettings.shared.double(key: .lastRemindedDate) as TimeInterval
+        var lastRating = UserSettings.shared.double(key: .lastRemindedDate) as TimeInterval
+        
+        if lastRating == 0 {
+            lastRating = UserSettings.shared.double(key: .installDate)
+        }
+        
         let timePassed = Date().timeIntervalSince1970 - lastRating
+        let requiredTimePassed = TimeInterval(requiredDays * 24 * 60 * 60)
 
-        if true { // events >= requiredEvents || timePassed > threeDays {
+        if events >= requiredEvents && timePassed >= requiredTimePassed {
             UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRemindedDate)
             UserSettings.shared.set(value: 0, key: .reminderEvents)
             showPurchaseView = true
