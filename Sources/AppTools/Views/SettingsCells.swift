@@ -47,6 +47,64 @@ public struct ToggleSettingsCell: View {
     }
 }
 
+public struct DetailsSettingsCell: View {
+    @ObservedObject var storage: UserSettings
+    
+    let setting: UserSettings.Setting
+    let type: DetailsType
+    let image: Image?
+    let title: String
+    let tint: Color
+    
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, type: DetailsType, tint: Color = .accentColor) {
+        self.setting = setting
+        self.storage = storage
+        self.image = image
+        self.title = title
+        self.tint = tint
+        self.type = type
+    }
+    
+    public var body: some View {
+        HStack {
+            if let image {
+                image
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(tint)
+                    .tint(tint)
+            }
+            Text(title)
+            
+            Spacer()
+            
+            Text(detailString)
+                .opacity(0.5)
+        }
+#if os(macOS)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
+    }
+    
+    private var detailString: String {
+        switch type {
+        case .string:
+            return storage.string(key: setting)
+        case .date:
+            let timeInterval = storage.double(key: setting)
+            let date = Date(timeIntervalSince1970: timeInterval)
+            return date.shortDateString
+        }
+    }
+    
+    public enum DetailsType {
+        case string
+        case date
+    }
+}
+
 public struct StepperSettingsCell: View {
     @ObservedObject var storage: UserSettings
     

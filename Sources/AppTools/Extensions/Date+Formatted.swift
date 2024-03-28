@@ -43,6 +43,13 @@ private var iso8601Formatter: DateFormatter = {
     return dateFormatter
 }()
 
+private var iso8601ShortFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(identifier: "UTC")
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    return dateFormatter
+}()
+
 public extension Date {
     var shortDateString: String {
         return shortDateFormatter.string(from: self)
@@ -67,6 +74,14 @@ public extension Date {
 
 public extension String {
     var iso8601: Date? {
-        return iso8601Formatter.date(from: self)
+        if let date = iso8601Formatter.date(from: self) {
+            return date
+        }
+        
+        if let date = iso8601ShortFormatter.date(from: self) {
+            return date
+        }
+        
+        return nil
     }
 }
