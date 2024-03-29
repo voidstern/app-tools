@@ -10,7 +10,6 @@ import Foundation
 import AppTools
 import SwiftUI
 
-#if !os(macOS)
 public struct AppIconPickerView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @State var showingPurchaseView: Bool = false
@@ -36,9 +35,10 @@ public struct AppIconPickerView: View {
                 self.section(for: section)
             }
         }
+#if os(iOS)
         .listStyle(.insetGrouped)
-        .listSectionSeparatorTint(Color(.label))
-        .background(Color(.systemGroupedBackground))
+#endif
+        .listSectionSeparatorTint(.primary)
         .scrollContentBackground(.hidden)
     }
     
@@ -59,12 +59,9 @@ public struct AppIconPickerView: View {
             .scrollContentBackground(.hidden)
         } header: {
             Text(section.title)
-                .foregroundColor(Color(.label))
+                .foregroundColor(.primary)
         } footer: {
             EmptyView()
         }
-        .listRowBackground(Color(.secondarySystemGroupedBackground))
     }
 }
-
-#endif

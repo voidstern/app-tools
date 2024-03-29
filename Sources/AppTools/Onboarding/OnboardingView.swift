@@ -28,6 +28,9 @@ public struct OnboardingView: View {
     }
     
     public var content: some View {
+#if os(macOS)
+        onboardingView(for: currentStep)
+#else
         NavigationStack(path: $navigaitonPath) {
             onboardingView(for: firstStep())
                 .navigationDestination(for: OnboardingStep.self) { step in
@@ -35,6 +38,7 @@ public struct OnboardingView: View {
                         .navigationBarBackButtonHidden()
                 }
         }
+#endif
     }
     
     private func onboardingView(for step: OnboardingStep?) -> AnyView {
