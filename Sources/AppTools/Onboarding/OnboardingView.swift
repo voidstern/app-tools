@@ -15,8 +15,8 @@ public struct OnboardingView: View {
     
     let steps: [OnboardingStep]
     
-    public init(steps: [OnboardingStep]) {
-        self.steps = steps
+    public init(@ArrayBuilder<OnboardingStep> _ builder: () -> [OnboardingStep]) {
+        self.steps = builder()
         let firstStep = steps.first
         _currentStep = State(initialValue: firstStep)
         _navigaitonPath = State(initialValue: NavigationPath())
