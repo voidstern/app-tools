@@ -37,9 +37,8 @@ public struct AppIconPickerView: View {
         }
 #if os(iOS)
         .listStyle(.insetGrouped)
-#endif
         .listSectionSeparatorTint(.primary)
-        .scrollContentBackground(.hidden)
+#endif
     }
     
     private func section(for section: AppIconSection) -> some View {
