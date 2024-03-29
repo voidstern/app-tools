@@ -9,7 +9,8 @@ import Foundation
 import SFSafeSymbols
 import SwiftUI
 
-public struct PurchaseView: View {
+public struct PurchaseView: OnboardingSequenceView {
+    
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     
@@ -17,6 +18,7 @@ public struct PurchaseView: View {
     @State var subscriptionPrice: String = "-,--"
     @State var presentedURL: URL?
     
+    public var nextOnboardingStep: (() -> ())?
     let upgradeContext: UpgradeContext
     let onClose: (() -> ())?
     
@@ -78,7 +80,7 @@ public struct PurchaseView: View {
     
     @ViewBuilder
     var closeButton: some View {
-        Button(action: onClose ?? dismiss.callAsFunction, label: {
+        Button(action: performClose, label: {
             Image(systemSymbol: .xmark)
         })
         .opacity(closeButtonVisible ? 0.3 : 0.0)
@@ -186,7 +188,7 @@ public struct PurchaseView: View {
     private func restorePurchases() {
         subscriptionManager.restorePurchases {
             if subscriptionManager.subscription != nil {
-                (onClose ?? dismiss.callAsFunction)()
+                performClose()
             }
         }
     }
@@ -194,7 +196,7 @@ public struct PurchaseView: View {
     private func purchaseSubscription() {
         subscriptionManager.purchase(subscription: upgradeContext.subscription) {
             if subscriptionManager.subscription != nil {
-                (onClose ?? dismiss.callAsFunction)()
+                performClose()
             }
         }
     }
@@ -213,6 +215,16 @@ public struct PurchaseView: View {
 #else
         presentedURL = URL(string: "https://voidstern.net/privacy-policy")
 #endif
+    }
+    
+    private func performClose() {
+        if let nextOnboardingStep {
+            nextOnboardingStep()
+        } else if let onClose {
+            onClose()
+        } else {
+            dismiss()
+        }
     }
 }
 
