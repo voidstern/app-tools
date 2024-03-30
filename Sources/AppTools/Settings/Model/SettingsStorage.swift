@@ -9,26 +9,35 @@
 import Foundation
 
 public class SettingsStorage: ObservableObject {
-    
-    public static let shared = SettingsStorage()
-    
     @Published private var settings: [String: Any]?
     
     private let savingQueue = DispatchQueue(label: "net.voidstern.app-tools.settings-storage")
     private let accessQueue = DispatchQueue(label: "net.voidstern.app-tools.access")
 
-    private lazy var saveFileURL: URL = SettingsStorage.shared.getSaveFileURL()
-    public var appGroupIdentifier: String? {
-        didSet {
-            if appGroupIdentifier != oldValue {
-                saveFileURL = getSaveFileURL()
-                loadFromDisk()
+    private lazy var saveFileURL: URL = getSaveFileURL()
+    private var appGroupIdentifier: String?
+    
+    public func update(appGroupIdentifier: String?) {
+        if self.appGroupIdentifier != appGroupIdentifier {
+            self.appGroupIdentifier = appGroupIdentifier
+            saveFileURL = getSaveFileURL()
+            loadFromDisk()
+        }
+    }
+    
+    public func migrate(appGroupIdentifier: String?) throws {
+        if self.appGroupIdentifier != appGroupIdentifier {
+            let saveFileURL = self.getSaveFileURL()
+            let newSaveFileURL = self.getSaveFileURL(appGroupIdentifier: appGroupIdentifier)
+            
+            if !FileManager.default.fileExists(atPath: newSaveFileURL.path()) {
+                try FileManager.default.copyItem(at: saveFileURL, to: newSaveFileURL)
             }
         }
     }
 
-    func getSaveFileURL() -> URL {
-        guard let appGroupIdentifier = appGroupIdentifier, let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
+    func getSaveFileURL(appGroupIdentifier: String? = nil) -> URL {
+        guard let appGroupIdentifier = appGroupIdentifier ?? self.appGroupIdentifier, let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
             print("WARN: appGroupIdentifier not set on SettingsStorage")
             return URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json")
         }
