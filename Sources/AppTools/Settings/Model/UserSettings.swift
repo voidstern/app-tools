@@ -164,11 +164,10 @@ public class UserSettings: ObservableObject {
         }
     }
     
+    // MARK: Strings Array
+    
     public func strings(key: Setting, defaultValue: [String] = []) -> [String] {
-        guard let value = settingsStorage.strings(forKey: key.identifier) else {
-            return []
-        }
-        
+        let value = settingsStorage.strings(forKey: key.identifier)
         return value ?? key.defaultValue as? [String] ?? defaultValue
     }
     
@@ -178,6 +177,26 @@ public class UserSettings: ObservableObject {
         }
         
         settingsStorage.set(strings, forKey: key.identifier)
+        
+        DispatchQueue.onMainQueue {
+            self.objectWillChange.send()
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
+    }
+    
+    // MARK: Integer Array
+    
+    public func integers(key: Setting, defaultValue: [Int] = []) -> [Int] {
+        let value = settingsStorage.integers(forKey: key.identifier)
+        return value ?? key.defaultValue as? [Int] ?? defaultValue
+    }
+    
+    public func set(integers: [Int], key: Setting) {
+        guard settingsStorage.integers(forKey: key.identifier) != integers else {
+            return
+        }
+        
+        settingsStorage.set(integers, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()

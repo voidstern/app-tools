@@ -331,8 +331,97 @@ public struct OtherAppSettingsCell: View {
     }
 }
 
-extension UserSettings.Setting.Option: Identifiable {
-    public var id: Int {
-        self.value
+public struct MultiPickerSettingsCell: View {
+    @ObservedObject var storage: UserSettings
+    
+    let setting: UserSettings.Setting
+    let image: Image?
+    let title: String
+    let subtitle: String?
+    let tint: Color
+    
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image?, title: String, subtitle: String? = nil, tint: Color = .accentColor) {
+        self.setting = setting
+        self.storage = storage
+        self.image = image
+        self.title = title
+        self.subtitle = subtitle
+        self.tint = tint
+    }
+    
+    public var body: some View {
+        NavigationLink(destination: pickerView) {
+            HStack {
+                if let image {
+                    image
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                        .foregroundStyle(tint)
+                        .tint(tint)
+                }
+                
+                Text(title)
+                    .foregroundStyle(.primary)
+                    .tint(.primary)
+                
+                Spacer()
+                
+                Group {
+                    if let subtitle {
+                        Text(subtitle)
+                            .opacity(0.5)
+                    } else if selectedOptions.count > 1 {
+                        Text(selectedOptions.first?.title ?? L10n.none)
+                    } else {
+                        Text("\(selectedOptions.count)")
+                    }
+                }
+                .opacity(0.8)
+            }
+        }
+#if os(macOS)
+        .buttonStyle(.plain)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
+    }
+    
+    private var selectedOptions: [UserSettings.Setting.Option] {
+        let selectedValues = storage.integers(key: setting)
+        return (setting.options ?? []).filter({ selectedValues.contains($0.value) })
+    }
+    
+    private var pickerView: some View {
+        List {
+            Section {
+                ForEach(setting.options ?? []) { option in
+                    HStack {
+                        Text(option.title)
+                        
+                        Spacer()
+                        
+                        if storage.integers(key: setting).contains(option.value) {
+                            Image(systemSymbol: .checkmark)
+                                .foregroundStyle(.tint)
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        var selectedValues = storage.integers(key: setting)
+                        
+                        if selectedValues.contains(option.value) {
+                            selectedValues.remove(option.value)
+                        } else {
+                            selectedValues.append(option.value)
+                        }
+                        
+                        storage.set(integers: selectedValues, key: setting)
+                    }
+                }
+            }
+        }
+        .navigationTitle(title)
     }
 }
+

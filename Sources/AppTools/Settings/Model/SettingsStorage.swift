@@ -211,4 +211,25 @@ public class SettingsStorage: ObservableObject {
             return nil
         }
     }
+    
+    public func set(_ value: [Int], forKey: String) {
+        accessQueue.sync {
+            loadFromDiskIfNeeded()
+            settings?[forKey] = value
+            
+            savingQueue.async {
+                self.saveToDisk()
+            }
+        }
+    }
+    
+    public func integers(forKey: String) -> [Int]? {
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let value = settings?[forKey] as? [Int] {
+                return value
+            }
+            return nil
+        }
+    }
 }

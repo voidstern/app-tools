@@ -27,13 +27,21 @@ extension UserSettings {
             hasher.combine(identifier)
         }
         
-        public struct Option {
-            let title: String
-            let value: Int
+        public struct Option: Hashable, Identifiable {
+            public let title: String
+            public let value: Int
             
             public init(_ title: String, value: Int) {
                 self.title = title
                 self.value = value
+            }
+            
+            public var id: Int {
+                self.value
+            }
+
+            public func hash(into hasher: inout Hasher) {
+                hasher.combine(value)
             }
         }
     }

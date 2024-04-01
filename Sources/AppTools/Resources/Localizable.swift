@@ -65,6 +65,8 @@ internal enum L10n {
   internal static let monthly = L10n.tr("Localizable", "Monthly", fallback: "Monthly")
   /// No Subscription
   internal static let noSubscription = L10n.tr("Localizable", "No Subscription", fallback: "No Subscription")
+  /// None
+  internal static let `none` = L10n.tr("Localizable", "None", fallback: "None")
   /// One Step at a Time
   internal static let oneStepAtATime = L10n.tr("Localizable", "One Step at a Time", fallback: "One Step at a Time")
   /// Other
