@@ -9,43 +9,20 @@
 import Foundation
 
 public class UserSettings: ObservableObject {
-
     public static let userSettingsChangedNotificationName = NSNotification.Name(rawValue: "net.voidstern.usersettings.changed")
-
-    open class Setting: Equatable, Hashable {
-        public let identifier: String
-        public let defaultValue: Any?
-        public let options: [Option]?
-        
-        public init(identifier: String, defaultValue: Any? = nil, options: [Option]? = nil) {
-            self.identifier = identifier
-            self.defaultValue = defaultValue
-            self.options = options
-        }
-
-        public static func == (lhs: Setting, rhs: Setting) -> Bool {
-            return lhs.identifier == rhs.identifier
+    
+    static public let shared = UserSettings()
+    private var settingsStorage = SettingsStorage()
+    
+    public func update(appGroupIdentifier: String?, migrateIfNeeded: Bool = false) {
+        if migrateIfNeeded {
+            try? settingsStorage.migrate(appGroupIdentifier: appGroupIdentifier)
         }
         
-        public func hash(into hasher: inout Hasher) {
-            hasher.combine(identifier)
-        }
-        
-        public struct Option {
-            let title: String
-            let value: Int
-            
-            public init(_ title: String, value: Int) {
-                self.title = title
-                self.value = value
-            }
-        }
+        settingsStorage.update(appGroupIdentifier: appGroupIdentifier)
     }
     
     // MARK: Boolean
-
-    static public let shared = UserSettings()
-    private var settingsStorage = SettingsStorage.shared
 
     public func bool(key: Setting, defaultValue: Bool = false) -> Bool {
         guard let value = settingsStorage.bool(forKey: key.identifier) else {
