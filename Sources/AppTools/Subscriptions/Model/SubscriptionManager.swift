@@ -21,7 +21,7 @@ public class SubscriptionManager: ObservableObject {
     private var products: [Subscription: StoreProduct] = [:]
     private let subscriptions: [Subscription]
     
-    public init(subscriptions: [Subscription], revenueCatKey: String) {
+    public init(subscriptions: [Subscription], revenueCatKey: String, appGroupIdentifier: String? = nil) {
         self.subscriptions = subscriptions
         
 #if DEBUG
@@ -29,15 +29,21 @@ public class SubscriptionManager: ObservableObject {
 #else
         Purchases.logLevel = .error
 #endif
-        Purchases.configure(withAPIKey: revenueCatKey)
+        
+        if let appGroupIdentifier {
+            Purchases.configure(withAPIKey: revenueCatKey)
+        } else {
+            Purchases.configure(
+              with: Configuration.Builder(withAPIKey:revenueCatKey)
+                .with(userDefaults: .init(suiteName: appGroupIdentifier)!)
+                .build()
+            )
+        }
         
         print("RCID: \(Purchases.shared.appUserID)")
         
-//        Purchases.configure(with: Configuration.Builder(withAPIKey: "appl_QPJEAdJRFoqsrEsUFnCfgkvnvnw"))
-//            .with(usesStoreKit2IfAvailable: true))
-//        Purchases.shared.attribution.enableAdServicesAttributionTokenCollection()
-        
         updateCustomerInfo()
+        updateSubscriptionLevel()
     }
     
     public var rcid: String? {
