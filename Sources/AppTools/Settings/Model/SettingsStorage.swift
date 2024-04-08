@@ -36,7 +36,7 @@ public class SettingsStorage: ObservableObject {
         }
     }
 
-    func getSaveFileURL(appGroupIdentifier: String? = nil) -> URL {
+    private func getSaveFileURL(appGroupIdentifier: String? = nil) -> URL {
         guard let appGroupIdentifier = appGroupIdentifier ?? self.appGroupIdentifier, let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
             print("WARN: appGroupIdentifier not set on SettingsStorage")
             return URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/settings.json")
@@ -92,7 +92,7 @@ public class SettingsStorage: ObservableObject {
         }
     }
 
-    // Mark: Accessors
+    // Mark: Bool
 
     public func set(_ value: Bool, forKey: String) {
         accessQueue.sync {
@@ -122,6 +122,8 @@ public class SettingsStorage: ObservableObject {
         }
     }
     
+    // MARK: String
+    
     public func set(_ value: String, forKey: String) {
         accessQueue.sync {
             loadFromDiskIfNeeded()
@@ -143,26 +145,7 @@ public class SettingsStorage: ObservableObject {
         }
     }
     
-    public func set(_ value: [String], forKey: String) {
-        accessQueue.sync {
-            loadFromDiskIfNeeded()
-            settings?[forKey] = value
-            
-            savingQueue.async {
-                self.saveToDisk()
-            }
-        }
-    }
-    
-    public func strings(forKey: String) -> [String]? {
-        return accessQueue.sync {
-            loadFromDiskIfNeeded()
-            if let value = settings?[forKey] as? [String] {
-                return value
-            }
-            return nil
-        }
-    }
+    // MARK: Integer
 
     public func set(_ value: Int, forKey: String) {
         accessQueue.sync {
@@ -187,6 +170,8 @@ public class SettingsStorage: ObservableObject {
             return nil
         }
     }
+    
+    // MARK: Double
 
     public func set(_ value: Double, forKey: String) {
         accessQueue.sync {
@@ -212,6 +197,32 @@ public class SettingsStorage: ObservableObject {
         }
     }
     
+    // MARK: Data
+    
+    public func set(_ value: Data, forKey: String) {
+        accessQueue.sync {
+            loadFromDiskIfNeeded()
+            settings?[forKey] = value.base64EncodedString()
+            
+            savingQueue.async {
+                self.saveToDisk()
+            }
+        }
+    }
+
+    public func data(forKey: String) -> Data? {
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let setting = settings?[forKey] as? String {
+                return Data(base64Encoded: setting)
+            }
+            
+            return nil
+        }
+    }
+    
+    // MARK: Integers
+    
     public func set(_ value: [Int], forKey: String) {
         accessQueue.sync {
             loadFromDiskIfNeeded()
@@ -227,6 +238,29 @@ public class SettingsStorage: ObservableObject {
         return accessQueue.sync {
             loadFromDiskIfNeeded()
             if let value = settings?[forKey] as? [Int] {
+                return value
+            }
+            return nil
+        }
+    }
+    
+    // MARK: Strings
+    
+    public func set(_ value: [String], forKey: String) {
+        accessQueue.sync {
+            loadFromDiskIfNeeded()
+            settings?[forKey] = value
+            
+            savingQueue.async {
+                self.saveToDisk()
+            }
+        }
+    }
+    
+    public func strings(forKey: String) -> [String]? {
+        return accessQueue.sync {
+            loadFromDiskIfNeeded()
+            if let value = settings?[forKey] as? [String] {
                 return value
             }
             return nil

@@ -203,4 +203,35 @@ public class UserSettings: ObservableObject {
             NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
         }
     }
+    
+    // MARK: Any Codable
+    
+    public func codable<T: Codable>(key: Setting, of type: T.Type, defaultValue: T? = nil) -> T? {
+        guard let data = settingsStorage.data(forKey: key.identifier) else {
+            return key.defaultValue as? T ?? defaultValue
+        }
+        
+        guard let decoded = try? JSONDecoder().decode(type, from: data) else {
+            return key.defaultValue as? T ?? defaultValue
+        }
+        
+        return decoded ?? key.defaultValue as? T ?? defaultValue
+    }
+    
+    public func set(codable: Codable, key: Setting) {
+        guard let data = try? JSONEncoder().encode(codable) else {
+            return
+        }
+        
+        guard settingsStorage.data(forKey: key.identifier) != data else {
+            return
+        }
+        
+        settingsStorage.set(data, forKey: key.identifier)
+        
+        DispatchQueue.onMainQueue {
+            self.objectWillChange.send()
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+        }
+    }
 }

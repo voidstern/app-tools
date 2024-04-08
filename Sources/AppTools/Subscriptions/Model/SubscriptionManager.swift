@@ -8,7 +8,6 @@
 import Foundation
 import RevenueCat
 
-
 public class SubscriptionManager: ObservableObject {
     public static let subscriptionChanged = Notification.Name("net.voidstern.focused.subscription.changed")
     
@@ -20,6 +19,7 @@ public class SubscriptionManager: ObservableObject {
     
     private var products: [Subscription: StoreProduct] = [:]
     private let subscriptions: [Subscription]
+    private let userSettings: UserSettings = .shared
     
     public init(subscriptions: [Subscription], revenueCatKey: String, appGroupIdentifier: String? = nil) {
         self.subscriptions = subscriptions
@@ -30,20 +30,17 @@ public class SubscriptionManager: ObservableObject {
         Purchases.logLevel = .error
 #endif
         
-        if let appGroupIdentifier {
-            Purchases.configure(withAPIKey: revenueCatKey)
-        } else {
-            Purchases.configure(
-              with: Configuration.Builder(withAPIKey:revenueCatKey)
+        Purchases.configure(
+            with: Configuration.Builder(withAPIKey:revenueCatKey)
                 .with(userDefaults: .init(suiteName: appGroupIdentifier)!)
                 .build()
-            )
-        }
+        )
         
         print("RCID: \(Purchases.shared.appUserID)")
         
+        subscription = userSettings.codable(key: .lastKnownSubscription, of: Subscription.self)
+        subscriptionLevel = userSettings.codable(key: .lastKnownSubscriptionLevel, of: SubscriptionLevel.self) ?? .free
         updateCustomerInfo()
-        updateSubscriptionLevel()
     }
     
     public var rcid: String? {
@@ -51,7 +48,7 @@ public class SubscriptionManager: ObservableObject {
     }
     
     public var levels: [SubscriptionLevel] {
-        return subscriptions.map(\.level)
+        return subscriptions.map(\.level) + [.free]
     }
     
     public var endDate: Date? {
@@ -97,7 +94,10 @@ public class SubscriptionManager: ObservableObject {
         }
         
         self.subscriptionLevel = activeLevel
+        userSettings.set(codable: activeLevel, key: .lastKnownSubscriptionLevel)
+        
         self.subscription = activeSubscription
+        userSettings.set(codable: activeSubscription, key: .lastKnownSubscription)
 #endif
     }
     
@@ -105,7 +105,6 @@ public class SubscriptionManager: ObservableObject {
         Purchases.shared.getCustomerInfo { customerInfo, error in
             if let customerInfo = customerInfo {
                 self.purchaserInfo = customerInfo
-                UserSettings.shared.set(value: self.subscriptionLevel.identifier, key: .proSubscriptionActive)
             }
             
             completion?()
@@ -117,7 +116,6 @@ public class SubscriptionManager: ObservableObject {
         Purchases.shared.restorePurchases { customerInfo, error in
             if let customerInfo = customerInfo {
                 self.purchaserInfo = customerInfo
-                UserSettings.shared.set(value: self.subscriptionLevel.identifier, key: .proSubscriptionActive)
             }
             
             completion()
@@ -174,4 +172,9 @@ public class SubscriptionManager: ObservableObject {
             }
         }
     }
+}
+
+extension UserSettings.Setting {
+    public static let lastKnownSubscription = UserSettings.Setting(identifier: "last_known_subscription")
+    public static let lastKnownSubscriptionLevel = UserSettings.Setting(identifier: "last_known_subscription_level")
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension SubscriptionManager {
-    open class Subscription: Equatable, Hashable {
+    open class Subscription: Codable, Equatable, Hashable {
         public let identifier: String
         public let trialDuration: Int
         public let type: SubscriptionType
@@ -45,7 +45,7 @@ extension SubscriptionManager {
 
 
 extension SubscriptionManager {
-    public enum SubscriptionType {
+    public enum SubscriptionType: Codable {
         case monthly, bimonthly, quarterly, yearly
         case testflight, legacy, free, other
         
@@ -66,7 +66,7 @@ extension SubscriptionManager {
 
 
 extension SubscriptionManager {
-    public class SubscriptionLevel: Equatable, Hashable, Comparable {
+    public class SubscriptionLevel: Codable, Equatable, Hashable, Comparable {
         public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil, value: 0)
 
         public let identifier: String
@@ -94,12 +94,6 @@ extension SubscriptionManager {
         public static func < (lhs: SubscriptionManager.SubscriptionLevel, rhs: SubscriptionManager.SubscriptionLevel) -> Bool {
             return lhs.value < rhs.value
         }
-    }
-}
-
-extension UserSettings.Setting {
-    public static var proSubscriptionActive: UserSettings.Setting {
-        return UserSettings.Setting(identifier: "pro_subscription_active")
     }
 }
 
