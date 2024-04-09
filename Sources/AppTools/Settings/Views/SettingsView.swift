@@ -104,8 +104,15 @@ public struct SettingsView<Content: View>: View {
                 }
                 
             } header: { Text(L10n.otherApps) } footer: { footerView }
+            
+#if os(macOS)
+            Section {
+                footerView
+                    .listRowBackground(Color.clear)
+            }
+#endif
         }
-        .listStyle(.automatic)
+        .listStyle(.sidebar)
     }
     
     var footerView: some View {
