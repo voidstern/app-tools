@@ -20,6 +20,7 @@ public class SubscriptionManager: ObservableObject {
     private var products: [Subscription: StoreProduct] = [:]
     private let subscriptions: [Subscription]
     private let userSettings: UserSettings = .shared
+    private var debugUnlock: Subscription?
     
     public init(subscriptions: [Subscription], revenueCatKey: String, appGroupIdentifier: String? = nil) {
         self.subscriptions = subscriptions
@@ -70,10 +71,25 @@ public class SubscriptionManager: ObservableObject {
         }
     }
     
-    private func updateSubscriptionLevel() {
 #if DEBUG
-        subscriptionLevel = self.levels.max(by: { $0.value > $1.value }) ?? .free
-#else
+    public func debugUnlock(_ subscription: Subscription) {
+        debugUnlock = subscription
+        updateSubscriptionLevel()
+    }
+#endif
+    
+    private func updateSubscriptionLevel() {
+        if let debugUnlock {
+            
+            self.subscriptionLevel = debugUnlock.level
+            userSettings.set(codable: debugUnlock.level, key: .lastKnownSubscriptionLevel)
+            
+            self.subscription = debugUnlock
+            userSettings.set(codable: debugUnlock, key: .lastKnownSubscription)
+            
+            return
+        }
+        
         guard let purchaserInfo = purchaserInfo else {
             subscriptionLevel = .free
             return
@@ -98,7 +114,6 @@ public class SubscriptionManager: ObservableObject {
         
         self.subscription = activeSubscription
         userSettings.set(codable: activeSubscription, key: .lastKnownSubscription)
-#endif
     }
     
     public func updateCustomerInfo(completion: (() -> ())? = nil) {
