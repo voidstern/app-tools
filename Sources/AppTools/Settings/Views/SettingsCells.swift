@@ -72,7 +72,9 @@ public struct DetailsSettingsCell: View {
             })
         } label: {
             content
+                .tint(.primary)
         }
+        .tint(.primary)
 #if os(macOS)
         .menuStyle(.borderlessButton)
         .listRowSeparator(.hidden, edges: .all)
@@ -91,12 +93,14 @@ public struct DetailsSettingsCell: View {
                     .tint(tint)
             }
             Text(title)
+                .foregroundStyle(.primary)
             
             Spacer()
             
             Text(detailString)
                 .lineLimit(3)
                 .multilineTextAlignment(.trailing)
+                .foregroundStyle(.primary)
                 .opacity(0.5)
         }
     }
