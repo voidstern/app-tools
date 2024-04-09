@@ -31,6 +31,8 @@ internal enum L10n {
   }
   /// A news reader for power users
   internal static let aNewsReaderForPowerUsers = L10n.tr("Localizable", "A news reader for power users", fallback: "A news reader for power users")
+  /// About
+  internal static let about = L10n.tr("Localizable", "About", fallback: "About")
   /// Bi-Monthly
   internal static let biMonthly = L10n.tr("Localizable", "Bi-Monthly", fallback: "Bi-Monthly")
   /// Cancel
@@ -43,6 +45,8 @@ internal enum L10n {
   internal static let `continue` = L10n.tr("Localizable", "Continue", fallback: "Continue")
   /// Continue without Upgrade
   internal static let continueWithoutUpgrade = L10n.tr("Localizable", "Continue without Upgrade", fallback: "Continue without Upgrade")
+  /// Copy
+  internal static let copy = L10n.tr("Localizable", "Copy", fallback: "Copy")
   /// Done
   internal static let done = L10n.tr("Localizable", "Done", fallback: "Done")
   /// Dozzzer: Sleep Sounds

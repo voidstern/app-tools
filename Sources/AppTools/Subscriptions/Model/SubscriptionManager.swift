@@ -37,8 +37,7 @@ public class SubscriptionManager: ObservableObject {
                 .build()
         )
         
-        print("RCID: \(Purchases.shared.appUserID)")
-        
+        UserSettings.shared.set(value: Purchases.shared.appUserID, key: .revenuecatUserID)
         subscription = userSettings.codable(key: .lastKnownSubscription, of: Subscription.self)
         subscriptionLevel = userSettings.codable(key: .lastKnownSubscriptionLevel, of: SubscriptionLevel.self) ?? .free
         updateCustomerInfo()
@@ -190,6 +189,7 @@ public class SubscriptionManager: ObservableObject {
 }
 
 extension UserSettings.Setting {
+    public static let revenuecatUserID = UserSettings.Setting(identifier: "revenuecat_id")
     public static let lastKnownSubscription = UserSettings.Setting(identifier: "last_known_subscription")
     public static let lastKnownSubscriptionLevel = UserSettings.Setting(identifier: "last_known_subscription_level")
 }

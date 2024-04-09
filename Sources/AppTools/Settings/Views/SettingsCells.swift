@@ -66,6 +66,20 @@ public struct DetailsSettingsCell: View {
     }
     
     public var body: some View {
+        Menu {
+            Button(action: copyText, label: {
+                Text(L10n.copy)
+            })
+        } label: {
+            content
+        }
+#if os(macOS)
+        .menuStyle(.borderlessButton)
+        .listRowSeparator(.hidden, edges: .all)
+#endif
+    }
+    
+    private var content: some View {
         HStack {
             if let image {
                 image
@@ -81,11 +95,10 @@ public struct DetailsSettingsCell: View {
             Spacer()
             
             Text(detailString)
+                .lineLimit(3)
+                .multilineTextAlignment(.trailing)
                 .opacity(0.5)
         }
-#if os(macOS)
-        .listRowSeparator(.hidden, edges: .all)
-#endif
     }
     
     private var detailString: String {
@@ -102,6 +115,16 @@ public struct DetailsSettingsCell: View {
     public enum DetailsType {
         case string
         case date
+    }
+    
+    private func copyText() {
+#if os(iOS)
+        UIPasteboard.general.string = detailString
+#endif
+        
+#if os(macOS)
+        NSPasteboard.general.setString(detailString, forType: .string)
+#endif
     }
 }
 
@@ -198,7 +221,7 @@ public struct ButtonSettingsCell: View {
     
     let action: () -> ()
     
-    public init(image: Image?, title: String, tint: Color = .accentColor, isWorking: Bool = false, action: @escaping () -> Void) {
+    public init(image: Image? = nil, title: String, tint: Color = .accentColor, isWorking: Bool = false, action: @escaping () -> Void) {
         self.image = image
         self.title = title
         self.tint = tint
@@ -231,6 +254,7 @@ public struct ButtonSettingsCell: View {
                         .tint(.primary)
                 }
             }
+            .contentShape(Rectangle())
         })
 #if os(macOS)
         .buttonStyle(.plain)
@@ -246,7 +270,7 @@ public struct NavigationSettingsCell<Destination: View>: View {
     let isWorking: Bool
     let destination: Destination
     
-    public init(image: Image?, title: String, tint: Color = .accentColor, isWorking: Bool = false, destination: () -> Destination) {
+    public init(image: Image? = nil, title: String, tint: Color = .accentColor, isWorking: Bool = false, destination: () -> Destination) {
         self.image = image
         self.title = title
         self.tint = tint
@@ -323,6 +347,7 @@ public struct OtherAppSettingsCell: View {
                 
                 Spacer()
             }
+            .contentShape(Rectangle())
         })
 #if os(macOS)
         .buttonStyle(.plain)
@@ -340,56 +365,96 @@ public struct MultiPickerSettingsCell: View {
     let subtitle: String?
     let tint: Color
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image?, title: String, subtitle: String? = nil, tint: Color = .accentColor) {
+    @State var showPopover: Bool = false
+    
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, subtitle: String? = nil, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
         self.title = title
-        self.subtitle = subtitle
+        self.subtitle = subtitle 
         self.tint = tint
     }
     
     public var body: some View {
+#if os(iOS)
         NavigationLink(destination: pickerView) {
-            HStack {
-                if let image {
-                    image
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 22, height: 22)
-                        .foregroundStyle(tint)
-                        .tint(tint)
-                }
-                
-                Text(title)
-                    .foregroundStyle(.primary)
-                    .tint(.primary)
-                
-                Spacer()
-                
-                Group {
-                    if let subtitle {
-                        Text(subtitle)
-                            .opacity(0.5)
-                    } else if selectedOptions.count > 1 {
-                        Text(selectedOptions.first?.title ?? L10n.none)
-                    } else {
-                        Text("\(selectedOptions.count)")
-                    }
-                }
-                .opacity(0.8)
-            }
+            label
         }
+#endif
+        
 #if os(macOS)
+        Button(action: { showPopover = true}, label: {
+            label
+        })
         .buttonStyle(.plain)
         .listRowSeparator(.hidden, edges: .all)
 #endif
     }
     
+    private var label: some View {
+        HStack {
+            if let image {
+                image
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(tint)
+                    .tint(tint)
+            }
+            
+            Text(title)
+                .foregroundStyle(.primary)
+                .tint(.primary)
+            
+            Spacer()
+            
+            Group {
+                if let subtitle {
+                    Text(subtitle)
+                        .opacity(0.5)
+                } else if selectedOptions.count > 1 {
+                    Text(selectedOptions.first?.title ?? L10n.none)
+                } else {
+                    Text("\(selectedOptions.count)")
+                }
+            }
+            .opacity(0.8)
+#if os(macOS)
+            .popover(isPresented: $showPopover, arrowEdge: .trailing, content: {
+                macPickerView
+            })
+#endif
+        }
+    }
+    
     private var selectedOptions: [UserSettings.Setting.Option] {
         let selectedValues = storage.integers(key: setting)
         return (setting.options ?? []).filter({ selectedValues.contains($0.value) })
+    }
+    
+    private var macPickerView: some View {
+        List {
+            Section {
+                ForEach(setting.options ?? []) { option in
+                    Toggle(option.title, isOn: .init(get: {
+                        storage.integers(key: setting).contains(option.value)
+                    }, set: { value in
+                        var selectedValues = storage.integers(key: setting)
+                        
+                        if selectedValues.contains(option.value) {
+                            selectedValues.remove(option.value)
+                        } else {
+                            selectedValues.append(option.value)
+                        }
+                        
+                        storage.set(integers: selectedValues, key: setting)
+                    }))
+                }
+            }
+        }
+        .navigationTitle(title)
     }
     
     private var pickerView: some View {

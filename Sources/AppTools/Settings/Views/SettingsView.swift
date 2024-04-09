@@ -29,8 +29,9 @@ public struct SettingsView<Content: View>: View {
     }
     
     public var body: some View {
-        NavigationStack {
+        NavigationView {
             settingsContent
+                .frame(idealWidth: 360)
                 .navigationTitle(L10n.settings)
 #if !os(macOS)
                 .navigationBarTitleDisplayMode(.inline)
@@ -47,7 +48,6 @@ public struct SettingsView<Content: View>: View {
     }
     
     private var settingsContent: some View {
-        
         List {
             Group {
                 if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
@@ -62,67 +62,50 @@ public struct SettingsView<Content: View>: View {
             
             content
             
-            Section(L10n.contact) {
-                ButtonSettingsCell(image: Image(systemSymbol: .envelopeFill), title: L10n.email, tint: tint(index: 0)) {
+            Section(L10n.support) {
+                ButtonSettingsCell(image: Image(systemSymbol: .envelope), title: L10n.email, tint: tint(index: 0)) {
                     SupportMailContent().emailURL(email: settingsContext.supportMail, rcid: subscriptionManager.rcid)?.open()
                 }
                 
-                ButtonSettingsCell(image: Image("TwitterIcon", bundle: .module), title: "Twitter", tint: tint(index: 1)) {
-                    URL(string: "https://twitter.com/voidstern")?.open()
-                }
+//                if let userGuideURL = settingsContext.userGuideURL {
+//                    ButtonSettingsCell(image: Image(systemSymbol: .command), title: L10n.userGuide, tint: tint(index: 3)) {
+//                        userGuideURL.open()
+//                    }
+//                }
                 
-                ButtonSettingsCell(image: Image("MastodonIcon", bundle: .module), title: "Mastodon", tint: tint(index: 2)) {
-                    URL(string: "http://graz.social/web/@voidstern")?.open()
-                }
-            }
-            
-            Section(L10n.support) {
-                if let userGuideURL = settingsContext.userGuideURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .command), title: L10n.userGuide, tint: tint(index: 3)) {
-                        userGuideURL.open()
-                    }
-                }
-                
-                if let changelogURL = settingsContext.changelogURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .listBulletClipboard), title: L10n.changelog, tint: tint(index: 4)) {
-                        changelogURL.open()
-                    }
-                }
-                
-                if let reviewURL = settingsContext.reviewURL {
-                    ButtonSettingsCell(image: Image(systemSymbol: .starBubble), title: L10n.review(settingsContext.appName), tint: tint(index: 5)) {
-                        reviewURL.open()
-                    }
+                NavigationSettingsCell(image: Image(systemSymbol: .infoCircle), title: L10n.about) {
+                    AboutView(settingsContext: settingsContext)
                 }
             }
             
             Section {
                 if settingsContext.appID != "1158763303" {
-                    OtherAppSettingsCell(appIcon: Image("FieryFeeds", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
+                    OtherAppSettingsCell(appIcon: Image("1158763303", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
                         URL(string: "https://apps.apple.com/app/apple-store/id1158763303")?.open()
                     }
                 }
                 
                 if settingsContext.appID != "720812035" {
-                    OtherAppSettingsCell(appIcon: Image("TidurTimers", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore) {
+                    OtherAppSettingsCell(appIcon: Image("720812035", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore) {
                         URL(string: "https://apps.apple.com/app/apple-store/id720812035")?.open()
                     }
                 }
                 
                 if settingsContext.appID != "429674741" {
-                    OtherAppSettingsCell(appIcon: Image("Dozzzer", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds) {
+                    OtherAppSettingsCell(appIcon: Image("429674741", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds) {
                         URL(string: "https://apps.apple.com/app/apple-store/id429674741")?.open()
                     }
                 }
                 
                 if settingsContext.appID != "6478582777" {
-                    OtherAppSettingsCell(appIcon: Image("Focused", bundle: .module), title: L10n.focusedTaskPlanner, subtitle: L10n.oneStepAtATime) {
+                    OtherAppSettingsCell(appIcon: Image("6478582777", bundle: .module), title: L10n.focusedTaskPlanner, subtitle: L10n.oneStepAtATime) {
                         URL(string: "https://apps.apple.com/us/app/focused-task-planner/id6478582777")?.open()
                     }
                 }
                 
             } header: { Text(L10n.otherApps) } footer: { footerView }
         }
+        .listStyle(.automatic)
     }
     
     var footerView: some View {
