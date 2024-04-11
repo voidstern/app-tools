@@ -58,6 +58,8 @@ public struct SettingsView<Content: View>: View {
             }
 #if os(macOS)
             .listRowSeparator(.hidden, edges: .all)
+            .listRowBackground(Color.clear)
+            .buttonStyle(PlainButtonStyle())
 #endif
             
             content
@@ -73,7 +75,7 @@ public struct SettingsView<Content: View>: View {
 //                    }
 //                }
                 
-                NavigationSettingsCell(image: Image(systemSymbol: .infoCircle), title: L10n.about) {
+                NavigationSettingsCell(image: Image(systemSymbol: .infoCircle), title: L10n.about, tint: tint(index: 1)) {
                     AboutView(settingsContext: settingsContext)
                 }
             }
