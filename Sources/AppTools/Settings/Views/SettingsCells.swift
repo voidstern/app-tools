@@ -66,6 +66,10 @@ public struct DetailsSettingsCell: View {
     }
     
     public var body: some View {
+#if os(watchOS)
+        content
+            .tint(.primary)
+#else
         Menu {
             Button(action: copyText, label: {
                 Text(L10n.copy)
@@ -78,6 +82,7 @@ public struct DetailsSettingsCell: View {
 #if os(macOS)
         .menuStyle(.borderlessButton)
         .listRowSeparator(.hidden, edges: .all)
+#endif
 #endif
     }
     

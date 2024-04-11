@@ -112,7 +112,9 @@ public struct SettingsView<Content: View>: View {
             }
 #endif
         }
+#if os(macOS) || os(iOS)
         .listStyle(.sidebar)
+#endif
     }
     
     var footerView: some View {
