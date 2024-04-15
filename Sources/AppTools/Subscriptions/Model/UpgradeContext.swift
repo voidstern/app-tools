@@ -16,14 +16,16 @@ public struct UpgradeContext {
     let features: [PurchaseView.Feature]
     let fadeInCloseButton: Bool
     let upgradeHeaderBackground: Bool
+    let prefersDarkMode: Bool
     
-    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true, upgradeHeaderBackground: Bool = true) {
+    public init(proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true, prefersDarkMode: Bool = false, upgradeHeaderBackground: Bool = true) {
         self.proLogo = proLogo
         self.subscription = subscription
         self.features = features
         self.title = title
         self.fadeInCloseButton = fadeInCloseButton
         self.upgradeHeaderBackground = upgradeHeaderBackground
+        self.prefersDarkMode = prefersDarkMode
     }
     
     public func featureString(separator: String = " · ") -> String {

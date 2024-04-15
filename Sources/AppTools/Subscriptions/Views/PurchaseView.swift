@@ -62,6 +62,10 @@ public struct PurchaseView: OnboardingSequenceView {
 #else
             .frame(idealWidth: 560, idealHeight: 640)
 #endif
+            .if(upgradeContext.prefersDarkMode) { view in
+                view.preferredColorScheme(.dark)
+            }
+            .interactiveDismissDisabled()
     }
     
     @ViewBuilder

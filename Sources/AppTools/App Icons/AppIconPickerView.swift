@@ -25,7 +25,9 @@ public struct AppIconPickerView: View {
     public var body: some View {
         content
             .sheet(isPresented: $showingPurchaseView, content: {
-                PurchaseView(upgradeContext)
+                NavigationStack {
+                    PurchaseView(upgradeContext)
+                }
             })
     }
     
