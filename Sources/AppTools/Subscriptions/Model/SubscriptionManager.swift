@@ -19,11 +19,13 @@ public class SubscriptionManager: ObservableObject {
     
     private var products: [Subscription: StoreProduct] = [:]
     private let subscriptions: [Subscription]
+    private let levels: [SubscriptionLevel]
     private let userSettings: UserSettings = .shared
     private var debugUnlock: Subscription?
     
-    public init(subscriptions: [Subscription], revenueCatKey: String, appGroupIdentifier: String? = nil) {
+    public init(subscriptions: [Subscription], levels: [SubscriptionLevel], revenueCatKey: String, appGroupIdentifier: String? = nil) {
         self.subscriptions = subscriptions
+        self.levels = levels
         
 #if DEBUG
         Purchases.logLevel = .debug
@@ -45,10 +47,6 @@ public class SubscriptionManager: ObservableObject {
     
     public var rcid: String? {
         return Purchases.shared.appUserID
-    }
-    
-    public var levels: [SubscriptionLevel] {
-        return subscriptions.map(\.level) + [.free]
     }
     
     public var endDate: Date? {
@@ -79,7 +77,6 @@ public class SubscriptionManager: ObservableObject {
     
     private func updateSubscriptionLevel() {
         if let debugUnlock {
-            
             self.subscriptionLevel = debugUnlock.level
             userSettings.set(codable: debugUnlock.level, key: .lastKnownSubscriptionLevel)
             
