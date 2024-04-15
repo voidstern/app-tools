@@ -64,6 +64,7 @@ public struct PurchaseSettingsGetProHeader: View {
                 Color.clear
                     .frame(height: 16)
                 
+#if os(iOS)
                 if upgradeContext.upgradeHeaderBackground {
                     if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
                         if colorScheme == .dark {
@@ -78,6 +79,7 @@ public struct PurchaseSettingsGetProHeader: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                 }
+#endif
                 
                 Color.clear
                     .frame(height: 16)
