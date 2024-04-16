@@ -22,6 +22,9 @@ struct AboutView: View {
     var body: some View {
         content
             .navigationTitle(L10n.about)
+#if os(visionOS)
+            .tint(.white)
+#endif
     }
     
     var content: some View {

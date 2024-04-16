@@ -76,10 +76,14 @@ public struct DetailsSettingsCell: View {
             })
         } label: {
             content
+#if os(iOS)
                 .tint(.primary)
+#endif
         }
+#if os(iOS)
         .tint(.primary)
-#if os(macOS)
+#endif
+#if os(macOS) || os(visionOS)
         .menuStyle(.borderlessButton)
         .listRowSeparator(.hidden, edges: .all)
 #endif
@@ -127,7 +131,7 @@ public struct DetailsSettingsCell: View {
     }
     
     private func copyText() {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         UIPasteboard.general.string = detailString
 #endif
         
@@ -269,6 +273,9 @@ public struct ButtonSettingsCell: View {
         .buttonStyle(.plain)
         .listRowSeparator(.hidden, edges: .all)
 #endif
+#if os(visionOS)
+        .foregroundStyle(.white)
+#endif
     }
 }
 
@@ -361,6 +368,9 @@ public struct OtherAppSettingsCell: View {
 #if os(macOS)
         .buttonStyle(.plain)
         .listRowSeparator(.hidden, edges: .all)
+#endif
+#if os(visionOS)
+        .foregroundStyle(.white)
 #endif
     }
 }

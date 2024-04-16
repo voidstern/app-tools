@@ -10,6 +10,7 @@ import SFSafeSymbols
 import StoreKit
 import SwiftUI
 
+@available(macOS 14.0, iOS 17.0, watchOS 10.0, *)
 public struct SettingsView<Content: View>: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userSettings: UserSettings
@@ -21,21 +22,48 @@ public struct SettingsView<Content: View>: View {
     private let upgradeContext: UpgradeContext
     private let settingsContext: SettingsContext
     private let content: Content
+    private let showDoneButton: Bool
     
-    public init(upgradeContext: UpgradeContext, settingsContext: SettingsContext, @ViewBuilder _ content: () -> Content) {
+    public init(upgradeContext: UpgradeContext, settingsContext: SettingsContext, showDoneButton: Bool = true, @ViewBuilder _ content: () -> Content) {
         self.upgradeContext = upgradeContext
         self.settingsContext = settingsContext
+        self.showDoneButton = showDoneButton
         self.content = content()
     }
     
     public var body: some View {
-        NavigationView {
-            settingsContent
-                .frame(idealWidth: 360)
-                .navigationTitle(L10n.settings)
-#if !os(macOS)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
+        GeometryReader(content: { geometry in
+            if geometry.size.width > 640 {
+                splitViewSettings
+            } else {
+                navigationSettings
+            }
+        })
+    }
+    
+    private var navigationSettings: some View {
+        NavigationStack {
+            settingsContent(splitView: false)
+        }
+    }
+    
+    private var splitViewSettings: some View {
+        NavigationSplitView {
+            settingsContent(splitView: true)
+        } detail: {
+            ContentUnavailableView("Nothing selected", systemImage: "gearshape.fill")
+        }
+    }
+    
+    private func settingsContent(splitView: Bool) -> some View {
+        settingsList(splitView: splitView)
+            .frame(idealWidth: 360)
+            .navigationTitle(L10n.settings)
+            .toolbar(removing: .sidebarToggle)
+#if os(iOS) || os(visionOS)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if showDoneButton {
                     ToolbarItem(placement: .primaryAction) {
                         Button(action: dismiss.callAsFunction, label: {
                             Text(L10n.done)
@@ -43,17 +71,17 @@ public struct SettingsView<Content: View>: View {
                         })
                     }
                 }
+            }
 #endif
-        }
     }
     
-    private var settingsContent: some View {
+    private func settingsList(splitView: Bool) ->  some View {
         List {
             Group {
                 if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
-                    PurchaseSettingsProHeader(upgradeContext: upgradeContext)
+                    PurchaseSettingsProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
                 } else {
-                    PurchaseSettingsGetProHeader(upgradeContext: upgradeContext)
+                    PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
                 }
             }
 #if os(macOS)

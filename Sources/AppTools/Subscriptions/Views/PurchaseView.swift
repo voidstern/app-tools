@@ -30,7 +30,7 @@ public struct PurchaseView: OnboardingSequenceView {
     public var body: some View {
         content
             .navigationBarBackButtonHidden(true)
-#if canImport(UIKit) && !os(watchOS)
+#if os(iOS)
             .sheet(item: $presentedURL) { url in
                 SafariWebView(url: url)
                     .ignoresSafeArea()
@@ -206,18 +206,18 @@ public struct PurchaseView: OnboardingSequenceView {
     }
     
     private func showTermsOfService() {
-#if os(macOS)
-        URL(string: "https://voidstern.net/terms-of-use")?.open()
-#else
+#if os(iOS)
         presentedURL = URL(string: "https://voidstern.net/terms-of-use")
+#else
+        URL(string: "https://voidstern.net/terms-of-use")?.open()
 #endif
     }
     
     private func showPrivacyPolicy() {
-#if os(macOS)
-        URL(string: "https://voidstern.net/privacy-policy")?.open()
-#else
+#if os(iOS)
         presentedURL = URL(string: "https://voidstern.net/privacy-policy")
+#else
+        URL(string: "https://voidstern.net/privacy-policy")?.open()
 #endif
     }
     

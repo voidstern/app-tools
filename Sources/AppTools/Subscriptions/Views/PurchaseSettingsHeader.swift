@@ -13,9 +13,11 @@ public struct PurchaseSettingsGetProHeader: View {
     @Environment(\.colorScheme) var colorScheme
     
     let upgradeContext: UpgradeContext
+    let showlistBackground: Bool
     
-    public init(upgradeContext: UpgradeContext) {
+    public init(upgradeContext: UpgradeContext, showlistBackground: Bool = false) {
         self.upgradeContext = upgradeContext
+        self.showlistBackground = showlistBackground
     }
     
     public var body: some View {
@@ -30,7 +32,9 @@ public struct PurchaseSettingsGetProHeader: View {
             
             content
         }
-        .listRowBackground(Color.clear)
+        .if(!showlistBackground, transform: { view in
+            view.listRowBackground(Color.clear)
+        })
     }
     
     var content: some View {
@@ -92,9 +96,11 @@ public struct PurchaseSettingsGetProHeader: View {
 
 public struct PurchaseSettingsProHeader: View {
     let upgradeContext: UpgradeContext
+    let showlistBackground: Bool
     
-    public init(upgradeContext: UpgradeContext) {
+    public init(upgradeContext: UpgradeContext, showlistBackground: Bool = false) {
         self.upgradeContext = upgradeContext
+        self.showlistBackground = showlistBackground
     }
     
     public var body: some View {
@@ -109,7 +115,9 @@ public struct PurchaseSettingsProHeader: View {
             
             content
         }
-        .listRowBackground(Color.clear)
+        .if(!showlistBackground, transform: { view in
+            view.listRowBackground(Color.clear)
+        })
     }
     
     var content: some View {

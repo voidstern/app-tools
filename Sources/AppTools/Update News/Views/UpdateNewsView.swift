@@ -48,7 +48,11 @@ struct UpdateNewsView: View {
                             Image(systemSymbol: symbol)
                                 .font(.system(size: 32))
                                 .symbolRenderingMode(.hierarchical)
-                                .foregroundStyle(feature.tint)
+#if os(visionOS)
+            .foregroundStyle(.white)
+#else
+            .foregroundStyle(feature.tint)
+#endif
                                 .frame(width: 64, height: 64)
                         }
                         
@@ -111,7 +115,11 @@ struct UpdateNewsView: View {
             .font(.system(size: 19, weight: .semibold))
             .frame(height: 64)
 #endif
+#if os(visionOS)
+            .foregroundStyle(.white)
+#else
             .foregroundStyle(.background)
+#endif
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
             .background {
