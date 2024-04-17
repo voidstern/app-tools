@@ -76,6 +76,8 @@ public class SubscriptionManager: ObservableObject {
 #endif
     
     private func updateSubscriptionLevel() {
+        UserSettings.shared.set(value: Purchases.shared.appUserID, key: .revenuecatUserID)
+        
         if let debugUnlock {
             self.subscriptionLevel = debugUnlock.level
             userSettings.set(codable: debugUnlock.level, key: .lastKnownSubscriptionLevel)
