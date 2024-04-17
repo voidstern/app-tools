@@ -142,7 +142,7 @@ public class SubscriptionManager: ObservableObject {
     }
     
     public func updateCustomerInfo(completion: (() -> ())? = nil) {
-        Purchases.shared.getCustomerInfo(fetchPolicy: .fetchCurrent) { customerInfo, error in
+        Purchases.shared.getCustomerInfo { customerInfo, error in
             if let customerInfo = customerInfo {
                 self.purchaserInfo = customerInfo
             }
