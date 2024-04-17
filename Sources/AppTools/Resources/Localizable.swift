@@ -83,6 +83,8 @@ internal enum L10n {
   internal static let privacyPolicy = L10n.tr("Localizable", "Privacy Policy", fallback: "Privacy Policy")
   /// Quarterly
   internal static let quarterly = L10n.tr("Localizable", "Quarterly", fallback: "Quarterly")
+  /// RC Dash
+  internal static let rcDash = L10n.tr("Localizable", "RC Dash", fallback: "RC Dash")
   /// Restore
   internal static let restore = L10n.tr("Localizable", "Restore", fallback: "Restore")
   /// Restore Purchases
@@ -91,6 +93,8 @@ internal enum L10n {
   internal static func review(_ p1: Any) -> String {
     return L10n.tr("Localizable", "Review %@", String(describing: p1), fallback: "Review %@")
   }
+  /// See your RevenueCat stats on the go
+  internal static let seeYourRevenueCatStatsOnTheGo = L10n.tr("Localizable", "See your RevenueCat stats on the go", fallback: "See your RevenueCat stats on the go")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "Settings", fallback: "Settings")
   /// Subscription Terms
