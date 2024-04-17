@@ -95,14 +95,15 @@ public class SupportMailContent {
 #endif
     }
     
+    public func version() -> String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
+        return "\(version) (Build \(build))"
+    }
+    
     public func subject() -> String {
-//#if os(macOS)
-//        return ""
-//#else
         let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
-        let version = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
-        return "\(name) (Build \(version))"
-//#endif
+        return "\(name) \(version)"
     }
     
     public func emailURL(email: String, rcid: String?) -> URL? {

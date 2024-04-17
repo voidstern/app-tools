@@ -35,7 +35,7 @@ struct AboutView: View {
                     VStack(alignment: .leading) {
                         Text(settingsContext.appName)
                             .fontWeight(.semibold)
-                        Text(SupportMailContent().subject())
+                        Text(SupportMailContent().version())
                             .opacity(0.8)
                     }
                 }
