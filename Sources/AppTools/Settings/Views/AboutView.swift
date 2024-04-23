@@ -35,7 +35,7 @@ struct AboutView: View {
                     VStack(alignment: .leading) {
                         Text(settingsContext.appName)
                             .fontWeight(.semibold)
-                        Text(SupportMailContent().subject())
+                        Text(SupportMailContent().version())
                             .opacity(0.8)
                     }
                 }
@@ -77,8 +77,8 @@ struct AboutView: View {
             }
             
             Section {
-                DetailsSettingsCell(setting: .revenuecatUserID, image: Image(systemSymbol: .creditcard), title: "RevenueCat ID", type: .string)
-                DetailsSettingsCell(setting: .sentryUserID, image: Image(systemSymbol: .ladybug), title: "Sentry ID", type: .string)
+                DetailsSettingsCell(setting: .revenuecatUserID, image: Image(systemSymbol: .creditcard), title: "RCID", type: .string)
+                DetailsSettingsCell(setting: .sentryUserID, image: Image(systemSymbol: .ladybug), title: "Sentry", type: .string)
             }
         }
     }

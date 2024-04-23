@@ -23,7 +23,7 @@ public class SubscriptionManager: ObservableObject {
     private let userSettings: UserSettings = .shared
     private var debugUnlock: Subscription?
     
-    public init(subscriptions: [Subscription], levels: [SubscriptionLevel], revenueCatKey: String, appGroupIdentifier: String? = nil) {
+    public init(subscriptions: [Subscription], levels: [SubscriptionLevel], revenueCatKey: String, appGroupIdentifier: String? = nil, migrateAppGroupIfNeeded: Bool = false) {
         self.subscriptions = subscriptions
         self.levels = levels
         
@@ -32,6 +32,10 @@ public class SubscriptionManager: ObservableObject {
 #else
         Purchases.logLevel = .error
 #endif
+        
+        if let appGroupIdentifier, migrateAppGroupIfNeeded {
+            self.migrateAppGroupIfNeeded(appGroupIdentifier: appGroupIdentifier)
+        }
         
         Purchases.configure(
             with: Configuration.Builder(withAPIKey:revenueCatKey)
@@ -75,7 +79,32 @@ public class SubscriptionManager: ObservableObject {
     }
 #endif
     
+    private func migrateAppGroupIfNeeded(appGroupIdentifier: String) {
+        let userDefaults = UserDefaults.standard
+        let hasMigratedKey = "has_migrated_revenuecat"
+        
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupIdentifier) else {
+            return
+        }
+        
+        guard userDefaults.bool(forKey: hasMigratedKey) != true else {
+            return
+        }
+        
+        for entry in userDefaults.dictionaryRepresentation() {
+            let (key, value) = entry
+            
+            if key.starts(with: "com.revenuecat.") {
+                sharedDefaults.set(value, forKey: key)
+            }
+        }
+        
+        userDefaults.set(true, forKey: hasMigratedKey)
+    }
+    
     private func updateSubscriptionLevel() {
+        UserSettings.shared.set(value: Purchases.shared.appUserID, key: .revenuecatUserID)
+        
         if let debugUnlock {
             self.subscriptionLevel = debugUnlock.level
             userSettings.set(codable: debugUnlock.level, key: .lastKnownSubscriptionLevel)

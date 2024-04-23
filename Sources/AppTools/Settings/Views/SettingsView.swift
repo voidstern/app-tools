@@ -146,11 +146,11 @@ public struct SettingsView<Content: View>: View {
                     }
                 }
                 
-                if settingsContext.appID != "6479531332" {
-                    OtherAppSettingsCell(appIcon: Image("6479531332", bundle: .module), title: L10n.rcDash, subtitle: L10n.seeYourRevenueCatStatsOnTheGo) {
-                        URL(string: "https://apps.apple.com/us/app/rc-dash/id6479531332")?.open()
-                    }
-                }
+//                if settingsContext.appID != "6479531332" {
+//                    OtherAppSettingsCell(appIcon: Image("6479531332", bundle: .module), title: L10n.rcDash, subtitle: L10n.seeYourRevenueCatStatsOnTheGo) {
+//                        URL(string: "https://apps.apple.com/us/app/rc-dash/id6479531332")?.open()
+//                    }
+//                }
                 
             } header: { Text(L10n.otherApps) } footer: { footerView }
             

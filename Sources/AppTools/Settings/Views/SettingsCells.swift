@@ -107,7 +107,8 @@ public struct DetailsSettingsCell: View {
             Spacer()
             
             Text(detailString)
-                .lineLimit(3)
+                .lineLimit(2)
+                .font(.system(size: 13))
                 .multilineTextAlignment(.trailing)
                 .foregroundStyle(.primary)
                 .opacity(0.5)
