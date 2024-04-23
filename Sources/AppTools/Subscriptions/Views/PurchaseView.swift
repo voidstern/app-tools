@@ -38,7 +38,7 @@ public struct PurchaseView: OnboardingSequenceView {
 #endif
             .onAppear {
                 if upgradeContext.fadeInCloseButton {
-                    DispatchQueue.main.async(after: 3.0) {
+                    DispatchQueue.main.async(after: 5.0) {
                         closeButtonVisible = true
                     }
                 } else {
@@ -66,6 +66,7 @@ public struct PurchaseView: OnboardingSequenceView {
                 view.preferredColorScheme(.dark)
             }
             .interactiveDismissDisabled()
+            .navigationTitle(upgradeContext.title)
     }
     
     @ViewBuilder

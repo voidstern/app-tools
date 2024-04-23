@@ -12,6 +12,8 @@ import SwiftUI
 public struct PurchaseSettingsGetProHeader: View {
     @Environment(\.colorScheme) var colorScheme
     
+    @State var showPurchaseView: Bool = false
+    
     let upgradeContext: UpgradeContext
     let splitView: Bool
     
@@ -22,19 +24,17 @@ public struct PurchaseSettingsGetProHeader: View {
     
     public var body: some View {
         ZStack {
-            NavigationLink {
-                PurchaseView(upgradeContext)
-            } label: {
-                EmptyView()
+            Button(action: { showPurchaseView = true }) {
+                content
             }
-            .opacity(0.0)
             .buttonStyle(PlainButtonStyle())
-            
-            content
         }
         .if(!splitView, transform: { view in
             view.listRowBackground(Color.clear)
         })
+        .navigationDestination(isPresented: $showPurchaseView) {
+            PurchaseView(upgradeContext)
+        }
     }
     
     var content: some View {
