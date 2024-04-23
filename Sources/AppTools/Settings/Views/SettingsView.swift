@@ -18,6 +18,7 @@ public struct SettingsView<Content: View>: View {
     
     @State var showingEmail: Bool = false
     @State var showingiCloud: Bool = false
+    @State private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
     
     private let upgradeContext: UpgradeContext
     private let settingsContext: SettingsContext
@@ -33,12 +34,15 @@ public struct SettingsView<Content: View>: View {
     
     public var body: some View {
         GeometryReader(content: { geometry in
-            if geometry.size.width > 640 {
+            if geometry.size.width >= 640 {
                 splitViewSettings
             } else {
                 navigationSettings
             }
         })
+        .onChange(of: columnVisibility) {
+            columnVisibility = .doubleColumn
+        }
     }
     
     private var navigationSettings: some View {
@@ -48,11 +52,13 @@ public struct SettingsView<Content: View>: View {
     }
     
     private var splitViewSettings: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             settingsContent(splitView: true)
+                .navigationSplitViewColumnWidth(min: 280, ideal: 320, max: 540)
         } detail: {
-            ContentUnavailableView("Nothing selected", systemImage: "gearshape.fill")
+            ContentUnavailableView("Nothing selected", systemImage: "gearshape")
         }
+        .navigationSplitViewStyle(.balanced)
     }
     
     private func settingsContent(splitView: Bool) -> some View {
@@ -77,14 +83,21 @@ public struct SettingsView<Content: View>: View {
     
     private func settingsList(splitView: Bool) ->  some View {
         List {
-            Group {
-                if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
-                    PurchaseSettingsProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
-                } else {
-                    PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
+            ZStack {
+                Color.clear
+                
+                Group {
+                    if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
+                        PurchaseSettingsProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
+                            .selectionDisabled()
+                    } else {
+                        PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
+                            .selectionDisabled()
+                    }
                 }
             }
 #if os(macOS)
+            .selectionDisabled()
             .listRowSeparator(.hidden, edges: .all)
             .listRowBackground(Color.clear)
             .buttonStyle(PlainButtonStyle())

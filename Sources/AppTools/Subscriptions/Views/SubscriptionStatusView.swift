@@ -49,17 +49,34 @@ public struct SubscriptionStatusView: View {
             }
             
             Section {
+#if os(macOS)
+                HStack {
+                    Spacer()
+                    
+                    Button(L10n.manageSubscription, action: manageSubscription)
+                        .tint(.primary)
+                    Button(L10n.termsOfService, action: showTermsOfService)
+                        .tint(.primary)
+                    Button(L10n.privacyPolicy, action: showPrivacyPolicy)
+                        .tint(.primary)
+                    
+                    Spacer()
+                }
+                .padding(.top, 12)
+#else
                 Button(L10n.manageSubscription, action: manageSubscription)
                     .tint(.primary)
                 Button(L10n.termsOfService, action: showTermsOfService)
                     .tint(.primary)
                 Button(L10n.privacyPolicy, action: showPrivacyPolicy)
                     .tint(.primary)
+#endif
             } footer: {
                 VStack(alignment: .leading) {
                     Text(L10n.subscriptionTerms)
                         .bold()
                     Text(L10n.subscriptionAutomaticallyRenewsUnlessAutoRenewIsTurnedOffAtLeast24HoursBeforeTheEndOfTheCurrentPeriodPaymentWillBeChargedToITunesAccountAtConfirmationOfPurchaseAccountWillBeChargedForRenewalWithin24HoursPriorToTheEndOfTheCurrentPeriodForTheFullPriceSubscriptionsMayBeManagedByTheUserAndAutoRenewalMayBeTurnedOffByGoingToTheUserSAccountSettingsAfterPurchase)
+                        .lineLimit(6, reservesSpace: true)
                 }
                 .frame(maxWidth: .infinity)
                 .ignoresSafeArea()
