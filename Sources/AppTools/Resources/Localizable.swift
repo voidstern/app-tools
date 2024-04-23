@@ -97,6 +97,8 @@ internal enum L10n {
   internal static let seeYourRevenueCatStatsOnTheGo = L10n.tr("Localizable", "See your RevenueCat stats on the go", fallback: "See your RevenueCat stats on the go")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "Settings", fallback: "Settings")
+  /// Subscription Status
+  internal static let subscriptionStatus = L10n.tr("Localizable", "Subscription Status", fallback: "Subscription Status")
   /// Subscription Terms
   internal static let subscriptionTerms = L10n.tr("Localizable", "Subscription Terms", fallback: "Subscription Terms")
   /// Support

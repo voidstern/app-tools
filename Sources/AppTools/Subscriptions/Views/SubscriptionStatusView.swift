@@ -13,18 +13,22 @@ public struct SubscriptionStatusView: View {
     @State var presentedURL: URL?
     
     let upgradeContext: UpgradeContext
+    let splitView: Bool
     
-    public init(upgradeContext: UpgradeContext) {
+    public init(upgradeContext: UpgradeContext, splitView: Bool = false) {
         self.upgradeContext = upgradeContext
+        self.splitView = splitView
     }
     
     public var body: some View {
         List {
-            VStack(alignment: .center, content: {
-                upgradeContext.proLogo
-            })
-            .frame(maxWidth: .infinity)
-            .listRowBackground(Color.clear)
+            if !splitView {
+                VStack(alignment: .center, content: {
+                    upgradeContext.proLogo
+                })
+                .frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
+            }
             
             Section {
                 HStack {
@@ -83,6 +87,7 @@ public struct SubscriptionStatusView: View {
                 .padding(.top, 12)
             }
         }
+        .navigationTitle(L10n.subscriptionStatus)
     }
     
     private func manageSubscription() {

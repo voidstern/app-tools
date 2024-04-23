@@ -13,11 +13,11 @@ public struct PurchaseSettingsGetProHeader: View {
     @Environment(\.colorScheme) var colorScheme
     
     let upgradeContext: UpgradeContext
-    let showlistBackground: Bool
+    let splitView: Bool
     
-    public init(upgradeContext: UpgradeContext, showlistBackground: Bool = false) {
+    public init(upgradeContext: UpgradeContext, splitView: Bool = false) {
         self.upgradeContext = upgradeContext
-        self.showlistBackground = showlistBackground
+        self.splitView = splitView
     }
     
     public var body: some View {
@@ -32,7 +32,7 @@ public struct PurchaseSettingsGetProHeader: View {
             
             content
         }
-        .if(!showlistBackground, transform: { view in
+        .if(!splitView, transform: { view in
             view.listRowBackground(Color.clear)
         })
     }
@@ -96,33 +96,36 @@ public struct PurchaseSettingsGetProHeader: View {
 
 public struct PurchaseSettingsProHeader: View {
     let upgradeContext: UpgradeContext
-    let showlistBackground: Bool
+    let splitView: Bool
     
-    public init(upgradeContext: UpgradeContext, showlistBackground: Bool = false) {
+    @State var showSubscriptionView: Bool = false
+    
+    public init(upgradeContext: UpgradeContext, splitView: Bool = false) {
         self.upgradeContext = upgradeContext
-        self.showlistBackground = showlistBackground
+        self.splitView = splitView
     }
     
     public var body: some View {
         ZStack {
-            NavigationLink {
-                SubscriptionStatusView(upgradeContext: upgradeContext)
-            } label: {
-                EmptyView()
+            Button(action: { showSubscriptionView = true }) {
+                content
             }
-            .opacity(0.0)
             .buttonStyle(PlainButtonStyle())
-            
-            content
         }
-        .if(!showlistBackground, transform: { view in
+        .if(!splitView, transform: { view in
             view.listRowBackground(Color.clear)
         })
+        .navigationDestination(isPresented: $showSubscriptionView) {
+            SubscriptionStatusView(upgradeContext: upgradeContext, splitView: splitView)
+        }
     }
     
     var content: some View {
         VStack(alignment: .center) {
             upgradeContext.proLogo
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(.horizontal, 16)
             
             Text(L10n.thanksForYourSupport)
                 .font(.system(size: 15, weight: .semibold))

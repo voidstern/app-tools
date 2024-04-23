@@ -88,10 +88,10 @@ public struct SettingsView<Content: View>: View {
                 
                 Group {
                     if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
-                        PurchaseSettingsProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
+                        PurchaseSettingsProHeader(upgradeContext: upgradeContext, splitView: splitView)
                             .selectionDisabled()
                     } else {
-                        PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, showlistBackground: splitView)
+                        PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, splitView: splitView)
                             .selectionDisabled()
                     }
                 }

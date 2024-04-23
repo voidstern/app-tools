@@ -355,11 +355,13 @@ public struct OtherAppSettingsCell: View {
                         .fontWeight(.regular)
                         .foregroundStyle(.primary)
                         .tint(.primary)
+                        .lineLimit(1)
                     Text(subtitle)
                         .fontWeight(.regular)
                         .opacity(0.5)
                         .foregroundStyle(.primary)
                         .tint(.primary)
+                        .lineLimit(1)
                 }
                 
                 Spacer()
