@@ -27,11 +27,11 @@ public class SubscriptionManager: ObservableObject {
         self.subscriptions = subscriptions
         self.levels = levels
         
-#if DEBUG
-        Purchases.logLevel = .debug
-#else
+//#if DEBUG
+//        Purchases.logLevel = .debug
+//#else
         Purchases.logLevel = .error
-#endif
+//#endif
         
         if let appGroupIdentifier, migrateAppGroupIfNeeded {
             self.migrateAppGroupIfNeeded(appGroupIdentifier: appGroupIdentifier)
