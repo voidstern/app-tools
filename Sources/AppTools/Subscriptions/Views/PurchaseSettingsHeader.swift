@@ -11,16 +11,10 @@ import SwiftUI
 
 public struct PurchaseSettingsGetProHeader: View {
     @Environment(\.colorScheme) var colorScheme
-    
-    @State var showPurchaseView: Bool = false
+    @Binding var showPurchaseView: Bool
     
     let upgradeContext: UpgradeContext
-    let splitView: Bool
-    
-    public init(upgradeContext: UpgradeContext, splitView: Bool = false) {
-        self.upgradeContext = upgradeContext
-        self.splitView = splitView
-    }
+    var splitView: Bool = false
     
     public var body: some View {
         ZStack {
@@ -32,9 +26,6 @@ public struct PurchaseSettingsGetProHeader: View {
         .if(!splitView, transform: { view in
             view.listRowBackground(Color.clear)
         })
-        .navigationDestination(isPresented: $showPurchaseView) {
-            PurchaseView(upgradeContext)
-        }
     }
     
     var content: some View {
@@ -95,15 +86,10 @@ public struct PurchaseSettingsGetProHeader: View {
 }
 
 public struct PurchaseSettingsProHeader: View {
+    @Binding var showSubscriptionView: Bool
+    
     let upgradeContext: UpgradeContext
-    let splitView: Bool
-    
-    @State var showSubscriptionView: Bool = false
-    
-    public init(upgradeContext: UpgradeContext, splitView: Bool = false) {
-        self.upgradeContext = upgradeContext
-        self.splitView = splitView
-    }
+    var splitView: Bool = false
     
     public var body: some View {
         ZStack {
@@ -115,9 +101,6 @@ public struct PurchaseSettingsProHeader: View {
         .if(!splitView, transform: { view in
             view.listRowBackground(Color.clear)
         })
-        .navigationDestination(isPresented: $showSubscriptionView) {
-            SubscriptionStatusView(upgradeContext: upgradeContext, splitView: splitView)
-        }
     }
     
     var content: some View {

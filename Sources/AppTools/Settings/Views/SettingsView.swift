@@ -20,6 +20,9 @@ public struct SettingsView<Content: View>: View {
     @State var showingiCloud: Bool = false
     @State private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
     
+    @State var showSubscriptionView: Bool = false
+    @State var showPurchaseView: Bool = false
+    
     private let upgradeContext: UpgradeContext
     private let settingsContext: SettingsContext
     private let content: Content
@@ -34,10 +37,12 @@ public struct SettingsView<Content: View>: View {
     
     public var body: some View {
         GeometryReader(content: { geometry in
-            if geometry.size.width >= 640 {
-                splitViewSettings
-            } else {
-                navigationSettings
+            Group {
+                if geometry.size.width >= 640 {
+                    splitViewSettings
+                } else {
+                    navigationSettings
+                }
             }
         })
         .onChange(of: columnVisibility) {
@@ -79,6 +84,12 @@ public struct SettingsView<Content: View>: View {
                 }
             }
 #endif
+            .navigationDestination(isPresented: $showPurchaseView) {
+                PurchaseView(upgradeContext)
+            }
+            .navigationDestination(isPresented: $showSubscriptionView) {
+                SubscriptionStatusView(upgradeContext: upgradeContext, splitView: splitView)
+            }
     }
     
     private func settingsList(splitView: Bool) ->  some View {
@@ -88,10 +99,10 @@ public struct SettingsView<Content: View>: View {
                 
                 Group {
                     if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
-                        PurchaseSettingsProHeader(upgradeContext: upgradeContext, splitView: splitView)
+                        PurchaseSettingsProHeader(showSubscriptionView: $showSubscriptionView, upgradeContext: upgradeContext, splitView: splitView)
                             .selectionDisabled()
                     } else {
-                        PurchaseSettingsGetProHeader(upgradeContext: upgradeContext, splitView: splitView)
+                        PurchaseSettingsGetProHeader(showPurchaseView: $showPurchaseView, upgradeContext: upgradeContext, splitView: splitView)
                             .selectionDisabled()
                     }
                 }
