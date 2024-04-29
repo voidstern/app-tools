@@ -46,25 +46,15 @@ public class UserSettings: ObservableObject {
 
     @discardableResult
     public func toggle(_ key: Setting) -> Bool {
-        if let value = settingsStorage.bool(forKey: key.identifier) {
-            settingsStorage.set(!value, forKey: key.identifier)
-            
-            DispatchQueue.onMainQueue {
-                self.objectWillChange.send()
-                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-            }
-            
-            return (!value)
-        } else {
-            settingsStorage.set(true, forKey: key.identifier)
-            
-            DispatchQueue.onMainQueue {
-                self.objectWillChange.send()
-                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
-            }
-            
-            return true
+        let value = self.bool(key: key)
+        settingsStorage.set(!value, forKey: key.identifier)
+        
+        DispatchQueue.onMainQueue {
+            self.objectWillChange.send()
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
         }
+        
+        return (!value)
     }
     
     // MARK: Double
