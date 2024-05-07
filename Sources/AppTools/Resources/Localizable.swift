@@ -61,10 +61,18 @@ internal enum L10n {
   internal static let fieryFeedsRSSReader = L10n.tr("Localizable", "Fiery Feeds: RSS Reader", fallback: "Fiery Feeds: RSS Reader")
   /// Focused: Task Planner
   internal static let focusedTaskPlanner = L10n.tr("Localizable", "Focused: Task Planner", fallback: "Focused: Task Planner")
+  /// Friday
+  internal static let friday = L10n.tr("Localizable", "Friday", fallback: "Friday")
+  /// Fri
+  internal static let fridayShort = L10n.tr("Localizable", "Friday Short", fallback: "Fri")
   /// HIIT, Pomodoro and more
   internal static let hiitPomodoroAndMore = L10n.tr("Localizable", "HIIT, Pomodoro and more", fallback: "HIIT, Pomodoro and more")
   /// Manage Subscription
   internal static let manageSubscription = L10n.tr("Localizable", "Manage Subscription", fallback: "Manage Subscription")
+  /// Monday
+  internal static let monday = L10n.tr("Localizable", "Monday", fallback: "Monday")
+  /// Mon
+  internal static let mondayShort = L10n.tr("Localizable", "Monday Short", fallback: "Mon")
   /// Monthly
   internal static let monthly = L10n.tr("Localizable", "Monthly", fallback: "Monthly")
   /// No Subscription
@@ -93,6 +101,10 @@ internal enum L10n {
   internal static func review(_ p1: Any) -> String {
     return L10n.tr("Localizable", "Review %@", String(describing: p1), fallback: "Review %@")
   }
+  /// Saturday
+  internal static let saturday = L10n.tr("Localizable", "Saturday", fallback: "Saturday")
+  /// Sat
+  internal static let saturdayShort = L10n.tr("Localizable", "Saturday Short", fallback: "Sat")
   /// See your RevenueCat stats on the go
   internal static let seeYourRevenueCatStatsOnTheGo = L10n.tr("Localizable", "See your RevenueCat stats on the go", fallback: "See your RevenueCat stats on the go")
   /// Settings
@@ -101,6 +113,10 @@ internal enum L10n {
   internal static let subscriptionStatus = L10n.tr("Localizable", "Subscription Status", fallback: "Subscription Status")
   /// Subscription Terms
   internal static let subscriptionTerms = L10n.tr("Localizable", "Subscription Terms", fallback: "Subscription Terms")
+  /// Sunday
+  internal static let sunday = L10n.tr("Localizable", "Sunday", fallback: "Sunday")
+  /// Sun
+  internal static let sundayShort = L10n.tr("Localizable", "Sunday Short", fallback: "Sun")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support", fallback: "Support")
   /// Terms of Service
@@ -111,10 +127,18 @@ internal enum L10n {
   internal static let testFlightSubscriptionsAreNotChargedToYourCard = L10n.tr("Localizable", "TestFlight subscriptions are not charged to your card.", fallback: "TestFlight subscriptions are not charged to your card.")
   /// Thanks for your support
   internal static let thanksForYourSupport = L10n.tr("Localizable", "Thanks for your support", fallback: "Thanks for your support")
+  /// Thursday
+  internal static let thursday = L10n.tr("Localizable", "Thursday", fallback: "Thursday")
+  /// Thu
+  internal static let thursdayShort = L10n.tr("Localizable", "Thursday Short", fallback: "Thu")
   /// Tidur: Multiple Timers
   internal static let tidurMultipleTimers = L10n.tr("Localizable", "Tidur: Multiple Timers", fallback: "Tidur: Multiple Timers")
   /// Try Now
   internal static let tryNow = L10n.tr("Localizable", "Try Now", fallback: "Try Now")
+  /// Tuesday
+  internal static let tuesday = L10n.tr("Localizable", "Tuesday", fallback: "Tuesday")
+  /// Tue
+  internal static let tuesdayShort = L10n.tr("Localizable", "Tuesday Short", fallback: "Tue")
   /// Unknown
   internal static let unknown = L10n.tr("Localizable", "Unknown", fallback: "Unknown")
   /// Upgrade Now
@@ -123,6 +147,10 @@ internal enum L10n {
   internal static let userGuide = L10n.tr("Localizable", "User Guide", fallback: "User Guide")
   /// Version
   internal static let version = L10n.tr("Localizable", "Version", fallback: "Version")
+  /// Wednesday
+  internal static let wednesday = L10n.tr("Localizable", "Wednesday", fallback: "Wednesday")
+  /// Wed
+  internal static let wednesdayShort = L10n.tr("Localizable", "Wednesday Short", fallback: "Wed")
   /// What's New in %@
   internal static func whatSNewIn(_ p1: Any) -> String {
     return L10n.tr("Localizable", "What's New in %@", String(describing: p1), fallback: "What's New in %@")
