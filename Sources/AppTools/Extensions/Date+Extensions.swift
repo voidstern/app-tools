@@ -111,6 +111,12 @@ extension Date {
 // MARK: Localized Names
 
 extension Date {
+    public var dayInWeekString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "e"
+        return dateFormatter.string(from: self)
+    }
+    
     public var dayInMonthString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
