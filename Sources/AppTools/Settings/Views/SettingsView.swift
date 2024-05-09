@@ -116,7 +116,7 @@ public struct SettingsView<Content: View>: View {
             
             content
             
-            Section(L10n.support) {
+            Section {
                 ButtonSettingsCell(image: Image(systemSymbol: .envelope), title: L10n.email, tint: tint(index: 0)) {
                     SupportMailContent().emailURL(email: settingsContext.supportMail, rcid: subscriptionManager.rcid)?.open()
                 }
@@ -130,40 +130,44 @@ public struct SettingsView<Content: View>: View {
                 NavigationSettingsCell(image: Image(systemSymbol: .infoCircle), title: L10n.about, tint: tint(index: 1)) {
                     AboutView(settingsContext: settingsContext)
                 }
-            }
+                
+                NavigationSettingsCell(image: Image(systemSymbol: .listBulletRectangle), title: L10n.otherApps, tint: tint(index: 2)) {
+                    allAppView
+                }
+            } header: { Text(L10n.support) } footer: { footerView }
             
-            Section {
-                if settingsContext.appID != "1158763303" {
-                    OtherAppSettingsCell(appIcon: Image("1158763303", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
-                        URL(string: "https://apps.apple.com/app/apple-store/id1158763303")?.open()
-                    }
-                }
-                
-                if settingsContext.appID != "720812035" {
-                    OtherAppSettingsCell(appIcon: Image("720812035", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore) {
-                        URL(string: "https://apps.apple.com/app/apple-store/id720812035")?.open()
-                    }
-                }
-                
-                if settingsContext.appID != "429674741" {
-                    OtherAppSettingsCell(appIcon: Image("429674741", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds) {
-                        URL(string: "https://apps.apple.com/app/apple-store/id429674741")?.open()
-                    }
-                }
-                
-                if settingsContext.appID != "6478582777" {
-                    OtherAppSettingsCell(appIcon: Image("6478582777", bundle: .module), title: L10n.focusedTaskPlanner, subtitle: L10n.oneStepAtATime) {
-                        URL(string: "https://apps.apple.com/us/app/focused-task-planner/id6478582777")?.open()
-                    }
-                }
-                
+//            Section {
+//                if settingsContext.appID != "1158763303" {
+//                    OtherAppSettingsCell(appIcon: Image("1158763303", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
+//                        URL(string: "https://apps.apple.com/app/apple-store/id1158763303")?.open()
+//                    }
+//                }
+//                
+//                if settingsContext.appID != "720812035" {
+//                    OtherAppSettingsCell(appIcon: Image("720812035", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore) {
+//                        URL(string: "https://apps.apple.com/app/apple-store/id720812035")?.open()
+//                    }
+//                }
+//                
+//                if settingsContext.appID != "429674741" {
+//                    OtherAppSettingsCell(appIcon: Image("429674741", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds) {
+//                        URL(string: "https://apps.apple.com/app/apple-store/id429674741")?.open()
+//                    }
+//                }
+//                
+//                if settingsContext.appID != "6478582777" {
+//                    OtherAppSettingsCell(appIcon: Image("6478582777", bundle: .module), title: L10n.focusedTaskPlanner, subtitle: L10n.oneStepAtATime) {
+//                        URL(string: "https://apps.apple.com/us/app/focused-task-planner/id6478582777")?.open()
+//                    }
+//                }
+//                
 //                if settingsContext.appID != "6479531332" {
 //                    OtherAppSettingsCell(appIcon: Image("6479531332", bundle: .module), title: L10n.rcDash, subtitle: L10n.seeYourRevenueCatStatsOnTheGo) {
 //                        URL(string: "https://apps.apple.com/us/app/rc-dash/id6479531332")?.open()
 //                    }
 //                }
-                
-            } header: { Text(L10n.otherApps) } footer: { footerView }
+//                
+//            } header: { Text(L10n.otherApps) } footer: { footerView }
             
 #if os(macOS)
             Section {
@@ -175,6 +179,39 @@ public struct SettingsView<Content: View>: View {
 #if os(macOS) || os(iOS)
         .listStyle(.sidebar)
 #endif
+    }
+    
+    var allAppView: some View {
+        List {
+            Section(L10n.news) {
+                OtherAppSettingsCell(appIcon: Image("1158763303", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
+                    URL(string: "https://apps.apple.com/app/apple-store/id1158763303")?.open()
+                }
+            }
+            
+            Section(L10n.productivity) {
+                OtherAppSettingsCell(appIcon: Image("720812035", bundle: .module), title: L10n.tidurMultipleTimers, subtitle: L10n.hiitPomodoroAndMore) {
+                    URL(string: "https://apps.apple.com/app/apple-store/id720812035")?.open()
+                }
+                
+                OtherAppSettingsCell(appIcon: Image("6478582777", bundle: .module), title: L10n.focusedTaskPlanner, subtitle: L10n.oneStepAtATime) {
+                    URL(string: "https://apps.apple.com/us/app/focused-task-planner/id6478582777")?.open()
+                }
+            }
+            
+            Section(L10n.sleep) {
+                OtherAppSettingsCell(appIcon: Image("429674741", bundle: .module), title: L10n.dozzzerSleepSounds, subtitle: L10n.fallAsleepToMusicSounds) {
+                    URL(string: "https://apps.apple.com/app/apple-store/id429674741")?.open()
+                }
+            }
+            
+            Section(L10n.developer) {
+                OtherAppSettingsCell(appIcon: Image("6479531332", bundle: .module), title: L10n.rcDash, subtitle: L10n.seeYourRevenueCatStatsOnTheGo) {
+                    URL(string: "https://apps.apple.com/us/app/rc-dash/id6479531332")?.open()
+                }
+            }
+        }
+        .navigationTitle(L10n.otherApps)
     }
     
     var footerView: some View {

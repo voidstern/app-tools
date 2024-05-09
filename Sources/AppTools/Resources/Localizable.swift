@@ -47,6 +47,8 @@ internal enum L10n {
   internal static let continueWithoutUpgrade = L10n.tr("Localizable", "Continue without Upgrade", fallback: "Continue without Upgrade")
   /// Copy
   internal static let copy = L10n.tr("Localizable", "Copy", fallback: "Copy")
+  /// Developer
+  internal static let developer = L10n.tr("Localizable", "Developer", fallback: "Developer")
   /// Done
   internal static let done = L10n.tr("Localizable", "Done", fallback: "Done")
   /// Dozzzer: Sleep Sounds
@@ -75,6 +77,8 @@ internal enum L10n {
   internal static let mondayShort = L10n.tr("Localizable", "Monday Short", fallback: "Mon")
   /// Monthly
   internal static let monthly = L10n.tr("Localizable", "Monthly", fallback: "Monthly")
+  /// News
+  internal static let news = L10n.tr("Localizable", "News", fallback: "News")
   /// No Subscription
   internal static let noSubscription = L10n.tr("Localizable", "No Subscription", fallback: "No Subscription")
   /// None
@@ -89,6 +93,8 @@ internal enum L10n {
   internal static let permanent = L10n.tr("Localizable", "Permanent", fallback: "Permanent")
   /// Privacy Policy
   internal static let privacyPolicy = L10n.tr("Localizable", "Privacy Policy", fallback: "Privacy Policy")
+  /// Productivity
+  internal static let productivity = L10n.tr("Localizable", "Productivity", fallback: "Productivity")
   /// Quarterly
   internal static let quarterly = L10n.tr("Localizable", "Quarterly", fallback: "Quarterly")
   /// RC Dash
@@ -109,6 +115,8 @@ internal enum L10n {
   internal static let seeYourRevenueCatStatsOnTheGo = L10n.tr("Localizable", "See your RevenueCat stats on the go", fallback: "See your RevenueCat stats on the go")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "Settings", fallback: "Settings")
+  /// Sleep
+  internal static let sleep = L10n.tr("Localizable", "Sleep", fallback: "Sleep")
   /// Subscription Status
   internal static let subscriptionStatus = L10n.tr("Localizable", "Subscription Status", fallback: "Subscription Status")
   /// Subscription Terms
