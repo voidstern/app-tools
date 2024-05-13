@@ -67,7 +67,9 @@ public struct PurchaseView: OnboardingSequenceView {
             }
             .interactiveDismissDisabled()
             .navigationTitle(upgradeContext.title)
+#if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
     }
     
     @ViewBuilder

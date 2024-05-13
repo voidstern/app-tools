@@ -61,7 +61,7 @@ extension Date {
 
 extension Week {
     public static var weekdayStrings: [String] {
-        let days: [String] = ["Son", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        let days: [String] = [L10n.sundayShort, L10n.mondayShort, L10n.tuesdayShort, L10n.wednesdayShort, L10n.thursdayShort, L10n.fridayShort, L10n.saturdayShort]
         let firstDay = Calendar.current.firstWeekday - 1
         let weekdays = Array(days[firstDay...] + days[..<firstDay])
         return weekdays
@@ -111,6 +111,12 @@ extension Date {
 // MARK: Localized Names
 
 extension Date {
+    public var dayInWeekString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "e"
+        return dateFormatter.string(from: self)
+    }
+    
     public var dayInMonthString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
