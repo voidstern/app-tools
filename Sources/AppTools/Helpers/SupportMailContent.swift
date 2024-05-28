@@ -56,7 +56,7 @@ public class SupportMailContent {
         
     }
     
-    public func messageBody(rcid: String?) -> String {
+    public func messageBody(rcid: String?, sentryID: String?) -> String {
 #if os(macOS)
         let system = ProcessInfo.processInfo.operatingSystemVersion
         var body = "\n\n\nSystem: \(system.majorVersion).\(system.minorVersion).\(system.patchVersion)"
@@ -67,6 +67,10 @@ public class SupportMailContent {
         
         if let rcid = rcid {
             body.append(contentsOf: "\nRCID: \(rcid)")
+        }
+        
+        if let sentryID = sentryID, !sentryID.isEmpty {
+            body.append(contentsOf: "\nSentry: \(sentryID)")
         }
         
         return body
@@ -80,6 +84,10 @@ public class SupportMailContent {
             body.append(contentsOf: "\nRCID: \(rcid)")
         }
         
+        if let sentryID = sentryID, !sentryID.isEmpty {
+            body.append(contentsOf: "\nSentry: \(sentryID)")
+        }
+        
         return body
 #else
         let system = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
@@ -89,6 +97,10 @@ public class SupportMailContent {
         
         if let rcid = rcid {
             body.append(contentsOf: "\nRCID: \(rcid)")
+        }
+        
+        if let sentryID = sentryID, !sentryID.isEmpty {
+            body.append(contentsOf: "\nSentry: \(sentryID)")
         }
         
         return body
@@ -107,7 +119,8 @@ public class SupportMailContent {
     }
     
     public func emailURL(email: String, rcid: String?) -> URL? {
-        let fullMailString =  "mailto:\(email)?subject=\(subject().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(messageBody(rcid: rcid).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+        let sentryID = UserSettings.shared.string(key: .sentryUserID)
+        let fullMailString =  "mailto:\(email)?subject=\(subject().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(messageBody(rcid: rcid, sentryID: sentryID).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
         let justEmailString = "mailto:\(email)"
         
         return URL(string: fullMailString) ?? URL(string: justEmailString)
