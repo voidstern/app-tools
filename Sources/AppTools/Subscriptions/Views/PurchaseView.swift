@@ -48,6 +48,8 @@ public struct PurchaseView: OnboardingSequenceView {
                 subscriptionManager.getProduct(for: upgradeContext.subscription) { product in
                     subscriptionPrice = product.localizedPriceString
                 }
+                
+                EventLogger.shared.log(event: .purchaseViewViewed, parameters: ["context": upgradeContext.contextName])
             }
 #if !os(macOS) && !os(watchOS)
             .toolbar {
@@ -88,7 +90,10 @@ public struct PurchaseView: OnboardingSequenceView {
     
     @ViewBuilder
     var closeButton: some View {
-        Button(action: performClose, label: {
+        Button(action: {
+            EventLogger.shared.log(event: .purchaseViewSkipped, parameters: ["context": upgradeContext.contextName])
+            performClose()
+        }, label: {
             Image(systemSymbol: .xmark)
         })
         .opacity(closeButtonVisible ? 0.3 : 0.0)
@@ -194,6 +199,8 @@ public struct PurchaseView: OnboardingSequenceView {
     }
     
     private func restorePurchases() {
+        EventLogger.shared.log(event: .purchaseViewRestored, parameters: ["context": upgradeContext.contextName])
+        
         subscriptionManager.restorePurchases {
             if subscriptionManager.subscription != nil {
                 performClose()
@@ -202,6 +209,8 @@ public struct PurchaseView: OnboardingSequenceView {
     }
     
     private func purchaseSubscription() {
+        EventLogger.shared.log(event: .purchaseViewPurchased, parameters: ["context": upgradeContext.contextName])
+        
         subscriptionManager.purchase(subscription: upgradeContext.subscription) {
             if subscriptionManager.subscription != nil {
                 performClose()

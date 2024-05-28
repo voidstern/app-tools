@@ -28,7 +28,7 @@ public struct PurchaseButtonStyle: ButtonStyle {
                     .opacity(configuration.isPressed ? 0.9 : 1.0)
                     .animation(.linear(duration: 0.1), value: configuration.isPressed)
                     .clipShape(RoundedRectangle(cornerRadius: 22))
-                    .shadow(color: Color.accentColor.opacity(configuration.isPressed ? 0.15 : 0.3), radius: configuration.isPressed ? 12 : 16)
+                    .shadow(color: Color.accentColor.opacity(configuration.isPressed ? 0.2 : 0.4), radius: configuration.isPressed ? 12 : 16)
                 
             }
     }

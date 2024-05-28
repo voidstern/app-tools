@@ -9,6 +9,14 @@
 import Foundation
 
 public extension DispatchQueue {
+    static func onMainQueue(_ block: @escaping () throws -> ()) rethrows {
+        if Thread.isMainThread {
+            try block()
+        } else {
+            try DispatchQueue.main.sync(execute: block)
+        }
+    }
+    
     static func onMainQueue(_ block: @escaping () -> ()) {
         if Thread.isMainThread {
             block()

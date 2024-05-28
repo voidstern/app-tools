@@ -156,6 +156,10 @@ public class SubscriptionManager: ObservableObject {
         Purchases.shared.restorePurchases { customerInfo, error in
             if let customerInfo = customerInfo {
                 self.purchaserInfo = customerInfo
+                
+                if self.subscriptionLevel != .free {
+                    EventLogger.shared.log(event: .purchaseRestored, parameters: ["level": self.subscriptionLevel.identifier])
+                }
             }
             
             completion()
@@ -200,6 +204,11 @@ public class SubscriptionManager: ObservableObject {
                 Purchases.shared.purchase(product: product) { transaction, purchaserInfo, error, cancelled in
                     if let purchaserInfo = purchaserInfo {
                         self.purchaserInfo = purchaserInfo
+                        
+                        if self.subscriptionLevel != .free {
+                            EventLogger.shared.log(event: .purchasePurchased, parameters: ["level": self.subscriptionLevel.identifier])
+                        }
+                        
                         completion()
                     } else {
                         self.updateCustomerInfo(completion: completion)
