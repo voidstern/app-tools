@@ -31,6 +31,7 @@ public struct PurchaseSettingsGetProHeader: View {
     var content: some View {
         VStack(alignment: .center) {
             upgradeContext.proLogo
+                .padding(.horizontal, 16)
             
             Text(upgradeContext.featureString(separator: "\n"))
                 .lineLimit(5)
@@ -106,8 +107,6 @@ public struct PurchaseSettingsProHeader: View {
     var content: some View {
         VStack(alignment: .center) {
             upgradeContext.proLogo
-                .resizable()
-                .aspectRatio(contentMode: .fit)
                 .padding(.horizontal, 16)
             
             Text(L10n.thanksForYourSupport)

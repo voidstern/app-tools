@@ -24,10 +24,12 @@ public struct PurchaseButtonStyle: ButtonStyle {
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
             .background {
-                Color.accentColor
+                LinearGradient(colors: [Color.accentColor.opacity(configuration.isPressed ? 0.9 : 0.8), Color.accentColor.opacity(configuration.isPressed ? 0.7 : 1.0)], startPoint: .top, endPoint: .bottom)
                     .opacity(configuration.isPressed ? 0.9 : 1.0)
                     .animation(.linear(duration: 0.1), value: configuration.isPressed)
                     .clipShape(RoundedRectangle(cornerRadius: 22))
+                    .shadow(color: Color.accentColor.opacity(configuration.isPressed ? 0.15 : 0.3), radius: configuration.isPressed ? 12 : 16)
+                
             }
     }
 }
