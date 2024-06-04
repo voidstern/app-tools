@@ -69,13 +69,17 @@ public struct SettingsView<Content: View>: View {
     private func settingsContent(splitView: Bool) -> some View {
         settingsList(splitView: splitView)
             .frame(idealWidth: 360)
-            .navigationTitle(L10n.settings)
+#if os(iOS) || os(visionOS)
+            .if(!splitView, transform: {
+                $0.navigationTitle(L10n.settings)
+            })
+#endif
             .toolbar(removing: .sidebarToggle)
 #if os(iOS) || os(visionOS)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if showDoneButton {
-                    ToolbarItem(placement: .primaryAction) {
+                    ToolbarItem(placement: splitView ? .topBarLeading : .topBarTrailing) {
                         Button(action: dismiss.callAsFunction, label: {
                             Text(L10n.done)
                                 .fontWeight(.semibold)
