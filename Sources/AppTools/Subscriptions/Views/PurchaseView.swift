@@ -207,13 +207,14 @@ public struct PurchaseView: OnboardingSequenceView {
                 }
                 
                 Section {
-                    ForEach (upgradeContext.features) { feature in
+                    ForEach (upgradeContext.listFeatures) { feature in
                         FeatureListCell(feature: feature)
                     }
                 }
             }
             .scrollClipDisabled()
             .padding(.top, 96)
+            .padding(.bottom, 164)
             .zIndex(0)
         }
         
@@ -352,7 +353,7 @@ public struct PurchaseView: OnboardingSequenceView {
 }
 
 extension PurchaseView {
-    public struct Feature: Identifiable {
+    public struct Feature: Identifiable, Hashable, Equatable {
         let title: String
         let subtitle: String?
         let symbol: SFSymbol

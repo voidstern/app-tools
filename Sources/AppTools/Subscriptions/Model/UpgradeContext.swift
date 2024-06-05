@@ -39,6 +39,16 @@ public struct UpgradeContext {
     public var useListStylePurchaseView: Bool {
         !features.filter({ $0.subtitle != nil }).isEmpty || highlightedFeature != nil
     }
+    
+    public var listFeatures: [PurchaseView.Feature] {
+        var listFeatures = features
+        
+        if let highlightedFeature {
+            listFeatures.remove(highlightedFeature)
+        }
+        
+        return listFeatures
+    }
 }
 
 extension UpgradeContext {
