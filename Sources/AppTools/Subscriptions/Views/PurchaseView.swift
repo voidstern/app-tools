@@ -31,6 +31,7 @@ public struct PurchaseView: OnboardingSequenceView {
         content
             .navigationBarBackButtonHidden(true)
 #if os(iOS)
+            .navigationTitle(upgradeContext.title)
             .sheet(item: $presentedURL) { url in
                 SafariWebView(url: url)
                     .ignoresSafeArea()
@@ -38,7 +39,7 @@ public struct PurchaseView: OnboardingSequenceView {
 #endif
             .onAppear {
                 if upgradeContext.fadeInCloseButton {
-                    DispatchQueue.main.async(after: 5.0) {
+                    DispatchQueue.main.async(after: 3.0) {
                         closeButtonVisible = true
                     }
                 } else {
@@ -68,9 +69,9 @@ public struct PurchaseView: OnboardingSequenceView {
                 view.preferredColorScheme(.dark)
             }
             .interactiveDismissDisabled()
-            .navigationTitle(upgradeContext.title)
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(upgradeContext.useListStylePurchaseView ? .hidden : .automatic, for: .navigationBar)
 #endif
     }
     
@@ -101,7 +102,124 @@ public struct PurchaseView: OnboardingSequenceView {
         .buttonStyle(.plain)
     }
     
+    @ViewBuilder
     var content: some View {
+        if upgradeContext.useListStylePurchaseView {
+            listPurchaseView
+        } else {
+            simplePurchaseView
+        }
+    }
+    
+    var listPurchaseView: some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Color.clear
+                        .frame(width: 44, height: 44)
+                    
+                    Spacer()
+                    
+                    upgradeContext.proLogo
+                    
+                    Spacer()
+                    
+                    closeButton
+                        .frame(width: 44, height: 44)
+                }
+                .frame(height: 64)
+                .padding()
+                .background(.thinMaterial)
+                
+                Spacer()
+                
+                VStack(spacing: 8) {
+                    if subscriptionManager.isWorking {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                            .frame(height: 64)
+                    } else {
+                        Text(upgradeContext.subscriptionTerms(subscriptionPrice: subscriptionPrice))
+                            .font(.system(size: .platform(15, macOS: 13), weight: .regular))
+                            .opacity(0.5)
+                            .padding(.bottom, 8)
+                        
+                        Button(action: purchaseSubscription, label: {
+                            Text(L10n.continue)
+                        })
+                        .buttonStyle(PurchaseButtonStyle())
+                        .padding(.horizontal, 32)
+                        .padding(.bottom, 4)
+                        .buttonStyle(.plain)
+                    }
+                    
+                    HStack(spacing: 16) {
+                        Button(action: showTermsOfService, label: {
+                            Text(L10n.termsOfService)
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundStyle(.foreground)
+                                .minimumScaleFactor(0.5)
+                                .opacity(0.3)
+                        })
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.foreground)
+                        .minimumScaleFactor(0.5)
+                        
+                        Button(action: showPrivacyPolicy, label: {
+                            Text(L10n.privacyPolicy)
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundStyle(.foreground)
+                                .minimumScaleFactor(0.5)
+                                .opacity(0.3)
+                        })
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.foreground)
+                        .minimumScaleFactor(0.5)
+                        
+                        if subscriptionManager.isRestoring {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                                .frame(width: 22, height: 22, alignment: .center)
+                        } else {
+                            Button(action: restorePurchases, label: {
+                                Text(L10n.restore)
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .foregroundStyle(.foreground)
+                                    .minimumScaleFactor(0.5)
+                                    .opacity(0.3)
+                            })
+                            .buttonStyle(.plain)
+                            .foregroundStyle(.foreground)
+                            .minimumScaleFactor(0.5)
+                        }
+                    }
+                    .padding(.bottom, 16)
+                    .padding(.horizontal, 32)
+                }
+                .frame(height: 164)
+                .background(.thinMaterial)
+            }
+            .zIndex(1)
+            
+            List {
+                if let feature = upgradeContext.highlightedFeature {
+                    FeatureListCell(feature: feature)
+                }
+                
+                Section {
+                    ForEach (upgradeContext.features) { feature in
+                        FeatureListCell(feature: feature)
+                    }
+                }
+            }
+            .scrollClipDisabled()
+            .padding(.top, 96)
+            .zIndex(0)
+        }
+        
+    }
+    
+    var simplePurchaseView: some View {
         VStack {
 #if os(macOS)
             HStack {
@@ -125,19 +243,11 @@ public struct PurchaseView: OnboardingSequenceView {
                         Image(systemSymbol: feature.symbol)
                             .symbolRenderingMode(.hierarchical)
                             .foregroundStyle(Color.accentColor)
-#if os(macOS)
-                        .font(.system(size: 21, weight: .regular))
-#else
-                        .font(.system(size: 19, weight: .regular))
-#endif
+                            .font(.system(size: .platform(21, macOS: 19), weight: .regular))
                         Text(feature.title)
                             .foregroundStyle(.primary)
                             .lineLimit(2)
-#if os(macOS)
-                        .font(.system(size: 17, weight: .regular))
-#else
-                        .font(.system(size: 19, weight: .regular))
-#endif
+                            .font(.system(size: .platform(19, macOS: 17), weight: .regular))
                     }
                     .padding(6)
                 }
@@ -152,11 +262,7 @@ public struct PurchaseView: OnboardingSequenceView {
                         .frame(height: 64)
                 } else {
                     Text(upgradeContext.subscriptionTerms(subscriptionPrice: subscriptionPrice))
-#if os(macOS)
-                        .font(.system(size: 13, weight: .regular))
-#else
-                        .font(.system(size: 15, weight: .regular))
-#endif
+                        .font(.system(size: .platform(15, macOS: 13), weight: .regular))
                         .opacity(0.5)
                         .padding(.bottom, 8)
                     
@@ -248,15 +354,49 @@ public struct PurchaseView: OnboardingSequenceView {
 extension PurchaseView {
     public struct Feature: Identifiable {
         let title: String
+        let subtitle: String?
         let symbol: SFSymbol
+        let emoji: String?
         
-        public init(title: String, symbol: SFSymbol) {
+        public init(title: String, subtitle: String? = nil, symbol: SFSymbol, emoji: String? = nil) {
             self.title = title
             self.symbol = symbol
+            self.subtitle = subtitle
+            self.emoji = emoji
         }
         
         public var id: String {
             title
+        }
+    }
+}
+
+struct FeatureListCell: View {
+    let feature: PurchaseView.Feature
+    
+    var body: some View {
+        HStack {
+            Image(systemSymbol: feature.symbol)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(Color.accentColor)
+                .font(.system(size: .platform(27, macOS: 21), weight: .regular))
+                .scaledToFit()
+                .frame(width: 54, height: 54)
+            
+            VStack(alignment: .leading) {
+                Text(feature.title)
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .font(.system(size: .platform(17, macOS: 15), weight: .semibold))
+                
+                Text(feature.subtitle ?? "")
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .font(.system(size: .platform(15, macOS: 13), weight: .regular))
+                    .opacity(0.7)
+            }
+            
+            Spacer()
         }
     }
 }
