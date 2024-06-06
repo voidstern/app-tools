@@ -80,3 +80,18 @@ extension UpgradeContext {
         }
     }
 }
+
+extension UpgradeContext: Hashable, Identifiable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+        hasher.combine(contextName)
+        hasher.combine(features)
+        hasher.combine(highlightedFeature)
+        hasher.combine(fadeInCloseButton)
+        hasher.combine(fadeInCloseButton)
+    }
+    
+    public var id: Int {
+        hashValue
+    }
+}
