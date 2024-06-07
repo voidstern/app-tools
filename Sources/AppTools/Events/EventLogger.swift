@@ -64,9 +64,9 @@ extension EventLogger {
     }
     
     public func trackFirstLaunch() {
-        if !UserSettings.shared.bool(key: .firstLaunch) {
+        if !UserSettings.shared.bool(for: .firstLaunch) {
             log(event: .firstLaunch)
-            UserSettings.shared.set(value: true, key: .firstLaunch)
+            UserSettings.shared.set(value: true, for: .firstLaunch)
         }
     }
 }

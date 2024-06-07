@@ -24,14 +24,14 @@ public class UserSettings: ObservableObject {
     
     // MARK: Boolean
 
-    public func bool(key: Setting, defaultValue: Bool = false) -> Bool {
+    public func bool(for key: Setting, defaultValue: Bool = false) -> Bool {
         guard let value = settingsStorage.bool(forKey: key.identifier) else {
             return key.defaultValue as? Bool ?? key.defaultValue as? Bool ?? defaultValue
         }
 		return value
     }
 
-    public func set(value: Bool, key: Setting) {
+    public func set(value: Bool, for key: Setting) {
         guard settingsStorage.bool(forKey: key.identifier) != value else {
             return
         }
@@ -46,7 +46,7 @@ public class UserSettings: ObservableObject {
 
     @discardableResult
     public func toggle(_ key: Setting) -> Bool {
-        let value = self.bool(key: key)
+        let value: Bool = self.bool(for: key)
         settingsStorage.set(!value, forKey: key.identifier)
         
         DispatchQueue.onMainQueue {
@@ -59,7 +59,7 @@ public class UserSettings: ObservableObject {
     
     // MARK: Double
     
-    public func double(key: Setting, defaultValue: Double = 0.0) -> Double {
+    public func double(for key: Setting, defaultValue: Double = 0.0) -> Double {
         guard let value = settingsStorage.double(forKey: key.identifier) else {
             return key.defaultValue as? Double ?? key.defaultValue as? Double ?? defaultValue
         }
@@ -67,7 +67,7 @@ public class UserSettings: ObservableObject {
         return value
     }
 
-    public func set(value: Double, key: Setting) {
+    public func set(value: Double, for key: Setting) {
         guard settingsStorage.double(forKey: key.identifier) != value else {
             return
         }
@@ -98,7 +98,7 @@ public class UserSettings: ObservableObject {
     
     // MARK: Integer
     
-    public func integer(key: Setting, defaultValue: Int = 0) -> Int {
+    public func integer(for key: Setting, defaultValue: Int = 0) -> Int {
         guard let value = settingsStorage.integer(forKey: key.identifier) else {
             return key.defaultValue as? Int ?? key.defaultValue as? Int ?? defaultValue
         }
@@ -106,7 +106,7 @@ public class UserSettings: ObservableObject {
         return value
     }
 
-    public func set(value: Int, key: Setting) {
+    public func set(value: Int, for key: Setting) {
         guard settingsStorage.integer(forKey: key.identifier) != value else {
             return
         }
@@ -134,14 +134,14 @@ public class UserSettings: ObservableObject {
     
     // MARK: String
     
-    public func string(key: Setting, defaultValue: String = "") -> String {
+    public func string(for key: Setting, defaultValue: String = "") -> String {
         guard let value = settingsStorage.string(forKey: key.identifier) else {
             return key.defaultValue as? String ?? key.defaultValue as? String ?? defaultValue
         }
         return value
     }
     
-    public func set(value: String, key: Setting) {
+    public func set(value: String, for key: Setting) {
         guard settingsStorage.string(forKey: key.identifier) != value else {
             return
         }
@@ -156,12 +156,12 @@ public class UserSettings: ObservableObject {
     
     // MARK: Strings Array
     
-    public func strings(key: Setting, defaultValue: [String] = []) -> [String] {
+    public func strings(for key: Setting, defaultValue: [String] = []) -> [String] {
         let value = settingsStorage.strings(forKey: key.identifier)
         return value ?? key.defaultValue as? [String] ?? defaultValue
     }
     
-    public func set(strings: [String], key: Setting) {
+    public func set(strings: [String], for key: Setting) {
         guard settingsStorage.strings(forKey: key.identifier) != strings else {
             return
         }
@@ -176,12 +176,12 @@ public class UserSettings: ObservableObject {
     
     // MARK: Integer Array
     
-    public func integers(key: Setting, defaultValue: [Int] = []) -> [Int] {
+    public func integers(for key: Setting, defaultValue: [Int] = []) -> [Int] {
         let value = settingsStorage.integers(forKey: key.identifier)
         return value ?? key.defaultValue as? [Int] ?? defaultValue
     }
     
-    public func set(integers: [Int], key: Setting) {
+    public func set(integers: [Int], for key: Setting) {
         guard settingsStorage.integers(forKey: key.identifier) != integers else {
             return
         }
@@ -196,7 +196,7 @@ public class UserSettings: ObservableObject {
     
     // MARK: Any Codable
     
-    public func codable<T: Codable>(key: Setting, of type: T.Type, defaultValue: T? = nil) -> T? {
+    public func codable<T: Codable>(for key: Setting, of type: T.Type, defaultValue: T? = nil) -> T? {
         guard let data = settingsStorage.data(forKey: key.identifier) else {
             return key.defaultValue as? T ?? defaultValue
         }
@@ -208,7 +208,7 @@ public class UserSettings: ObservableObject {
         return decoded ?? key.defaultValue as? T ?? defaultValue
     }
     
-    public func set(codable: Codable, key: Setting) {
+    public func set(codable: Codable, for key: Setting) {
         guard let data = try? JSONEncoder().encode(codable) else {
             return
         }

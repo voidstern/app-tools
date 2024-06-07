@@ -43,9 +43,9 @@ public class SubscriptionManager: ObservableObject {
                 .build()
         )
         
-        UserSettings.shared.set(value: Purchases.shared.appUserID, key: .revenuecatUserID)
-        subscription = userSettings.codable(key: .lastKnownSubscription, of: Subscription.self)
-        subscriptionLevel = userSettings.codable(key: .lastKnownSubscriptionLevel, of: SubscriptionLevel.self) ?? .free
+        UserSettings.shared.set(value: Purchases.shared.appUserID, for: .revenuecatUserID)
+        subscription = userSettings.codable(for: .lastKnownSubscription, of: Subscription.self)
+        subscriptionLevel = userSettings.codable(for: .lastKnownSubscriptionLevel, of: SubscriptionLevel.self) ?? .free
         updateCustomerInfo()
     }
     
@@ -103,14 +103,14 @@ public class SubscriptionManager: ObservableObject {
     }
     
     private func updateSubscriptionLevel() {
-        UserSettings.shared.set(value: Purchases.shared.appUserID, key: .revenuecatUserID)
+        UserSettings.shared.set(value: Purchases.shared.appUserID, for: .revenuecatUserID)
         
         if let debugUnlock {
             self.subscriptionLevel = debugUnlock.level
-            userSettings.set(codable: debugUnlock.level, key: .lastKnownSubscriptionLevel)
+            userSettings.set(codable: debugUnlock.level, for: .lastKnownSubscriptionLevel)
             
             self.subscription = debugUnlock
-            userSettings.set(codable: debugUnlock, key: .lastKnownSubscription)
+            userSettings.set(codable: debugUnlock, for: .lastKnownSubscription)
             
             return
         }
@@ -135,10 +135,10 @@ public class SubscriptionManager: ObservableObject {
         }
         
         self.subscriptionLevel = activeLevel
-        userSettings.set(codable: activeLevel, key: .lastKnownSubscriptionLevel)
+        userSettings.set(codable: activeLevel, for: .lastKnownSubscriptionLevel)
         
         self.subscription = activeSubscription
-        userSettings.set(codable: activeSubscription, key: .lastKnownSubscription)
+        userSettings.set(codable: activeSubscription, for: .lastKnownSubscription)
     }
     
     public func updateCustomerInfo(completion: (() -> ())? = nil) {

@@ -37,7 +37,7 @@ public struct ToggleSettingsCell: View {
                     .tint(tint)
             }
             
-            Toggle(isOn: storage.bool(for: setting), label: {
+            Toggle(isOn: storage.boolBinding(for: setting), label: {
                 Text(title)
             })
         }
@@ -118,9 +118,9 @@ public struct DetailsSettingsCell: View {
     private var detailString: String {
         switch type {
         case .string:
-            return storage.string(key: setting)
+            return storage.string(for: setting)
         case .date:
-            let timeInterval = storage.double(key: setting)
+            let timeInterval = storage.double(for: setting)
             let date = Date(timeIntervalSince1970: timeInterval)
             return date.shortDateString
         }
@@ -172,8 +172,8 @@ public struct StepperSettingsCell: View {
             
 
             HStack(spacing: 4) {
-                Text("\(storage.integer(key: setting))")
-                Stepper(title, value: storage.integer(for: setting))
+                Text("\(storage.integer(for: setting))")
+                Stepper(title, value: storage.integerBinding(for: setting))
             }
         }
 #if os(macOS)
@@ -210,7 +210,7 @@ public struct PickerSettingsCell: View {
                     .tint(tint)
             }
             
-            Picker(selection: storage.integer(for: setting)) {
+            Picker(selection: storage.integerBinding(for: setting)) {
                 ForEach((setting.options ?? [])) { option in
                     Text(option.title)
                         .tag(option.value)
@@ -452,7 +452,7 @@ public struct MultiPickerSettingsCell: View {
     }
     
     private var selectedOptions: [UserSettings.Setting.Option] {
-        let selectedValues = storage.integers(key: setting)
+        let selectedValues = storage.integers(for: setting)
         return (setting.options ?? []).filter({ selectedValues.contains($0.value) })
     }
     
@@ -461,9 +461,9 @@ public struct MultiPickerSettingsCell: View {
             Section {
                 ForEach(setting.options ?? []) { option in
                     Toggle(option.title, isOn: .init(get: {
-                        storage.integers(key: setting).contains(option.value)
+                        storage.integers(for: setting).contains(option.value)
                     }, set: { value in
-                        var selectedValues = storage.integers(key: setting)
+                        var selectedValues = storage.integers(for: setting)
                         
                         if selectedValues.contains(option.value) {
                             selectedValues.remove(option.value)
@@ -471,7 +471,7 @@ public struct MultiPickerSettingsCell: View {
                             selectedValues.append(option.value)
                         }
                         
-                        storage.set(integers: selectedValues, key: setting)
+                        storage.set(integers: selectedValues, for: setting)
                     }))
                 }
             }
@@ -488,14 +488,14 @@ public struct MultiPickerSettingsCell: View {
                         
                         Spacer()
                         
-                        if storage.integers(key: setting).contains(option.value) {
+                        if storage.integers(for: setting).contains(option.value) {
                             Image(systemSymbol: .checkmark)
                                 .foregroundStyle(.tint)
                         }
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        var selectedValues = storage.integers(key: setting)
+                        var selectedValues = storage.integers(for: setting)
                         
                         if selectedValues.contains(option.value) {
                             selectedValues.remove(option.value)
@@ -503,7 +503,7 @@ public struct MultiPickerSettingsCell: View {
                             selectedValues.append(option.value)
                         }
                         
-                        storage.set(integers: selectedValues, key: setting)
+                        storage.set(integers: selectedValues, for: setting)
                     }
                 }
             }

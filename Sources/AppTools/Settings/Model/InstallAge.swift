@@ -17,14 +17,14 @@ extension UserSettings.Setting {
 extension UserSettings {
     @discardableResult
     public func setFirstInstallIfNeeded() -> Date {
-        let timestamp = self.double(key: .installDate) as TimeInterval
+        let timestamp = self.double(for: .installDate) as TimeInterval
 
         if timestamp > 0 {
             return Date(timeIntervalSince1970: timestamp)
         }
 
         let date = Date()
-        self.set(value: date.timeIntervalSince1970, key: .installDate)
+        self.set(value: date.timeIntervalSince1970, for: .installDate)
         return date
     }
 
