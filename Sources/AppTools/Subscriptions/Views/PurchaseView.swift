@@ -52,17 +52,7 @@ public struct PurchaseView: OnboardingSequenceView {
                 
                 EventLogger.shared.log(event: .purchaseViewViewed, parameters: ["context": upgradeContext.contextName])
             }
-#if !os(macOS) && !os(watchOS)
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    restoreButton
-                }
-                
-                ToolbarItem(placement: .primaryAction) {
-                    closeButton
-                }
-            }
-#else
+#if os(macOS)
             .frame(idealWidth: 560, idealHeight: 640)
 #endif
             .if(upgradeContext.prefersDarkMode) { view in
@@ -113,6 +103,25 @@ public struct PurchaseView: OnboardingSequenceView {
     
     var listPurchaseView: some View {
         ZStack {
+            List {
+                if let feature = upgradeContext.highlightedFeature {
+                    FeatureListCell(feature: feature)
+                }
+                
+                Section {
+                    ForEach (upgradeContext.listFeatures) { feature in
+                        FeatureListCell(feature: feature)
+                    }
+                }
+            }
+            .scrollClipDisabled()
+            .padding(.top, 96)
+            .padding(.bottom, 164)
+            .zIndex(0)
+#if os(visionOS)
+            .frame(depth: 0)
+#endif
+            
             VStack {
                 HStack {
                     Color.clear
@@ -198,24 +207,14 @@ public struct PurchaseView: OnboardingSequenceView {
                 }
                 .frame(height: 164)
                 .background(.thinMaterial)
+#if os(visionOS)
+                .frame(depth: 50)
+#endif
             }
             .zIndex(1)
-            
-            List {
-                if let feature = upgradeContext.highlightedFeature {
-                    FeatureListCell(feature: feature)
-                }
-                
-                Section {
-                    ForEach (upgradeContext.listFeatures) { feature in
-                        FeatureListCell(feature: feature)
-                    }
-                }
-            }
-            .scrollClipDisabled()
-            .padding(.top, 96)
-            .padding(.bottom, 164)
-            .zIndex(0)
+#if os(visionOS)
+            .frame(depth: 50)
+#endif
         }
         
     }
@@ -303,6 +302,17 @@ public struct PurchaseView: OnboardingSequenceView {
                 .padding(.horizontal, 32)
             }
         }
+#if !os(macOS) && !os(watchOS)
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    restoreButton
+                }
+                
+                ToolbarItem(placement: .primaryAction) {
+                    closeButton
+                }
+            }
+#endif
     }
     
     private func restorePurchases() {

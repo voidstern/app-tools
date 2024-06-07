@@ -20,7 +20,12 @@ public struct PurchaseButtonStyle: ButtonStyle {
             .font(.system(size: 19, weight: .semibold))
             .frame(height: 64)
 #endif
+#if os(visionOS)
+            .foregroundStyle(.white)
+            .frame(depth: 20)
+#else
             .foregroundStyle(.background)
+#endif
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
             .background {
@@ -31,5 +36,8 @@ public struct PurchaseButtonStyle: ButtonStyle {
                     .shadow(color: Color.accentColor.opacity(configuration.isPressed ? 0.2 : 0.4), radius: configuration.isPressed ? 12 : 16)
                 
             }
+#if os(visionOS)
+            .frame(depth: 50)
+#endif
     }
 }
