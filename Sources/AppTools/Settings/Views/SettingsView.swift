@@ -137,6 +137,7 @@ public struct SettingsView<Content: View>: View {
             } header: { Text(L10n.support) } footer: { EmptyView() }
             
             Section {
+#if !os(macOS)
                 if settingsContext.appID != "1158763303" {
                     OtherAppSettingsCell(appIcon: Image("1158763303", bundle: .module), title: L10n.fieryFeedsRSSReader, subtitle: L10n.aNewsReaderForPowerUsers) {
                         URL(string: "https://apps.apple.com/app/apple-store/id1158763303")?.open()
@@ -167,6 +168,8 @@ public struct SettingsView<Content: View>: View {
 //                    }
 //                }
                 
+                
+#endif
                 NavigationSettingsCell(image: Image(systemSymbol: .listBulletRectangle), title: L10n.otherApps, tint: tint(index: 2)) {
                     allAppView
                 }
