@@ -37,8 +37,8 @@ public class UpdateNewsManager {
     }
     
     private var lastBuild: String {
-        get { UserSettings.shared.string(key: .updateNewsVersion) }
-        set { UserSettings.shared.set(value: newValue, key: .updateNewsVersion) }
+        get { UserSettings.shared.string(for: .updateNewsVersion) }
+        set { UserSettings.shared.set(value: newValue, for: .updateNewsVersion) }
     }
     
     private var needsDisplay: Bool {

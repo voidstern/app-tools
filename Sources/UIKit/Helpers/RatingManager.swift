@@ -28,7 +28,7 @@ public class RatingManager {
         let events: Int = UserSettings.shared.increment(.ratingEvents)
         let days = UserSettings.shared.installAge
 
-        let lastRating = UserSettings.shared.double(key: .lastRatedDate) as TimeInterval
+        let lastRating = UserSettings.shared.double(for: .lastRatedDate) as TimeInterval
         let timePassed = Date().timeIntervalSince1970 - lastRating
 
         if events >= requiredEvents && days >= requiredDays && timePassed > threeMonths  {
@@ -42,6 +42,6 @@ public class RatingManager {
         }
         
         SKStoreReviewController.requestReview(in: windowScene)
-        UserSettings.shared.set(value: Date().timeIntervalSince1970, key: .lastRatedDate)
+        UserSettings.shared.set(value: Date().timeIntervalSince1970, for: .lastRatedDate)
     }
 }
