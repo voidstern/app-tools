@@ -71,6 +71,7 @@ public struct PurchaseView: OnboardingSequenceView {
             ProgressView()
                 .progressViewStyle(.circular)
                 .frame(width: 22, height: 22, alignment: .center)
+                .controlSize(.small)
         } else {
             Button(action: restorePurchases, label: {
                 Text(L10n.restore)
@@ -146,6 +147,7 @@ public struct PurchaseView: OnboardingSequenceView {
                     if subscriptionManager.isWorking {
                         ProgressView()
                             .progressViewStyle(.circular)
+                            .controlSize(.small)
                             .frame(height: 64)
                     } else {
                         Text(upgradeContext.subscriptionTerms(subscriptionPrice: subscriptionPrice))
