@@ -208,6 +208,7 @@ public struct PurchaseView: OnboardingSequenceView {
                     .padding(.horizontal, 32)
                 }
                 .frame(height: 164)
+                .frame(maxWidth: .infinity)
                 .background(.thinMaterial)
 #if os(visionOS)
                 .frame(depth: 50)
@@ -396,7 +397,7 @@ struct FeatureListCell: View {
                 .scaledToFit()
                 .frame(width: 54, height: 54)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(feature.title)
                     .foregroundStyle(.primary)
                     .lineLimit(2)
