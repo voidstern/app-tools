@@ -67,9 +67,7 @@ public class SettingsStorage: ObservableObject {
             return
         }
         
-        savingQueue.async {
-            try? jsonData.write(to: self.saveFileURL, options: [])
-        }
+        try? jsonData.write(to: self.saveFileURL, options: [])
     }
     
     private func loadFromDisk() {
