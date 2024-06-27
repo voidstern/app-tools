@@ -445,7 +445,7 @@ public struct MultiPickerSettingsCell: View {
             .opacity(0.8)
 #if os(macOS)
             .popover(isPresented: $showPopover, arrowEdge: .trailing, content: {
-                macPickerView
+                pickerView
             })
 #endif
         }
@@ -456,30 +456,30 @@ public struct MultiPickerSettingsCell: View {
         return (setting.options ?? []).filter({ selectedValues.contains($0.value) })
     }
     
-    private var macPickerView: some View {
-        List {
-            Section {
-                ForEach(setting.options ?? []) { option in
-                    Toggle(option.title, isOn: .init(get: {
-                        storage.integers(for: setting).contains(option.value)
-                    }, set: { value in
-                        var selectedValues = storage.integers(for: setting)
-                        
-                        if selectedValues.contains(option.value) {
-                            selectedValues.remove(option.value)
-                        } else {
-                            selectedValues.append(option.value)
-                        }
-                        
-                        storage.set(integers: selectedValues, for: setting)
-                    }))
-                }
-            }
-        }
-        .navigationTitle(title)
+    var pickerView: some View {
+        MultiPickerSettingsView(storage: storage, setting: setting)
+            .navigationTitle(title)
+    }
+}
+
+public struct MultiPickerSettingsView: View {
+    @ObservedObject var storage: UserSettings
+    let setting: UserSettings.Setting
+    
+    public init(storage: UserSettings = .shared, setting: UserSettings.Setting) {
+        self.storage = storage
+        self.setting = setting
     }
     
-    private var pickerView: some View {
+    public var body: some View {
+#if os(macOS)
+        macPickerList
+#else
+        defaultPickerList
+#endif
+    }
+    
+    public var defaultPickerList: some View {
         List {
             Section {
                 ForEach(setting.options ?? []) { option in
@@ -508,7 +508,28 @@ public struct MultiPickerSettingsCell: View {
                 }
             }
         }
-        .navigationTitle(title)
+    }
+    
+    public var macPickerList: some View {
+        List {
+            Section {
+                ForEach(setting.options ?? []) { option in
+                    Toggle(option.title, isOn: .init(get: {
+                        storage.integers(for: setting).contains(option.value)
+                    }, set: { value in
+                        var selectedValues = storage.integers(for: setting)
+                        
+                        if selectedValues.contains(option.value) {
+                            selectedValues.remove(option.value)
+                        } else {
+                            selectedValues.append(option.value)
+                        }
+                        
+                        storage.set(integers: selectedValues, for: setting)
+                    }))
+                }
+            }
+        }
     }
 }
 
