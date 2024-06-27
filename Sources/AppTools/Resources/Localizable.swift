@@ -99,6 +99,8 @@ internal enum L10n {
   internal static let quarterly = L10n.tr("Localizable", "Quarterly", fallback: "Quarterly")
   /// RC Dash
   internal static let rcDash = L10n.tr("Localizable", "RC Dash", fallback: "RC Dash")
+  /// Remove Symbol
+  internal static let removeSymbol = L10n.tr("Localizable", "Remove Symbol", fallback: "Remove Symbol")
   /// Restore
   internal static let restore = L10n.tr("Localizable", "Restore", fallback: "Restore")
   /// Restore Purchases
@@ -111,6 +113,8 @@ internal enum L10n {
   internal static let saturday = L10n.tr("Localizable", "Saturday", fallback: "Saturday")
   /// Sat
   internal static let saturdayShort = L10n.tr("Localizable", "Saturday Short", fallback: "Sat")
+  /// Search
+  internal static let search = L10n.tr("Localizable", "Search", fallback: "Search")
   /// See your RevenueCat stats on the go
   internal static let seeYourRevenueCatStatsOnTheGo = L10n.tr("Localizable", "See your RevenueCat stats on the go", fallback: "See your RevenueCat stats on the go")
   /// Settings
@@ -127,6 +131,8 @@ internal enum L10n {
   internal static let sundayShort = L10n.tr("Localizable", "Sunday Short", fallback: "Sun")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support", fallback: "Support")
+  /// Symbol
+  internal static let symbol = L10n.tr("Localizable", "Symbol", fallback: "Symbol")
   /// Terms of Service
   internal static let termsOfService = L10n.tr("Localizable", "Terms of Service", fallback: "Terms of Service")
   /// TestFlight

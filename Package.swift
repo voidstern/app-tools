@@ -39,7 +39,10 @@ let package = Package(
         .target(
             name: "AppTools",
             dependencies: ["RevenueCat", "SFSafeSymbols"],
-            path: "Sources/AppTools"),
+            path: "Sources/AppTools",
+            resources: [
+                .process("Symbol Picker/Symbols"),
+            ]),
         .target(
             name: "AppToolsUI",
             dependencies: ["AppTools"],
