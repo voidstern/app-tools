@@ -18,3 +18,7 @@ extension EventLogger.Event {
     static var purchaseRestored = EventLogger.Event(eventName: "purchaseRestore")
     static var purchasePurchased = EventLogger.Event(eventName: "purchasePurchased")
 }
+
+extension EventLogger.Event {
+    static var onboardingStep = EventLogger.Event(eventName: "onboardingStep")
+}
