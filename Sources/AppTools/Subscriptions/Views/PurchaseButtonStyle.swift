@@ -32,7 +32,7 @@ public struct PurchaseButtonStyle: ButtonStyle {
             .frame(depth: 20)
             .foregroundStyle(foregroundInverted ? .white : .black)
 #else
-            .if(foregroundInverted, transform: { $0.foregroundColor(.background) }, else: { $0.foregroundColor(.primary) })
+            .if(foregroundInverted, transform: { $0.foregroundStyle(.background) }, else: { $0.foregroundStyle(.primary) })
 #endif
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
