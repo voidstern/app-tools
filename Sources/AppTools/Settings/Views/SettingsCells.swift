@@ -148,14 +148,16 @@ public struct StepperSettingsCell: View {
     let setting: UserSettings.Setting
     let image: Image?
     let title: String
+    let unit: String?
     let tint: Color
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, tint: Color = .accentColor) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, unit: String? = nil, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
         self.title = title
         self.tint = tint
+        self.unit = unit
     }
     
     public var body: some View {
@@ -170,11 +172,22 @@ public struct StepperSettingsCell: View {
                     .tint(tint)
             }
             
-
-            HStack(spacing: 4) {
-                Text("\(storage.integer(for: setting))")
-                Stepper(title, value: storage.integerBinding(for: setting))
-            }
+                HStack(spacing: 4) {
+                    Text(title)
+                    
+                    Spacer()
+                    
+                    Text("\(storage.integer(for: setting))")
+                        .opacity(0.8)
+                    
+                    if let unit {
+                        Text(unit)
+                            .opacity(0.8)
+                    }
+                    
+                    Stepper("", value: storage.integerBinding(for: setting), in: (setting.minValue ?? .min) ... (setting.maxValue ?? .max), step: setting.stepValue ?? 1)
+                        .frame(width: .platform(96, macOS: 16))
+                }
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
