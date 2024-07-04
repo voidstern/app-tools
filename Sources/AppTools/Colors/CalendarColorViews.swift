@@ -36,27 +36,29 @@ public struct CalendarColorPickerView: View {
     }
 }
 
-struct CalendarColorTitleView: View {
+public struct CalendarColorTitleView: View {
     let color: CalendarColor
+    let size: CGFloat
     
-    public init(color: CalendarColor) {
+    public init(color: CalendarColor, size: CGFloat = 22) {
         self.color = color
+        self.size = size
     }
     
     public var body: some View {
-            HStack {
-                ZStack {
-                    Circle()
-                        .fill(color.color)
-                        .opacity(0.6)
-                    
-                    Circle()
-                        .stroke(color.color, style: .init(lineWidth: 2), antialiased: true)
-                }
-                .frame(width: 22, height: 22)
+        HStack {
+            ZStack {
+                Circle()
+                    .fill(color.color)
+                    .opacity(0.6)
                 
-                Text(color.title)
+                Circle()
+                    .stroke(color.color, style: .init(lineWidth: 2), antialiased: true)
             }
+            .frame(width: size, height: size)
+            
+            Text(color.title)
+        }
     }
 }
 
