@@ -9,20 +9,28 @@ import Foundation
 import SwiftUI
 
 public struct CalendarColorPickerView: View {
-    let onColorPicked: (CalendarColor) -> ()
+    @Binding var calendarColor: CalendarColor
+    @Environment(\.dismiss) private var dismiss
     
-    public init(onColorPicked: @escaping (CalendarColor) -> Void) {
-        self.onColorPicked = onColorPicked
+    public init(calendarColor: Binding<CalendarColor>) {
+        _calendarColor = calendarColor
     }
     
     public var body: some View {
         List {
             Section {
                 ForEach(CalendarColor.allCases) { color in
-                    Button(action: { onColorPicked(color) }, label: {
+                    Button(action: {
+                        calendarColor = color
+                        dismiss()
+                    }, label: {
                         HStack {
                             CalendarColorTitleView(color: color)
                             Spacer()
+                            
+                            if calendarColor == color {
+                                Image(systemSymbol: .checkmark)
+                            }
                         }
                         .contentShape(Rectangle())
                     })
