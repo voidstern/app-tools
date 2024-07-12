@@ -108,6 +108,25 @@ extension Date {
     }
 }
 
+// MARK: Adding exact time ranage
+
+extension Date {
+    public func addKeepingDateAndTime(days: Int) -> Date {
+        return addingTimeInterval(Double(days) * 24 * 60 * 60)
+    }
+    
+    public func addKeepingDateAndTime(weeks: Int) -> Date {
+        return addKeepingDateAndTime(days: weeks * 7)
+    }
+    
+    public func addKeepingDateAndTime(months: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: months), to: self) ?? self
+    }
+    
+    public func addKeepingDateAndTime(years: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(year: years), to: self) ?? self
+    }
+}
 // MARK: Localized Names
 
 extension Date {
