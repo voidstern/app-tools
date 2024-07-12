@@ -50,7 +50,7 @@ extension Date {
     }
     
     public func adding(weeks: Int) -> Date {
-        return addingTimeInterval(Double(weeks) * 7 * 24 * 60 * 60)
+        return addKeepingDateAndTime(weeks: weeks)
             .week
     }
     
@@ -99,7 +99,7 @@ extension Date {
     }
     
     public func adding(months: Int) -> Date {
-        return addingTimeInterval(Double(months) * 31 * 24 * 60 * 60)
+        return addKeepingDateAndTime(months: 1)
             .month
     }
     
@@ -112,11 +112,11 @@ extension Date {
 
 extension Date {
     public func addKeepingDateAndTime(days: Int) -> Date {
-        return addingTimeInterval(Double(days) * 24 * 60 * 60)
+        return Calendar.current.date(byAdding: DateComponents(day: days), to: self) ?? self
     }
     
     public func addKeepingDateAndTime(weeks: Int) -> Date {
-        return addKeepingDateAndTime(days: weeks * 7)
+        return Calendar.current.date(byAdding: DateComponents(day: weeks * 7), to: self) ?? self
     }
     
     public func addKeepingDateAndTime(months: Int) -> Date {
