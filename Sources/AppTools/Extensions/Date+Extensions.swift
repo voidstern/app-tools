@@ -38,6 +38,10 @@ extension Date {
     public static var today: Day {
         return Date().day
     }
+    
+    public static var tomorrow: Day {
+        return Date().day.adding(days: 1)
+    }
 }
 
 // MARK: Week
