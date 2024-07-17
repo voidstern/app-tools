@@ -91,7 +91,7 @@ extension Week {
 public typealias Month = Date
 
 extension Date {
-    public var month: Week {
+    public var month: Month {
         return calendar.dateComponents([.calendar, .year, .month], from: self).date!
     }
     
@@ -107,7 +107,7 @@ extension Date {
             .month
     }
     
-    public static var currentMonth: Week {
+    public static var currentMonth: Month {
         return Date().month
     }
 }
