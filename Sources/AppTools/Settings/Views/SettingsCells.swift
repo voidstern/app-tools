@@ -165,17 +165,20 @@ public struct StepperSettingsCell: View {
     
     public var body: some View {
         content
-            .onAppear(perform: {
-                text = "\(storage.integer(for: setting))"
-            })
+            .onAppear(perform: updateLabel)
             .onChange(of: storage.integer(for: setting)) {
-                text = "\(storage.integer(for: setting))"
+                updateLabel()
             }
             .onChange(of: textFieldFocused) {
                 if let integer = Int(text) {
                     storage.set(value: integer, for: setting)
                 }
             }
+    }
+    
+    private func updateLabel() {
+        let value = storage.integer(for: setting)
+        text = setting.labels[value] ?? value.formatted()
     }
     
     public var content: some View {
