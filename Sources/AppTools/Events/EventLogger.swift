@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol EventLoggerImplementation {
-    func log(event: EventLogger.Event, parameters: [String: String])
+    func log(event: EventLogger.Event, parameters: [String: String], floatValue: Float?)
     func set(userProperty: String, name: EventLogger.UserProperty)
     func startUp()
 }
@@ -49,8 +49,8 @@ public class EventLogger {
         logger.startUp()
     }
 
-    public func log(event: Event, parameters: [String: String]? = nil) {
-        loggers.forEach({ $0.log(event: event, parameters: parameters ?? [:]) })
+    public func log(event: Event, parameters: [String: String]? = nil, floatValue: Float? = nil) {
+        loggers.forEach({ $0.log(event: event, parameters: parameters ?? [:], floatValue: floatValue) })
     }
 
     public func set(userProperty: String, name: UserProperty) {

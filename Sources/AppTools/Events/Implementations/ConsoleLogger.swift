@@ -17,7 +17,7 @@ public class ConsoleLogger: EventLoggerImplementation {
         
     }
     
-    public func log(event: EventLogger.Event, parameters: [String : String]) {
+    public func log(event: EventLogger.Event, parameters: [String : String], floatValue: Float?) {
         print("[ConsoleLogger] Event: \(event.eventName) - \(parameters)".replacingOccurrences(of: "\n", with: ""))
     }
     
