@@ -40,6 +40,7 @@ public class SubscriptionManager: ObservableObject {
         Purchases.configure(
             with: Configuration.Builder(withAPIKey:revenueCatKey)
                 .with(userDefaults: .init(suiteName: appGroupIdentifier)!)
+                .with(usesStoreKit2IfAvailable: true)
                 .build()
         )
         
