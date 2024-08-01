@@ -18,16 +18,27 @@ public struct LabelledDivider: View {
         self.horizontalPadding = horizontalPadding
         self.color = color
     }
-
+    
     public var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             line
-            Text(label).foregroundColor(color).bold()
+            
+            Text(label)
+                .bold()
+                .minimumScaleFactor(0.5)
+                .padding(.horizontal, horizontalPadding)
+                .foregroundColor(color)
+            
             line
         }
+        .padding(.horizontal, horizontalPadding)
     }
 
     var line: some View {
-        VStack { Divider().background(color) }.padding(horizontalPadding)
+        VStack { 
+            Divider()
+                .background(color)
+        }
+        .frame(minWidth: 0)
     }
 }
