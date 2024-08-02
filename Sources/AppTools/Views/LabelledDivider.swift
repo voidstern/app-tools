@@ -12,7 +12,7 @@ public struct LabelledDivider: View {
     let label: String
     let horizontalPadding: CGFloat
     let color: Color
-
+    
     public init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
         self.label = label
         self.horizontalPadding = horizontalPadding
@@ -21,24 +21,31 @@ public struct LabelledDivider: View {
     
     public var body: some View {
         HStack(spacing: 0) {
-            line
+            Spacer()
+                .background {
+                    line
+                }
             
             Text(label)
                 .bold()
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.75)
                 .padding(.horizontal, horizontalPadding)
                 .foregroundColor(color)
             
-            line
+            Spacer()
+                .background {
+                    line
+                }
         }
         .padding(.horizontal, horizontalPadding)
     }
-
+    
     var line: some View {
-        VStack { 
-            Divider()
-                .background(color)
+        HStack {
+            color
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
+            
         }
-        .frame(minWidth: 0)
     }
 }
