@@ -104,9 +104,11 @@ public struct SettingsView<Content: View>: View {
                 Group {
                     if subscriptionManager.subscriptionLevel == upgradeContext.subscription.level {
                         PurchaseSettingsProHeader(showSubscriptionView: $showSubscriptionView, upgradeContext: upgradeContext, splitView: splitView)
+                            .buttonBorderShape(.roundedRectangle)
                             .selectionDisabled()
                     } else {
                         PurchaseSettingsGetProHeader(showPurchaseView: $showPurchaseView, upgradeContext: upgradeContext, splitView: splitView)
+                            .buttonBorderShape(.roundedRectangle)
                             .selectionDisabled()
                     }
                 }
