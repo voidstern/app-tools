@@ -12,11 +12,13 @@ public struct LabelledDivider: View {
     let label: String
     let horizontalPadding: CGFloat
     let color: Color
-    
-    public init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
+    let lineOpacity: Double
+
+    public init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray, lineOpacity: Double = 0.5) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color
+        self.lineOpacity = lineOpacity
     }
     
     public var body: some View {
@@ -45,7 +47,7 @@ public struct LabelledDivider: View {
             color
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
-            
+                .opacity(lineOpacity)
         }
     }
 }
