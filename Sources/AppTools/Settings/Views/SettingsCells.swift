@@ -37,7 +37,7 @@ public struct ToggleSettingsCell: View {
                     .tint(tint)
             }
             
-            Toggle(isOn: storage.bool(for: setting), label: {
+            Toggle(isOn: storage.boolBinding(for: setting), label: {
                 Text(title)
             })
         }
@@ -118,9 +118,9 @@ public struct DetailsSettingsCell: View {
     private var detailString: String {
         switch type {
         case .string:
-            return storage.string(key: setting)
+            return storage.string(for: setting)
         case .date:
-            let timeInterval = storage.double(key: setting)
+            let timeInterval = storage.double(for: setting)
             let date = Date(timeIntervalSince1970: timeInterval)
             return date.shortDateString
         }
@@ -145,20 +145,43 @@ public struct DetailsSettingsCell: View {
 public struct StepperSettingsCell: View {
     @ObservedObject var storage: UserSettings
     
+    @State var text: String = ""
+    @FocusState var textFieldFocused: Bool
+    
     let setting: UserSettings.Setting
     let image: Image?
     let title: String
+    let unit: String?
     let tint: Color
     
-    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, tint: Color = .accentColor) {
+    public init(setting: UserSettings.Setting, storage: UserSettings = .shared, image: Image? = nil, title: String, unit: String? = nil, tint: Color = .accentColor) {
         self.setting = setting
         self.storage = storage
         self.image = image
         self.title = title
         self.tint = tint
+        self.unit = unit
     }
     
     public var body: some View {
+        content
+            .onAppear(perform: updateLabel)
+            .onChange(of: storage.integer(for: setting)) {
+                updateLabel()
+            }
+            .onChange(of: textFieldFocused) {
+                if let integer = Int(text) {
+                    storage.set(value: integer, for: setting)
+                }
+            }
+    }
+    
+    private func updateLabel() {
+        let value = storage.integer(for: setting)
+        text = setting.labels[value] ?? value.formatted()
+    }
+    
+    public var content: some View {
         HStack {
             if let image {
                 image
@@ -170,10 +193,30 @@ public struct StepperSettingsCell: View {
                     .tint(tint)
             }
             
-
             HStack(spacing: 4) {
-                Text("\(storage.integer(key: setting))")
-                Stepper(title, value: storage.integer(for: setting))
+                Text(title)
+                
+                Spacer()
+                
+                TextField(text: $text, label: { })
+                    .multilineTextAlignment(.trailing)
+#if os(macOS)
+                    .frame(maxWidth: 140)
+                    .textFieldStyle(.roundedBorder)
+#endif
+                    .focused($textFieldFocused)
+                    .opacity(0.8)
+                    .onSubmit {
+                        textFieldFocused = false
+                    }
+                
+                if let unit {
+                    Text(unit)
+                        .opacity(0.8)
+                }
+                
+                Stepper("", value: storage.integerBinding(for: setting), in: (setting.minValue ?? .min) ... (setting.maxValue ?? .max), step: setting.stepValue ?? 1)
+                    .frame(width: .platform(96, macOS: 16))
             }
         }
 #if os(macOS)
@@ -210,7 +253,7 @@ public struct PickerSettingsCell: View {
                     .tint(tint)
             }
             
-            Picker(selection: storage.integer(for: setting)) {
+            Picker(selection: storage.integerBinding(for: setting)) {
                 ForEach((setting.options ?? [])) { option in
                     Text(option.title)
                         .tag(option.value)
@@ -219,7 +262,7 @@ public struct PickerSettingsCell: View {
                 Text(title)
             }
             .tint(.secondary)
-
+            
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
@@ -394,7 +437,7 @@ public struct MultiPickerSettingsCell: View {
         self.storage = storage
         self.image = image
         self.title = title
-        self.subtitle = subtitle 
+        self.subtitle = subtitle
         self.tint = tint
     }
     
@@ -445,41 +488,41 @@ public struct MultiPickerSettingsCell: View {
             .opacity(0.8)
 #if os(macOS)
             .popover(isPresented: $showPopover, arrowEdge: .trailing, content: {
-                macPickerView
+                pickerView
             })
 #endif
         }
     }
     
     private var selectedOptions: [UserSettings.Setting.Option] {
-        let selectedValues = storage.integers(key: setting)
+        let selectedValues = storage.integers(for: setting)
         return (setting.options ?? []).filter({ selectedValues.contains($0.value) })
     }
     
-    private var macPickerView: some View {
-        List {
-            Section {
-                ForEach(setting.options ?? []) { option in
-                    Toggle(option.title, isOn: .init(get: {
-                        storage.integers(key: setting).contains(option.value)
-                    }, set: { value in
-                        var selectedValues = storage.integers(key: setting)
-                        
-                        if selectedValues.contains(option.value) {
-                            selectedValues.remove(option.value)
-                        } else {
-                            selectedValues.append(option.value)
-                        }
-                        
-                        storage.set(integers: selectedValues, key: setting)
-                    }))
-                }
-            }
-        }
-        .navigationTitle(title)
+    var pickerView: some View {
+        MultiPickerSettingsView(storage: storage, setting: setting)
+            .navigationTitle(title)
+    }
+}
+
+public struct MultiPickerSettingsView: View {
+    @ObservedObject var storage: UserSettings
+    let setting: UserSettings.Setting
+    
+    public init(storage: UserSettings = .shared, setting: UserSettings.Setting) {
+        self.storage = storage
+        self.setting = setting
     }
     
-    private var pickerView: some View {
+    public var body: some View {
+#if os(macOS)
+        macPickerList
+#else
+        defaultPickerList
+#endif
+    }
+    
+    public var defaultPickerList: some View {
         List {
             Section {
                 ForEach(setting.options ?? []) { option in
@@ -488,14 +531,14 @@ public struct MultiPickerSettingsCell: View {
                         
                         Spacer()
                         
-                        if storage.integers(key: setting).contains(option.value) {
+                        if storage.integers(for: setting).contains(option.value) {
                             Image(systemSymbol: .checkmark)
                                 .foregroundStyle(.tint)
                         }
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        var selectedValues = storage.integers(key: setting)
+                        var selectedValues = storage.integers(for: setting)
                         
                         if selectedValues.contains(option.value) {
                             selectedValues.remove(option.value)
@@ -503,12 +546,33 @@ public struct MultiPickerSettingsCell: View {
                             selectedValues.append(option.value)
                         }
                         
-                        storage.set(integers: selectedValues, key: setting)
+                        storage.set(integers: selectedValues, for: setting)
                     }
                 }
             }
         }
-        .navigationTitle(title)
+    }
+    
+    public var macPickerList: some View {
+        List {
+            Section {
+                ForEach(setting.options ?? []) { option in
+                    Toggle(option.title, isOn: .init(get: {
+                        storage.integers(for: setting).contains(option.value)
+                    }, set: { value in
+                        var selectedValues = storage.integers(for: setting)
+                        
+                        if selectedValues.contains(option.value) {
+                            selectedValues.remove(option.value)
+                        } else {
+                            selectedValues.append(option.value)
+                        }
+                        
+                        storage.set(integers: selectedValues, for: setting)
+                    }))
+                }
+            }
+        }
     }
 }
 

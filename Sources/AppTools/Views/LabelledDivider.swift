@@ -12,22 +12,42 @@ public struct LabelledDivider: View {
     let label: String
     let horizontalPadding: CGFloat
     let color: Color
+    let lineOpacity: Double
 
-    public init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
+    public init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray, lineOpacity: Double = 0.5) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color
+        self.lineOpacity = lineOpacity
     }
-
+    
     public var body: some View {
-        HStack {
-            line
-            Text(label).foregroundColor(color).bold()
-            line
+        HStack(spacing: 0) {
+            Spacer()
+                .background {
+                    line
+                }
+            
+            Text(label)
+                .bold()
+                .minimumScaleFactor(0.75)
+                .padding(.horizontal, horizontalPadding)
+                .foregroundColor(color)
+            
+            Spacer()
+                .background {
+                    line
+                }
         }
+        .padding(.horizontal, horizontalPadding)
     }
-
+    
     var line: some View {
-        VStack { Divider().background(color) }.padding(horizontalPadding)
+        HStack {
+            color
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
+                .opacity(lineOpacity)
+        }
     }
 }

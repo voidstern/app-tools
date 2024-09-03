@@ -8,13 +8,17 @@
 import Foundation
 
 extension EventLogger.Event {
-    static var purchaseViewViewed = EventLogger.Event(eventName: "purchase_view_viewed")
-    static var purchaseViewPurchased = EventLogger.Event(eventName: "purchase_view_purchased")
-    static var purchaseViewRestored = EventLogger.Event(eventName: "purchase_view_restore")
-    static var purchaseViewSkipped = EventLogger.Event(eventName: "purchase_view_skipped")
+    static var purchaseViewViewed = EventLogger.Event(eventName: "purchaseViewViewed")
+    static var purchaseViewPurchased = EventLogger.Event(eventName: "purchaseViewPurchased")
+    static var purchaseViewRestored = EventLogger.Event(eventName: "purchaseViewRestore")
+    static var purchaseViewSkipped = EventLogger.Event(eventName: "purchaseViewSkipped")
 }
 
 extension EventLogger.Event {
-    static var purchaseRestored = EventLogger.Event(eventName: "purchase_restore")
-    static var purchasePurchased = EventLogger.Event(eventName: "purchase_purchased")
+    static var purchaseRestored = EventLogger.Event(eventName: "purchaseRestore")
+    static var purchasePurchased = EventLogger.Event(eventName: "purchasePurchased")
+}
+
+extension EventLogger.Event {
+    static var onboardingStep = EventLogger.Event(eventName: "onboardingStep")
 }

@@ -119,7 +119,7 @@ public class SupportMailContent {
     }
     
     public func emailURL(email: String, rcid: String?) -> URL? {
-        let sentryID = UserSettings.shared.string(key: .sentryUserID)
+        let sentryID = UserSettings.shared.string(for: .sentryUserID)
         let fullMailString =  "mailto:\(email)?subject=\(subject().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(messageBody(rcid: rcid, sentryID: sentryID).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
         let justEmailString = "mailto:\(email)"
         

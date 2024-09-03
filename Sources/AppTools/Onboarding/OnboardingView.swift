@@ -25,6 +25,7 @@ public struct OnboardingView: View {
     public var body: some View {
         content
             .interactiveDismissDisabled()
+            .onAppear { trackOnboardingStep(firstStep()) }
     }
     
     public var content: some View {
@@ -73,6 +74,8 @@ public struct OnboardingView: View {
     
     private func showNextStep() {
         if let nextStep = nextStep() {
+            trackOnboardingStep(nextStep)
+            
             withAnimation {
                 currentStep = nextStep
                 navigaitonPath.append(nextStep)
@@ -80,6 +83,14 @@ public struct OnboardingView: View {
         } else {
             dismiss()
         }
+    }
+    
+    private func trackOnboardingStep(_ step: OnboardingStep?) {
+        guard let identifier = step?.identifier else {
+            return
+        }
+        
+        EventLogger.shared.log(event: .onboardingStep, parameters: ["step": identifier])
     }
 }
 

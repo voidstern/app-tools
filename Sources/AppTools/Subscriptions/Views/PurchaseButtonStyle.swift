@@ -9,7 +9,15 @@ import Foundation
 import SwiftUI
 
 public struct PurchaseButtonStyle: ButtonStyle {
-    public init() { }
+    let foregroundInverted: Bool
+    
+    public init(foregroundInverted: Bool? = nil) {
+#if os(visionOS)
+        self.foregroundInverted = foregroundInverted ?? false
+#else
+        self.foregroundInverted = foregroundInverted ?? true
+#endif
+    }
     
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -20,7 +28,12 @@ public struct PurchaseButtonStyle: ButtonStyle {
             .font(.system(size: 19, weight: .semibold))
             .frame(height: 64)
 #endif
-            .foregroundStyle(.background)
+#if os(visionOS)
+            .frame(depth: 20)
+            .foregroundStyle(foregroundInverted ? .white : .black)
+#else
+            .if(foregroundInverted, transform: { $0.foregroundStyle(.background) }, else: { $0.foregroundStyle(.primary) })
+#endif
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
             .background {
@@ -31,5 +44,8 @@ public struct PurchaseButtonStyle: ButtonStyle {
                     .shadow(color: Color.accentColor.opacity(configuration.isPressed ? 0.2 : 0.4), radius: configuration.isPressed ? 12 : 16)
                 
             }
+#if os(visionOS)
+            .frame(depth: 50)
+#endif
     }
 }

@@ -22,7 +22,7 @@ public final class SupportMailController: MFMailComposeViewController, MFMailCom
 
         let supportMailController = SupportMailController()
         supportMailController.setSubject(supportMailContent.subject())
-        supportMailController.setMessageBody(supportMailContent.messageBody(rcid: rcid, sentryID: UserSettings.shared.string(key: .sentryUserID)), isHTML: false)
+        supportMailController.setMessageBody(supportMailContent.messageBody(rcid: rcid, sentryID: UserSettings.shared.string(for: .sentryUserID)), isHTML: false)
         supportMailController.setToRecipients([mailAdress])
         supportMailController.mailComposeDelegate = supportMailController
 

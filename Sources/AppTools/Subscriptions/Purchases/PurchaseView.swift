@@ -31,6 +31,7 @@ public struct PurchaseView: OnboardingSequenceView {
         content
             .navigationBarBackButtonHidden(true)
 #if os(iOS)
+            .navigationTitle(upgradeContext.title)
             .sheet(item: $presentedURL) { url in
                 SafariWebView(url: url)
                     .ignoresSafeArea()
@@ -38,7 +39,7 @@ public struct PurchaseView: OnboardingSequenceView {
 #endif
             .onAppear {
                 if upgradeContext.fadeInCloseButton {
-                    DispatchQueue.main.async(after: 5.0) {
+                    DispatchQueue.main.async(after: 3.0) {
                         closeButtonVisible = true
                     }
                 } else {
@@ -51,26 +52,16 @@ public struct PurchaseView: OnboardingSequenceView {
                 
                 EventLogger.shared.log(event: .purchaseViewViewed, parameters: ["context": upgradeContext.contextName])
             }
-#if !os(macOS) && !os(watchOS)
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    restoreButton
-                }
-                
-                ToolbarItem(placement: .primaryAction) {
-                    closeButton
-                }
-            }
-#else
+#if os(macOS)
             .frame(idealWidth: 560, idealHeight: 640)
 #endif
             .if(upgradeContext.prefersDarkMode) { view in
                 view.preferredColorScheme(.dark)
             }
             .interactiveDismissDisabled()
-            .navigationTitle(upgradeContext.title)
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(upgradeContext.useListStylePurchaseView ? .hidden : .automatic, for: .navigationBar)
 #endif
     }
     
@@ -80,6 +71,7 @@ public struct PurchaseView: OnboardingSequenceView {
             ProgressView()
                 .progressViewStyle(.circular)
                 .frame(width: 22, height: 22, alignment: .center)
+                .controlSize(.small)
         } else {
             Button(action: restorePurchases, label: {
                 Text(L10n.restore)
@@ -91,8 +83,6 @@ public struct PurchaseView: OnboardingSequenceView {
     @ViewBuilder
     var closeButton: some View {
         Button(action: {
-            EventLogger.shared.log(event: .purchaseViewSkipped, parameters: ["context": upgradeContext.contextName])
-            performClose()
         }, label: {
             Image(systemSymbol: .xmark)
         })
@@ -101,101 +91,22 @@ public struct PurchaseView: OnboardingSequenceView {
         .buttonStyle(.plain)
     }
     
+    @ViewBuilder
     var content: some View {
-        VStack {
-#if os(macOS)
-            HStack {
-                restoreButton
-                
-                Spacer()
-                
-                closeButton
-            }
-            .frame(height: 44)
-            .padding()
-#endif
-            upgradeContext.proLogo
-                .padding(.top, 32)
-            
-            Spacer()
-            
-            VStack(alignment: .center, spacing: 16) {
-                ForEach (upgradeContext.features) { feature in
-                    HStack {
-                        Image(systemSymbol: feature.symbol)
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color.accentColor)
-#if os(macOS)
-                        .font(.system(size: 21, weight: .regular))
+#if os(watchOS)
+        WatchPurchaseView(closeButtonVisible: $closeButtonVisible, subscriptionPrice: $subscriptionPrice, upgradeContext: upgradeContext, restorePurchases: restorePurchases, purchaseSubscription: purchaseSubscription, showTermsOfService: showTermsOfService, showPrivacyPolicy: showPrivacyPolicy, handleCloseButton: handleCloseButton)
 #else
-                        .font(.system(size: 19, weight: .regular))
-#endif
-                        Text(feature.title)
-                            .foregroundStyle(.primary)
-                            .lineLimit(2)
-#if os(macOS)
-                        .font(.system(size: 17, weight: .regular))
-#else
-                        .font(.system(size: 19, weight: .regular))
-#endif
-                    }
-                    .padding(6)
-                }
-            }
-            
-            Spacer()
-            
-            VStack(spacing: 8) {
-                if subscriptionManager.isWorking {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .frame(height: 64)
-                } else {
-                    Text(upgradeContext.subscriptionTerms(subscriptionPrice: subscriptionPrice))
-#if os(macOS)
-                        .font(.system(size: 13, weight: .regular))
-#else
-                        .font(.system(size: 15, weight: .regular))
-#endif
-                        .opacity(0.5)
-                        .padding(.bottom, 8)
-                    
-                    Button(action: purchaseSubscription, label: {
-                        Text(L10n.continue)
-                    })
-                    .buttonStyle(PurchaseButtonStyle())
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 4)
-                    .buttonStyle(.plain)
-                }
-                
-                HStack(spacing: 16) {
-                    Button(action: showTermsOfService, label: {
-                        Text(L10n.termsOfService)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(.foreground)
-                            .minimumScaleFactor(0.5)
-                            .opacity(0.3)
-                    })
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.foreground)
-                    .minimumScaleFactor(0.5)
-                    
-                    Button(action: showPrivacyPolicy, label: {
-                        Text(L10n.privacyPolicy)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(.foreground)
-                            .minimumScaleFactor(0.5)
-                            .opacity(0.3)
-                    })
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.foreground)
-                    .minimumScaleFactor(0.5)
-                }
-                .padding(.bottom, 16)
-                .padding(.horizontal, 32)
-            }
+        if upgradeContext.useListStylePurchaseView {
+            ListPurchaseView(closeButtonVisible: $closeButtonVisible, subscriptionPrice: $subscriptionPrice, upgradeContext: upgradeContext, restorePurchases: restorePurchases, purchaseSubscription: purchaseSubscription, showTermsOfService: showTermsOfService, showPrivacyPolicy: showPrivacyPolicy, handleCloseButton: handleCloseButton)
+        } else {
+            SimplePurchaseView(closeButtonVisible: $closeButtonVisible, subscriptionPrice: $subscriptionPrice, upgradeContext: upgradeContext, restorePurchases: restorePurchases, purchaseSubscription: purchaseSubscription, showTermsOfService: showTermsOfService, showPrivacyPolicy: showPrivacyPolicy, handleCloseButton: handleCloseButton)
         }
+#endif
+    }
+    
+    private func handleCloseButton() {
+        EventLogger.shared.log(event: .purchaseViewSkipped, parameters: ["context": upgradeContext.contextName])
+        performClose()
     }
     
     private func restorePurchases() {
@@ -246,17 +157,51 @@ public struct PurchaseView: OnboardingSequenceView {
 }
 
 extension PurchaseView {
-    public struct Feature: Identifiable {
+    public struct Feature: Identifiable, Hashable, Equatable {
         let title: String
+        let subtitle: String?
         let symbol: SFSymbol
+        let emoji: String?
         
-        public init(title: String, symbol: SFSymbol) {
+        public init(title: String, subtitle: String? = nil, symbol: SFSymbol, emoji: String? = nil) {
             self.title = title
             self.symbol = symbol
+            self.subtitle = subtitle
+            self.emoji = emoji
         }
         
         public var id: String {
             title
+        }
+    }
+}
+
+struct FeatureListCell: View {
+    let feature: PurchaseView.Feature
+    
+    var body: some View {
+        HStack {
+            Image(systemSymbol: feature.symbol)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(Color.accentColor)
+                .font(.system(size: .platform(27, macOS: 21), weight: .regular))
+                .scaledToFit()
+                .frame(width: 54, height: 54)
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(feature.title)
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .font(.system(size: .platform(17, macOS: 15), weight: .semibold))
+                
+                Text(feature.subtitle ?? "")
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .font(.system(size: .platform(15, macOS: 13), weight: .regular))
+                    .opacity(0.7)
+            }
+            
+            Spacer()
         }
     }
 }

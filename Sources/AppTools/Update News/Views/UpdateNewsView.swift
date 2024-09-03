@@ -89,43 +89,22 @@ struct UpdateNewsView: View {
             Button(L10n.continueWithoutUpgrade, action: continueHit)
                 .buttonStyle(.plain)
                 .padding(.bottom, 8)
+                .opacity(0.5)
             
             Button(action: upgradeSubscription, label: {
-                continueLabel(text: L10n.upgradeNow)
+                Text(L10n.upgradeNow)
             })
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
-            .buttonStyle(.plain)
+            .buttonStyle(PurchaseButtonStyle())
         } else {
             Button(action: continueHit, label: {
-                continueLabel(text: L10n.continue)
+                Text(L10n.continue)
             })
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
-            .buttonStyle(.plain)
+            .buttonStyle(PurchaseButtonStyle())
         }
-    }
-    
-    func continueLabel(text: String) -> some View {
-        Text(text)
-#if os(macOS)
-            .font(.system(size: 15, weight: .regular))
-            .frame(height: 44)
-#else
-            .font(.system(size: 19, weight: .semibold))
-            .frame(height: 64)
-#endif
-#if os(visionOS)
-            .foregroundStyle(.white)
-#else
-            .foregroundStyle(.background)
-#endif
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity)
-            .background {
-                Color.accentColor
-                    .clipShape(RoundedRectangle(cornerRadius: 18))
-            }
     }
     
     private func continueHit() {

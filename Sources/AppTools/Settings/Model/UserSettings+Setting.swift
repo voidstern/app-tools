@@ -10,13 +10,23 @@ import Foundation
 extension UserSettings {
     open class Setting: Equatable, Hashable {
         public let identifier: String
-        public let defaultValue: Any?
         public let options: [Option]?
         
-        public init(identifier: String, defaultValue: Any? = nil, options: [Option]? = nil) {
+        public let defaultValue: Any?
+        public let minValue: Int?
+        public let maxValue: Int?
+        public let stepValue: Int?
+        public let labels: [Int: String]
+        
+        public init(identifier: String, defaultValue: Any? = nil, minValue: Int? = nil, maxValue: Int? = nil, stepValue: Int? = nil, options: [Option]? = nil, labels: [Int: String] = [:]) {
             self.identifier = identifier
-            self.defaultValue = defaultValue
             self.options = options
+            
+            self.defaultValue = defaultValue
+            self.stepValue = stepValue
+            self.minValue = minValue
+            self.maxValue = maxValue
+            self.labels = labels
         }
 
         public static func == (lhs: Setting, rhs: Setting) -> Bool {

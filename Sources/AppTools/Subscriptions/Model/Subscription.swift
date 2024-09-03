@@ -40,6 +40,8 @@ extension SubscriptionManager {
         public var isFree: Bool {
             return type == .free
         }
+        
+        static public let free = Subscription(identifier: "free", level: .free, type: .other, trialDuration: 0)
     }
 }
 

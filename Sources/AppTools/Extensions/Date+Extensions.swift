@@ -38,6 +38,10 @@ extension Date {
     public static var today: Day {
         return Date().day
     }
+    
+    public static var tomorrow: Day {
+        return Date().day.adding(days: 1)
+    }
 }
 
 // MARK: Week
@@ -50,7 +54,7 @@ extension Date {
     }
     
     public func adding(weeks: Int) -> Date {
-        return addingTimeInterval(Double(weeks) * 7 * 24 * 60 * 60)
+        return addKeepingDateAndTime(weeks: weeks)
             .week
     }
     
@@ -87,7 +91,7 @@ extension Week {
 public typealias Month = Date
 
 extension Date {
-    public var month: Week {
+    public var month: Month {
         return calendar.dateComponents([.calendar, .year, .month], from: self).date!
     }
     
@@ -99,15 +103,34 @@ extension Date {
     }
     
     public func adding(months: Int) -> Date {
-        return addingTimeInterval(Double(months) * 31 * 24 * 60 * 60)
+        return addKeepingDateAndTime(months: 1)
             .month
     }
     
-    public static var currentMonth: Week {
+    public static var currentMonth: Month {
         return Date().month
     }
 }
 
+// MARK: Adding exact time ranage
+
+extension Date {
+    public func addKeepingDateAndTime(days: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(day: days), to: self) ?? self
+    }
+    
+    public func addKeepingDateAndTime(weeks: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(day: weeks * 7), to: self) ?? self
+    }
+    
+    public func addKeepingDateAndTime(months: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: months), to: self) ?? self
+    }
+    
+    public func addKeepingDateAndTime(years: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(year: years), to: self) ?? self
+    }
+}
 // MARK: Localized Names
 
 extension Date {

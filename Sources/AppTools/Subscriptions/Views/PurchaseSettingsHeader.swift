@@ -87,6 +87,7 @@ public struct PurchaseSettingsGetProHeader: View {
 }
 
 public struct PurchaseSettingsProHeader: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var showSubscriptionView: Bool
     
     let upgradeContext: UpgradeContext
@@ -117,6 +118,33 @@ public struct PurchaseSettingsProHeader: View {
             Text("\(L10n.manageSubscription) \(Image(systemSymbol: .chevronRight))")
                 .font(.system(size: 11))
                 .opacity(0.3)
+        }
+        .background {
+            VStack {
+                Color.clear
+                    .frame(height: 16)
+                
+#if os(iOS)
+                if upgradeContext.upgradeHeaderBackground {
+                    if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
+                        if colorScheme == .dark {
+                            Color.clear.background(.background.secondary)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        } else {
+                            Color.clear.background(.background)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                    } else {
+                        Color.clear.background(Color.gray.opacity(0.2))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                }
+#endif
+                
+                Color.clear
+                    .frame(height: 16)
+            }
+            .padding(.horizontal, -16)
         }
         .frame(maxWidth: .infinity)
     }

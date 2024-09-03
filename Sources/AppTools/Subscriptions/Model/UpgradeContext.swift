@@ -15,11 +15,12 @@ public struct UpgradeContext {
     let contextName: String
     let subscription: SubscriptionManager.Subscription
     let features: [PurchaseView.Feature]
+    let highlightedFeature: PurchaseView.Feature?
     let fadeInCloseButton: Bool
     let upgradeHeaderBackground: Bool
     let prefersDarkMode: Bool
     
-    public init(_ contextName: String, proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], fadeInCloseButton: Bool = true, prefersDarkMode: Bool = false, upgradeHeaderBackground: Bool = true) {
+    public init(_ contextName: String, proLogo: Image, subscription: SubscriptionManager.Subscription, title: String, features: [PurchaseView.Feature], highlightedFeature: PurchaseView.Feature? = nil, fadeInCloseButton: Bool = true, prefersDarkMode: Bool = false, upgradeHeaderBackground: Bool = true) {
         self.proLogo = proLogo
         self.subscription = subscription
         self.features = features
@@ -28,10 +29,25 @@ public struct UpgradeContext {
         self.upgradeHeaderBackground = upgradeHeaderBackground
         self.prefersDarkMode = prefersDarkMode
         self.contextName = contextName
+        self.highlightedFeature = highlightedFeature
     }
     
     public func featureString(separator: String = " · ") -> String {
-        features.map(\.title).joined(separator: separator)
+        features.prefix(3).map(\.title).joined(separator: separator)
+    }
+    
+    public var useListStylePurchaseView: Bool {
+        !features.filter({ $0.subtitle != nil }).isEmpty || highlightedFeature != nil
+    }
+    
+    public var listFeatures: [PurchaseView.Feature] {
+        var listFeatures = features
+        
+        if let highlightedFeature {
+            listFeatures.remove(highlightedFeature)
+        }
+        
+        return listFeatures
     }
 }
 
@@ -62,5 +78,20 @@ extension UpgradeContext {
         case (.free, _), (.legacy, _), (.other, _):
             return "???"
         }
+    }
+}
+
+extension UpgradeContext: Hashable, Identifiable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+        hasher.combine(contextName)
+        hasher.combine(features)
+        hasher.combine(highlightedFeature)
+        hasher.combine(fadeInCloseButton)
+        hasher.combine(fadeInCloseButton)
+    }
+    
+    public var id: Int {
+        hashValue
     }
 }

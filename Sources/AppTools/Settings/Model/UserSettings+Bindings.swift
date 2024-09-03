@@ -9,42 +9,42 @@ import Foundation
 import SwiftUI
 
 extension UserSettings {
-    public func string(for key: UserSettings.Setting) -> Binding<String> {
+    public func stringBinding(for key: UserSettings.Setting) -> Binding<String> {
         return Binding<String>(get: {
-            UserSettings.shared.string(key: key)
+            UserSettings.shared.string(for: key)
         }, set: { value in
             DispatchQueue.onMainQueue {
-                UserSettings.shared.set(value: value, key: key)
+                UserSettings.shared.set(value: value, for: key)
             }
         })
     }
     
-    public func integer(for key: UserSettings.Setting) -> Binding<Int> {
+    public func integerBinding(for key: UserSettings.Setting) -> Binding<Int> {
         return Binding<Int>(get: {
-            UserSettings.shared.integer(key: key)
+            UserSettings.shared.integer(for: key)
         }, set: { value in
             DispatchQueue.onMainQueue {
-                UserSettings.shared.set(value: value, key: key)
+                UserSettings.shared.set(value: value, for: key)
             }
         })
     }
     
-    public func double(for key: UserSettings.Setting) -> Binding<Double> {
+    public func doubleBinding(for key: UserSettings.Setting) -> Binding<Double> {
         return Binding<Double>(get: {
-            UserSettings.shared.double(key: key)
+            UserSettings.shared.double(for: key)
         }, set: { value in
             DispatchQueue.onMainQueue {
-                UserSettings.shared.set(value: value, key: key)
+                UserSettings.shared.set(value: value, for: key)
             }
         })
     }
     
-    public func bool(for key: UserSettings.Setting) -> Binding<Bool> {
+    public func boolBinding(for key: UserSettings.Setting) -> Binding<Bool> {
         return Binding<Bool>(get: {
-            UserSettings.shared.bool(key: key)
+            UserSettings.shared.bool(for: key)
         }, set: { value in
             DispatchQueue.onMainQueue {
-                UserSettings.shared.set(value: value, key: key)
+                UserSettings.shared.set(value: value, for: key)
             }
         })
     }
