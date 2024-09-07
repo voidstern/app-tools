@@ -40,6 +40,7 @@ public class SubscriptionManager: ObservableObject {
         Purchases.configure(
             with: Configuration.Builder(withAPIKey:revenueCatKey)
                 .with(userDefaults: .init(suiteName: appGroupIdentifier)!)
+                .with(usesStoreKit2IfAvailable: true)
                 .build()
         )
         
@@ -207,6 +208,7 @@ public class SubscriptionManager: ObservableObject {
                         
                         if self.subscriptionLevel != .free {
                             EventLogger.shared.log(event: .purchasePurchased, parameters: ["level": self.subscriptionLevel.identifier])
+                            EventLogger.shared.log(event: .telemetryPurchase, parameters: ["TelemetryDeck.Purchase.type": transaction?.productIdentifier ?? "", "TelemetryDeck.Purchase.countryCode": transaction?.countryCode ?? "", "TelemetryDeck.Purchase.currencyCode": transaction?.currencyCode ?? ""], floatValue: transaction?.price)
                         }
                         
                         completion()
@@ -223,8 +225,34 @@ public class SubscriptionManager: ObservableObject {
     }
 }
 
+extension StoreTransaction {
+    var price: Float? {
+        if let sk2Transaction, let price = sk2Transaction.price {
+            return NSDecimalNumber(decimal: price).floatValue
+        }
+        
+        return nil
+    }
+    
+    var countryCode: String? {
+        return storefront?.countryCode
+    }
+    
+    var currencyCode: String? {
+        if let sk2Transaction, let currency = sk2Transaction.currency {
+            return currency.identifier
+        }
+        
+        return nil
+    }
+}
+
 extension UserSettings.Setting {
     public static let revenuecatUserID = UserSettings.Setting(identifier: "revenuecat_id")
     public static let lastKnownSubscription = UserSettings.Setting(identifier: "last_known_subscription")
     public static let lastKnownSubscriptionLevel = UserSettings.Setting(identifier: "last_known_subscription_level")
+}
+
+extension EventLogger.Event {
+    public static let telemetryPurchase = EventLogger.Event(eventName: "TelemetryDeck.Purchase.completed")
 }

@@ -145,6 +145,9 @@ public struct DetailsSettingsCell: View {
 public struct StepperSettingsCell: View {
     @ObservedObject var storage: UserSettings
     
+    @State var text: String = ""
+    @FocusState var textFieldFocused: Bool
+    
     let setting: UserSettings.Setting
     let image: Image?
     let title: String
@@ -161,6 +164,24 @@ public struct StepperSettingsCell: View {
     }
     
     public var body: some View {
+        content
+            .onAppear(perform: updateLabel)
+            .onChange(of: storage.integer(for: setting)) {
+                updateLabel()
+            }
+            .onChange(of: textFieldFocused) {
+                if let integer = Int(text) {
+                    storage.set(value: integer, for: setting)
+                }
+            }
+    }
+    
+    private func updateLabel() {
+        let value = storage.integer(for: setting)
+        text = setting.labels[value] ?? value.formatted()
+    }
+    
+    public var content: some View {
         HStack {
             if let image {
                 image
@@ -172,22 +193,31 @@ public struct StepperSettingsCell: View {
                     .tint(tint)
             }
             
-                HStack(spacing: 4) {
-                    Text(title)
-                    
-                    Spacer()
-                    
-                    Text("\(storage.integer(for: setting))")
-                        .opacity(0.8)
-                    
-                    if let unit {
-                        Text(unit)
-                            .opacity(0.8)
+            HStack(spacing: 4) {
+                Text(title)
+                
+                Spacer()
+                
+                TextField(text: $text, label: { })
+                    .multilineTextAlignment(.trailing)
+#if os(macOS)
+                    .frame(maxWidth: 140)
+                    .textFieldStyle(.roundedBorder)
+#endif
+                    .focused($textFieldFocused)
+                    .opacity(0.8)
+                    .onSubmit {
+                        textFieldFocused = false
                     }
-                    
-                    Stepper("", value: storage.integerBinding(for: setting), in: (setting.minValue ?? .min) ... (setting.maxValue ?? .max), step: setting.stepValue ?? 1)
-                        .frame(width: .platform(96, macOS: 16))
+                
+                if let unit {
+                    Text(unit)
+                        .opacity(0.8)
                 }
+                
+                Stepper("", value: storage.integerBinding(for: setting), in: (setting.minValue ?? .min) ... (setting.maxValue ?? .max), step: setting.stepValue ?? 1)
+                    .frame(width: .platform(96, macOS: 16))
+            }
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
@@ -232,7 +262,7 @@ public struct PickerSettingsCell: View {
                 Text(title)
             }
             .tint(.secondary)
-
+            
         }
 #if os(macOS)
         .listRowSeparator(.hidden, edges: .all)
@@ -407,7 +437,7 @@ public struct MultiPickerSettingsCell: View {
         self.storage = storage
         self.image = image
         self.title = title
-        self.subtitle = subtitle 
+        self.subtitle = subtitle
         self.tint = tint
     }
     
