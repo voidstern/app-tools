@@ -26,7 +26,7 @@ let package = Package(
         .package(
             name: "RevenueCat",
             url: "https://github.com/RevenueCat/purchases-ios",
-            from: "4.0.0"
+            from: "5.0.0"
         ),
         .package(
             url: "https://github.com/voidstern/SFSafeSymbols",
