@@ -52,8 +52,12 @@ public extension URL {
         let contents = self.directoryContents()
         var totalSize: UInt = 0
         contents.forEach { url in
-            let size = url.fileSizeAtURL()
-            totalSize += size
+            
+            if url.hasDirectoryPath {
+                totalSize += url.folderSize()
+            } else {
+                totalSize += url.fileSizeAtURL()
+            }
         }
         return totalSize
     }
