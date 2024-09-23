@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import StoreKit
 
+#if os(iOS)
 struct StoreProductView: UIViewControllerRepresentable {
     let productID: String
     
@@ -34,3 +35,4 @@ struct StoreProductView: UIViewControllerRepresentable {
         }
     }
 }
+#endif

@@ -63,6 +63,7 @@ struct WatchPurchaseView: View {
                                 .multilineTextAlignment(.center)
                                 .opacity(0.7)
                         }
+                        .padding(.vertical, 6)
                     })
                     .buttonStyle(.bordered)
                     
@@ -71,6 +72,14 @@ struct WatchPurchaseView: View {
                             .font(.system(size: 13, weight: .light))
                             .foregroundStyle(.white)
                     })
+                    .buttonStyle(.borderless)
+                    
+                    Button(action: handleCloseButton) {
+                        Text(L10n.continue)
+                            .font(.system(size: 13, weight: .light))
+                            .foregroundStyle(.gray)
+                            .opacity(closeButtonVisible ? 0.8 : 0)
+                    }
                     .buttonStyle(.borderless)
                 }
             }
