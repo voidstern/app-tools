@@ -113,7 +113,7 @@ struct UpdateNewsView: View {
     }
 
     private func upgradeSubscription() {
-        subscriptionManager.purchase(subscription: upgradeContext.subscription) {
+        subscriptionManager.purchase(subscription: upgradeContext.subscription, context: upgradeContext) {
             if subscriptionManager.subscription != nil {
                 onContinue()
             }

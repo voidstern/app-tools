@@ -198,10 +198,11 @@ public class SubscriptionManager: ObservableObject {
         }
     }
     
-    public func purchase(subscription: Subscription, completion: @escaping () -> ()) {
+    public func purchase(subscription: Subscription, context: UpgradeContext, completion: @escaping () -> ()) {
         isWorking = true
         Purchases.shared.getProducts([subscription.identifier]) { products in
             if let product = products.first {
+                Purchases.shared.attribution.setAttributes(["upgradeContext": context.contextName])
                 Purchases.shared.purchase(product: product) { transaction, purchaserInfo, error, cancelled in
                     if let purchaserInfo = purchaserInfo {
                         self.purchaserInfo = purchaserInfo

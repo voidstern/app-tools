@@ -122,7 +122,7 @@ public struct PurchaseView: OnboardingSequenceView {
     private func purchaseSubscription() {
         EventLogger.shared.log(event: .purchaseViewPurchased, parameters: ["context": upgradeContext.contextName])
         
-        subscriptionManager.purchase(subscription: upgradeContext.subscription) {
+        subscriptionManager.purchase(subscription: upgradeContext.subscription, context: upgradeContext) {
             if subscriptionManager.subscription != nil {
                 performClose()
             }
