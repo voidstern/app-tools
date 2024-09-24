@@ -31,7 +31,7 @@ public struct PositionReadableScrollView<Content>: View where Content: View {
                         )
                         
                         Color.clear
-                            .onChange(of: position) { position, _ in
+                            .onChange(of: position) {
                                 onScroll(position)
                             }
                     }
