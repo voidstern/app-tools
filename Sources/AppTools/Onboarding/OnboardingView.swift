@@ -13,11 +13,13 @@ public struct OnboardingView: View {
     @State var currentStep: OnboardingStep?
     @State var navigaitonPath: NavigationPath
     
-    let steps: [OnboardingStep]
+    let stepsBuilder: () -> [OnboardingStep]
     
-    public init(@ArrayBuilder<OnboardingStep> _ builder: () -> [OnboardingStep]) {
-        self.steps = builder()
-        let firstStep = steps.first
+    public init(@ArrayBuilder<OnboardingStep> _ builder: @escaping () -> [OnboardingStep]) {
+        self.stepsBuilder = builder
+        
+        let firstStep = stepsBuilder().first
+        
         _currentStep = State(initialValue: firstStep)
         _navigaitonPath = State(initialValue: NavigationPath())
     }
@@ -53,14 +55,16 @@ public struct OnboardingView: View {
     }
     
     private func step(for stepIdentifier: String) -> OnboardingStep? {
-        return steps.filter({ $0.identifier == stepIdentifier }).first
+        return stepsBuilder().filter({ $0.identifier == stepIdentifier }).first
     }
     
     private func firstStep() -> OnboardingStep? {
-        return steps.first
+        return stepsBuilder().first
     }
     
     private func nextStep() -> OnboardingStep? {
+        let steps = stepsBuilder()
+        
         guard let currentStep else {
             return steps.first
         }
