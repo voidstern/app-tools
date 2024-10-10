@@ -17,6 +17,11 @@ public class Logger {
     private var receivers: [LogReceiver] = []
     public let dateFormatter = DateFormatter()
     
+    init() {
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .medium
+    }
+    
     public func log(tag: String? = nil, _ message: String) {
         let dateString = dateFormatter.string(from: Date())
         
