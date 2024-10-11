@@ -8,7 +8,11 @@
 import Foundation
 
 public protocol LogReceiver {
-    func log(tag: String?, message: String, date: String)
+    func log(tag: String?, message: String, date: String, level: LogLevel)
+}
+
+public enum LogLevel: Int {
+    case critical = 4, error = 3, warning = 2, info = 1, debug = 0
 }
 
 public class Logger {
@@ -16,17 +20,20 @@ public class Logger {
     
     private var receivers: [LogReceiver] = []
     public let dateFormatter = DateFormatter()
+    public var level: LogLevel = .info
     
     init() {
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .medium
     }
     
-    public func log(tag: String? = nil, _ message: String) {
+    public func log(tag: String? = nil, level: LogLevel = .info, _ message: String) {
+        guard level.rawValue >= self.level.rawValue else { return }
+        
         let dateString = dateFormatter.string(from: Date())
         
         for receiver in receivers {
-            receiver.log(tag: tag, message: message, date: dateString)
+            receiver.log(tag: tag, message: message, date: dateString, level: level)
         }
     }
     
@@ -35,6 +42,6 @@ public class Logger {
     }
 }
 
-public func log(tag: String? = nil, _ message: String) {
+public func log(tag: String? = nil, level: LogLevel = .info, _ message: String) {
     Logger.shared.log(tag: tag, message)
 }

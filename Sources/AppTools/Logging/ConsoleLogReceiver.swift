@@ -10,7 +10,7 @@ public class ConsoleLogReceiver: LogReceiver {
         
     }
     
-    public func log(tag: String? = nil, message: String, date: String) {
+    public func log(tag: String? = nil, message: String, date: String, level: LogLevel) {
         print("[\(date)] \(tag == nil ? "" : "[\(tag ?? "")]") \(message)")
     }
 }
