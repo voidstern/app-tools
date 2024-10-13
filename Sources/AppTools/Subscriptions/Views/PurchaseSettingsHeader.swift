@@ -111,12 +111,13 @@ public struct PurchaseSettingsProHeader: View {
                 .padding(.horizontal, 16)
             
             Text(L10n.thanksForYourSupport)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.callout)
+                .fontWeight(.semibold)
                 .opacity(0.7)
                 .padding(.bottom, 2)
             
             Text("\(L10n.manageSubscription) \(Image(systemSymbol: .chevronRight))")
-                .font(.system(size: 11))
+                .font(.caption)
                 .opacity(0.3)
         }
         .background {
