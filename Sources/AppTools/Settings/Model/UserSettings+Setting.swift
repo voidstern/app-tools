@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserSettings {
-    open class Setting: Equatable, Hashable {
+    open class Setting: Equatable, Hashable, Sendable {
         public let identifier: String
         public let options: [Option]?
         

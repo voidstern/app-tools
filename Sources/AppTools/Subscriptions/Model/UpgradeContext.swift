@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct UpgradeContext {
+public struct UpgradeContext: Sendable {
     let proLogo: Image
     
     let title: String

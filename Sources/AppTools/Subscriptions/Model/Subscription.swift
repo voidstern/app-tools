@@ -8,7 +8,7 @@
 import Foundation
 
 extension SubscriptionManager {
-    open class Subscription: Codable, Equatable, Hashable {
+    open class Subscription: Codable, Equatable, Hashable, Sendable {
         public let identifier: String
         public let trialDuration: Int
         public let type: SubscriptionType
@@ -68,7 +68,7 @@ extension SubscriptionManager {
 
 
 extension SubscriptionManager {
-    public class SubscriptionLevel: Codable, Equatable, Hashable, Comparable {
+    public class SubscriptionLevel: Codable, Equatable, Hashable, Comparable, Sendable {
         public static let free = SubscriptionManager.SubscriptionLevel(identifier: "free", entitlement: nil, value: 0)
 
         public let identifier: String

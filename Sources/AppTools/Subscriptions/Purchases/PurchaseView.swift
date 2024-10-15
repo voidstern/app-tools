@@ -157,7 +157,7 @@ public struct PurchaseView: OnboardingSequenceView {
 }
 
 extension PurchaseView {
-    public struct Feature: Identifiable, Hashable, Equatable {
+    public struct Feature: Identifiable, Hashable, Equatable, Sendable {
         let title: String
         let subtitle: String?
         let symbol: SFSymbol
