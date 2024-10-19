@@ -20,6 +20,7 @@ public extension UserSettings.Setting {
     }
 }
 
+@MainActor
 public class SubscriptionReminder: ObservableObject {
     @Published public var showPurchaseView: Bool = false
     

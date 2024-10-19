@@ -117,5 +117,6 @@ public struct OnboardingStep: Hashable {
 }
 
 public protocol OnboardingSequenceView: View {
+    @MainActor
     var nextOnboardingStep: (() -> ())? { get set }
 }

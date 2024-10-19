@@ -8,6 +8,7 @@
 import Foundation
 import RevenueCat
 
+@MainActor
 public class SubscriptionManager: ObservableObject {
     public static let subscriptionChanged = Notification.Name("net.voidstern.focused.subscription.changed")
     
