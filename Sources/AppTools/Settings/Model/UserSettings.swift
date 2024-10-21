@@ -40,7 +40,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
 
@@ -51,7 +51,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
         
         return (!value)
@@ -76,7 +76,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
     
@@ -87,7 +87,7 @@ public class UserSettings: ObservableObject {
             
             DispatchQueue.onMainQueue {
                 self.objectWillChange.send()
-                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+                NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
             }
             
             return (value + 1)
@@ -115,7 +115,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
     
@@ -126,7 +126,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
         
         return (value + 1)
@@ -150,7 +150,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
     
@@ -170,7 +170,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
     
@@ -190,7 +190,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
     
@@ -221,7 +221,7 @@ public class UserSettings: ObservableObject {
         
         DispatchQueue.onMainQueue {
             self.objectWillChange.send()
-            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self)
+            NotificationCenter.default.post(name: UserSettings.userSettingsChangedNotificationName, object: self, userInfo: ["key": key])
         }
     }
 }
