@@ -30,7 +30,6 @@ public struct LabelledDivider: View {
             
             Text(label)
                 .bold()
-                .minimumScaleFactor(0.75)
                 .padding(.horizontal, horizontalPadding)
                 .foregroundColor(color)
             
